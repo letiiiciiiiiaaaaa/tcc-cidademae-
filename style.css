@@ -1,6 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
 header{
-    background: url('inicio.png');
-    background-position: center;
+    background-image: url('inicio.png');
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    width: 100%;
     display: inline-block;
     align-items: center;
 }
