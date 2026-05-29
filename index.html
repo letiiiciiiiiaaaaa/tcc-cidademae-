@@ -4,26 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
     <title> Cidade Mãe </title>
 </head>
 <body>
     <header class="cabecalho">
+        <div class="search">
+            <label for="searchInput">
+                <span class="material-symbols-outlined"> search </span>
+            </label>
+            <input type="text" id="searchInput">
+        </div> 
 
         <img src="inicio.png">
 
-        <div> 
+        <div class="textos"> 
             <h1> CIDADE MÃE </h1>
-            <p> Conheça um pouco de tudo que marca a história de Paranaguá </p>
+            <p> Conheça um pouco de tudo <br> que marca a história de <br> Paranaguá </p>
         </div> 
 
-        <div class="botoes">
+        <div class="container-botoes">
             <ul>
-                <li><a href="#"> Arte </a></li>
-                <li><a href="#"> Gastronomia </a></li>
-                <li><a href="#"> Mercado </a></li>
+                <li> <a href="#"> <button> ARTE </button> </a> </li>
+                <li> <a href="#"> <button> MERCADO </button> </a> </li>
+                <li> <a href="#"> <button> GASTRONOMIA </button> </a> </li>
             </ul>
-        </div>
-        
+        </div>  
     </header>
 </body>
 </html>
