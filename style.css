@@ -116,19 +116,21 @@ margin-bottom: 100%;
     width: 100%;
     display: flex;
     position: absolute;
-    gap: 10%;
+    gap: 30%;
     justify-content: center;
     margin-top: -90%;
 }
 
 .conteudo-1 p {
+    text-align: initial;
     font-size: 20px;
     color: black;
-    margin-top: 15%;
+    margin-top: 10%;
+    margin-left: -10%;
 }
 
 .conteudo-1 img {
     width: 35%;
     height: 20%;
-    margin-right: 20%;
+    margin-left: -200px;
 }
