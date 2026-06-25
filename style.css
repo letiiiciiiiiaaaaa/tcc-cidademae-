@@ -33,17 +33,22 @@
 
 body {
     font-family: 'Questrial', sans-serif;
+    max-width: 100vw;
+    background-image: url(inicio-fundo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .cabecalho {
     width: 100%;
+    height: auto;
     align-items: center;
 }
 
 .cabecalho img {
     display: block;
     width: 100%;
-    height: 420px;
+    height: 380px;
 }
 
 .cabecalho h1 {
@@ -59,20 +64,71 @@ body {
     text-align: center;
     color: white;
     font-size: 18px;
+    letter-spacing: 1.5px;
 }
 
 .container-botoes {
     display: flex;                
-    gap: 20px;              
-    justify-content: flex-start;   
-    align-items: center;
+    gap: 55px;                 
+    justify-content: center;
 }
 
-.arte, .gas, .mercado {
-    display: flex;       
-    gap: 20px;                    
-    justify-content: flex-start;  
-    align-items: center;
-    text-decoration: none;
+button {
+    font-size: 16px;
+    width: 150px;
+    height: 45px;
+    border: 5px;
+    border-radius: 30px;
+    margin-top: 50px;
+}
+
+hr {
+    border: none;
+    border-top: 17px solid #72D276;
+    width: 100%;
+    margin-top: 84px;
+}
+
+.arte button {
+    background-color: #FF3131;
     color: white;
+}
+
+.mercado button {
+    background-color: #05933F;
+    color: white;
+}
+
+.gas button {
+    background-color: #E5D56C;
+    color: white;
+}
+
+.bandeiras img {
+    margin: auto;
+    margin-top: 10px;
+    width: 12%;
+    height: 30px;
+margin-bottom: 100%;
+}
+
+.conteudo-1 {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    gap: 10%;
+    justify-content: center;
+    margin-top: -90%;
+}
+
+.conteudo-1 p {
+    font-size: 20px;
+    color: black;
+    margin-top: 15%;
+}
+
+.conteudo-1 img {
+    width: 35%;
+    height: 20%;
+    margin-right: 20%;
 }
