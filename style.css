@@ -73,13 +73,22 @@ body {
     justify-content: center;
 }
 
-button {
+a {
+    display: inline-block;
+    text-decoration: none;
     font-size: 16px;
     width: 150px;
     height: 45px;
-    border: 5px;
-    border-radius: 30px;
     margin-top: 50px;
+    position: relative;
+    border-radius: 30px;
+    border: none;
+    line-height: 46px;
+    text-align: center;
+}
+
+a:hover {
+    opacity: 0.8;
 }
 
 hr {
@@ -89,17 +98,17 @@ hr {
     margin-top: 84px;
 }
 
-.arte button {
+.arte{
     background-color: #FF3131;
     color: white;
 }
 
-.mercado button {
+.mercado{
     background-color: #05933F;
     color: white;
 }
 
-.gas button {
+.gas{
     background-color: #E5D56C;
     color: white;
 }
