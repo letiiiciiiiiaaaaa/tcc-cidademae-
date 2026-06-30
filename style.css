@@ -87,10 +87,6 @@ a {
     text-align: center;
 }
 
-a:hover {
-    opacity: 0.8;
-}
-
 hr {
     border: none;
     border-top: 17px solid #72D276;
@@ -103,14 +99,27 @@ hr {
     color: white;
 }
 
+.arte:hover{
+    background-color: #d22626;
+}
+
 .mercado{
     background-color: #05933F;
     color: white;
 }
 
+.mercado:hover{
+    background-color: #04732e;
+}
+
 .gas{
     background-color: #E5D56C;
     color: white;
+}
+
+
+.gas:hover{
+    background-color: #d4c55a;
 }
 
 .bandeiras img {
@@ -142,4 +151,10 @@ margin-bottom: 100%;
     width: 35%;
     height: 20%;
     margin-left: -200px;
+}
+
+.primeira-img{
+    margin-top: -61%;
+    margin-left: 85px;
+    color:black;
 }
