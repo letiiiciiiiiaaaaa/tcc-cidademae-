@@ -87,7 +87,7 @@ a {
     text-align: center;
 }
 
-hr {
+.linha1 {
     border: none;
     border-top: 17px solid #72D276;
     width: 100%;
@@ -127,7 +127,7 @@ hr {
     margin-top: 10px;
     width: 12%;
     height: 30px;
-margin-bottom: 100%;
+    margin-bottom: 100%;
 }
 
 .conteudo-1 {
@@ -141,10 +141,11 @@ margin-bottom: 100%;
 
 .conteudo-1 p {
     text-align: initial;
-    font-size: 20px;
+    font-size: 22px;
     color: black;
     margin-top: 10%;
     margin-left: -10%;
+    word-spacing: 5px;
 }
 
 .conteudo-1 img {
@@ -153,8 +154,39 @@ margin-bottom: 100%;
     margin-left: -200px;
 }
 
-.primeira-img{
+.primeira-img {
     margin-top: -61%;
-    margin-left: 85px;
+    margin-left: 192px;
     color:black;
+}
+
+.linha2 {
+   border: none;
+   border-top: 3px solid #f1d618;
+   width: 9%;
+   margin-top: 30px;
+   margin-left: 460px;
+   margin-bottom: 90%;
+}
+
+.conteudo-2 {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    gap: 20%;
+    justify-content: center;
+    margin-top: -90%;
+}
+
+.conteudo-2 p {
+    font-size: 22px;
+    color: black;
+    margin-top: 15%;
+    word-spacing: 2px;
+    margin-left: 20%;
+}
+
+.conteudo-2 img {
+    width: 35%;
+    height: 20%;
 }
