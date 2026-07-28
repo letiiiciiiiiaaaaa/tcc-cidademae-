@@ -48,7 +48,7 @@ body {
 .cabecalho img {
     display: block;
     width: 100%;
-    height: 380px;
+    height: 400px;
 }
 
 .cabecalho h1 {
@@ -91,7 +91,7 @@ a {
     border: none;
     border-top: 17px solid #72D276;
     width: 100%;
-    margin-top: 84px;
+    margin-top: 83px;
 }
 
 .arte{
@@ -227,6 +227,7 @@ a {
 .container-botao  {
     gap: 55px;                 
     text-align: center;
+    margin-bottom: 6%;
 }
 
 .link-btn {
@@ -247,5 +248,17 @@ a {
 }
 
 .rodape {
-    background-color: #05933F;
+    color: white;
+    background-color: #65cc69;
+}
+
+.nome-site {
+    text-align: center;
+    letter-spacing: 3px;
+    font-family: 'Cal Sans', sans-serif;
+    margin-top: 2.5%;
+}
+
+.bandeiras-rodape {
+    margin-left: 94%;
 }
