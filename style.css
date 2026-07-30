@@ -45,6 +45,25 @@ body {
     align-items: center;
 }
 
+
+.carrossel{
+    overflow: hidden;
+    height: 400px;
+    width: 100%;
+}
+
+.container-carrossel{
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(0%);
+}
+
+#img{
+    object-fit: cover;
+    height: 400px;
+    width: 100%;
+}
+
 .cabecalho img {
     display: block;
     width: 100%;
