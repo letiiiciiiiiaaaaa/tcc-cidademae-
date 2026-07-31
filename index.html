@@ -1,70 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cidade Mãe</title>
+
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
     <script src="inicio.js" defer></script>
-    <title> Cidade Mãe </title>
 </head>
+
 <body>
+
     <header class="cabecalho">
         <div class="search">
             <label for="searchInput">
-                <span class="material-symbols-outlined"> search </span>
+                <span class="material-symbols-outlined">search</span>
             </label>
-            <input type="text" id="searchInput">
-        </div> 
-
-        
-        <img src="eu-amo-paranagua.png">
-
-        <div class="textos"> 
-            <h1> CIDADE MÃE </h1>
-            <p> Conheça um pouco de tudo <br> que marca a história de <br> Paranaguá </p>
-        </div> 
-
-        <div class="container-botoes">
-                <a role="button" href="arte.html" class="arte"> ARTE </a>
-                <a role="button" href="mercado.html" class="mercado"> MERCADO </a>
-                <a role="button" href="gastronomia.html" class="gas"> GASTRONOMIA </a>  
+            <input type="text" id="searchInput" placeholder="Pesquisar...">
         </div>
-        <hr class="linha-original">
+
+        <div class="container-inicio">
+            <div class="carrossel">
+                <div class="container-carrossel" id="img">
+                    <img src="eu-amo-paranagua.png" alt="Eu amo Paranaguá">
+                    <img src="ilha-do-mel.png" alt="Ilha do Mel">
+                    <img src="rio-itibere.jpg" alt="Rio Itiberê">
+                </div>
+
+                <div class="hero-content">
+                    <h1>CIDADE MÃE</h1>
+                    <p>Conheça um pouco de tudo <br> que marca a história de <br> Paranaguá</p>
+                </div>
+            </div>
+
+            <nav class="container-botoes">
+                <a href="arte.html" class="btn btn-arte">ARTE</a>
+                <a href="mercado.html" class="btn btn-mercado">MERCADO</a>
+                <a href="gastronomia.html" class="btn btn-gas">GASTRONOMIA</a>
+            </nav>
+
+            <hr class="linha-destaque">
+        </div>
         <div class="bandeiras">
-            <img src="bandeiras-inicio.png">
+            <img src="bandeiras-inicio.png" alt="Bandeiras">
         </div>
     </header>
 
-        <div class="conteudo-1">
-            <img src="mangue.png" class="mangue">
-            <p> Paranaguá, com aproximadamente <br> 166.428 mil habitantes, é conhecida como <br> a cidade berço do Paraná, onde a história <br> do estado começou de verdade. Mas não <br> é apenas isso; é o lugar onde pulsa <br> tradições de 377 anos. </p>
-        </div> 
-            <p class="primeira-img"> Restaurante Danúbio Azul - Rua Benjamin Constant </p>
-            <hr class="linha1">
+    <main class="conteudo-principal">
+    
+        <section class="card-info">
+            <img src="mangue.png" alt="Mangue de Paranaguá" class="card-img esquerda">
+            <div class="card-texto direita">
+                <p>Paranaguá, com aproximadamente 166.428 mil habitantes, é conhecida como a cidade berço do Paraná,
+                    onde a história do estado começou de verdade. Mas não é apenas isso; é o lugar onde pulsa tradições
+                    de 378 anos.</p>
+                <span class="legenda">Restaurante Danúbio Azul - Rua Benjamin Constant</span>
+                <hr class="linha-amarela">
+            </div>
+        </section>
+    
+        <section class="card-info reverso">
+            <div class="card-texto esquerda">
+                <p>Aqui, a hospitalidade caiçara transborda gerações, acolhendo o visitante com el calor de uma terra que
+                    mantém sempre o orgulho de suas raízes.</p>
+                <span class="legenda">Casario Histórico - Rua da Praia</span>
+                <hr class="linha-vermelha">
+            </div>
+            <img src="pracinha.png" alt="Pracinha histórica" class="card-img direita">
+        </section>
 
-        <div class="conteudo-2">
-            <p> Aqui, a hospidalidade caiçara transborda gerações, acolhendo o visitante com o calor de uma terra que mantém sempre o orgulho de suas raízes. </p>
-            <img src="pracinha.png" class="pracinha">
-        </div> 
-        <p class="segunda-img"> Casario Histórico - Rua da Praia </p>
-        <hr class="linha2">
-        <p class="textinho1"> No nosso programa, apresentamos um pouco da cultura do <br> município, convidando você a mergulhar no que compõe a <br> identidade única de Paranaguá. </p>
+        <p class="textinho1">No nosso programa, apresentamos um pouco da cultura do município, convidando você a mergulhar no que compõe a identidade única de Paranaguá.</p>
 
-        <div class="link-jogo">
-            <p class="ask-jogo"> Que tal um Jogo da Memória? </p>
-            <img src="jogo-da-memória.png" class="jogo-ft">
-        </div>
+        <section class="secao-jogo">
+            
+            <div class="box-jogo">
+                <h2>Que tal um Jogo da Memória?</h2>
+                <img src="jogo-da-memória.png" alt="Jogo da Memória" class="jogo-ft">
+                <a href="jogo.html" class="btn btn-jogar">JOGAR</a>
+            </div>
+        </section>
 
-        <div class="container-botao">
-            <a role="button" href="jogo.da.memoria.js" class="link-btn"> JOGAR </a>
-        </div>
+    </main>
 
-        <div class="rodape">
-            <p> Feedback </p>
-            <h1 class="nome-site"> CIDADE MÃE </h1>
-            <p class="copyright">&copy; Copyright Cidade Mãe - 2026 </p>
-            <img src="bandeiras-rodapé.png" class="bandeiras-rodape">
-        </div>
+    <footer class="rodape">
+        <p>Feedback</p>
+        <h1 class="nome-site">CIDADE MÃE</h1>
+        <p class="copyright">&copy; Copyright Cidade Mãe - 2026</p>
+        <img src="bandeiras-rodapé.png" alt="Bandeiras Rodapé" class="bandeiras-rodape">
+    </footer>
+
 </body>
+
 </html>
