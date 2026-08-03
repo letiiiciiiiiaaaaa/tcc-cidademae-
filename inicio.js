@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  setInterval(carrossel, 6000);
+  setInterval(carrossel, 4000);
 
   const elementosAnimados = document.querySelectorAll(".esquerda, .direita");
 

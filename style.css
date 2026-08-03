@@ -150,6 +150,22 @@ body {
     padding: 120px 0 80px;
 }
 
+#peixinhos,
+#caranga,
+#barquinho {
+    z-index: 0.5;
+    position: absolute;
+    transition: transform 0.3s ease;
+}
+
+#peixinhos {margin: 0 1006px auto;}
+#caranga {margin: 650px auto;}
+#barquinho {margin: 1100px 1260px auto;}
+
+#peixinhos:hover,
+#caranga:hover,
+#barquinho:hover {transform: scale(1.05);}
+
 .esquerda {
     opacity: 0;
     transform: translateX(-100px);
