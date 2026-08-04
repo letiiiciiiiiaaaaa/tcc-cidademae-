@@ -155,7 +155,7 @@ body {
 #barquinho {
     z-index: 0.5;
     position: absolute;
-    transition: transform 0.3s ease;
+    transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
 #peixinhos {margin: 0 1006px auto;}
@@ -164,7 +164,9 @@ body {
 
 #peixinhos:hover,
 #caranga:hover,
-#barquinho:hover {transform: scale(1.05);}
+#barquinho:hover {
+    transform: translateX(0) scale(1.05);
+}
 
 .esquerda {
     opacity: 0;
@@ -262,17 +264,26 @@ body {
     position: relative;
 }
 
-.nome-site {
+.rodape a {
+    color: white;
+    text-decoration: none;
+}
+
+.rodape a:hover {
+    text-decoration: underline;
+}
+
+.rodape h1 {
     letter-spacing: 3px;
     font-family: 'Cal Sans', sans-serif;
     margin: 10px 0;
 }
 
-.copyright {
+.rodape p {
     font-size: 14px;
 }
 
-.bandeiras-rodape {
+.rodape img {
     position: absolute;
     right: 20px;
     bottom: 15px;
