@@ -29,3 +29,47 @@
     font-size: 30px;
     font-weight: bold;
 }
+
+#musica,
+#aquarela,
+#danca {
+    z-index: 0.5;
+    position: absolute;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+#musica {
+    margin: 230px 925px auto;
+}
+
+#aquarela {
+    margin: 650px auto;
+}
+
+#danca {
+    margin: 1100px 1084px auto;
+}
+
+#musica:hover,
+#aquarela:hover,
+#danca:hover {
+    transform: translateX(0) scale(1.05);
+}
+
+.esquerda {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.direita {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.esquerda.mostrar,
+.direita.mostrar {
+    opacity: 1;
+    transform: translateX(0);
+}
