@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+    justify-content: center;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.voltar {
+    position: absolute;
+    color: white;
+    top: 30px;
+    left: 30px;
+    background: none;
+    border: none;
+    font-size: 30px;
+}
+
+.img-cabecalho {
+    width: 100%;
+}
+
+h1 {
+    font-size: 60px;
+    color: #f1d618;
+    font-weight: bold;
+    font-family: 'Cal Sans', sans-serif;
+    letter-spacing: 4px;
+    word-spacing: 10px;
+    margin: 25px 35px auto;
+}
+
+.introducao {
+    font-size: 20px;
+    margin: 25px 35px auto;
+    text-align: initial;
+    letter-spacing: 0.5px;
+    word-spacing: 2px;
+}
+
+.intro-barreado {
+    font-size: 17px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 25px 35px auto;
+}
+
+.intro-caranguejo {
+    font-size: 17px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 25px 35px auto;
+}
+
+.intro-peixe {
+    font-size: 17px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 25px 35px auto;
+}
+
+.intro-arroz {
+    font-size: 17px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 25px 35px auto;
+}
