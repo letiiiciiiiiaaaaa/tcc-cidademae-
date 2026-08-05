@@ -196,15 +196,16 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 40px;
+    gap: 50px;
     max-width: 1100px;
-    margin: 0 auto 60px auto;
+    margin: 0 auto 80px auto;
 }
 
 .card-img {
-    width: 45%;
+    width: 100%;
     max-height: 430px;
     object-fit: cover;
+    margin-bottom: 12px;
 }
 
 .card-texto {
@@ -217,11 +218,17 @@ html, body {
     margin-bottom: 15px;
 }
 
+.container-imagem {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
 .legenda {
     display: block;
     font-size: 14px;
     color: #555;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .linha-amarela {
@@ -294,4 +301,27 @@ html, body {
     right: 20px;
     bottom: 15px;
     width: 60px;
+}
+
+.header img {
+    width: 100%;
+}
+
+.header h1 {
+    font-size: 65px;
+    letter-spacing: 4px;
+    word-spacing: 10px;
+    font-family: 'Cal Sans', sans-serif;
+    margin: 25px 35px auto;
+    color: #ff3131;
+}
+
+.voltar {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 30px;
 }
