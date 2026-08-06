@@ -1,31 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow-x: hidden;
-}
-
-body {
-    font-family: 'Questrial', sans-serif;
-    color: #333;
-    background-color: #ffffff;
-}
-
-html, body {
-    width: 100%;
-    overflow-x: hidden;
-}
-
 .header img {
     width: 100%;
-}
-
-.conteudo-principal {
-    width: 100%;
-    margin: 0 auto;
-    overflow-x: hidden;
 }
 
 .header h1 {
@@ -52,7 +28,6 @@ html, body {
 #aquarela,
 #danca {
     z-index: 0.5;
-    position: absolute;
     transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
@@ -61,68 +36,15 @@ html, body {
 }
 
 #aquarela {
-    margin: 1600px auto;
+    margin: 1200px auto;
 }
 
 #danca {
-    margin: 2600px 1084px auto;
+    margin: 200px 1084px auto;
 }
 
 #musica:hover,
 #aquarela:hover,
 #danca:hover {
     transform: translateX(0) scale(1.05);
-}
-
-.esquerda {
-    opacity: 0;
-    transform: translateX(-100px);
-    transition: transform 0.8s ease, opacity 0.8s ease;
-}
-
-.direita {
-    opacity: 0;
-    transform: translateX(100px);
-    transition: transform 0.8s ease, opacity 0.8s ease;
-}
-
-.esquerda.mostrar,
-.direita.mostrar {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.rodape {
-    background-color: #65cc69;
-    color: white;
-    padding: 30px 20px;
-    text-align: center;
-    position: relative;
-}
-
-.rodape a {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-.rodape a:hover {
-    text-decoration: underline;
-}
-
-.rodape h1 {
-    letter-spacing: 3px;
-    font-family: 'Cal Sans', sans-serif;
-    margin: 10px 0;
-}
-
-.rodape p {
-    font-size: 14px;
-}
-
-.rodape img {
-    position: absolute;
-    right: 20px;
-    bottom: 15px;
-    width: 60px;
 }
