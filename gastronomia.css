@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
 
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 
 body {
     font-family: 'Open Sans', sans-serif;
@@ -12,10 +14,12 @@ body {
     justify-content: center;
 }
 
+
 html, body {
     width: 100%;
     overflow-x: hidden;
 }
+
 
 .voltar {
     position: absolute;
@@ -27,11 +31,13 @@ html, body {
     font-size: 30px;
 }
 
+
 .img-cabecalho {
     width: 100%;
 }
 
-h1 {
+
+.titulo-da-pagina {
     font-size: 60px;
     color: #f1d618;
     font-weight: bold;
@@ -41,38 +47,25 @@ h1 {
     margin: 25px 35px auto;
 }
 
+
 .introducao {
     font-size: 20px;
     margin: 25px 35px auto;
-    text-align: initial;
-    letter-spacing: 0.5px;
     word-spacing: 2px;
 }
 
-.intro-barreado {
-    font-size: 17px;
-    display: inline-block;
-    vertical-align: top;
-    margin: 25px 35px auto;
+.conteudo {
+    font-size: 17.4px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    max-width: 1100px;
+    margin: 0 auto 80px auto;
 }
 
-.intro-caranguejo {
-    font-size: 17px;
-    display: inline-block;
-    vertical-align: top;
-    margin: 25px 35px auto;
+.conteudo img {
+    width: 40%;
+    margin: 0px 600px 50px 500px;
 }
 
-.intro-peixe {
-    font-size: 17px;
-    display: inline-block;
-    vertical-align: top;
-    margin: 25px 35px auto;
-}
 
-.intro-arroz {
-    font-size: 17px;
-    display: inline-block;
-    vertical-align: top;
-    margin: 25px 35px auto;
-}
