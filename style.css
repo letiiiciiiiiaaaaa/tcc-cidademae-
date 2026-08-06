@@ -285,6 +285,7 @@ html, body {
     padding: 30px 20px;
     text-align: center;
     position: relative;
+    background-position: top;
 }
 
 .rodape a {
@@ -312,28 +313,4 @@ html, body {
     right: 20px;
     bottom: 15px;
     width: 60px;
-}
-
-.header img {
-    width: 100%;
-}
-
-.header h1 {
-    font-size: 65px;
-    letter-spacing: 4px;
-    word-spacing: 10px;
-    font-family: 'Cal Sans', sans-serif;
-    margin: 25px 35px auto;
-    color: #ff3131;
-}
-
-.voltar {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 30px;
-    font-weight: bold;
 }
