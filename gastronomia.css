@@ -1,24 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
 
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: white;
-}
-
-
-html, body {
-    width: 100%;
-    overflow-x: hidden;
-}
-
 .voltar {
     position: absolute;
     color: white;
@@ -52,6 +33,7 @@ html, body {
     margin: 25px 35px auto;
     word-spacing: 2px;
     margin-bottom: 60px;
+    max-width: 70%;
 }
 
 .container-principal {
@@ -66,6 +48,8 @@ html, body {
 }
 
 .barreado {
+    z-index: 2;
+    position: relative;
     display: flex;
     vertical-align: top;
     margin: 25px 35px auto;
@@ -94,7 +78,46 @@ html, body {
 }
 
 .lucas {
+    text-align: center;
     font-size: 21px;
-    justify-items: center;
-    gap: 20px;
+    margin-bottom: 150px;
+}
+
+.lucas img {
+    margin-bottom: 10px;
+}
+
+.ultimo-texto {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 150px;
+}
+
+#verduras,
+#frutas,
+#siri {
+    z-index: 1;
+    position: absolute;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+#verduras {
+    margin: -250px 1100px auto;
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+#frutas {
+    margin: 650px auto;
+}
+
+#siri {
+    margin: 1100px 1260px auto;
+}
+
+#verduras:hover,
+#frutas:hover,
+#siri:hover {
+    transform: translateX(0) scale(1.05);
 }
