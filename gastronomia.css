@@ -121,3 +121,12 @@
 #siri:hover {
     transform: translateX(0) scale(1.05);
 }
+
+.surgir {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.surgir.mostrar {
+    opacity: 1;
+}

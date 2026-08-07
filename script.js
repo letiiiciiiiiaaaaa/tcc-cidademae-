@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setInterval(carrossel, 4000);
 
-  const elementosAnimados = document.querySelectorAll(".esquerda, .direita");
+  const elementosAnimados = document.querySelectorAll(".esquerda, .direita, .surgir");
 
   const observador = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
