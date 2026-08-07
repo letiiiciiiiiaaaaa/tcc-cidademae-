@@ -27,7 +27,7 @@
 #musica,
 #aquarela,
 #danca {
-    z-index: 0.5;
+    z-index: 0;
     transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
