@@ -8,6 +8,7 @@
     background: none;
     border: none;
     font-size: 30px;
+    font-weight: bold;
 }
 
 
@@ -39,21 +40,32 @@
 .container-principal {
     justify-content: space-between;
     gap: 100px;
+    position: relative;
+    overflow: visible;
 }
 
 .conteudo {
     font-size: 22px;
     justify-items: center;
     gap: 100px;
+    height: auto;
+    overflow: visible;
 }
 
 .barreado {
     z-index: 2;
     position: relative;
     display: flex;
-    vertical-align: top;
-    margin: 25px 35px auto;
+    align-items: flex-start; 
+    margin: 25px 35px;
     gap: 60px;
+    overflow: visible;
+}
+
+.direita {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .caranguejo {
@@ -98,22 +110,29 @@
 #siri {
     z-index: 1;
     position: absolute;
+    pointer-events: none;
     transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
 #verduras {
-    margin: -250px 1100px auto;
-    max-width: 100%;
-    display: block;
+    top: 0;              
+    right: 5%;           
+    width: 250px; 
     height: auto;
 }
 
 #frutas {
-    margin: 650px auto;
+    top: 400px;
+    left: 2%;
+    width: 200px;
+    height: auto;
 }
 
 #siri {
-    margin: 1100px 1260px auto;
+    top: 800px;
+    right: 2%;
+    width: 180px;
+    height: auto;
 }
 
 #verduras:hover,
