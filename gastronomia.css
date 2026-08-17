@@ -2,260 +2,153 @@
 
 .voltar {
     position: absolute;
+    color: white;
     top: 30px;
     left: 30px;
     background: none;
     border: none;
-    color: #fff;
     font-size: 30px;
     font-weight: bold;
-    cursor: pointer;
-    z-index: 10;
 }
 
-.header img {
+
+.img-cabecalho {
     width: 100%;
-    display: block;
 }
 
-.header h1 {
-    font-size: 65px;
+
+.titulo-da-pagina {
+    font-size: 60px;
+    color: #f1d618;
+    font-weight: bold;
+    font-family: 'Cal Sans', sans-serif;
     letter-spacing: 4px;
     word-spacing: 10px;
-    font-family: 'Cal Sans', sans-serif;
-    margin: 25px 35px 0 35px;
-    color: #ff3131;
+    margin: 25px 35px auto;
+}
+
+
+.introducao {
+    z-index: 1;
+    position: relative;
+    display: flex;
+    font-size: 25px;
+    margin: 25px 35px auto;
+    word-spacing: 2px;
+    margin-bottom: 60px;
+    max-width: 70%;
 }
 
 .container-principal {
-    position: relative;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding-top: 30px;
-    overflow-x: hidden;
-}
-
-#musica,
-#aquarela,
-#danca {
-    position: absolute;
-    z-index: 0;
-    transition: transform 0.8s ease, opacity 0.8s ease;
-    pointer-events: none;
-}
-
-#musica {
-    top: 20px;
-    right: 2%;
-    margin: 0;
-}
-
-#aquarela {
-    top: 600px;
-    left: 1%;
-    margin: 0;
-}
-
-#danca {
-    top: 1400px;
-    right: 2%;
-    margin: 0;
-}
-
-#musica:hover,
-#aquarela:hover,
-#danca:hover {
-    transform: scale(1.05);
-    pointer-events: auto;
-}
-
-.card-info {
-    display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 50px;
-    width: 100%;
-    margin-bottom: 60px;
+    gap: 100px;
     position: relative;
-    z-index: 1;
+    overflow: visible;
 }
 
-.card-info.reverso {
-    flex-direction: row-reverse;
+.conteudo {
+    font-size: 22px;
+    justify-items: center;
+    gap: 100px;
+    height: auto;
+    overflow: visible;
 }
 
-.card-texto {
-    width: 50%;
-}
-
-.card-texto p {
-    font-size: 20px;
-    line-height: 1.5;
-}
-
-.bloco-imagem {
-    width: 50%;
+.barreado {
+    z-index: 2;
+    position: relative;
     display: flex;
-    flex-direction: column;
+    align-items: flex-start; 
+    margin: 25px 35px;
+    gap: 60px;
+    overflow: visible;
 }
 
-.card-img {
-    width: 100%;
-    max-height: 430px;
-    object-fit: cover;
-    border-radius: 8px;
+.direita {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
-.legenda {
-    display: block;
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 8px;
-}
-
-#amarela {
-    margin-left: 130px;
-    position: relative;
-}
-
-.linha-amarela {
-    border: none;
-    border-top: 3px solid #f1d618;
-    width: 100px;
-}
-
-#vermelha {
-    margin-left: 200px;
-    margin-top: 10px;
-}
-
-.linha-vermelha {
-    border: none;
-    border-top: 3px solid #ff3131;
-    width: 100px;
-    margin-left: 100px;
-}
-
-
-.secao-fandango {
-    text-align: center;
-    width: 100%;
-    margin: 60px auto 40px auto;
-    position: relative;
-    z-index: 1;
-}
-
-.secao-fandango h2 {
-    font-family: 'Cal Sans', sans-serif;
-    font-size: 40px;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-}
-
-.card-img-destaque {
-    width: 100%;
-    max-height: 450px;
-    object-fit: cover;
-    border-radius: 15px;
-}
-
-.legenda-centro {
-    display: block;
-    font-size: 14px;
-    color: #555;
-    margin-top: 10px;
-}
-
-.texto-fandango {
-    text-align: left;
-    margin: 30px 0;
+.caranguejo {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    vertical-align: top;
+    margin: 25px 35px auto;
+    gap: 60px;
 }
 
-.texto-fandango p {
-    font-size: 20px;
-    line-height: 1.5;
-}
-
-.box-video {
-    margin: 40px auto 20px auto;
-    max-width: 650px;
-}
-
-.legenda-video {
-    font-size: 16px;
-    margin-bottom: 12px;
-    color: #333;
-}
-
-.thumb-video {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.secao-jogo {
-    text-align: center;
-    width: 100%;
-    margin: 60px auto 40px auto;
-    position: relative;
-    z-index: 1;
-}
-
-.box-jogo {
+.peixe {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 50px;
+    vertical-align: top;
+    margin: 25px 35px auto;
+    gap: 60px;
 }
 
-.secao-jogo h2 {
-    font-family: 'Questrial', sans-serif;
-    font-size: 24px;
+.arroz {
+    display: flex;
+    vertical-align: top;
+    margin: 25px 35px auto;
+    gap: 60px;
 }
 
-.jogo-ft {
-    max-width: 250px;
-    border-radius: 10px;
-}
-
-.rodape {
-    background-color: #65cc69;
-    color: white;
-    padding: 30px 20px;
+.lucas {
     text-align: center;
-    position: relative;
+    font-size: 21px;
+    margin-bottom: 150px;
 }
 
-.rodape a {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
+.lucas img {
+    margin-bottom: 10px;
+}
+
+.ultimo-texto {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 150px;
+}
+
+#verduras,
+#frutas,
+#siri {
+    z-index: 0;
     position: absolute;
-    left: 30px;
-    top: 35px;
+    pointer-events: none;
+    transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
-.rodape a:hover {
-    text-decoration: underline;
+#verduras {
+    top: 10%;       
+    left: 80%;   
+    width: 350px; 
+    height: auto;
 }
 
-.rodape h1 {
-    letter-spacing: 3px;
-    font-family: 'Cal Sans', sans-serif;
-    margin: 5px 0;
+#frutas {
+    top: 45%;
+    left: 2%;
+    width: 300px;
+    height: auto;
 }
 
-.rodape p {
-    font-size: 14px;
+#siri {
+    bottom: 7%;
+    left: 88%;
+    width: 200px;
+    height: auto;
+    transform: skew(10deg, -10deg);
 }
 
-.rodape img {
-    position: absolute;
-    right: 20px;
-    bottom: 15px;
-    width: 60px;
+#verduras:hover,
+#frutas:hover,
+#siri:hover {
+    transform: translateX(0) scale(1.05);
+}
+
+.surgir {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.surgir.mostrar {
+    opacity: 1;
 }
