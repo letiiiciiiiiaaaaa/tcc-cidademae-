@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Cultural de Paranaguá - Real</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #1a365d;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        p.subtitulo {
+            color: #4a5568;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Elemento onde o Mapa Real vai ser desenhado */
+        #mapa {
+            width: 100%;
+            max-width: 900px;
+            height: 500px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border: 3px solid #ffffff;
+        }
+
+        /* Estilo dos Popups do Mapa */
+        .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+            padding: 5px;
+        }
+
+        .popup-conteudo h3 {
+            color: #2c5282;
+            margin-bottom: 6px;
+            font-size: 1.1rem;
+        }
+
+        .popup-conteudo p {
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .popup-conteudo a {
+            display: inline-block;
+            color: #ffffff;
+            background-color: #2b6cb0;
+            padding: 6px 12px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .popup-conteudo a:hover {
+            background-color: #2c5282;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Mapa Cultural de Paranaguá</h1>
+    <p class="subtitulo">Navegue pelo mapa real e clique nos marcadores azuis para explorar os pontos históricos e
+        culturais.</p>
+
+    <div id="mapa"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // 1. Inicializa o mapa focado no Centro Histórico de Paranaguá (Latitude, Longitude, Zoom)
+        const mapa = L.map('mapa').setView([-25.5205, -48.5090], 15);
+
+        // 2. Adiciona as imagens do OpenStreetMap (Mapa Real de Ruas)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(mapa);
+
+        // 3. Pontos Locais com Coordenadas REAIS de Paranaguá:
+
+        // --- PONTO 1: Mercado do Café ---
+        const mercadoCafe = L.marker([-25.5209, -48.5075]).addTo(mapa);
+        mercadoCafe.bindPopup(`
+      <div class="popup-conteudo">
+        <h3>Mercado do Café</h3>
+        <p>Centro da gastronomia caiçara! Famoso pelo tradicional Barreado, frutos do mar e arquitetura histórica.</p>
+        <a href="gastronomia.html">Saber mais</a>
+      </div>
+    `);
+
+        // --- PONTO 2: Mercado do Peixe / Mercado do Artesanato ---
+        const mercadoPeixe = L.marker([-25.5201, -48.5065]).addTo(mapa);
+        mercadoPeixe.bindPopup(`
+      <div class="popup-conteudo">
+        <h3>Mercado do Peixe</h3>
+        <p>Ponto tradicional de venda do pescado do dia trazido pelos pescadores locais da baía.</p>
+        <a href="mercado.html">Saber mais</a>
+      </div>
+    `);
+
+        // --- PONTO 3: Rua da Praia ---
+        const ruaDaPraia = L.marker([-25.5218, -48.5060]).addTo(mapa);
+        ruaDaPraia.bindPopup(`
+      <div class="popup-conteudo">
+        <h3>Rua da Praia (Rua General Carneiro)</h3>
+        <p>Orla histórica às margens do Rio Itiberê com os casarios coloniais mais antigos do Paraná.</p>
+        <a href="mercado.html">Saber mais</a>
+      </div>
+    `);
+
+        // --- PONTO 4: Ilha dos Valadares ---
+        const ilhaValadares = L.marker([-25.5225, -48.4980]).addTo(mapa);
+        ilhaValadares.bindPopup(`
+      <div class="popup-conteudo">
+        <h3>Ilha dos Valadares</h3>
+        <p>Berço cultural do Fandango Caiçara e local de moradia de diversos mestres artesãos de instrumentos musicais.</p>
+        <a href="arte.html">Saber mais</a>
+      </div>
+    `);
+
+        // --- PONTO 5: Museu de Arqueologia e Etnologia (MAE/UFPR) ---
+        const maeUfpr = L.marker([-25.5230, -48.5085]).addTo(mapa);
+        maeUfpr.bindPopup(`
+      <div class="popup-conteudo">
+        <h3>Museu MAE - UFPR</h3>
+        <p>Antigo Colégio dos Jesuítas (1755), abriga um acervo riquíssimo sobre a cultura e arqueologia da região.</p>
+        <a href="arte.html">Saber mais</a>
+      </div>
+    `);
+    </script>
+
+</body>
+
+</html>
