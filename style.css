@@ -78,7 +78,7 @@ html, body {
     height: 100%;
 }
 
-.hero-content {
+.informacoes {
     position: absolute;
     top: 40%;
     left: 50%;
@@ -87,20 +87,21 @@ html, body {
     color: white;
 }
 
-.hero-content h1 {
+.informacoes h1 {
     letter-spacing: 4px;
     font-size: 50px;
     font-family: 'Cal Sans', sans-serif;
     margin-bottom: 10px;
 }
 
-.hero-content p {
+.informacoes p {
     font-size: 18px;
     letter-spacing: 1.5px;
     max-width: 500px;
     margin: 0 auto;
 }
 
+/* BOTOES DA PAGINA */
 .container-botoes {
     position: absolute;
     bottom: 20px;
@@ -126,22 +127,19 @@ html, body {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.btn:hover {
-    transform: scale(1.05);
-}
-
 .btn-arte { background-color: #FF3131; }
-.btn-arte:hover { background-color: #d22626; }
+.btn-arte:hover { background-color: #d22626; transform: scale(1.05); }
 
 .btn-mercado { background-color: #05933F; }
-.btn-mercado:hover { background-color: #04732e; }
+.btn-mercado:hover { background-color: #04732e; transform: scale(1.05); }
 
 .btn-gas { background-color: #E5D56C; }
-.btn-gas:hover { background-color: #d4c55a; }
+.btn-gas:hover { background-color: #d4c55a; transform: scale(1.05); }
 
 .btn-jogar {
     background-color: #5da9ea;
 }
+/* BOTOES DA PAGINA */
 
 .linha-destaque {
     border: none;
@@ -149,6 +147,14 @@ html, body {
     width: 100%;
     margin-top: 0;
 }
+
+/* IMAGENS DA PAGINA */
+.card-img {
+    width: 100%;
+    max-height: 430px;
+    object-fit: cover;
+}
+/* IMAGENS DA PAGINA */
 
 .bandeiras {
     text-align: center;
@@ -164,14 +170,6 @@ html, body {
     width: 100%;
     margin: 0 auto;
     padding-top: 80px;
-    position: relative;
-    overflow-x: hidden;
-}
-
-.container-principal {
-    width: 100%;
-    margin: 0 auto;
-    padding-top: 50px;
     position: relative;
     overflow-x: hidden;
 }
@@ -230,12 +228,6 @@ html, body {
     margin: 0 auto 80px auto;
 }
 
-.card-img {
-    width: 100%;
-    max-height: 430px;
-    object-fit: cover;
-}
-
 .card-texto {
     width: 50%;
 }
@@ -282,18 +274,19 @@ html, body {
     margin-left: 100px;
 }
 
-.secao-jogo {
-    text-align: center;
-    max-width: 1100px;
-    margin: 80px auto 40px auto;
-}
-
 .textinho1 {
     text-align: center;
     font-size: 22px;
     max-width: 700px;
     margin: 150px auto 40px auto;
     line-height: 1.4;
+}
+
+.secao-jogo {
+    text-align: center;
+    max-width: 1100px;
+    margin: 80px auto 40px auto;
+    display: flex;
 }
 
 .box-jogo {
@@ -304,7 +297,8 @@ html, body {
     margin-bottom: 50px;
 }
 
-.jogo-ft {
+.jogo-memoria
+.jogo-quiz {
     max-width: 300px;
     border-radius: 10px;
 }
