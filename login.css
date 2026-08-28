@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background: linear-gradient(160deg, #6dc470, #9ae69d, #fff) no-repeat;
+    min-height: 100vh;
+    text-align: center;
+    font-family: open sans, sans-serif;
+    
+}
+
+.voltar {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    position: absolute;
+    color: white;
+    top: 30px;
+    left: 30px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.logo {
+    width: 120px;
+    margin-top: 70px;
+}
+
+h1 {
+    line-height: 25px;
+    font-weight: normal;
+    letter-spacing: -2px;
+    position: relative;
+}
+
+h4 {
+    font-weight: normal;
+    padding-top: 10px;
+}
+
+.cadastro {
+    text-decoration: none;
+    color: #8bbae2;
+    font-weight: bold;
+}
+
+.cadastro:hover {
+    text-decoration: underline;
+}
+
+.tela-login {
+    margin-top: 65px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 80px 45px;
+    border-radius: 35px;
+}
+
+input {
+    text-align: left;
+    font-size: 20px;
+    padding: 12px;
+    border: none;
+    background-color: #f6f6f6;
+    outline: none;
+}
+
+.entrar {
+    background-color: #5daf61;
+    color: #fff;
+    border: none;
+    padding: 13px;
+    border-radius: 40px;
+    font-size: 23px;
+    width: 80%;
+    cursor: pointer;
+}
+
+.entrar:hover {
+    background-color: #6bc870;
+}
