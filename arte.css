@@ -6,7 +6,7 @@
 }
 
 .header h1 {
-    font-size: 65px;
+    font-size: 60px;
     letter-spacing: 4px;
     word-spacing: 10px;
     font-family: 'Cal Sans', sans-serif;
@@ -14,9 +14,11 @@
     color: #ff3131;
 }
 
-/* ==========================================
-   ILUSTRACOES FLUTUANTES (Sem criar buraco no topo)
-   ========================================== */
+.container-principal {
+    font-size: 20px;
+    margin: 25px 35px auto;
+}
+
 #musica,
 #aquarela,
 #danca {
@@ -51,29 +53,23 @@
     pointer-events: auto;
 }
 
-.card-info2 {
+.introducao {
     display: flex;
-    justify-content: space-between;
-    gap: 50px;
-    max-width: 1100px;
-    margin: 0 auto 80px auto;
 }
 
-.card2 {
-    justify-content: space-between;
-    gap: 50px;
-    max-width: 1100px;
-    
+.intro2 {
+    margin: 150px 35px 150px 0;
 }
 
-#texto2 {
-    transform: translateY(200px);
-    padding-bottom: 200px;
+.foto-quadros {
+    display: flex;
+    gap: 250px;
 }
 
-/* ==========================================
-   SECAO FANDANGO CAIÇARA & VIDEO
-   ========================================== */
+.boi {
+    height: 100%;
+}
+
 .secao-fandango {
     text-align: center;
     max-width: 1100px;
@@ -82,7 +78,7 @@
 
 .secao-fandango h2 {
     font-family: 'Cal Sans', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     letter-spacing: 2px;
     margin-bottom: 25px;
 }
@@ -92,7 +88,7 @@
     margin-bottom: 30px;
 }
 
-.card-img-destaque {
+.fandango-img {
     z-index: 10;
     width: 100%;
     max-height: 480px;
@@ -118,22 +114,4 @@
 .texto-fandango p {
     font-size: 20px;
     line-height: 1.5;
-}
-
-.box-video {
-    margin: 50px auto 20px auto;
-    max-width: 700px;
-}
-
-.legenda-video {
-    font-size: 18px;
-    margin-bottom: 12px;
-    color: #333;
-    font-weight: bold;
-}
-
-.thumb-video {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
