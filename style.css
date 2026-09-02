@@ -139,14 +139,16 @@ html, body {
 .btn-jogar {
     background-color: #5da9ea;
 }
-/* BOTOES DA PAGINA */
+/**/
 
+/* LINHA */
 .linha-destaque {
     border: none;
     border-top: 10px solid #72D276;
     width: 100%;
     margin-top: 0;
 }
+/**/
 
 /* IMAGENS DA PAGINA */
 .card-img {
@@ -154,12 +156,14 @@ html, body {
     max-height: 430px;
     object-fit: cover;
 }
-/* IMAGENS DA PAGINA */
+/**/
 
+/* BANDEIRAS */
 .bandeiras {
     text-align: center;
     margin: 20px 0 50px 0;
 }
+/**/
 
 .bandeiras img {
     width: 170px;
@@ -173,7 +177,7 @@ html, body {
     position: relative;
     overflow-x: hidden;
 }
-
+/* ELEMENTOS ANIMADOS */
 #peixinhos,
 #caranga,
 #barquinho {
@@ -218,6 +222,7 @@ html, body {
 .surgir.mostrar {
     opacity: 1;
 }
+/**/
 
 .card-info {
     display: flex;
@@ -254,6 +259,7 @@ html, body {
 #amarela {
     margin-left: 130px;
     position: absolute;
+    bottom: 70%;
 }
 
 .linha-amarela {
@@ -283,10 +289,13 @@ html, body {
 }
 
 .secao-jogo {
-    text-align: center;
+    grid-template-columns: 1fr 1fr;
+    display: grid !important;
+    flex-direction: row !important;
+    width: 100%;
     max-width: 1100px;
     margin: 80px auto 40px auto;
-    display: flex;
+    text-align: center;
 }
 
 .box-jogo {
@@ -294,14 +303,9 @@ html, body {
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    margin-bottom: 50px;
 }
 
-.jogo-memoria
-.jogo-quiz {
-    max-width: 300px;
-    border-radius: 10px;
-}
+
 
 .rodape {
     background-color: #65cc69;
@@ -309,7 +313,6 @@ html, body {
     padding: 30px 20px;
     text-align: center;
     position: relative;
-    background-position: top;
 }
 
 .rodape a {
