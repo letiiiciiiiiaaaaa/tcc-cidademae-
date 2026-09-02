@@ -102,6 +102,11 @@ html, body {
 }
 
 /* BOTOES DA PAGINA */
+
+.btn-usuario {
+    position: absolute;
+    color: white;
+}
 .container-botoes {
     position: absolute;
     bottom: 20px;
