@@ -136,9 +136,8 @@ html, body {
 .btn-gas { background-color: #E5D56C; }
 .btn-gas:hover { background-color: #d4c55a; transform: scale(1.05); }
 
-.btn-jogar {
-    background-color: #5da9ea;
-}
+.btn-jogar { background-color: #5da9ea; }
+.btn-jogar:hover {background-color: #437fb3; transform: scale(1.05);}
 /**/
 
 /* LINHA */
@@ -289,9 +288,9 @@ html, body {
 }
 
 .secao-jogo {
-    grid-template-columns: 1fr 1fr;
-    display: grid !important;
-    flex-direction: row !important;
+    gap: 10%;
+    justify-content: center;
+    display: flex;
     width: 100%;
     max-width: 1100px;
     margin: 80px auto 40px auto;
@@ -302,12 +301,20 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
 }
 
+.jogo-memoria {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
 
+.jogo-quiz {
+    margin-top: 10%;
+    margin-bottom: 15%;
+}
 
 .rodape {
+    margin-top: 4%;
     background-color: #65cc69;
     color: white;
     padding: 30px 20px;
