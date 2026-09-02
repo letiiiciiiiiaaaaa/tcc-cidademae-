@@ -32,7 +32,7 @@ html, body {
 .search {
     position: absolute;
     top: 20px;
-    right: 5%;
+    right: 10%;
     z-index: 10;
     display: flex;
     align-items: center;
@@ -104,9 +104,25 @@ html, body {
 /* BOTOES DA PAGINA */
 
 .btn-usuario {
+    padding: 5px;
     position: absolute;
     color: white;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    bottom: 90%;
+    left: 91%;
+    border-radius: 30px;
+    border: 3px solid white;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
+
+.btn-usuario:hover {
+    transform: scale(1.05);
+}
+
 .container-botoes {
     position: absolute;
     bottom: 20px;
@@ -148,12 +164,12 @@ html, body {
 /* LINHA */
 .linha-destaque {
     border: none;
-    border-top: 10px solid #72D276;
+    border-top: 15px solid #72D276;
     width: 100%;
-    margin-top: 0;
+    transform: translate(0, -1rem );
 }
 /**/
-
+    
 /* IMAGENS DA PAGINA */
 .card-img {
     width: 100%;
