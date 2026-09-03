@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade Mãe - Início</title>
-
+    <title> Cidade Mãe - Início </title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search"/>
+    <script src="script.js" defer></script>
 </head>
-
 <body>
-
     <header class="cabecalho">
         <div class="search">
             <label for="searchInput">
@@ -25,110 +20,93 @@
         <div class="container-inicio">
             <div class="carrossel">
                 <div class="container-carrossel" id="img">
-                    <img src="eu-amo-paranagua.png" alt="Eu amo Paranaguá">
-                    <img src="ilha-do-mel.png" alt="Ilha do Mel">
-                    <img src="rio-itibere.jpg" alt="Rio Itiberê">
+                    <img src="imagens/eu-amo-paranagua.png">
+                    <img src="imagens/ilha-do-mel.png">
+                    <img src="imagens/rio-itibere.jpg">
                 </div>
 
-                <div class="hero-content">
-                    <h1>CIDADE MÃE</h1>
-                    <p>Conheça um pouco de tudo <br> que marca a história de <br> Paranaguá</p>
+                <div class="informacoes">
+                    <h1> CIDADE MÃE </h1>
+                    <p> Conheça um pouco de tudo <br> que marca a história de <br> Paranaguá</p>
                 </div>
             </div>
-
+            
             <div class="usuario">
                 <a href="cadastro.html" class="btn-usuario"> Cadastre-se </a>
             </div>
 
             <nav class="container-botoes">
-                <a href="arte.html" class="btn btn-arte">ARTE</a>
-                <a href="mercado.html" class="btn btn-mercado">MERCADO</a>
-                <a href="gastronomia.html" class="btn btn-gas">GASTRONOMIA</a>
+                <a href="arte.html" class=" btn btn-arte"> ARTE </a>
+                <a href="mercado.html" class="btn btn-mercado"> MERCADO </a>
+                <a href="gastronomia.html" class="btn btn-gas"> GASTRONOMIA </a>
             </nav>
-
-            <hr class="linha-destaque">
         </div>
+
+        <hr class="linha-destaque">
         <div class="bandeiras">
-            <img src="bandeiras-inicio.png" alt="Bandeiras">
+            <img src="imagens/bandeiras-inicio.png">
         </div>
     </header>
 
     <main class="conteudo-principal">
-
-        <img src="peixes.png" alt="pequenos peixes azuis" id="peixinhos" class="direita">
-        <img src="carangua.png" alt="caranguejo" id="caranga" class="esquerda">
-        <img src="barquin.png" alt="barco verde" id="barquinho" class="direita">
-
+        <img src="imagens/peixes.png" id="peixinhos" class="direita">
+        <img src="imagens/carangua.png" id="caranga" class="esquerda">
+        <img src="imagens/barquin.png" id="barquinho" class="direita">
+    
         <section class="card-info">
             <div class="bloco-imagem esquerda">
-                <img src="mangue.png" alt="Mangue de Paranaguá" class="card-img">
-
-                <div id="amarela">
-                    <span class="legenda">Restaurante Danúbio Azul - Rua Benjamin Constant</span>
-                    <hr class="linha-amarela">
-                </div>
-
+                <img src="imagens/mangue.png" class="card-img">
+            </div>
+        
+            <div class="card-texto direita">
+                <p> Paranaguá, com aproximadamente 166.428 mil habitantes, é conhecida como a cidade berço do Paraná, onde a história do estado começou de verdade. Mas não é apenas isso; é o lugar onde pulsa tradições de 378 anos. </p>
             </div>
 
-            <div class="card-texto direita">
-                <p>Paranaguá, com aproximadamente 166.428 mil habitantes, é conhecida como a cidade berço do Paraná,
-                    onde a história do estado começou de verdade. Mas não é apenas isso; é o lugar onde pulsa tradições
-                    de 378 anos.</p>
+            <div id="amarela">
+                <span class="legenda"> Restaurante Danúbio Azul - Rua Benjamin Constant </span>
+                <hr class="linha-amarela">
             </div>
         </section>
-
+        
         <section class="card-info reverso">
             <div class="card-texto esquerda">
-                <p>Aqui, a hospitalidade caiçara transborda gerações, acolhendo o visitante com o calor de uma terra que
-                    mantém sempre o orgulho de suas raízes.</p>
+                <p> Aqui, a hospitalidade caiçara transborda gerações, acolhendo o visitante com o calor de uma terra que mantém sempre o orgulho de suas raízes. </p>
             </div>
-
+        
             <div class="bloco-imagem direita">
-                <img src="pracinha.png" alt="Pracinha histórica" class="card-img">
+                <img src="imagens/pracinha.png" class="card-img">
 
                 <div id="vermelha">
-                    <span class="legenda">Casario Histórico - Rua da Praia</span>
+                    <span class="legenda"> Casario Histórico - Rua da Praia </span>
                     <hr class="linha-vermelha">
                 </div>
             </div>
         </section>
 
-        <section class="secao-mapa">
-            <h1 id="mapa-text">Mapa Cultural de Paranaguá</h1>
-            <p id="mapa-info">Navegue pelo mapa real e clique nos marcadores azuis para explorar os pontos históricos.
-            </p>
-
-            <div id="mapa"></div>
-        </section>
-
-        <p class="textinho1">No nosso programa, apresentamos um pouco da cultura do município, convidando você a
-            mergulhar no que compõe a identidade única de Paranaguá.</p>
-
-        <section class="secao-jogo">
+        <p class="textinho1"> No nosso programa, apresentamos um pouco da cultura do município, convidando você a mergulhar no que compõe a identidade única de Paranaguá. </p>
+        
+        <section class="secao-jogo"> 
             <div class="box box-jogo">
-                <h2> Que tal um Jogo da Memória? </h2>
-                <img src="jogo-da-memória.png" class="jogo-memoria">
+                <h2> Que tal um Jogo da Memória? </h2> 
+                <img src="imagens/jogo-da-memória.png" class="jogo-memoria"> 
                 <a href="jogo.html" class="btn btn-jogar"> JOGAR </a>
             </div>
         
             <div class="box-jogo">
                 <h2> Quão caiçara você é? </h2>
-                <img src="quiz.png" class="jogo-quiz">
+                <img src="imagens/quiz.png" class="jogo-quiz">
                 <a href="jogo.html" class="btn btn-jogar"> JOGAR </a>
             </div>
         </section>
-
     </main>
 
     <footer class="rodape">
         <a href="feedback.html">✉︎ Feedback</a>
         <h1>CIDADE MÃE</h1>
         <p>&copy; Copyright Cidade Mãe - 2026</p>
-        <img src="bandeiras-rodapé.png" alt="Bandeiras Rodapé">
+        <img src="imagens/bandeiras-rodapé.png">
     </footer>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="script.js"></script>
 </body>
 
 </html>
