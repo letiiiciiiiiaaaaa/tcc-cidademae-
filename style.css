@@ -29,6 +29,9 @@ html, body {
     cursor: pointer;
 }
 
+.voltar:hover {
+    color: #ebebeb;
+
 .search {
     position: absolute;
     top: 20px;
