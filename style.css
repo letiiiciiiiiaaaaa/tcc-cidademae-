@@ -163,10 +163,10 @@ html, body {
 }
 
 .linha-destaque {
+    transform: translate(0, -1rem);
     border: none;
-    border-top: 10px solid #72D276;
+    border-top: 15px solid #72D276;
     width: 100%;
-    margin-top: 0;
 }
 
 .bandeiras {
