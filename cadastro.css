@@ -11,7 +11,6 @@ body {
     min-height: 100vh;
     text-align: center;
     font-family: open sans, sans-serif;
-
 }
 
 .voltar {
@@ -34,6 +33,7 @@ body {
 }
 
 h2 {
+    padding-top: 0;
     line-height: 25px;
     font-weight: normal;
     letter-spacing: -2px;
@@ -43,12 +43,16 @@ h2 {
 h5 {
     font-weight: normal;
     padding-top: 10px;
+}s
+
+#termos {
+    font-weight: normal;
+    font-size: 10px;
 }
 
 .data_nascimento,
 #data_nascimento {
     background: none;
-    text-align: left;
 }
 
 .login {
@@ -62,7 +66,7 @@ h5 {
 }
 
 .tela-cadastro {
-    margin-top: 65px;
+    margin-top: 45px;
     background-color: #fff;
     position: absolute;
     top: 50%;

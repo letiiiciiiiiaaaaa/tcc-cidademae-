@@ -1,17 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
 
-.voltar {
-    position: absolute;
-    color: white;
-    top: 30px;
-    left: 30px;
-    background: none;
-    border: none;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-
 .img-cabecalho {
     width: 100%;
 }
