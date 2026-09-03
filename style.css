@@ -91,13 +91,6 @@ body {
     color: white;
 }
 
-.hero-content h1 {
-    letter-spacing: 4px;
-    font-size: 50px;
-    font-family: 'Cal Sans', sans-serif;
-    margin-bottom: 10px;
-}
-
 .hero-content p {
     font-size: 18px;
     letter-spacing: 1.5px;
@@ -348,7 +341,8 @@ body {
 }
 
 #mapa-info {
-    margin-bottom: 20px;
+    font-size: 20px;
+    margin: 20px 20px;
 }
 
 #mapa {
