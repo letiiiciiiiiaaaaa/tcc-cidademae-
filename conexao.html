@@ -30,8 +30,6 @@
             background-color: #3ecf8e;
             color: white;
         }
-
-        /* Cor verde do Supabase */
     </style>
 </head>
 
@@ -56,12 +54,10 @@
         const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
 
         async function buscarUsuarios() {
-            // Captura os elementos da tela para poder usá-los
             const corpoTabela = document.getElementById("lista-corpo");
             const statusDiv = document.getElementById("status");
 
             try {
-                // Agora a montagem da URL vai dar exatamente: https://supabase.co*
                 const resposta = await fetch(`${SUPABASE_URL}/rest/v1/usuarios?select=*`, {
                     method: "GET",
                     headers: {
@@ -75,7 +71,6 @@
                     throw new Error(erroDetalhado.message || "Erro desconhecido");
                 }
 
-                // Transforma a resposta do banco em uma lista de dados para o JavaScript
                 const usuarios = await resposta.json();
 
                 if (usuarios.length === 0) {
@@ -83,10 +78,8 @@
                     return;
                 }
 
-                // Limpa o conteúdo antes de renderizar
                 corpoTabela.innerHTML = "";
 
-                // Preenche a tabela com as colunas do seu banco SQL
                 usuarios.forEach(usuario => {
                     const linha = `<tr>
                         <td>${usuario.id}</td>
@@ -96,7 +89,6 @@
                     corpoTabela.innerHTML += linha;
                 });
 
-                // Esconde o "Carregando..." e mostra a tabela preenchida
                 statusDiv.style.display = "none";
                 document.getElementById("tabela-usuarios").style.display = "table";
 
@@ -106,7 +98,6 @@
         }
 
 
-        // Executa a função assim que a página abre
         buscarUsuarios();
     </script>
 
