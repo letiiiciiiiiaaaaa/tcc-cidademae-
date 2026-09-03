@@ -120,7 +120,8 @@ html, body {
 }
 
 .btn-usuario:hover {
-    transform: scale(1.05);
+    color: #1a365d;
+    border-color: #1a365d;
 }
 
 .container-botoes {
