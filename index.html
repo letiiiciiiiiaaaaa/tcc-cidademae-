@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Cidade Mãe - Início </title>
+    <title>Cidade Mãe - Início</title>
+
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search"/>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js" defer></script>
 </head>
+
 <body>
+
     <header class="cabecalho">
         <div class="search">
             <label for="searchInput">
@@ -20,64 +28,73 @@
         <div class="container-inicio">
             <div class="carrossel">
                 <div class="container-carrossel" id="img">
-                    <img src="imagens/eu-amo-paranagua.png">
-                    <img src="imagens/ilha-do-mel.png">
-                    <img src="imagens/rio-itibere.jpg">
+                    <img src="eu-amo-paranagua.png" alt="Eu amo Paranaguá">
+                    <img src="ilha-do-mel.png" alt="Ilha do Mel">
+                    <img src="rio-itibere.jpg" alt="Rio Itiberê">
                 </div>
 
-                <div class="informacoes">
-                    <h1> CIDADE MÃE </h1>
-                    <p> Conheça um pouco de tudo <br> que marca a história de <br> Paranaguá</p>
+                <div class="hero-content">
+                    <h1>CIDADE MÃE</h1>
+                    <p>Conheça um pouco de tudo <br> que marca a história de <br> Paranaguá</p>
                 </div>
             </div>
+
+            <div class="usuario" id="container-usuario">
+                <a href="cadastro.html" class="btn-usuario" id="btn-user">Cadastre-se</a>
             
-            <div class="usuario">
-                <a href="cadastro.html" class="btn-usuario"> Cadastre-se </a>
+                <div id="perfil-logado" class="perfil-logado" style="display: none;">
+                    <img id="foto-usuario" src="" alt="Foto de perfil" class="foto-perfil">
+                    <span id="nome-usuario" class="nome-perfil"></span>
+                </div>
             </div>
 
             <nav class="container-botoes">
-                <a href="arte.html" class=" btn btn-arte"> ARTE </a>
-                <a href="mercado.html" class="btn btn-mercado"> MERCADO </a>
-                <a href="gastronomia.html" class="btn btn-gas"> GASTRONOMIA </a>
+                <a href="arte.html" class="btn btn-arte">ARTE</a>
+                <a href="mercado.html" class="btn btn-mercado">MERCADO</a>
+                <a href="gastronomia.html" class="btn btn-gas">GASTRONOMIA</a>
             </nav>
-        </div>
 
-        <hr class="linha-destaque">
+            <hr class="linha-destaque">
+        </div>
         <div class="bandeiras">
-            <img src="imagens/bandeiras-inicio.png">
+            <img src="bandeiras-inicio.png" alt="Bandeiras">
         </div>
     </header>
 
     <main class="conteudo-principal">
-        <img src="imagens/peixes.png" id="peixinhos" class="direita">
-        <img src="imagens/carangua.png" id="caranga" class="esquerda">
-        <img src="imagens/barquin.png" id="barquinho" class="direita">
-    
+
+        <img src="peixes.png" alt="pequenos peixes azuis" id="peixinhos" class="direita">
+        <img src="carangua.png" alt="caranguejo" id="caranga" class="esquerda">
+        <img src="barquin.png" alt="barco verde" id="barquinho" class="direita">
+
         <section class="card-info">
             <div class="bloco-imagem esquerda">
-                <img src="imagens/mangue.png" class="card-img">
-            </div>
-        
-            <div class="card-texto direita">
-                <p> Paranaguá, com aproximadamente 166.428 mil habitantes, é conhecida como a cidade berço do Paraná, onde a história do estado começou de verdade. Mas não é apenas isso; é o lugar onde pulsa tradições de 378 anos. </p>
+                <img src="mangue.png" alt="Mangue de Paranaguá" class="card-img">
+
+                <div id="amarela">
+                    <span class="legenda">Restaurante Danúbio Azul - Rua Benjamin Constant</span>
+                    <hr class="linha-amarela">
+                </div>
             </div>
 
-            <div id="amarela">
-                <span class="legenda"> Restaurante Danúbio Azul - Rua Benjamin Constant </span>
-                <hr class="linha-amarela">
+            <div class="card-texto direita">
+                <p>Paranaguá, com aproximadamente 166.428 mil habitantes, é conhecida como a cidade berço do Paraná,
+                    onde a história do estado começou de verdade. Mas não é apenas isso; é o lugar onde pulsa tradições
+                    de 378 anos.</p>
             </div>
         </section>
-        
+
         <section class="card-info reverso">
             <div class="card-texto esquerda">
-                <p> Aqui, a hospitalidade caiçara transborda gerações, acolhendo o visitante com o calor de uma terra que mantém sempre o orgulho de suas raízes. </p>
+                <p>Aqui, a hospitalidade caiçara transborda gerações, acolhendo o visitante com o calor de uma terra que
+                    mantém sempre o orgulho de suas raízes.</p>
             </div>
-        
+
             <div class="bloco-imagem direita">
-                <img src="imagens/pracinha.png" class="card-img">
+                <img src="pracinha.png" alt="Pracinha histórica" class="card-img">
 
                 <div id="vermelha">
-                    <span class="legenda"> Casario Histórico - Rua da Praia </span>
+                    <span class="legenda">Casario Histórico - Rua da Praia</span>
                     <hr class="linha-vermelha">
                 </div>
             </div>
@@ -91,30 +108,88 @@
             <div id="mapa"></div>
         </section>
 
-        <p class="textinho1"> No nosso programa, apresentamos um pouco da cultura do município, convidando você a mergulhar no que compõe a identidade única de Paranaguá. </p>
-        
-        <section class="secao-jogo"> 
+        <p class="textinho1">No nosso programa, apresentamos um pouco da cultura do município, convidando você a
+            mergulhar no que compõe a identidade única de Paranaguá.</p>
+
+        <section class="secao-jogo">
             <div class="box box-jogo">
-                <h2> Que tal um Jogo da Memória? </h2> 
-                <img src="imagens/jogo-da-memória.png" class="jogo-memoria"> 
+                <h2> Que tal um Jogo da Memória? </h2>
+                <img src="jogo-da-memória.png" class="jogo-memoria" alt="Jogo da Memória">
                 <a href="jogo.html" class="btn btn-jogar"> JOGAR </a>
             </div>
-        
+
             <div class="box-jogo">
                 <h2> Quão caiçara você é? </h2>
-                <img src="imagens/quiz.png" class="jogo-quiz">
+                <img src="quiz.png" class="jogo-quiz" alt="Quiz Caiçara">
                 <a href="jogo.html" class="btn btn-jogar"> JOGAR </a>
             </div>
         </section>
+
     </main>
 
     <footer class="rodape">
         <a href="feedback.html">✉︎ Feedback</a>
         <h1>CIDADE MÃE</h1>
         <p>&copy; Copyright Cidade Mãe - 2026</p>
-        <img src="imagens/bandeiras-rodapé.png">
+        <img src="bandeiras-rodapé.png" alt="Bandeiras Rodapé">
     </footer>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mapaElement = document.getElementById('mapa');
+            if (mapaElement) {
+                const mapa = L.map('mapa').setView([-25.5205, -48.5090], 15);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mapa);
+
+                const locais = [
+                    {
+                        nome: "Mercado do Café",
+                        descricao: "Centro da gastronomia caiçara! Famoso pelo tradicional Barreado.",
+                        coords: [-25.5209, -48.5075],
+                        link: "gastronomia.html"
+                    },
+                    {
+                        nome: "Mercado do Peixe",
+                        descricao: "Ponto tradicional de venda do pescado do dia.",
+                        coords: [-25.5201, -48.5065],
+                        link: "mercado.html"
+                    },
+                    {
+                        nome: "Rua da Praia",
+                        descricao: "Orla histórica com os casarios coloniais mais antigos do Paraná.",
+                        coords: [-25.5218, -48.5060],
+                        link: "mercado.html"
+                    },
+                    {
+                        nome: "Ilha dos Valadares",
+                        descricao: "Berço cultural do Fandango Caiçara e artesanato local.",
+                        coords: [-25.5225, -48.4980],
+                        link: "arte.html"
+                    },
+                    {
+                        nome: "Museu MAE - UFPR",
+                        descricao: "Antigo Colégio dos Jesuítas (1755), acervo histórico da região.",
+                        coords: [-25.5230, -48.5085],
+                        link: "arte.html"
+                    }
+                ];
+
+                locais.forEach(lugar => {
+                    L.marker(lugar.coords)
+                        .addTo(mapa)
+                        .bindPopup(`
+                            <div class="popup">
+                                <h3>${lugar.nome}</h3>
+                                <p>${lugar.descricao}</p>
+                                <a href="${lugar.link}">Saber mais</a>
+                            </div>
+                        `);
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuários - Supabase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3ecf8e;
+            color: white;
+        }
+
+        /* Cor verde do Supabase */
+    </style>
+</head>
+
+<body>
+
+    <h1>Usuários Cadastrados no Supabase</h1>
+    <div id="status">Carregando dados...</div>
+
+    <table id="tabela-usuarios" style="display: none;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+        <tbody id="lista-corpo"></tbody>
+    </table>
+
+    <script>
+        const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
+
+        async function buscarUsuarios() {
+            // Captura os elementos da tela para poder usá-los
+            const corpoTabela = document.getElementById("lista-corpo");
+            const statusDiv = document.getElementById("status");
+
+            try {
+                // Agora a montagem da URL vai dar exatamente: https://supabase.co*
+                const resposta = await fetch(`${SUPABASE_URL}/rest/v1/usuarios?select=*`, {
+                    method: "GET",
+                    headers: {
+                        "apikey": SUPABASE_ANON_KEY,
+                        "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+                    }
+                });
+
+                if (!resposta.ok) {
+                    const erroDetalhado = await resposta.json();
+                    throw new Error(erroDetalhado.message || "Erro desconhecido");
+                }
+
+                // Transforma a resposta do banco em uma lista de dados para o JavaScript
+                const usuarios = await resposta.json();
+
+                if (usuarios.length === 0) {
+                    statusDiv.innerText = "Nenhum usuário encontrado na tabela.";
+                    return;
+                }
+
+                // Limpa o conteúdo antes de renderizar
+                corpoTabela.innerHTML = "";
+
+                // Preenche a tabela com as colunas do seu banco SQL
+                usuarios.forEach(usuario => {
+                    const linha = `<tr>
+                        <td>${usuario.id}</td>
+                        <td>${usuario.nome || 'Sem nome'}</td>
+                        <td>${usuario.email || 'Sem e-mail'}</td>
+                    </tr>`;
+                    corpoTabela.innerHTML += linha;
+                });
+
+                // Esconde o "Carregando..." e mostra a tabela preenchida
+                statusDiv.style.display = "none";
+                document.getElementById("tabela-usuarios").style.display = "table";
+
+            } catch (erro) {
+                statusDiv.innerHTML = `<span style="color: red;">Erro: ${erro.message}</span>`;
+            }
+        }
+
+
+        // Executa a função assim que a página abre
+        buscarUsuarios();
+    </script>
+
+</body>
+
+</html>

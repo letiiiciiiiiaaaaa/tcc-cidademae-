@@ -1,150 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Página de Mercado </title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="mercado.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Mercado - Cidade Mãe</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mercado.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js" defer></script>
 </head>
+
 <body>
-    <header>
-        <img src="mercado.png">
-        <button class="voltar"> 🡠 Voltar </button>
-        <h1> MERCADO DE PARANAGUÁ </h1>
-    </header>
+  <header>
+    <img src="mercado.png" alt="Banner Mercado">
 
-    <p> Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia </p>
-    <p> Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia </p>
-    <main class="conteudo-principal">
-        <div class="mercado-artesanato">
-            <img src="mercado-artesanato.png">
-            <h2> Mercado Municipal de Artesanato </h2>
-            <p> Construção em estilo neo-renascentista, era o antigo mercado de peixes da cidade e servia à comunidade dos pescadores que ali vinham comercializar os seus pescados. Funcionava sempre de madrugada e ao anoitecer. Foi recuperado para servir como ponto de venda do artesanato típico da região. </p>
-            <a href="https://secultur.paranagua.pr.gov.br/item/mercado-municipal-do-artesanato/index.html"> <strong> Fonte: </strong> Secretária Municipal de Cultura e Turismo de Paranaguá </a>
-        </div>
-        <div class="mercado-pgua">
-            <img src="mercado-municipal.png">
-            <h2> Mercado Municipal de Paranaguá </h2>
-            <p> Inaugurado em 29 de Julho de 2009, em comemoração aos 361 anos de Paranaguá. Possui no térreo vários boxes onde são comercializados os artesanatos da região, hortaliças, frutas, grãos e especiaria. No piso superior estão os restaurantes que servem frutos do mar e comida variada e uma floricultura. </p>
-            <a href="https://secultur.paranagua.pr.gov.br/item/mercado-municipal-nilton-abel-de-lima/index.html"> <strong> Fonte: </strong> Secretária Municipal de Cultura e Turismo de Paranaguá </a>
-        </div>
-        <div class="mercado-cafe">
-            <img src="mercado-cafe.png">
-            <h2> Mercado Municipal do Café </h2>
-            <p> O Mercado Municipal do Café é um dos pontos gastronômicos tradicionais da cidade de Paranaguá, com restaurantes que servem refeições a base de frutos do mar e comida típica, e lanchonetes que oferecem pastéis e banana recheada fritos na hora, além de outros salgados e porções. </p>
-            <a href="https://secultur.paranagua.pr.gov.br/item/mercado-municipal-do-cafe/index.html"> <strong> Fonte: </strong> Secretária Municipal de Cultura e Turismo de Paranaguá </a>
-        </div>
-    </main>
+    <a href="" onclick="history.back(); return false;">
+      <button class="voltar"> 🡠 Voltar </button>
+    </a>
 
-    <div class="timeline-component">
-        <h2>Linha do Tempo: Mercado de Paranaguá</h2>
-        <p class="timeline-subtitulo">Clique nos pontos para visualizar cada época da história do mercado.</p>
-      
-        <div class="timeline-wrapper">
-          <div class="timeline-line"></div>
-          
-          <div class="points-container">
-            <button class="point-node active" data-id="1">
-              <span class="dot">1</span>
-              <span class="year-label">1871-1872</span>
-            </button>
-      
-            <button class="point-node" data-id="2">
-              <span class="dot">2</span>
-              <span class="year-label">1914</span>
-            </button>
-      
-            <button class="point-node" data-id="3">
-              <span class="dot">3</span>
-              <span class="year-label">Anos 80-90</span>
-            </button>
-      
-            <button class="point-node" data-id="4">
-              <span class="dot">4</span>
-              <span class="year-label">Anos 2000</span>
-            </button>
-      
-            <button class="point-node" data-id="5">
-              <span class="dot">5</span>
-              <span class="year-label">Dias Atuais</span>
-            </button>
-          </div>
-        </div>
-      
-        <div class="timeline-card" id="timelineCard">
-          <img id="timelineCardImage" src="" alt="Imagem da Época">
-          <h3 id="timelineCardTitle"></h3>
-          <p id="timelineCardDescription"></p>
-        </div>
+    <div class="usuario" id="container-usuario">
+      <a href="cadastro.html" class="btn-usuario" id="btn-user">Cadastre-se</a>
+    
+      <div id="perfil-logado" class="perfil-logado" style="display: none;">
+        <img id="foto-usuario" src="" alt="Foto de perfil" class="foto-perfil">
+        <span id="nome-usuario" class="nome-perfil"></span>
       </div>
+    </div>
 
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-  const epocas = {
-    1: {
-      titulo: "1871-1872 — O Primeiro Mercado (Mercado do Peixe)",
-      imagem: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
-      resumo: "Inauguração do prédio original do Mercado Público à beira da baía, criado para organizar a comercialização de pescados frescos e produtos vindos das comunidades e ilhas da região."
-    },
-    2: {
-      titulo: "1914 — Mercado do Café",
-      imagem: "https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?auto=format&fit=crop&w=800&q=80",
-      resumo: "Construção do prédio do Mercado do Café com arquitetura de inspiração neoclássica, acompanhando a forte expansão econômica provocada pelo ciclo e exportação do café na região do Porto."
-    },
-    3: {
-      titulo: "Anos 1980-1990 — Patrimônio Histórico",
-      imagem: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
-      resumo: "Reconhecimento oficial e tombamento dos prédios do complexo do Mercado como Patrimônio Histórico do Estado do Paraná, assegurando a preservação de sua estrutura arquitetônica."
-    },
-    4: {
-      titulo: "Anos 2000 — Revitalização e Novos Usos",
-      imagem: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
-      resumo: "O complexo passa por processos de restauro e modernização interna. O Mercado do Café passa a focar na venda de artesanato tradicional caiçara e souvenir."
-    },
-    5: {
-      titulo: "Dias Atuais — Polo Gastronômico e Turístico",
-      imagem: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
-      resumo: "Hoje o conjunto atua como o principal centro gastronômico e cultural do centro histórico de Paranaguá, ponto obrigatório para degustar o tradicional Barreado e comprar frutos do mar."
-    }
-  };
+    <h1> MERCADO DE PARANAGUÁ </h1>
+  </header>
 
-  const container = document.querySelector('.timeline-component');
-  
-  if (container) {
-    const nodes = container.querySelectorAll('.point-node');
-    const cardTitle = container.querySelector('#timelineCardTitle');
-    const cardImage = container.querySelector('#timelineCardImage');
-    const cardDescription = container.querySelector('#timelineCardDescription');
+  <main class="conteudo-principal">
+    <p class="esquerda">Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+      Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+      Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+      Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+      Historia Historia Historia Historia Historia Historia Historia</p>
+    <p class="direita">Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+      Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+      Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+      Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+      Historia Historia Historia Historia Historia Historia Historia</p>
 
-    function selecionarEpoca(id) {
-      const dados = epocas[id];
-      if (!dados) return;
+    <div class="mercado-artesanato esquerda">
+      <img src="mercado-artesanato.png" alt="Mercado do Artesanato">
+      <h2> Mercado Municipal de Artesanato </h2>
+      <p> Construção em estilo neo-renascentista, era o antigo mercado de peixes da cidade e servia à comunidade dos
+        pescadores que ali vinham comercializar os seus pescados. Funcionava sempre de madrugada e ao anoitecer. Foi
+        recuperado para servir como ponto de venda do artesanato típico da região. </p>
+      <a href="https://secultur.paranagua.pr.gov.br/item/mercado-municipal-do-artesanato/index.html" target="_blank"
+        rel="noopener noreferrer"> <strong> Fonte: </strong> Secretaria Municipal de Cultura e Turismo de Paranaguá </a>
+    </div>
 
-      cardTitle.textContent = dados.titulo;
-      cardImage.src = dados.imagem;
-      cardDescription.textContent = dados.resumo;
+    <div class="mercado-pgua direita">
+      <img src="mercado-municipal.png" alt="Mercado Municipal">
+      <h2> Mercado Municipal de Paranaguá </h2>
+      <p> Inaugurado em 29 de Julho de 2009, em comemoração aos 361 anos de Paranaguá. Possui no térreo vários boxes
+        onde são comercializados os artesanatos da região, hortaliças, frutas, grãos e especiaria. No piso superior
+        estão os restaurantes que servem frutos do mar e comida variada e uma floricultura. </p>
+      <a href="https://secultur.paranagua.pr.gov.br/item/mercado-municipal-nilton-abel-de-lima/index.html"
+        target="_blank" rel="noopener noreferrer"> <strong> Fonte: </strong> Secretaria Municipal de Cultura e Turismo
+        de Paranaguá </a>
+    </div>
 
-      nodes.forEach(node => {
-        if (node.getAttribute('data-id') === id.toString()) {
-          node.classList.add('active');
-        } else {
-          node.classList.remove('active');
-        }
-      });
-    }
+    <div class="mercado-cafe esquerda">
+      <img src="mercado-cafe.png" alt="Mercado do Café">
+      <h2> Mercado Municipal do Café </h2>
+      <p> O Mercado Municipal do Café é um dos pontos gastronômicos tradicionais da cidade de Paranaguá, com
+        restaurantes que servem refeições a base de frutos do mar e comida típica, e lanchonetes que oferecem pastéis e
+        banana recheada fritos na hora, além de outros salgados e porções. </p>
+      <a href="https://secultur.paranagua.pr.gov.br/item/mercado-municipal-do-cafe/index.html" target="_blank"
+        rel="noopener noreferrer"> <strong> Fonte: </strong> Secretaria Municipal de Cultura e Turismo de Paranaguá </a>
+    </div>
+  </main>
 
-    nodes.forEach(node => {
-      node.addEventListener('click', () => {
-        const id = node.getAttribute('data-id');
-        selecionarEpoca(id);
-      });
-    });
+  <div class="timeline-component">
+    <h2>Linha do Tempo: Mercado de Paranaguá</h2>
+    <p class="timeline-subtitulo">Clique nos pontos para visualizar cada época da história do mercado.</p>
 
-    // Inicia na época 1 por padrão
-    selecionarEpoca(1);
-  }
-});
-      </script>
+    <div class="timeline-wrapper">
+      <div class="timeline-line"></div>
+
+      <div class="points-container">
+        <button class="point-node active" data-id="1">
+          <span class="dot">1</span>
+          <span class="year-label">1871-1872</span>
+        </button>
+
+        <button class="point-node" data-id="2">
+          <span class="dot">2</span>
+          <span class="year-label">1914</span>
+        </button>
+
+        <button class="point-node" data-id="3">
+          <span class="dot">3</span>
+          <span class="year-label">Anos 80-90</span>
+        </button>
+
+        <button class="point-node" data-id="4">
+          <span class="dot">4</span>
+          <span class="year-label">Anos 2000</span>
+        </button>
+
+        <button class="point-node" data-id="5">
+          <span class="dot">5</span>
+          <span class="year-label">Dias Atuais</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="timeline-card" id="timelineCard">
+      <img id="timelineCardImage" src="" alt="Imagem da Época">
+      <h3 id="timelineCardTitle"></h3>
+      <p id="timelineCardDescription"></p>
+    </div>
+  </div>
+
+  <section class="secao-jogo">
+    <div class="box box-jogo">
+      <h2> Que tal um Jogo da Memória? </h2>
+      <img src="jogo-da-memória.png" class="jogo-memoria" alt="Jogo da Memória">
+      <a href="jogo.html" class="btn btn-jogar"> JOGAR </a>
+    </div>
+
+    <div class="box-jogo">
+      <h2> Quão caiçara você é? </h2>
+      <img src="quiz.png" class="jogo-quiz" alt="Quiz Caiçara">
+      <a href="jogo.html" class="btn btn-jogar"> JOGAR </a>
+    </div>
+  </section>
+
+  <footer class="rodape">
+    <a href="feedback.html">✉︎ Feedback</a>
+    <h1>CIDADE MÃE</h1>
+    <p>&copy; Copyright Cidade Mãe - 2026</p>
+    <img src="bandeiras-rodapé.png" alt="Bandeiras Rodapé">
+  </footer>
 </body>
+
 </html>

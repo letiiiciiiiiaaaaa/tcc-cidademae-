@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Cidade Mãe - Arte </title>
+    <title>Cidade Mãe - Arte</title>
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="arte.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <a href="" onclick="history.back(); return false;">
         <button class="voltar"> 🡠 Voltar </button>
     </a>
 
+    <div class="usuario" id="container-usuario">
+        <a href="cadastro.html" class="btn-usuario" id="btn-user">Cadastre-se</a>
+    
+        <div id="perfil-logado" class="perfil-logado" style="display: none;">
+            <img id="foto-usuario" src="" alt="Foto de perfil" class="foto-perfil">
+            <span id="nome-usuario" class="nome-perfil"></span>
+        </div>
+    </div>
+
     <header class="cabecalho">
         <div class="header">
             <img src="arte.png" alt="Arte de Paranaguá">
-            <h1> ARTE DE PARANAGUÁ </h1>
+            <h1>ARTE DE PARANAGUÁ</h1>
         </div>
     </header>
 
@@ -27,63 +42,94 @@
         <img src="aquarela.png" alt="aquarela vermelha" id="aquarela" class="esquerda">
         <img src="danca.png" alt="dançarinos" id="danca" class="direita">
 
-        <section class="introducao">
-            <div class="intro-esquerda">
-                <p class="intro1"> Entre pinturas urbanas, artesanato, fandango e até baião, a arte de Paranaguá tem suas raízes na cultura caiçara, onde seus saberes tradicionais refletem a vida junto ao mar e a Mata Atlântica</p>
+        <section class="card-info2">
+            <div class="card-texto esquerda">
+                <p id="texto1">Entre pinturas urbanas, artesanato, fandango e até baião, a arte de Paranaguá tem suas
+                    raízes na cultura caiçara, onde seus saberes tradicionais refletem a vida junto ao mar e a Mata
+                    Atlântica</p>
             </div>
 
-            <div class="intro-direita">
-                <p class="intro2"> Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia </p>
+            <div class="card-texto direita">
+                <p id="texto2">Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+                    Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+                    Historia Historia Historia Historia</p>
             </div>
         </section>
 
-        <section class="quadros">
-            <div class="foto-quadros">
-               <img src="quadro-mangue.png">
-               <img src="quadro-boi.png" class="boi">
+        <section class="card2">
+            <div class="card-texto esquerda">
+                <p>Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+                    Historia Historia Historia Historia Historia Historia Historia Historia Historia</p>
             </div>
 
-            <div class="info-quadros">
-                <p class="quadro-mangue"> Historia Historia Historia Historia Historia Historia </p>
-                <p class="quadro-boi"> Historia Historia Historia Historia Historia Historia </p>
-                <p class="info"> Historia Historia Historia Historia Historia Historia </p>
-                <hr class="linha-amarela">
+            <div class="bloco-imagem esquerda">
+                <img src="quadro-mangue.png" alt="Pintura do Casario" class="card-img">
             </div>
         </section>
 
-        <section class="local">
-            <div class="info-local">
-                <img src="casas-arte.png" class="casa-arte">
-                <p> Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia </p>
+        <section class="card-info2">
+            <div class="bloco-imagem direita">
+                <img src="quadro-boi.png" alt="Pintura Boi" class="card-img">
+                <div id="amarela">
+                    <span class="legenda">Historia Historia Historia</span>
+                    <hr class="linha-amarela">
+                </div>
+            </div>
+
+            <div class="card-texto direita">
+                <p>Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+                    Historia Historia Historia Historia Historia Historia Historia Historia Historia</p>
             </div>
         </section>
-           
+
+        <section class="card-info2 reverso">
+            <div class="bloco-imagem esquerda">
+                <img src="casas-arte.png" alt="Casarão Arte" class="card-img">
+            </div>
+
+            <div class="card-texto direita">
+                <p>Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+                    Historia Historia Historia Historia Historia Historia Historia Historia Historia</p>
+            </div>
+        </section>
+
         <section class="secao-fandango">
-            <h2> FANDANGO CAIÇARA </h2>
+            <h2>FANDANGO CAIÇARA</h2>
 
             <div class="box-fandango">
-                <img src="fandango.png" class="fandango-img">
-                <span class="legenda-centro"> Historia Historia Historia Historia Historia Historia </span>
+                <img src="fandango.png" alt="Fandango Caiçara" class="card-img-destaque">
+                <span class="legenda-centro">Historia Historia Historia Historia Historia Historia</span>
             </div>
 
             <div class="texto-fandango">
-                <p> Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia </p>
+                <p>Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+                    Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+                    Historia Historia Historia Historia</p>
+                <p>Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+                    Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia Historia
+                    Historia Historia Historia Historia</p>
+            </div>
+
+            <div class="box-video">
+                <p class="legenda-video">Vídeos de apresentações de fandango</p>
+                <img src="video-fandango.png" alt="Vídeo Fandango" class="thumb-video">
             </div>
         </section>
 
-        <section class="secao-jogo"> 
+        <section class="secao-jogo">
             <div class="box box-jogo">
-                <h2> Que tal um Jogo da Memória? </h2> 
-                <img src="jogo-da-memória.png" class="jogo-memoria"> 
+                <h2> Que tal um Jogo da Memória? </h2>
+                <img src="jogo-da-memória.png" class="jogo-memoria" alt="Jogo da memória">
                 <a href="jogo.html" class="btn btn-jogar"> JOGAR </a>
             </div>
-        
+
             <div class="box-jogo">
                 <h2> Quão caiçara você é? </h2>
-                <img src="quiz.png" class="jogo-quiz">
+                <img src="quiz.png" class="jogo-quiz" alt="Quiz caiçara">
                 <a href="jogo.html" class="btn btn-jogar"> JOGAR </a>
             </div>
         </section>
+
     </main>
 
     <footer class="rodape">

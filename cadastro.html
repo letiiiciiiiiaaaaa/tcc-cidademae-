@@ -1,24 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Cadastro | Cidade Mãe </title>
+    <title>Cadastro | Cidade Mãe</title>
     <link rel="stylesheet" href="cadastro.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body>
     <a href="" onclick="history.back(); return false;">
         <button class="voltar"> 🡠 Voltar </button>
     </a>
 
     <img src="logo.png" class="logo" alt="Logo Cidade Mãe" width="200">
-    <h2>Cadastre-se para uma melhor experiência</h1>
-    <div class="tela-cadastro">
-        <input type="name" placeholder="Nome de usuário" required>
+    <h2>Cadastre-se para uma melhor experiência</h2>
+
+    <form id="formCadastro" class="tela-cadastro">
+        <input type="text" id="nome" placeholder="Nome de usuário" required>
         <br><br>
-        <input type="email" placeholder="E-mail" required>
+        <input type="email" id="email" placeholder="E-mail" required>
         <br><br>
-        <input type="password" placeholder="Senha" required>
+        <input type="password" id="senha" placeholder="Senha" required>
         <br><br>
         <div class="data_nascimento">
             <label for="data_nascimento"><b>Data de Nascimento:</b></label>
@@ -28,7 +32,45 @@
         <br>
         <button type="submit" class="entrar">Criar conta</button>
         <h5>Já possui uma conta?<br><a href="login.html" class="login">Logar-se</a>.</h5>
-        <h6>Li e aceito os Termos de Uso e a Política de<br>Privacidade</h6>
-    </div>
+        <input type="checkbox" id="termos" name="termos" required>
+        <label for="termos">Li e aceito os Termos de Uso e a Política de<br>Privacidade</label>
+    </form>
+
+    <script>
+        const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
+
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        document.getElementById('formCadastro').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            const data_nasc = document.getElementById('data_nascimento').value;
+
+            const { data, error } = await supabaseClient
+                .from('usuarios')
+                .insert([
+                    {
+                        nome: nome,
+                        email: email,
+                        senha: senha,
+                        data_nasc: data_nasc
+                    }
+                ]);
+
+            if (error) {
+                console.error("Erro no Supabase:", error);
+                alert('Erro ao cadastrar usuário: ' + error.message);
+            } else {
+                localStorage.setItem('usuarioLogado', nome);
+                alert('Conta criada com sucesso!');
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
 </body>
+
 </html>
