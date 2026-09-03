@@ -52,7 +52,6 @@ html, body {
     outline: none;
 }
 
-
 .container-inicio {
     position: relative;
     width: 100%;
@@ -78,7 +77,7 @@ html, body {
     height: 100%;
 }
 
-.informacoes {
+.hero-content {
     position: absolute;
     top: 40%;
     left: 50%;
@@ -87,21 +86,19 @@ html, body {
     color: white;
 }
 
-.informacoes h1 {
+.hero-content h1 {
     letter-spacing: 4px;
     font-size: 50px;
     font-family: 'Cal Sans', sans-serif;
     margin-bottom: 10px;
 }
 
-.informacoes p {
+.hero-content p {
     font-size: 18px;
     letter-spacing: 1.5px;
     max-width: 500px;
     margin: 0 auto;
 }
-
-/* BOTOES DA PAGINA */
 
 .btn-usuario {
     padding: 5px;
@@ -148,42 +145,34 @@ html, body {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
+.btn:hover {
+    transform: scale(1.05);
+}
+
 .btn-arte { background-color: #FF3131; }
-.btn-arte:hover { background-color: #d22626; transform: scale(1.05); }
+.btn-arte:hover { background-color: #d22626; }
 
 .btn-mercado { background-color: #05933F; }
-.btn-mercado:hover { background-color: #04732e; transform: scale(1.05); }
+.btn-mercado:hover { background-color: #04732e; }
 
 .btn-gas { background-color: #E5D56C; }
-.btn-gas:hover { background-color: #d4c55a; transform: scale(1.05); }
+.btn-gas:hover { background-color: #d4c55a; }
 
-.btn-jogar { background-color: #5da9ea; }
-.btn-jogar:hover {background-color: #437fb3; transform: scale(1.05);}
-/**/
+.btn-jogar {
+    background-color: #5da9ea;
+}
 
-/* LINHA */
 .linha-destaque {
     border: none;
-    border-top: 15px solid #72D276;
+    border-top: 10px solid #72D276;
     width: 100%;
-    transform: translate(0, -1rem );
+    margin-top: 0;
 }
-/**/
-    
-/* IMAGENS DA PAGINA */
-.card-img {
-    width: 100%;
-    max-height: 430px;
-    object-fit: cover;
-}
-/**/
 
-/* BANDEIRAS */
 .bandeiras {
     text-align: center;
     margin: 20px 0 50px 0;
 }
-/**/
 
 .bandeiras img {
     width: 170px;
@@ -197,7 +186,15 @@ html, body {
     position: relative;
     overflow-x: hidden;
 }
-/* ELEMENTOS ANIMADOS */
+
+.container-principal {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 50px;
+    position: relative;
+    overflow-x: hidden;
+}
+
 #peixinhos,
 #caranga,
 #barquinho {
@@ -242,7 +239,6 @@ html, body {
 .surgir.mostrar {
     opacity: 1;
 }
-/**/
 
 .card-info {
     display: flex;
@@ -251,6 +247,12 @@ html, body {
     gap: 50px;
     max-width: 1100px;
     margin: 0 auto 80px auto;
+}
+
+.card-img {
+    width: 100%;
+    max-height: 430px;
+    object-fit: cover;
 }
 
 .card-texto {
@@ -279,7 +281,6 @@ html, body {
 #amarela {
     margin-left: 130px;
     position: absolute;
-    bottom: 70%;
 }
 
 .linha-amarela {
@@ -298,6 +299,53 @@ html, body {
     border-top: 3px solid #ff3131;
     width: 100px;
     margin-left: 100px;
+}
+
+.secao-mapa {
+    text-align: center;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+#mapa-text {
+    color: #1a365d;
+    margin-bottom: 8px;
+}
+
+#mapa-info {
+    color: #4a5568;
+    margin-bottom: 20px;
+}
+
+#mapa {
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    border-radius: 16px;
+    border: 3px solid #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.popup h3 {
+    color: #2c5282;
+    margin-bottom: 6px;
+}
+
+.popup p {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.popup a {
+    display: inline-block;
+    color: white;
+    padding: 6px 12px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.8rem;
 }
 
 .textinho1 {
@@ -333,14 +381,13 @@ html, body {
     margin-top: 10%;
     margin-bottom: 15%;
 }
-
 .rodape {
-    margin-top: 4%;
     background-color: #65cc69;
     color: white;
     padding: 30px 20px;
     text-align: center;
     position: relative;
+    background-position: top;
 }
 
 .rodape a {
