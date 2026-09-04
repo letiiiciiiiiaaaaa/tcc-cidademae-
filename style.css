@@ -153,6 +153,7 @@ body {
 
 .btn:hover {
     transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn-arte {
@@ -160,7 +161,7 @@ body {
 }
 
 .btn-arte:hover {
-    background-color: #d22626;
+    background-color: #ff3b3b;
 }
 
 .btn-mercado {
@@ -168,7 +169,7 @@ body {
 }
 
 .btn-mercado:hover {
-    background-color: #04732e;
+    background-color: #0ca24a;
 }
 
 .btn-gas {
@@ -176,7 +177,7 @@ body {
 }
 
 .btn-gas:hover {
-    background-color: #d4c55a;
+    background-color: #edde81;
 }
 
 .btn-jogar {
@@ -448,7 +449,7 @@ body {
 
 .perfil-logado {
     transition: all 0.3s ease;
-    display: flex;
+    display: none;
     align-items: center;
     gap: 10px;
     border: 2px solid #ffffff;
