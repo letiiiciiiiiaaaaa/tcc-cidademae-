@@ -123,6 +123,7 @@ body {
     color: #1a365d;
     background-color: white;
     border-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .container-botoes {
@@ -429,17 +430,16 @@ body {
     text-decoration: underline;
 }
 
-.rodape h1 {
-    letter-spacing: 3px;
-    font-family: 'Cal Sans', sans-serif;
-    margin: 10px 0;
+#logo {
+    width: 250px;
+    padding: 5px;
 }
 
 .rodape p {
     font-size: 14px;
 }
 
-.rodape img {
+#bandeiras-rodape {
     position: absolute;
     right: 20px;
     bottom: 15px;
@@ -454,7 +454,6 @@ body {
     border: 2px solid #ffffff;
     border-radius: 40px;
     padding: 3px 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     cursor: pointer;
 }
 
