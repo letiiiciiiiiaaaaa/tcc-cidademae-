@@ -82,7 +82,7 @@ body {
     height: 100%;
 }
 
-.hero-content {
+.sub-titulo {
     position: absolute;
     top: 40%;
     left: 50%;
@@ -91,7 +91,7 @@ body {
     color: white;
 }
 
-.hero-content p {
+.sub-titulo p {
     font-size: 18px;
     letter-spacing: 1.5px;
     max-width: 500px;
@@ -269,7 +269,7 @@ body {
     opacity: 1;
 }
 
-.card-info {
+.info {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -278,17 +278,17 @@ body {
     margin: 0 auto 80px auto;
 }
 
-.card-img {
+.conteudo-img {
     width: 100%;
     max-height: 430px;
     object-fit: cover;
 }
 
-.card-texto {
+.texto, .texto2 {
     width: 50%;
 }
 
-.card-texto p {
+.texto, .texto2 p {
     font-size: 20px;
     line-height: 1.5;
     margin-bottom: 15px;
@@ -318,12 +318,12 @@ body {
     width: 100px;
 }
 
-#vermelha {
+#vermelha, #azul {
     margin-left: 200px;
     margin-top: 10px;
 }
 
-.linha-vermelha {
+.linha-vermelha, .linha-azul {
     border: none;
     border-top: 3px solid #ff3131;
     width: 100px;
@@ -336,12 +336,12 @@ body {
     padding: 0 20px;
 }
 
-#mapa-text {
+#mapa-intro {
     color: #1a365d;
     margin-bottom: 8px;
 }
 
-#mapa-info {
+#mapa-descricao {
     font-size: 20px;
     margin: 20px 20px;
 }
