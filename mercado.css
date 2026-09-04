@@ -25,7 +25,7 @@ header h1 {
   margin: 25px 35px auto;
 }
 
-.card-texto2 {
+.texto2 {
   text-align: right;
   margin-top: 8%;
 }
@@ -35,7 +35,7 @@ header h1 {
 }
 
 .secao-mercado {
-  gap: 10%;
+  gap: 8%;
   justify-content: center;
   display: flex;
   width: 100%;
@@ -44,11 +44,30 @@ header h1 {
   text-align: center;
 }
 
+.secao-mercado h2 {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-right: auto;
+}
+
+.secao-mercado p, .link {
+  text-align: justify;
+  font-size: 16px;
+  text-decoration: none;
+  word-spacing: 2px;
+}
+
+.link-vermelho {
+  color: #FF3131;
+}
+
 .mercado-info {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
+
 
 
 
