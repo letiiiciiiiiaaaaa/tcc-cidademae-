@@ -129,59 +129,59 @@ document.addEventListener("DOMContentLoaded", () => {
   const epocas = {
     1: {
       titulo: "1871-1872 — O Primeiro Mercado (Mercado do Peixe)",
-      imagem: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
+      imagem: "https://jblitoral.com.br/wp-content/uploads/2024/02/MERCADO-DO-PEIXE-FOTO-BAIXA-2-e1617304912706-1.jpg",
       resumo: "Inauguração do prédio original do Mercado Público à beira da baía, criado para organizar a comercialização de pescados frescos e produtos vindos das comunidades e ilhas da região."
     },
     2: {
       titulo: "1914 — Mercado do Café",
-      imagem: "https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?auto=format&fit=crop&w=800&q=80",
+      imagem: "https://jblitoral.com.br/wp-content/uploads/2024/02/IMG_6788-1024x576.jpg.webp",
       resumo: "Construção do prédio do Mercado do Café com arquitetura de inspiração neoclássica, acompanhando a forte expansão econômica provocada pelo ciclo e exportação do café na região do Porto."
     },
     3: {
       titulo: "Anos 1980-1990 — Patrimônio Histórico",
-      imagem: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
+      imagem: "https://www.viagensecaminhos.com/wp-content/uploads/2010/08/o-que-fazer-em-paranagua.jpg",
       resumo: "Reconhecimento oficial e tombamento dos prédios do complexo do Mercado como Patrimônio Histórico do Estado do Paraná, assegurando a preservação de sua estrutura arquitetônica."
     },
     4: {
       titulo: "Anos 2000 — Revitalização e Novos Usos",
-      imagem: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
+      imagem: "https://folhadolitoral.com.br/wp-content/uploads/2020/03/v4skbmp6_1584468665.jpg",
       resumo: "O complexo passa por processos de restauro e modernização interna. O Mercado do Café passa a focar na venda de artesanato tradicional caiçara e souvenir."
     },
     5: {
       titulo: "Dias Atuais — Polo Gastronômico e Turístico",
-      imagem: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
+      imagem: "https://www.paranagua.pr.gov.br/imgbank/big/16474.jpg",
       resumo: "Hoje o conjunto atua como o principal centro gastronômico e cultural do centro histórico de Paranaguá, ponto obrigatório para degustar o tradicional Barreado e comprar frutos do mar."
     }
   };
 
-  const container = document.querySelector('.timeline-component');
+  const container = document.querySelector('.linha-do-tempo');
 
   if (container) {
-    const nodes = container.querySelectorAll('.point-node');
-    const cardTitle = container.querySelector('#timelineCardTitle');
-    const cardImage = container.querySelector('#timelineCardImage');
-    const cardDescription = container.querySelector('#timelineCardDescription');
+    const ponto = container.querySelectorAll('.ponto');
+    const titulo = container.querySelector('#tempo-titulo');
+    const imagem = container.querySelector('#tempo-imagem');
+    const descricao = container.querySelector('#tempo-descricao');
 
     function selecionarEpoca(id) {
       const dados = epocas[id];
       if (!dados) return;
 
-      if (cardTitle) cardTitle.textContent = dados.titulo;
-      if (cardImage) cardImage.src = dados.imagem;
-      if (cardDescription) cardDescription.textContent = dados.resumo;
+      if (titulo) titulo.textContent = dados.titulo;
+      if (imagem) imagem.src = dados.imagem;
+      if (descricao) descricao.textContent = dados.resumo;
 
-      nodes.forEach(node => {
-        if (node.getAttribute('data-id') === id.toString()) {
-          node.classList.add('active');
+      ponto.forEach(ponto => {
+        if (ponto.getAttribute('data-id') === id.toString()) {
+          ponto.classList.add('ativo');
         } else {
-          node.classList.remove('active');
+          ponto.classList.remove('ativo');
         }
       });
     }
 
-    nodes.forEach(node => {
-      node.addEventListener('click', () => {
-        const id = node.getAttribute('data-id');
+    ponto.forEach(ponto => {
+      ponto.addEventListener('click', () => {
+        const id = ponto.getAttribute('data-id');
         selecionarEpoca(id);
       });
     });
