@@ -25,43 +25,13 @@ header h1 {
   margin: 25px 35px auto;
 }
 
-.secao-porto {
-  display: flex;
-  align-items: center;
-  
-  gap: 50px;
-  max-width: 1100px;
-  margin: 0 auto 80px auto;
-  margin-bottom: 10%;
-}
-
-.info-porto {
-  width: 40%;
-}
-
-.info-porto p {
-  font-size: 20px;
-  line-height: 1.5;
+.card-texto2 {
   text-align: right;
-  margin-top: 25%;
-}
-
-.porto-img {
-  width: 160%;
-  max-height: 430px;
-  object-fit: cover;
-}
-
-#azul {
-  margin-left: 200px;
-  margin-top: 40%;
+  margin-top: 8%;
 }
 
 .linha-azul {
-  border: none;
   border-top: 3px solid #5da9ea;
-  width: 100px;
-  margin-left: 100px;
 }
 
 .secao-mercado {
