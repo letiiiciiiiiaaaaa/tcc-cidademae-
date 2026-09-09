@@ -36,8 +36,7 @@
 
 #aquarela {
     top: 550px;
-    left: 1px;
-    margin: 0;
+    right: 90%;
 }
 
 #danca {
@@ -61,13 +60,21 @@
     margin: 150px 35px 150px 0;
 }
 
-.foto-quadros {
-    display: flex;
-    gap: 250px;
+.boi-info {
+    font-size: 16px;
 }
 
-.boi {
-    height: 100%;
+.info-quadros {
+    margin-bottom: 10%;
+}
+
+#rosa {
+    bottom: 1%;
+    margin-left: 105px;
+}
+
+.linha-rosa {
+    border-top: 3px solid rgb(248, 159, 172);
 }
 
 .secao-fandango {
