@@ -15,7 +15,7 @@
 }
 
 .container-principal {
-    font-size: 20px;
+    font-size: 25px;
     margin: 25px 35px auto;
 }
 
@@ -53,72 +53,80 @@
 }
 
 .introducao {
-    display: flex;
+  display: flex;
 }
 
 .intro2 {
-    margin: 150px 35px 150px 0;
+  max-width: fit-content;
+  text-align: justify;
+  margin-top: 30%;
+  margin-right: 10%;
 }
 
-.boi-info {
-    font-size: 16px;
+.secao-quadros {
+  gap: 0;
+}
+
+.quadro-mangue p {
+  padding-right: 50%;
+}
+
+.quadro-boi {
+  margin-right: 40px;
+}
+
+.quadro p {
+  text-align: initial;
+  font-size: 15px;
+  margin-top: 5px;
 }
 
 .info-quadros {
-    margin-bottom: 10%;
+  margin-bottom: 10%;
 }
 
 #rosa {
-    bottom: 1%;
-    margin-left: 105px;
+  bottom: 1%;
+  margin-left: 105px;
 }
 
 .linha-rosa {
-    border-top: 3px solid rgb(248, 159, 172);
+  border-top: 3px solid rgb(248, 159, 172);
 }
 
 .secao-fandango {
-    text-align: center;
-    max-width: 1100px;
-    margin: 80px auto 40px auto;
+  text-align: center;
+  max-width: 1100px;
+  margin: 0 0 0 70px;
 }
 
 .secao-fandango h2 {
-    font-family: 'Cal Sans', sans-serif;
-    font-size: 30px;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
+  font-family: 'Cal Sans', sans-serif;
+  font-size: 30px;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
 }
 
 .box-fandango {
-    width: 100%;
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .fandango-img {
-    z-index: 10;
-    width: 100%;
-    max-height: 480px;
-    object-fit: cover;
-    border-radius: 12px;
+  border-radius: 15px;
 }
+
 
 .legenda-centro {
     display: block;
     font-size: 14px;
     color: #555;
     margin-top: 10px;
+    text-align: end;
 }
 
-.texto-fandango {
-    text-align: left;
-    margin: 30px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
 
 .texto-fandango p {
-    font-size: 20px;
     line-height: 1.5;
+    font-size: 20px;
+    text-align: justify;
 }
