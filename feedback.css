@@ -7,16 +7,16 @@ html, body {
     position: relative;
 }
 
-.conteudo-principal {
-    padding-top: 0;
-}
-
 .cabecalho {
     background-color: #72d276;
     padding: 20px 20px;       
     width: 100%;              
     box-sizing: border-box;
     margin-bottom: 10px;
+}
+
+.conteudo-principal {
+    bottom: 15%;
 }
 
 .voltar {
@@ -103,18 +103,17 @@ textarea::placeholder {
 }
 
 #musica2 {
-    top: 400px;
-    right: 10px;
+    top: 550px;
+    right: 30px;
 }
 
 #onda {
-    top: 500px;
+    top: 600px;
     left: -10px;
-    transform: rotate(7deg);
 }
 
 #carangua2 {
-    top: 150px;
+    top: 250px;
     right: 200px;
 }
 
