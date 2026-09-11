@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
+
+header {
+    background-color: #72d276;
+    padding: 20px 20px;       
+    width: 100%;              
+    box-sizing: border-box;
+}
+
+.voltar {
+    top: 1px;
+    font-size: 25px;
+}
+
+.secao-introducao {
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.titulo {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.subtitulo {
+    font-size: 20px;
+}
+
+.estrelas-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.estrela {
+    font-size: 100px;
+    color: #dcdcdc;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.estrela.active {
+    color: #ffcc00;
+}
+
+.feedback-container {
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 0 auto 30px auto;
+    max-width: 60%; 
+    width: 100%;
+}
+
+textarea {
+    height: 300px;
+    background: transparent;
+    border: none;
+    resize: none;
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+}
+
+textarea::placeholder {
+    color: #999999;
+}
+
+.btn-enviar {
+    margin: 0 auto;
+    display: block;
+    background-color: #ff2a2a;
+    color: white;
+    border: none;
+    padding: 12px 35px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.btn-enviar:hover {
+    background-color: #e02222;
+}

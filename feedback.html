@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cidade Mãe | Feedback </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="feedback.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="cabecalho">
+        <a href="" onclick="history.back(); return false;">
+            <button class="voltar"> 🡠 Voltar </button>
+        </a>
+    </header>
+
+    <section class="secao-introducao">
+        <h2 class="titulo"> Seu feedback faz a diferença! </h2>
+        <p class="subtitulo"> Compartilhe sua opinião sobre o site e nos ajude a aprimorá-lo! </p>
+    </section>
+
+    <section class="secao-estrelas"> 
+        <div class="estrelas-container">
+            <span class="estrela" data-value="1">★</span>
+            <span class="estrela" data-value="2">★</span>
+            <span class="estrela" data-value="3">★</span>
+            <span class="estrela" data-value="4">★</span>
+            <span class="estrela" data-value="5">★</span>
+        </div>
+    </section>
+
+    <section class="secao-feedback">
+        <div class="feedback-container">
+            <textarea id="feedbackTexto" placeholder="Deixe sua mensagem aqui!"></textarea>
+        </div>
+    </section>
+
+    <section class="secao-botao">
+        <button class="btn-enviar"> Enviar Feedback </button>
+    </section>
+</body>
+</html>
