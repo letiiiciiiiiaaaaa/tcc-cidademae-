@@ -1,10 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
 
-header {
+html, body {
+    width: 100vw;  
+    height: 100vh;
+    overflow: hidden; 
+    position: relative;
+}
+
+.conteudo-principal {
+    padding-top: 0;
+}
+
+.cabecalho {
     background-color: #72d276;
     padding: 20px 20px;       
     width: 100%;              
     box-sizing: border-box;
+    margin-bottom: 10px;
 }
 
 .voltar {
@@ -15,7 +27,6 @@ header {
 .secao-introducao {
     margin-top: 50px;
     text-align: center;
-    margin-bottom: 30px;
 }
 
 .titulo {
@@ -31,7 +42,6 @@ header {
     display: flex;
     justify-content: center;
     gap: 12px;
-    margin-bottom: 30px;
 }
 
 .estrela {
@@ -75,7 +85,7 @@ textarea::placeholder {
     color: white;
     border: none;
     padding: 12px 35px;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     border-radius: 25px;
     cursor: pointer;
@@ -83,4 +93,33 @@ textarea::placeholder {
 
 .btn-enviar:hover {
     background-color: #e02222;
+}
+
+#musica2,
+#carangua2,
+#onda {
+    z-index: 0.5;
+    position: absolute;
+}
+
+#musica2 {
+    top: 400px;
+    right: 10px;
+}
+
+#onda {
+    top: 500px;
+    left: -10px;
+    transform: rotate(7deg);
+}
+
+#carangua2 {
+    top: 150px;
+    right: 200px;
+}
+
+#musica2:hover,
+#carangua2:hover,
+#onda:hover {
+    transform: translateX(0) scale(1.05);
 }
