@@ -180,3 +180,39 @@ document.addEventListener("DOMContentLoaded", () => {
     selecionarEpoca(1);
   }
 });
+
+// Feedback: funcionamento da avaliação por estrelas
+
+  const estrelas = document.querySelectorAll('.estrela');
+      let selectedRating = 0;
+
+      estrelas.forEach(estrela => {
+          // Efeito visual ao passar o mouse (Hover)
+          estrela.addEventListener('mouseover', () => {
+              resetEstrelas();
+              const value = parseInt(estrela.getAttribute('data-value'));
+              highlightEstrelas(value);
+          });
+
+          // Restaura a nota clicada se tirar o mouse
+          estrela.addEventListener('mouseleave', () => {
+              resetEstrelas();
+              highlightEstrelas(selectedRating);
+          });
+
+          // Fixa a nota ao clicar
+          estrela.addEventListener('click', () => {
+              selectedRating = parseInt(estrela.getAttribute('data-value'));
+              highlightEstrelas(selectedRating);
+          });
+        });
+
+        function resetEstrelas() {
+            estrelas.forEach(estrela => estrela.classList.remove('active'));
+        }
+
+        function highlightEstrelas(value) {
+            for (let i = 0; i < value; i++) {
+                estrelas[i].classList.add('active');
+            }
+        }

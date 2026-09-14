@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linha do Tempo do Mercado</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --gray-light: #e5e7eb;
+            --gray-dark: #4b5563;
+            --text-main: #1f2937;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9fafb;
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #111827;
+            margin-bottom: 40px;
+        }
+
+        /* Container da Linha do Tempo */
+        .timeline-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 40px 0;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        /* A linha horizontal cinza de fundo */
+        .timeline-line {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--gray-light);
+            z-index: 1;
+        }
+
+        /* Progresso azul da linha (opcional/estético) */
+        .timeline-progress {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background-color: var(--primary);
+            z-index: 1;
+            transition: width 0.3s ease;
+        }
+
+        /* Grupo de pontos */
+        .timeline-points {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            z-index: 2;
+        }
+
+        /* Estilo do ponto individual */
+        .point-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .point {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: white;
+            border: 4px solid var(--gray-light);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .label {
+            margin-top: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--gray-dark);
+            transition: color 0.3s ease;
+        }
+
+        /* Estado Ativo e Selecionado */
+        .point-wrapper.active .point {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .point-wrapper.active .label {
+            color: var(--primary);
+        }
+
+        /* Container de Conteúdo */
+        .content-container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            padding: 24px;
+            box-sizing: border-box;
+            margin-top: 20px;
+            min-height: 300px;
+        }
+
+        /* Card de Época */
+        .epoch-content {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .epoch-content.active {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .epoch-content.active {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .epoch-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            background-color: #f3f4f6; /* Placeholder caso falte imagem */
+        }
+
+        .epoch-text h2 {
+            margin-top: 0;
+            color: #111827;
+        }
+
+        .epoch-text p {
+            line-height: 1.6;
+            color: var(--gray-dark);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Evolução do Mercado</h1>
+
+    <!-- Estrutura da Linha do Tempo -->
+    <div class="timeline-container">
+        <div class="timeline-line"></div>
+        <div class="timeline-progress" id="progress"></div>
+        
+        <div class="timeline-points">
+            <!-- Ponto 1 -->
+            <div class="point-wrapper active" onclick="changeEpoch(0)">
+                <div class="point"></div>
+                <div class="label">Antiguidade</div>
+            </div>
+            <!-- Ponto 2 -->
+            <div class="point-wrapper" onclick="changeEpoch(1)">
+                <div class="point"></div>
+                <div class="label">Idade Média</div>
+            </div>
+            <!-- Ponto 3 -->
+            <div class="point-wrapper" onclick="changeEpoch(2)">
+                <div class="point"></div>
+                <div class="label">Rev. Industrial</div>
+            </div>
+            <!-- Ponto 4 -->
+            <div class="point-wrapper" onclick="changeEpoch(3)">
+                <div class="point"></div>
+                <div class="label">Séc. XX</div>
+            </div>
+            <!-- Ponto 5 -->
+            <div class="point-wrapper" onclick="changeEpoch(4)">
+                <div class="point"></div>
+                <div class="label">Era Digital</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container dos Resumos e Imagens -->
+    <div class="content-container">
+        
+        <!-- Conteúdo 1 -->
+        <div class="epoch-content active">
+            <img class="epoch-image" src="https://unsplash.com" alt="Mercado Antigo">
+            <div class="epoch-text">
+                <h2>O Escambo e os Primeiros Mercados</h2>
+                <p>Nas civilizações antigas, o mercado funcionava puramente na base do escambo (troca direta de mercadorias). Com o tempo, surgiram as primeiras moedas de metal na Lídia, facilitando o comércio de grãos, tecidos e especiarias em praças públicas.</p>
+            </div>
+        </div>
+
+        <!-- Conteúdo 2 -->
+        <div class="epoch-content">
+            <img class="epoch-image" src="https://unsplash.com" alt="Feiras Medievais">
+            <div class="epoch-text">
+                <h2>As Feiras Medievais e as Guildas</h2>
+                <p>Na Idade Média, o comércio renasceu ao redor dos burgos. Grandes feiras sazonais conectavam rotas internacionais. As guildas de mercadores e artesãos controlavam os preços e a qualidade dos produtos, iniciando uma regulamentação comercial.</p>
+            </div>
+        </div>
+
+        <!-- Conteúdo 3 -->
+        <div class="epoch-content">
+            <img class="epoch-image" src="https://unsplash.com" alt="Revolução Industrial">
+            <div class="epoch-text">
+                <h2>A Industrialização e a Produção em Massa</h2>
+                <p>Com a máquina a vapor e o surgimento das indústrias no século XVIII e XIX, o mercado mudou drasticamente. A produção em massa gerou a necessidade de escoar produtos rapidamente, expandindo mercados internos e internacionais em escala global.</p>
+            </div>
+        </div>
+
+        <!-- Conteúdo 4 -->
+        <div class="epoch-content">
+            <img class="epoch-image" src="https://unsplash.com" alt="Mercado Século XX">
+            <div class="epoch-text">
+                <h2>A Era do Consumismo e do Marketing</h2>
+                <p>No século XX, surgiram os grandes supermercados, shoppings e cadeias globais. O foco do mercado mudou da simples produção para a demanda. O nascimento do Marketing e da publicidade moldou as escolhas e o comportamento do consumidor moderno.</p>
+            </div>
+        </div>
+
+        <!-- Conteúdo 5 -->
+        <div class="epoch-content">
+            <img class="epoch-image" src="https://unsplash.com" alt="E-commerce e Tecnologia">
+            <div class="epoch-text">
+                <h2>O E-commerce e a Inteligência Artificial</h2>
+                <p>O mercado atual é descentralizado e digital. Lojas virtuais e marketplaces permitem compras globais instantâneas. Algoritmos de recomendação e Inteligência Artificial analisam dados de consumo para personalizar ofertas em tempo real.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Comportamento Interativo -->
+    <script>
+        const points = document.querySelectorAll('.point-wrapper');
+        const contents = document.querySelectorAll('.epoch-content');
+        const progress = document.getElementById('progress');
+
+        function changeEpoch(index) {
+            // Remove o estado ativo de todos os pontos e conteúdos
+            points.forEach(p => p.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+
+            // Ativa o ponto e o conteúdo clicado
+            points[index].classList.add('active');
+            contents[index].classList.add('active');
+
+            // Atualiza a barra de progresso azul de forma proporcional
+            const percentage = (index / (points.length - 1)) * 100;
+            progress.style.width = percentage + '%';
+        }
+
+        // Inicializa a barra de progresso no primeiro ponto
+        changeEpoch(0);
+    </script>
+</body>
+</html>
+

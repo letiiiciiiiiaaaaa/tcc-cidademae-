@@ -1,31 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
 
 html, body {
-    width: 100vw;  
-    height: 100vh;
+    width: 100vw;
+    height: 100dvh; 
+    margin: 0;
+    padding: 0;
     overflow: hidden; 
-    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .cabecalho {
     background-color: #72d276;
-    padding: 20px 20px;       
-    width: 100%;              
-    box-sizing: border-box;
-    margin-bottom: 10px;
+    padding: 17px;
+    width: 100%;
+    z-index: 10;
+    flex-shrink: 0;
 }
 
 .conteudo-principal {
-    bottom: 15%;
+    position: relative;
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
 }
 
 .voltar {
-    top: 1px;
+    top: 0.1%;
     font-size: 25px;
 }
 
 .secao-introducao {
-    margin-top: 50px;
     text-align: center;
 }
 
@@ -36,6 +41,7 @@ html, body {
 
 .subtitulo {
     font-size: 20px;
+    margin-bottom: 20px;
 }
 
 .estrelas-container {
@@ -45,7 +51,7 @@ html, body {
 }
 
 .estrela {
-    font-size: 100px;
+    font-size: 80px;
     color: #dcdcdc;
     cursor: pointer;
     transition: color 0.2s ease;
@@ -65,7 +71,8 @@ html, body {
 }
 
 textarea {
-    height: 300px;
+    width: 100%;
+    height: 250px;
     background: transparent;
     border: none;
     resize: none;
@@ -76,6 +83,7 @@ textarea {
 
 textarea::placeholder {
     color: #999999;
+    text-align: left;
 }
 
 .btn-enviar {
@@ -95,30 +103,38 @@ textarea::placeholder {
     background-color: #e02222;
 }
 
-#musica2,
 #carangua2,
+#musica2,
 #onda {
-    z-index: 0.5;
     position: absolute;
+    z-index: 1;
+    transition: transform 0.2s ease;
 }
 
-#musica2 {
-    top: 550px;
-    right: 30px;
-}
-
-#onda {
-    top: 600px;
-    left: -10px;
-}
-
+/* 1. CARANGUEJO - Posição Livre */
 #carangua2 {
-    top: 250px;
-    right: 200px;
+    top: 30%;             /* Mude esta % para subir ou descer */
+    right: 13%;            /* Mude esta % para afastar/aproximar do lado direito */
+    width: 230px;         /* Ajuste aqui a largura da imagem */
+}
+
+/* 2. MUSICA - Posição Livre */
+#musica2 {
+    bottom: 2%;           /* Mude esta % para subir ou descer */
+    right: 5%;            /* Mude esta % para afastar/aproximar do lado direito */
+    width: 400px;         /* Ajuste aqui a largura da imagem */
+}
+
+/* 3. ONDA - Posição Livre */
+#onda {
+    bottom: -35px;        /* Posição vertical (negativo faz cortar na borda) */
+    left: -10px;          /* Distância da borda esquerda */
+    width: 560px;         /* Ajuste aqui a largura da imagem */
 }
 
 #musica2:hover,
 #carangua2:hover,
 #onda:hover {
-    transform: translateX(0) scale(1.05);
+    transform: scale(1.05);
+    transition: transform 0.2s ease;;
 }

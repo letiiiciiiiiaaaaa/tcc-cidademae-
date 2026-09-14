@@ -85,6 +85,10 @@
   margin-bottom: 10%;
 }
 
+.texto {
+  margin-top: 18.5%;
+}
+
 #rosa {
   bottom: 1%;
   margin-left: 105px;
@@ -105,10 +109,11 @@
   font-size: 30px;
   letter-spacing: 2px;
   margin-bottom: 25px;
+  margin-left: 15%;
 }
 
-.box-fandango {
-  margin-bottom: 30px;
+.box-fandango span{
+  margin-bottom: 5%;
 }
 
 .fandango-img {
@@ -116,17 +121,19 @@
 }
 
 
-.legenda-centro {
+.legenda-fandango {
     display: block;
     font-size: 14px;
     color: #555;
     margin-top: 10px;
     text-align: end;
+    padding-left: 50%;
 }
 
 
-.texto-fandango p {
+.texto-fandango {
     line-height: 1.5;
     font-size: 20px;
     text-align: justify;
+    margin-bottom: 15%;
 }
