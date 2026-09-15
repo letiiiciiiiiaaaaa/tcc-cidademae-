@@ -1,0 +1,38 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.card {
+    width: 100%;
+    height: 200px;
+    background-color: #65cc69;
+    border-radius: 5px;
+    position: relative;
+    transition: all 400ms ease;
+    transform-style: preserve-3d;
+}
+
+.cartao {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.frente {
+    background-color: #65cc69;
+}
+
+.atras {
+    background-image: url(imagens/barquin.png);
+    background-size: cover;
+    background-position: center;
+    backface-visibility: hidden;
+}
+
+.card:hover {
+    transform: rotateY(180deg);
+}
