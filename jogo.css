@@ -8,7 +8,7 @@
 
 .card {
     width: 100%;
-    height: 200px;
+    height: 230px;
     background-color: #65cc69;
     border-radius: 5px;
     position: relative;
@@ -16,20 +16,22 @@
     transform-style: preserve-3d;
 }
 
-.cartao {
+.face {
     width: 100%;
     height: 100%;
     position: absolute;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid;
+    border-radius: 5px;
 }
 
 .frente {
-    background-color: #65cc69;
+    background-image: url('imagens/caranguejo-jogo.jfif');
 }
 
 .atras {
-    background-image: url(imagens/barquin.png);
-    background-size: cover;
-    background-position: center;
+    background-color: #65cc69;
     backface-visibility: hidden;
 }
 
