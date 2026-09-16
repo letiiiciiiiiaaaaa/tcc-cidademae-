@@ -16,14 +16,14 @@
 
 .container-principal {
     font-size: 25px;
-    margin: 25px 35px auto;
+    margin: 35px auto;
 }
 
 #musica,
 #aquarela,
 #danca {
     position: absolute;
-    z-index: 0;
+    z-index: 1;
     transition: transform 0.8s ease, opacity 0.8s ease;
     pointer-events: none;
 }
@@ -35,12 +35,12 @@
 }
 
 #aquarela {
-    top: 550px;
+    top: 1500px;
     right: 90%;
 }
 
 #danca {
-    top: 1300px;
+    top: 2800px;
     right: 1px;
     margin: 0;
 }
@@ -56,7 +56,13 @@
   display: flex;
 }
 
+p.intro1, p.info-quadros {
+  margin-left: 25px;
+}
+
 .intro2 {
+  position: relative;
+  z-index: 2;
   max-width: fit-content;
   text-align: justify;
   margin-top: 30%;
@@ -64,6 +70,8 @@
 }
 
 .secao-quadros {
+  z-index: 2;
+  position: relative;
   gap: 0;
 }
 
@@ -86,6 +94,8 @@
 }
 
 .texto {
+  z-index: 2;
+  position: relative;
   margin-top: 18.5%;
 }
 
