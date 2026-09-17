@@ -25,6 +25,17 @@ header h1 {
   margin: 25px 35px auto;
 }
 
+.intro{
+  z-index: 1;
+    position: relative;
+    display: flex;
+    font-size: 25px;
+    margin: 25px 35px auto;
+    word-spacing: 2px;
+    margin-bottom: 60px;
+    max-width: 70%;
+}
+
 .texto2 {
   text-align: right;
   margin-top: 8%;
