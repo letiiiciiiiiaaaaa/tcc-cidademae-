@@ -122,27 +122,26 @@
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         document.addEventListener('DOMContentLoaded', async () => {
-            const nomeUsuario = localStorage.getItem('usuarioLogado');
-
-            if (!nomeUsuario) {
-                alert('Você precisa estar logado para acessar esta página.');
-                window.location.href = 'cadastro.html';
-                return;
-            }
+            const nomeUsuario = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
 
             const elNomeUsuario = document.getElementById('nome-usuario');
             const btnLogout = document.getElementById('btn-logout');
 
-            if (elNomeUsuario) {
+            if (elNomeUsuario && nomeUsuario) {
                 elNomeUsuario.textContent = `Olá, ${nomeUsuario}`;
             }
 
             if (btnLogout) {
-                btnLogout.style.display = 'inline-block';
-                btnLogout.addEventListener('click', () => {
-                    localStorage.removeItem('usuarioLogado');
-                    window.location.href = 'cadastro.html';
-                });
+                if (nomeUsuario) {
+                    btnLogout.style.display = 'inline-block';
+                    btnLogout.addEventListener('click', () => {
+                        localStorage.removeItem('usuarioLogado');
+                        localStorage.removeItem('usuario_nome');
+                        window.location.reload();
+                    });
+                } else {
+                    btnLogout.style.display = 'none';
+                }
             }
 
             const elementosAnimados = document.querySelectorAll('.esquerda, .direita, .surgir');
