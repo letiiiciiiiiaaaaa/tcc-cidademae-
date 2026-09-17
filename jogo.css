@@ -1,3 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
+
+.cabecalho {
+    background-color: #f0f0f0; 
+}
+
+.titulo {
+    text-align: center;
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 60px;
+    letter-spacing: 4px;
+    color: #8bbae2;
+    margin-top: 10%;
+}
+
+.sub-titulo {
+    text-align: center;
+    font-size: 25px;
+    color: black;
+    margin-top: 50px;
+}
+
+.jogo {
+    color: #e5d77b;
+}
+
+.memoria {
+    color: #ff3131;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

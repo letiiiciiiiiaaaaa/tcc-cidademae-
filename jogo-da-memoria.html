@@ -7,18 +7,38 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="feedback.css">
     <link rel="stylesheet" href="jogo.css">
-    <script src="jogo.da.memoria.js" defer></script>
+    <script src="jogo-da-memoria.js" defer></script>
 </head>
 <body>
     <header class="cabecalho">
-        <a href="" onclick="history.back(); return false;">
-            <button class="voltar"> 🡠 Voltar </button>
-        </a>
+        <div class="btn-voltar">
+            <a href="" onclick="history.back(); return false;">
+                <button class="voltar"> 🡠 Voltar </button>
+            </a>
+        </div>
+
+        <p class="paranagua"> Paranaguá </p>
+
+        <div class="usuario">
+            <a href="perfil.html" style="text-decoration: none; color: inherit;">
+                <div id="perfil-logado" class="perfil-logado">
+                    <img id="foto-usuario" src="imagens/usuario.png" alt="Foto de perfil" class="foto-perfil">
+                    <span id="nome-usuario" class="nome-perfil"></span>
+                </div>
+            </a>
+        </div>
+
+        <div class="search">
+            <label for="searchInput">
+                <span class="material-symbols-outlined"></span>
+            </label>
+            <input type="text" id="searchInput" placeholder="Pesquisar...">
+        </div>
     </header>
 
     <section class="introducao">
-        <h1> <span class="jogo"> JOGO </span> DA <span class="memoria"> MEMÓRIA </span> </h1>
-        <p> elementos caiçara </p>
+        <h1 class="titulo"> <span class="jogo"> JOGO </span> DA <br> <span class="memoria"> MEMÓRIA </span> </h1>
+        <p class="sub-titulo"> elementos caiçara </p>
     </section>
 
     <section class="secao-pontuacao-restart">
@@ -27,12 +47,7 @@
     </section>
 
     <section class="secao-jogo">
-        <div class="grid">
-            <div class="card">
-                <div class="face frente"></div>
-                <div class="face atras"></div>
-            </div>
-        </div>
+        <div class="grid"></div>
     </section>
 </body>
 </html>
