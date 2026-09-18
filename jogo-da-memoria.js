@@ -15,6 +15,10 @@ const createElement = (tag, className) => {
     return element;
 }
 
+const revealCard = ({ target }) => {
+    console.log(target);
+}
+
 const createCard = (image) => {
     const card = createElement('div', 'card');
     const front = createElement('div', 'face front');
@@ -25,18 +29,20 @@ const createCard = (image) => {
     card.appendChild(front);
     card.appendChild(back);
 
+    card.addEventListener('click', revealCard);
+
     return card;
 }
 
 const loadGame = () => {
-    
-    images.forEach((image) => {
+    const duplicateImages = [ ... images, ... images];
 
-    const card = createCard(image);
-    grid.appendChild(card);
+    const shuffledArray = duplicateImages.sort(() => Math.random() - 0.5);
 
+    shuffledArray.forEach((image) => {
+        const card = createCard(image);
+        grid.appendChild(card);
     });
-
 }
 
 loadGame();
