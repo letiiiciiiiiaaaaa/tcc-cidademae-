@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn-logout-perfil">Sair da Conta</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+                const btnLogoutPerfil = document.getElementById('btn-logout-perfil');
+
+                if (btnLogoutPerfil) {
+                    btnLogoutPerfil.addEventListener('click', async () => {
+                        // 1. Limpa os dados armazenados localmente
+                        localStorage.removeItem('usuario_nome');
+                        localStorage.removeItem('usuario_id');
+                        localStorage.removeItem('usuarioLogado');
+
+                        // 2. Faz logout na sessão do Supabase (se estiver configurado)
+                        if (typeof supabaseClient !== 'undefined') {
+                            await supabaseClient.auth.signOut();
+                        }
+
+                        // 3. Redireciona para a página principal (ou tela de login)
+                        window.location.href = 'index.html';
+                    });
+                }
+            });
+    </script>
+</body>
+</html>

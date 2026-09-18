@@ -17,11 +17,32 @@
 <body>
 
     <header class="cabecalho">
-        <div class="search">
-            <label for="searchInput">
-                <span class="material-symbols-outlined">search</span>
-            </label>
-            <input type="text" id="searchInput" placeholder="Pesquisar...">
+        <div class="abas">
+
+            <div class="bandeiras">
+                <img src="imagens/bandeiras-inicio.png" alt="Bandeiras do Brasil, do Paraná e da cidade de Paranaguá">
+            </div>
+
+            <img src="imagens/paranagua.png" class="paranagua">
+            <a href="sobre-nos.html" alt="Sobre Nós" class="btn-sobre">sobre nós</a>
+
+            <div class="usuario" id="container-usuario">
+                <a href="cadastro.html" class="btn-usuario" id="btn-user">cadastre-se</a>
+            
+                <a href="perfil.html" style="text-decoration: none;">
+                    <div id="perfil-logado" class="perfil-logado">
+                        <span id="nome-usuario" class="nome-perfil"></span>
+                        <img id="foto-usuario" src="imagens/usuario.png" alt="Foto de perfil" class="foto-perfil">
+                    </div>
+                </a>
+            </div>
+
+            <div class="search">
+                <label for="searchInput">
+                    <span class="material-symbols-outlined">search</span>
+                </label>
+                <input type="text" id="searchInput">
+            </div>
         </div>
 
         <div class="container-inicio">
@@ -38,16 +59,7 @@
                 </div>
             </div>
 
-            <div class="usuario" id="container-usuario">
-                <a href="cadastro.html" class="btn-usuario" id="btn-user">Cadastre-se</a>
             
-                <a href="perfil.html" style="text-decoration: none; color: inherit;">
-                    <div id="perfil-logado" class="perfil-logado">
-                        <img id="foto-usuario" src="imagens/usuario.png" alt="Foto de perfil" class="foto-perfil">
-                        <span id="nome-usuario" class="nome-perfil"></span>
-                    </div>
-                </a>    
-            </div>
 
             <nav class="container-botoes">
                 <a href="arte.html" class="btn btn-arte">ARTE</a>
@@ -55,10 +67,6 @@
                 <a href="gastronomia.html" class="btn btn-gas">GASTRONOMIA</a>
             </nav>
 
-            <hr class="linha-destaque">
-        </div>
-        <div class="bandeiras">
-            <img src="imagens/bandeiras-inicio.png" alt="Bandeiras">
         </div>
     </header>
 

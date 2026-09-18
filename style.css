@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
 * {
     margin: 0;
@@ -19,6 +20,28 @@ body {
     overflow-x: hidden;
 }
 
+.abas {
+    align-items: center;
+    background-color: #fff;
+    margin: 7px 20px 5px;
+    display: flex;
+    gap: 10px;
+}
+
+.abas p {
+    margin-bottom: 0;
+}
+
+.bandeiras img {
+    margin-left: 20px;
+    width: 140px;
+}
+
+.paranagua {
+    width: 100px;
+    height: 30px;
+}
+
 .voltar {
     position: absolute;
     color: white;
@@ -35,17 +58,73 @@ body {
     color: #ebebeb;
 }
 
-.search {
-    position: absolute;
+.btn-sobre {
+    margin-left: 700px;
+    text-decoration: none;
+    color: #FF3131;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-sobre:hover {
+    color: #ff5353;
+}
+
+.usuario {
+    margin-left: auto;
     top: 20px;
-    right: 12%;
+    right: 20px;
+    z-index: 100;
+}
+
+.btn-usuario {
+    color: #5da9ea;
+    text-decoration: none;
+    font-weight: 900;
+    background-color: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-usuario:hover {
+    color: #75bcfa;
+}
+
+.perfil-logado {
+    transition: all 0.3s ease;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 3px 10px;
+    cursor: pointer;
+}
+
+.perfil-logado:hover {
+    transform: scale(1.05);
+}
+
+.foto-perfil {
+    width: 33px;
+    height: 33px;
+}
+
+.nome-perfil {
+    font-weight: bold;
+    color: rgb(73, 73, 73);
+    font-size: 0.9rem;
+}
+
+.search {
+    margin-left: 10px;
     z-index: 10;
     display: flex;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.09);
     width: 300px;
     border-radius: 20px;
-    padding: 5px 15px;
+    height: 30px;
+    padding: 3px 15px;
     color: white;
 }
 
@@ -56,6 +135,11 @@ body {
     color: white;
     margin-left: 8px;
     outline: none;
+}
+
+#searchInput::placeholder {
+    color: #fff;
+    font-size: 14px;
 }
 
 .container-inicio {
@@ -97,34 +181,6 @@ body {
     letter-spacing: 1.5px;
     max-width: 500px;
     margin: 0 auto;
-}
-
-.usuario {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 100;
-}
-
-.btn-usuario {
-    display: inline-block;
-    padding: 8px 18px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    letter-spacing: 1px;
-    border-radius: 30px;
-    border: 2px solid white;
-    background-color: none;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
-
-.btn-usuario:hover {
-    color: #1a365d;
-    background-color: white;
-    border-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .container-botoes {
@@ -183,23 +239,6 @@ body {
 
 .btn-jogar {
     background-color: #5da9ea;
-}
-
-.linha-destaque {
-    transform: translate(0, -1rem);
-    border: none;
-    border-top: 15px solid #72D276;
-    width: 100%;
-}
-
-.bandeiras {
-    text-align: center;
-    margin: 20px 0 50px 0;
-}
-
-.bandeiras img {
-    width: 170px;
-    height: auto;
 }
 
 .conteudo-principal {
@@ -448,33 +487,4 @@ body {
     right: 20px;
     bottom: 15px;
     width: 60px;
-}
-
-.perfil-logado {
-    transition: all 0.3s ease;
-    display: none;
-    align-items: center;
-    gap: 10px;
-    border: 2px solid #ffffff;
-    border-radius: 40px;
-    padding: 3px 10px;
-    cursor: pointer;
-}
-
-.perfil-logado:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.foto-perfil {
-    width: 35px;
-    height: 35px;
-  
-}
-
-.nome-perfil{
-    text-decoration: none;
-    font-weight: bold;
-    color: #fff;
-    font-size: 0.9rem;
 }
