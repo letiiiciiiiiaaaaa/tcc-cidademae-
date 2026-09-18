@@ -61,15 +61,11 @@ header h1 {
   margin-right: auto;
 }
 
-.secao-mercado p, .link {
+.secao-mercado p {
   text-align: justify;
   font-size: 16px;
   text-decoration: none;
   word-spacing: 2px;
-}
-
-.link-vermelho {
-  color: #FF3131;
 }
 
 .mercado-info {
@@ -77,13 +73,6 @@ header h1 {
   flex-direction: column;
   align-items: center;
 }
-
-
-
-
-
-
-
 
 .linha-do-tempo {
   width: 100%;
