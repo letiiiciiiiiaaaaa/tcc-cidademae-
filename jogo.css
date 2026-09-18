@@ -56,13 +56,13 @@
     border-radius: 5px;
 }
 
-.frente {
-    background-image: url('imagens/caranguejo-jogo.jfif');
+.front {
+    transform: rotateY(180deg);
 }
 
-.atras {
-    background-color: #65cc69;
+.back {
     backface-visibility: hidden;
+    background-color: #65cc69;
 }
 
 .card:hover {

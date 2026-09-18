@@ -1,8 +1,12 @@
 const grid = document.querySelector('.grid');
 
-const cards = [
+const images = [
+    'ilha-jogo',
     'caranguejo-jogo',
-    'aquario-jogo',
+    'fandango-jogo',
+    'tainha-jogo',
+    'porto-jogo',
+    'mercado-jogo',
 ];
 
 const createElement = (tag, className) => {
@@ -11,10 +15,12 @@ const createElement = (tag, className) => {
     return element;
 }
 
-const createCard = () => {
+const createCard = (image) => {
     const card = createElement('div', 'card');
     const front = createElement('div', 'face front');
     const back = createElement('div', 'face back');
+
+    front.style.backgroundImage = `url('imagens/${image}.png')`;
 
     card.appendChild(front);
     card.appendChild(back);
@@ -23,8 +29,12 @@ const createCard = () => {
 }
 
 const loadGame = () => {
-    cards.forEach((card) => {
-        console.log(card);
+    
+    images.forEach((image) => {
+
+    const card = createCard(image);
+    grid.appendChild(card);
+
     });
 
 }
