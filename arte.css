@@ -1,62 +1,105 @@
 @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+/* Contêiner para manter exatamente o mesmo tamanho e espaço da div .bandeiras da index */
+.btn-voltar-container {
+  height: 30px;
+  width: 40px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.voltar-arte {
+  font-family: 'Questrial', sans-serif;
+  color: #ff3131;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+}
+
+.voltar-arte:hover {
+  color: #ff6363;
+  transform: translateX(-3px);
+}
+
+.btn-sobre {
+  margin-left: 800px;
+}
+
+.btn-jogos {
+  text-decoration: none;
+  color: #5da9ea;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-jogos:hover {
+  color: #75bcfa;
+}
 
 .header img {
-    width: 100%;
-    display: block;
+  width: 100%;
+  display: block;
 }
 
 .header h1 {
-    font-size: 60px;
-    letter-spacing: 4px;
-    word-spacing: 10px;
-    font-family: 'Cal Sans', sans-serif;
-    margin: 25px 35px auto;
-    color: #ff3131;
+  font-size: 60px;
+  letter-spacing: 4px;
+  word-spacing: 10px;
+  font-family: 'Cal Sans', sans-serif;
+  margin: 25px 35px auto;
+  color: #ff3131;
 }
 
 .container-principal {
-    font-size: 25px;
-    margin: 35px auto;
+  font-size: 25px;
+  margin: 35px auto;
 }
 
 #musica,
 #aquarela,
 #danca {
-    position: absolute;
-    z-index: 1;
-    transition: transform 0.8s ease, opacity 0.8s ease;
-    pointer-events: none;
+  position: absolute;
+  z-index: 1;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  pointer-events: none;
 }
 
 #musica {
-    top: 40px;
-    right: 1px;
-    margin: 0;
+  top: 40px;
+  right: 1px;
+  margin: 0;
 }
 
 #aquarela {
-    top: 1500px;
-    right: 90%;
+  top: 1500px;
+  right: 90%;
 }
 
 #danca {
-    top: 2800px;
-    right: 1px;
-    margin: 0;
+  top: 2800px;
+  right: 1px;
+  margin: 0;
 }
 
 #musica:hover,
 #aquarela:hover,
 #danca:hover {
-    transform: scale(1.05);
-    pointer-events: auto;
+  transform: scale(1.05);
+  pointer-events: auto;
 }
 
 .introducao {
   display: flex;
 }
 
-p.intro1, p.info-quadros {
+p.intro1,
+p.info-quadros {
   margin-left: 25px;
 }
 
@@ -122,7 +165,7 @@ p.intro1, p.info-quadros {
   margin-left: 15%;
 }
 
-.box-fandango span{
+.box-fandango span {
   margin-bottom: 5%;
 }
 
@@ -130,20 +173,18 @@ p.intro1, p.info-quadros {
   border-radius: 15px;
 }
 
-
 .legenda-fandango {
-    display: block;
-    font-size: 14px;
-    color: #555;
-    margin-top: 10px;
-    text-align: end;
-    padding-left: 50%;
+  display: block;
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+  text-align: end;
+  padding-left: 50%;
 }
 
-
 .texto-fandango {
-    line-height: 1.5;
-    font-size: 20px;
-    text-align: justify;
-    margin-bottom: 15%;
+  line-height: 1.5;
+  font-size: 20px;
+  text-align: justify;
+  margin-bottom: 15%;
 }
