@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-/* Contêiner para manter exatamente o mesmo tamanho e espaço da div .bandeiras da index */
 .btn-voltar-container {
   height: 30px;
   width: 40px;
@@ -26,20 +25,12 @@
   transform: translateX(-3px);
 }
 
+.bandeiras img {
+  margin-left: 0;
+}
+
 .btn-sobre {
-  margin-left: 800px;
-}
-
-.btn-jogos {
-  text-decoration: none;
-  color: #5da9ea;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.btn-jogos:hover {
-  color: #75bcfa;
+  margin-left: 700px;
 }
 
 .header img {

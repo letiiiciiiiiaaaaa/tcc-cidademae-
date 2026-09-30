@@ -4,29 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Gastronomia</title>
-    <link rel="stylesheet" href="gastronomia.css">
+    <title>Página de Gastronomia - Cidade Mãe</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gastronomia.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
 
-    <header>
-        <img src="imagens/gastronomia.png" class="img-cabecalho">
-        <a href="" onclick="history.back(); return false;">
-            <button class="voltar"> 🡠 Voltar </button>
-        </a>
-        <div class="usuario" id="container-usuario">
-            <a href="cadastro.html" class="btn-usuario" id="btn-user">Cadastre-se</a>
-        
-            <div id="perfil-logado" class="perfil-logado" style="display: none;">
-                <img id="foto-usuario" src="imagens/usuario.png" alt="Foto de perfil" class="foto-perfil">
-                <span id="nome-usuario" class="nome-perfil"></span>
+    <header class="cabecalho">
+        <div class="abas">
+            <a href="" onclick="history.back(); return false;" class="voltar">🡠</a>
+
+            <div class="bandeiras">
+                <img src="imagens/bandeiras-inicio.png" alt="Bandeiras do Brasil, do Paraná e da cidade de Paranaguá">
+            </div>
+
+            <img src="imagens/paranagua.png" class="paranagua" alt="Paranaguá">
+
+            <a href="sobre-nos.html" class="btn-sobre">sobre nós</a>
+
+            <div class="usuario" id="container-usuario">
+                <a href="cadastro.html" class="btn-usuario" id="btn-user">cadastre-se</a>
+
+                <a href="perfil.html" style="text-decoration: none;">
+                    <div id="perfil-logado" class="perfil-logado" style="display: none;">
+                        <span id="nome-usuario" class="nome-perfil"></span>
+                        <img id="foto-usuario" src="imagens/usuario.png" alt="Foto de perfil" class="foto-perfil">
+                    </div>
+                </a>
+            </div>
+
+            <div class="search">
+                <label for="searchInput">
+                    <span class="material-symbols-outlined">search</span>
+                </label>
+                <input type="text" id="searchInput">
             </div>
         </div>
 
-        <h1 class="titulo-da-pagina"> PRATOS TÍPICOS DE PARANAGUÁ </h1>
+        <div class="header">
+            <img src="imagens/gastronomia.png" alt="Gastronomia de Paranaguá" class="img-cabecalho">
+            <h1 class="titulo-da-pagina"> PRATOS TÍPICOS DE PARANAGUÁ </h1>
+        </div>
     </header>
 
     <p class="introducao surgir"> A gastronomia no litoral paranaense, principalmente em Paranaguá, é uma <br> herança
@@ -66,7 +89,8 @@
                     litoral, a <strong> Tainha </strong> é <br> tradicionalmente assada inteira, no forno ou na brasa,
                     <br> deitada sobre uma cama de cebolas e batatas. A <br> tradição é marcada pela temporada de pesca
                     tão <br> aguardada durante as estações mais frias do ano, que <br> impulsiona o turismo e valoriza o
-                    trabalho dos nossos <br> pescadores locais há mais de três décadas. </p>
+                    trabalho dos nossos <br> pescadores locais há mais de três décadas.
+                </p>
                 <img src="imagens/peixe.png" class="direita">
             </div> <br> <br> <br> <br>
 

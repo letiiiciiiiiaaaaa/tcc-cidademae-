@@ -33,29 +33,50 @@ body {
 }
 
 .bandeiras img {
-    margin-left: 20px;
+    margin-left: 0px;
     width: 140px;
+}
+
+.bandeiras1 img {
+    margin-left: 31px;
+    width: 140px;
+}
+
+.btn-voltar-container {
+    height: 30px;
+    width: 40px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.voltar {
+    font-family: 'Questrial', sans-serif;
+    color: #ff3131;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+}
+
+.voltar:hover {
+    color: #ff6363;
+    transform: translateX(-3px);
+}
+
+.btn-sobre {
+    margin-left: 500px;
+    color: #ff3131;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
 }
 
 .paranagua {
     width: 100px;
     height: 30px;
-}
-
-.voltar {
-    position: absolute;
-    color: white;
-    top: 30px;
-    left: 30px;
-    background: none;
-    border: none;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.voltar:hover {
-    color: #ebebeb;
 }
 
 .btn-sobre {
