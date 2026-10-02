@@ -101,6 +101,42 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(carrossel, 4000);
   }
 
+  // ===== Animações de scroll para os elementos que ainda não tinham =====
+  // Usa as mesmas classes de sempre: esquerda, direita e surgir.
+
+  function animar(seletor, classes) {
+    document.querySelectorAll(seletor).forEach((el, i) => {
+      const jaTem = el.classList.contains('esquerda') ||
+                    el.classList.contains('direita') ||
+                    el.classList.contains('surgir');
+      if (!jaTem) el.classList.add(classes[i % classes.length]);
+    });
+  }
+
+  // Início
+  animar('.secao-mapa', ['surgir']);
+  animar('.textinho1', ['surgir']);
+
+  // Arte
+  animar('.intro1', ['esquerda']);
+  animar('.intro2', ['direita']);
+  animar('.quadro-mangue', ['esquerda']);
+  animar('.quadro-boi', ['direita']);
+  animar('.info-quadros', ['surgir']);
+  animar('.secao-fandango h2', ['surgir']);
+  animar('.box-fandango', ['esquerda']);
+  animar('.texto-fandango', ['direita']);
+
+  // Gastronomia
+  animar('.lucas img', ['surgir']);
+  animar('.ultimo-texto', ['surgir']);
+
+  // Mercado
+  animar('.intro', ['surgir']);
+  animar('.secao-mercado .mercado-info', ['esquerda', 'surgir', 'direita']);
+  animar('.linha-do-tempo', ['surgir']);
+
+  // ===== Observador de scroll (já existia) =====
   const elementosAnimados = document.querySelectorAll(".esquerda, .direita, .surgir");
 
   const observador = new IntersectionObserver((entries) => {

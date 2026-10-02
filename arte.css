@@ -1,181 +1,152 @@
-@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
-.btn-voltar-container {
-  height: 30px;
-  width: 40px;
-  margin-left: 20px;
-  display: flex;
-  align-items: center;
-}
-
-.voltar-arte {
-  font-family: 'Questrial', sans-serif;
-  color: #ff3131;
-  text-decoration: none;
-  font-size: 22px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  display: inline-block;
-}
-
-.voltar-arte:hover {
-  color: #ff6363;
-  transform: translateX(-3px);
-}
-
-.bandeiras img {
-  margin-left: 0;
-}
-
-.btn-sobre {
-  margin-left: 700px;
-}
-
-.header img {
-  width: 100%;
-  display: block;
-}
-
 .header h1 {
-  font-size: 60px;
-  letter-spacing: 4px;
-  word-spacing: 10px;
-  font-family: 'Cal Sans', sans-serif;
-  margin: 25px 35px auto;
-  color: #ff3131;
+    color: var(--vermelho);
 }
 
 .container-principal {
-  font-size: 25px;
-  margin: 35px auto;
+    font-size: 18px;
 }
 
 #musica,
 #aquarela,
 #danca {
-  position: absolute;
-  z-index: 1;
-  transition: transform 0.8s ease, opacity 0.8s ease;
-  pointer-events: none;
+    position: absolute;
+    z-index: 0;
+    height: auto;
+    pointer-events: none;
 }
 
 #musica {
-  top: 40px;
-  right: 1px;
-  margin: 0;
+    top: 24px;
+    right: 0;
 }
 
 #aquarela {
-  top: 1500px;
-  right: 90%;
+    top: 38%;
+    left: 0;
 }
 
 #danca {
-  top: 2800px;
-  right: 1px;
-  margin: 0;
-}
-
-#musica:hover,
-#aquarela:hover,
-#danca:hover {
-  transform: scale(1.05);
-  pointer-events: auto;
+    top: 72%;
+    right: 0;
 }
 
 .introducao {
-  display: flex;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.intro-esquerda,
+.intro-direita {
+    flex: 1;
 }
 
 p.intro1,
+p.intro2,
 p.info-quadros {
-  margin-left: 25px;
-}
-
-.intro2 {
-  position: relative;
-  z-index: 2;
-  max-width: fit-content;
-  text-align: justify;
-  margin-top: 30%;
-  margin-right: 10%;
+    margin: 0;
+    text-align: left;
 }
 
 .secao-quadros {
-  z-index: 2;
-  position: relative;
-  gap: 0;
+    display: flex;
+    gap: 32px;
+    margin: 56px 0 24px;
 }
 
-.quadro-mangue p {
-  padding-right: 50%;
+.quadro {
+    flex: 1;
+    display: block;
 }
 
-.quadro-boi {
-  margin-right: 40px;
+.quadro img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
 }
 
 .quadro p {
-  text-align: initial;
-  font-size: 15px;
-  margin-top: 5px;
+    font-size: 14px;
+    color: #555;
+    margin-top: 8px;
+    padding: 0;
+}
+
+.quadro-boi {
+    margin: 0;
 }
 
 .info-quadros {
-  margin-bottom: 10%;
+    max-width: 760px;
+    margin: 40px 0 72px !important;
 }
 
-.texto {
-  z-index: 2;
-  position: relative;
-  margin-top: 18.5%;
+.info-quadros br,
+.texto-fandango br {
+    display: none;
 }
 
-#rosa {
-  bottom: 1%;
-  margin-left: 105px;
+.secao-local {
+    padding: 0;
+    margin-bottom: 72px;
 }
 
 .linha-rosa {
-  border-top: 3px solid rgb(248, 159, 172);
+    border-color: rgb(248, 159, 172);
 }
 
 .secao-fandango {
-  text-align: center;
-  max-width: 1100px;
-  margin: 0 0 0 70px;
+    max-width: none;
+    margin: 0;
+    text-align: left;
 }
 
 .secao-fandango h2 {
-  font-family: 'Cal Sans', sans-serif;
-  font-size: 30px;
-  letter-spacing: 2px;
-  margin-bottom: 25px;
-  margin-left: 15%;
-}
-
-.box-fandango span {
-  margin-bottom: 5%;
+    font-size: 30px;
+    letter-spacing: 2px;
+    margin: 0 0 24px;
+    text-align: center;
 }
 
 .fandango-img {
-  border-radius: 15px;
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
 }
 
 .legenda-fandango {
-  display: block;
-  font-size: 14px;
-  color: #555;
-  margin-top: 10px;
-  text-align: end;
-  padding-left: 50%;
+    display: block;
+    text-align: right;
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+    padding: 0;
 }
 
 .texto-fandango {
-  line-height: 1.5;
-  font-size: 20px;
-  text-align: justify;
-  margin-bottom: 15%;
+    max-width: 760px;
+    margin: 32px auto 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+.texto-fandango p+p {
+    margin-top: 1em;
+}
+
+@media (max-width: 900px) {
+    #musica,
+    #aquarela,
+    #danca {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .introducao,
+    .secao-quadros {
+        flex-direction: column;
+    }
 }

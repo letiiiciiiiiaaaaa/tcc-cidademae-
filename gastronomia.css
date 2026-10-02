@@ -1,142 +1,127 @@
-@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
-
-.img-cabecalho {
-    width: 100%;
-}
-
-
 .titulo-da-pagina {
-    font-size: 60px;
-    color: #f1d618;
-    font-weight: bold;
-    font-family: 'Cal Sans', sans-serif;
-    letter-spacing: 4px;
-    word-spacing: 10px;
-    margin: 25px 35px auto;
+    color: #d9b400;
 }
-
 
 .introducao {
-    z-index: 1;
-    position: relative;
-    display: flex;
-    font-size: 25px;
-    margin: 25px 35px auto;
-    word-spacing: 2px;
-    margin-bottom: 60px;
-    max-width: 70%;
+    max-width: 820px;
+    margin: 16px auto 64px;
+    padding: 0 24px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.introducao br,
+.conteudo br,
+.lucas br,
+.ultimo-texto br {
+    display: none;
 }
 
 .container-principal {
-    justify-content: space-between;
-    gap: 100px;
-    position: relative;
-    overflow: visible;
+    padding-top: 0;
 }
 
 .conteudo {
-    font-size: 22px;
-    justify-items: center;
-    gap: 100px;
-    height: auto;
-    overflow: visible;
-}
-
-.barreado {
-    z-index: 2;
-    position: relative;
     display: flex;
-    align-items: flex-start; 
-    margin: 25px 35px;
-    gap: 60px;
-    overflow: visible;
+    flex-direction: column;
+    gap: 80px;
+    font-size: 19px;
 }
 
-.direita {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-}
-
-.caranguejo {
-    display: flex;
-    vertical-align: top;
-    margin: 25px 35px auto;
-    gap: 60px;
-}
-
-.peixe {
-    display: flex;
-    vertical-align: top;
-    margin: 25px 35px auto;
-    gap: 60px;
-}
-
+.barreado,
+.caranguejo,
+.peixe,
 .arroz {
     display: flex;
-    vertical-align: top;
-    margin: 25px 35px auto;
-    gap: 60px;
+    align-items: center;
+    gap: 48px;
+    margin: 0;
+}
+
+.barreado > *,
+.caranguejo > *,
+.peixe > *,
+.arroz > * {
+    flex: 1;
+    min-width: 0;
+}
+
+.barreado img,
+.caranguejo img,
+.peixe img,
+.arroz img {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    border-radius: 12px;
 }
 
 .lucas {
+    max-width: 760px;
+    margin: 96px auto 64px;
+    padding: 0 24px;
     text-align: center;
-    font-size: 21px;
-    margin-bottom: 150px;
+    font-size: 19px;
 }
 
 .lucas img {
-    margin-bottom: 10px;
+    border-radius: 12px;
+    margin-bottom: 16px;
 }
 
 .ultimo-texto {
+    max-width: 760px;
+    margin: 0 auto 24px;
+    font-size: 20px;
     text-align: center;
-    font-size: 25px;
-    margin-bottom: 150px;
 }
 
 #verduras,
 #frutas,
 #siri {
-    z-index: 0;
     position: absolute;
+    z-index: 0;
+    height: auto;
     pointer-events: none;
-    transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
 #verduras {
-    top: 10%;       
-    left: 80%;   
-    width: 350px; 
-    height: auto;
+    top: 3%;
+    right: 0;
+    width: 350px;
 }
 
 #frutas {
-    top: 45%;
-    left: 2%;
+    top: 40%;
+    left: 0;
     width: 300px;
-    height: auto;
 }
 
 #siri {
-    bottom: 7%;
-    left: 88%;
+    bottom: 8%;
+    right: 0;
     width: 200px;
-    height: auto;
-    transform: skew(10deg, -10deg);
 }
 
-#verduras:hover,
-#frutas:hover,
-#siri:hover {
-    transform: translateX(0) scale(1.05);
+@media (max-width: 900px) {
+    #verduras,
+    #frutas,
+    #siri {
+        display: none;
+    }
 }
 
-.surgir {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
+@media (max-width: 800px) {
+    .barreado,
+    .caranguejo,
+    .peixe,
+    .arroz {
+        flex-direction: column;
+        gap: 20px;
+    }
 
-.surgir.mostrar {
-    opacity: 1;
+    .peixe,
+    .barreado {
+        flex-direction: column-reverse;
+    }
 }
