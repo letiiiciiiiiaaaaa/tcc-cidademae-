@@ -10,28 +10,66 @@
 </head>
 <body>
     <main>
-        <header>
-            <span class="player"> </span>
-            <span> Tempo: <span class="timer"> 00 </span> </span>
-        </header>
-        
+        <!-- TÍTULO NO TOPO -->
         <section class="introducao">
-            <h1 class="titulo"> <span class="jogo"> JOGO </span> DA <br> <span class="memoria"> MEMÓRIA </span> </h1>
-            <p class="sub-titulo"> elementos caiçara </p>
+            <h1 class="titulo"><span class="jogo">JOGO</span> DA <br><span class="memoria">MEMÓRIA</span></h1>
+            <p class="sub-titulo">elementos caiçara</p>
+        </section>
+
+        <!-- PAINEL DE CONTROLE CENTRALIZADO (Tempo em 1º, Reiniciar e Pontuação) -->
+        <section class="painel-controle">
+            <div class="item-painel">
+                <span class="label-painel">tempo</span>
+                <div class="tempo-box">
+                    <span class="timer">00:00</span>
+                </div>
+            </div>
+
+            <div class="item-painel">
+                <span class="label-painel">reiniciar jogo</span>
+                <button id="btn-reiniciar" title="Reiniciar Jogo">
+                    <img src="imagens/reiniciar.png" alt="Reiniciar">
+                </button>
+            </div>
+
+            <div class="item-painel">
+                <span class="label-painel">pontuação</span>
+                <div id="btn-pontuacao" class="placar-pontos">0</div>
+            </div>
         </section>
         
-        <section class="secao-pontuacao-restart">
-            <div class="restart">
-                <button></button>
-            </div>
-            <div class="pontuacao">
-                <button></button>
-            </div>
-        </section>
-        
+        <!-- GRID DE CARTAS CENTRALIZADO -->
         <section class="secao-jogo">
             <div class="grid"></div>
         </section>
     </main>
+
+    <!-- Modais -->
+    <div id="modal-inicio" class="modal">
+        <div class="modal-content">
+            <h2>Bem-vindo ao Jogo da Memória!</h2>
+            <p>Teste seus conhecimentos com os elementos da cultura caiçara.</p>
+            <button id="btn-jogar" class="btn-action">JOGAR</button>
+        </div>
+    </div>
+
+    <div id="modal-dificuldade" class="modal fechar">
+        <div class="modal-content">
+            <h2>Escolha a Dificuldade</h2>
+            <div class="botoes-dificuldade">
+                <button class="btn-diff" data-time="180" data-points="50">Fácil (3 min)</button>
+                <button class="btn-diff" data-time="60" data-points="100">Médio (1 min)</button>
+                <button class="btn-diff" data-time="30" data-points="150">Difícil (30s)</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-fim" class="modal fechar">
+        <div class="modal-content">
+            <h2 id="titulo-fim">Fim de Jogo!</h2>
+            <p id="mensagem-fim"></p>
+            <button id="btn-jogar-novamente" class="btn-action">Jogar Novamente</button>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,51 +1,154 @@
 @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
 
-.titulo {
+body {
+    background-color: #f4f9fc;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 30px 0; /* Dá um respiro confortável no topo e no rodapé */
+}
+
+main {
+    width: 100%;
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0; /* Removemos o espaçamento automático para controlar na margem de cada bloco */
+}
+
+/* --- TÍTULO E SUBTÍTULO --- */
+.introducao {
     text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 40px; /* Aumentado para afastar o título dos botões abaixo */
+}
+
+/* --- PAINEL DE CONTROLE (BOTÕES) --- */
+.painel-controle {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 40px;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 12px; /* Reduzido bastante para colar os botões nas cartas */
+}
+
+.titulo {
     font-family: 'Cal Sans', sans-serif;
-    font-size: 60px;
-    letter-spacing: 4px;
+    font-size: 48px; /* Aumentado para se destacar mais */
+    letter-spacing: 3px;
     color: #8bbae2;
-    margin-top: 10%;
+    line-height: 1.1;
 }
 
 .sub-titulo {
-    text-align: center;
-    font-size: 25px;
-    color: black;
-    margin-top: 50px;
+    font-size: 20px;
+    color: #333;
+    margin-top: 6px;
+    position: relative;
+    z-index: 1;
 }
 
-.jogo {
-    color: #e5d77b;
-}
+.jogo { color: #e5d77b; }
+.memoria { color: #ff3131; }
 
-.memoria {
-    color: #ff3131;
-}
-
-.secao-pontuacao-restart {
+/* --- PAINEL DE CONTROLE (TEMPO, REINICIAR E PONTUAÇÃO) --- */
+.painel-controle {
     display: flex;
-    gap: 15px;
     justify-content: center;
+    align-items: flex-end;
+    gap: 40px; /* Espaço confortável entre os controles */
+    width: 100%;
+    margin-top: 5px; /* Puxa os botões um pouco mais para baixo */
+}
+
+.item-painel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label-painel {
+    color: #8bbae2;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 6px;
+    text-transform: lowercase;
+}
+
+.tempo-box {
+    background-color: #ffffff;
+    border: 2px solid #8bbae2;
+    padding: 6px 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(139, 186, 226, 0.2);
+}
+
+.timer {
+    color: #ff3131;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#btn-reiniciar {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#btn-reiniciar:hover {
+    transform: rotate(90deg);
+}
+
+#btn-reiniciar img {
+    width: 38px;
+    height: 38px;
+}
+
+.placar-pontos {
+    background-color: #ffffff;
+    color: #8bbae2;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 6px 22px;
+    border-radius: 20px;
+    border: 2px solid #8bbae2;
+    box-shadow: 0 2px 8px rgba(139, 186, 226, 0.2);
+}
+
+/* --- GRID DE CARTAS MAIOR E ALONGADO --- */
+.secao-jogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    gap: 16px;
     width: 100%;
-    max-width: 800px;
+    max-width: 720px; /* Alargado de 600px para 720px */
+    perspective: 1000px;
 }
 
 .card {
     width: 100%;
-    height: 230px;
-    background-color: #65cc69;
-    border-radius: 5px;
+    height: 220px; /* Aumentado para os cards ficarem visivelmente maiores */
+    border-radius: 10px;
     position: relative;
-    transition: all 400ms ease;
+    transition: transform 0.6s;
     transform-style: preserve-3d;
+    cursor: pointer;
 }
 
 .face {
@@ -54,8 +157,8 @@
     position: absolute;
     background-size: cover;
     background-position: center;
-    border: 1px solid;
-    border-radius: 5px;
+    border-radius: 10px;
+    backface-visibility: hidden;
 }
 
 .front {
@@ -63,10 +166,74 @@
 }
 
 .back {
-    backface-visibility: hidden;
     background-color: #65cc69;
 }
 
 .reveal-card {
     transform: rotateY(180deg);
+}
+
+.disabled-card {
+    filter: grayscale(70%);
+    opacity: 0.7;
+    cursor: default;
+}
+
+/* MODAIS */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.modal.fechar {
+    display: none;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.modal-content h2 {
+    color: #8bbae2;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.btn-action, .btn-diff {
+    background-color: #8bbae2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-action:hover, .btn-diff:hover {
+    background-color: #6da2d1;
+}
+
+.botoes-dificuldade {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
