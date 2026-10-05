@@ -6,7 +6,7 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    padding: 30px 0; /* Dá um respiro confortável no topo e no rodapé */
+    padding: 10px 0;
 }
 
 main {
@@ -15,31 +15,19 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0; /* Removemos o espaçamento automático para controlar na margem de cada bloco */
+    gap: 0; 
 }
 
-/* --- TÍTULO E SUBTÍTULO --- */
 .introducao {
     text-align: center;
     width: 100%;
     margin-top: 10px;
-    margin-bottom: 40px; /* Aumentado para afastar o título dos botões abaixo */
-}
-
-/* --- PAINEL DE CONTROLE (BOTÕES) --- */
-.painel-controle {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 40px;
-    width: 100%;
-    margin-top: 0;
-    margin-bottom: 12px; /* Reduzido bastante para colar os botões nas cartas */
+    margin-bottom: 40px; 
 }
 
 .titulo {
     font-family: 'Cal Sans', sans-serif;
-    font-size: 48px; /* Aumentado para se destacar mais */
+    font-size: 48px;
     letter-spacing: 3px;
     color: #8bbae2;
     line-height: 1.1;
@@ -56,14 +44,14 @@ main {
 .jogo { color: #e5d77b; }
 .memoria { color: #ff3131; }
 
-/* --- PAINEL DE CONTROLE (TEMPO, REINICIAR E PONTUAÇÃO) --- */
+
 .painel-controle {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: 40px; /* Espaço confortável entre os controles */
+    gap: 40px; 
     width: 100%;
-    margin-top: 5px; /* Puxa os botões um pouco mais para baixo */
+    margin-top: 50px; 
 }
 
 .item-painel {
@@ -72,7 +60,7 @@ main {
     align-items: center;
 }
 
-.label-painel {
+.label-painel, .label-painel2, .label-painel3 {
     color: #8bbae2;
     font-weight: bold;
     font-size: 17px;
@@ -80,9 +68,12 @@ main {
     text-transform: lowercase;
 }
 
+.label-painel2 { color: #e5d77b; }
+.label-painel3 { color: #65cc69; }
+
 .tempo-box {
     background-color: #ffffff;
-    border: 2px solid #8bbae2;
+    border: 2px solid #929292;
     padding: 6px 20px;
     border-radius: 20px;
     box-shadow: 0 2px 8px rgba(139, 186, 226, 0.2);
@@ -115,16 +106,15 @@ main {
 
 .placar-pontos {
     background-color: #ffffff;
-    color: #8bbae2;
+    color: #ff3131;
     font-size: 20px;
     font-weight: bold;
     padding: 6px 22px;
     border-radius: 20px;
-    border: 2px solid #8bbae2;
+    border: 2px solid #929292;
     box-shadow: 0 2px 8px rgba(139, 186, 226, 0.2);
 }
 
-/* --- GRID DE CARTAS MAIOR E ALONGADO --- */
 .secao-jogo {
     display: flex;
     justify-content: center;
@@ -137,13 +127,13 @@ main {
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
     width: 100%;
-    max-width: 720px; /* Alargado de 600px para 720px */
+    max-width: 800px; 
     perspective: 1000px;
 }
 
 .card {
     width: 100%;
-    height: 220px; /* Aumentado para os cards ficarem visivelmente maiores */
+    height: 250px; 
     border-radius: 10px;
     position: relative;
     transition: transform 0.6s;
@@ -179,7 +169,6 @@ main {
     cursor: default;
 }
 
-/* MODAIS */
 .modal {
     position: fixed;
     top: 0;
@@ -208,17 +197,16 @@ main {
 }
 
 .modal-content h2 {
-    color: #8bbae2;
+    color: #929292;
     margin-bottom: 15px;
 }
 
 .modal-content p {
     margin-bottom: 20px;
-    color: #666;
 }
 
-.btn-action, .btn-diff {
-    background-color: #8bbae2;
+.btn-action, .btn-diff1, .btn-diff2, .btn-diff3 {
+    background-color: #e36f6f;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -228,9 +216,14 @@ main {
     transition: background 0.3s;
 }
 
-.btn-action:hover, .btn-diff:hover {
-    background-color: #6da2d1;
-}
+.btn-diff1 { background-color: #e5d77b; }
+.btn-diff2 { background-color: #65cc69; }
+.btn-diff3 { background-color: #8bbae2; }
+
+.btn-action:hover { background-color: #cc4e4e; }
+.btn-diff1:hover { background-color: #cfc167; }
+.btn-diff2:hover { background-color: #4eb351; }
+.btn-diff3:hover { background-color: #6fa1cd; }
 
 .botoes-dificuldade {
     display: flex;

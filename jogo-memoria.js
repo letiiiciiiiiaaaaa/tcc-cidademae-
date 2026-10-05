@@ -3,13 +3,12 @@ const timer = document.querySelector('.timer');
 const placarPontos = document.getElementById('btn-pontuacao');
 const btnReiniciar = document.getElementById('btn-reiniciar');
 
-// Elementos dos Modais
 const modalInicio = document.getElementById('modal-inicio');
 const modalDificuldade = document.getElementById('modal-dificuldade');
 const modalFim = document.getElementById('modal-fim');
 const btnJogar = document.getElementById('btn-jogar');
 const btnJogarNovamente = document.getElementById('btn-jogar-novamente');
-const btnsDificuldade = document.querySelectorAll('.btn-diff');
+const btnsDificuldade = document.querySelectorAll('.btn-diff1, .btn-diff2, .btn-diff3');
 const tituloFim = document.getElementById('titulo-fim');
 const mensagemFim = document.getElementById('mensagem-fim');
 
@@ -53,6 +52,9 @@ const checkEndGame = () => {
         clearInterval(timerInterval);
         canPlay = false;
         
+        // Dispara o efeito de comemoração com confetes
+        dispararConfetes();
+
         tituloFim.innerHTML = "Parabéns!";
         mensagemFim.innerHTML = `Você completou o jogo!<br><strong>Pontuação Final: ${currentScore} pontos</strong>`;
         modalFim.classList.remove('fechar');
@@ -189,9 +191,47 @@ btnsDificuldade.forEach(btn => {
     });
 });
 
+const resetGameState = () => {
+    clearInterval(timerInterval); // Para a contagem regressiva anterior
+    timerInterval = null;         // Zera a referência do temporizador
+    canPlay = false;              // Bloqueia cliques nas cartas enquanto escolhe
+    currentScore = 0;             // Zera os pontos
+    placarPontos.innerHTML = currentScore;
+    timer.innerHTML = "00:00";    // Força o tempo a voltar para 00:00
+    grid.innerHTML = '';          // Limpa o tabuleiro de cartas
+};
+
+const dispararConfetes = () => {
+    const duracao = 3 * 1000; // 3 segundos disparando
+    const fim = Date.now() + duracao;
+
+    const interval = setInterval(() => {
+        if (Date.now() > fim) {
+            return clearInterval(interval);
+        }
+
+        // Confetes saindo do canto esquerdo
+        confetti({
+            particleCount: 4,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0, y: 0.8 }
+        });
+
+        // Confetes saindo do canto direito
+        confetti({
+            particleCount: 4,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1, y: 0.8 }
+        });
+    }, 50);
+};
+
+// Ao clicar em reiniciar: para o tempo, zera tudo e exibe a mensagem de introdução
 btnReiniciar.addEventListener('click', () => {
-    if (totalTime === 0) return; // Se a dificuldade ainda não foi escolhida
-    startPreviewAndGame();
+    resetGameState();
+    modalInicio.classList.remove('fechar');
 });
 
 btnJogarNovamente.addEventListener('click', () => {

@@ -5,70 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="jogo-memoria.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script defer src="jogo-memoria.js"></script>
     <title> Cidade Mãe || Jogo da Memória </title>
 </head>
 <body>
     <main>
-        <!-- TÍTULO NO TOPO -->
         <section class="introducao">
             <h1 class="titulo"><span class="jogo">JOGO</span> DA <br><span class="memoria">MEMÓRIA</span></h1>
             <p class="sub-titulo">elementos caiçara</p>
         </section>
 
-        <!-- PAINEL DE CONTROLE CENTRALIZADO (Tempo em 1º, Reiniciar e Pontuação) -->
         <section class="painel-controle">
             <div class="item-painel">
-                <span class="label-painel">tempo</span>
+                <span class="label-painel"> tempo </span>
                 <div class="tempo-box">
-                    <span class="timer">00:00</span>
+                    <span class="timer"> 00:00 </span>
                 </div>
             </div>
 
             <div class="item-painel">
-                <span class="label-painel">reiniciar jogo</span>
+                <span class="label-painel2"> reiniciar jogo </span>
                 <button id="btn-reiniciar" title="Reiniciar Jogo">
                     <img src="imagens/reiniciar.png" alt="Reiniciar">
                 </button>
             </div>
 
             <div class="item-painel">
-                <span class="label-painel">pontuação</span>
-                <div id="btn-pontuacao" class="placar-pontos">0</div>
+                <span class="label-painel3"> pontuação </span>
+                <div id="btn-pontuacao" class="placar-pontos"> 0 </div>
             </div>
         </section>
         
-        <!-- GRID DE CARTAS CENTRALIZADO -->
         <section class="secao-jogo">
             <div class="grid"></div>
         </section>
     </main>
 
-    <!-- Modais -->
     <div id="modal-inicio" class="modal">
         <div class="modal-content">
-            <h2>Bem-vindo ao Jogo da Memória!</h2>
-            <p>Teste seus conhecimentos com os elementos da cultura caiçara.</p>
-            <button id="btn-jogar" class="btn-action">JOGAR</button>
+            <h2> Bem-vindo ao Jogo da Memória! </h2>
+            <p> Teste seus conhecimentos com os elementos da cultura caiçara. </p>
+            <button id="btn-jogar" class="btn-action"> JOGAR </button>
         </div>
     </div>
 
     <div id="modal-dificuldade" class="modal fechar">
         <div class="modal-content">
-            <h2>Escolha a Dificuldade</h2>
+            <h2> Escolha a Dificuldade </h2>
             <div class="botoes-dificuldade">
-                <button class="btn-diff" data-time="180" data-points="50">Fácil (3 min)</button>
-                <button class="btn-diff" data-time="60" data-points="100">Médio (1 min)</button>
-                <button class="btn-diff" data-time="30" data-points="150">Difícil (30s)</button>
+                <button class="btn-diff1" data-time="180" data-points="50"> Fácil (3 min) </button>
+                <button class="btn-diff2" data-time="60" data-points="100"> Médio (1 min) </button>
+                <button class="btn-diff3" data-time="30" data-points="150"> Difícil (30s) </button>
             </div>
         </div>
     </div>
 
     <div id="modal-fim" class="modal fechar">
         <div class="modal-content">
-            <h2 id="titulo-fim">Fim de Jogo!</h2>
+            <h2 id="titulo-fim"> Fim de Jogo! </h2>
             <p id="mensagem-fim"></p>
-            <button id="btn-jogar-novamente" class="btn-action">Jogar Novamente</button>
+            <button id="btn-jogar-novamente" class="btn-action"> Jogar Novamente </button>
         </div>
     </div>
 </body>
