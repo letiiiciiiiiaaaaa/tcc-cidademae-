@@ -5,11 +5,29 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
     min-height: 100vh;
-    padding: 10px 0;
+    padding: 0 0 10px;
+}
+
+.cabecalho .abas {
+    width: 100%;
+    height: 52px;
+    padding-top: 0;
+    padding-bottom: 0;
+    flex-wrap: nowrap;
+    background: #f0f0f0;
+    z-index: 5;
+}
+
+.bandeiras img {
+    width: 110px;
+    display: block;
 }
 
 main {
+    margin-top: 10px;
     width: 100%;
     max-width: 850px;
     display: flex;
@@ -33,7 +51,7 @@ main {
     line-height: 1.1;
 }
 
-.sub-titulo {
+.introducao p {
     font-size: 20px;
     color: #333;
     margin-top: 6px;
@@ -100,7 +118,6 @@ main {
 }
 
 #btn-reiniciar img {
-    width: 38px;
     height: 38px;
 }
 
