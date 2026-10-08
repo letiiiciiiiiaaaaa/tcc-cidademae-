@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Questrial', sans-serif;
+    color: #333;
+    background-color: #ffffff;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.esquerda {
+    padding: 60px 40px;
+}
+
+.introducao h1 {
+    font-size: 50px;
+    font-family: 'Cal Sans', sans-serif;
+    color: #ff3131;
+}
+
+span {
+    color: #8bbae2;
+}
+
+.introducao p {
+    font-size: 24px;
+    color: #626262;
+}
+
+.btn-jogar-quiz {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    background-color: #65cc69;
+}
