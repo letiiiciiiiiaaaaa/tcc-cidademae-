@@ -205,7 +205,7 @@ main {
     margin-bottom: 20px;
 }
 
-.btn-action, .btn-diff1, .btn-diff2, .btn-diff3 {
+.btn-action, .btn-dif1, .btn-dif2, .btn-dif3 {
     background-color: #e36f6f;
     color: white;
     border: none;
@@ -216,17 +216,39 @@ main {
     transition: background 0.3s;
 }
 
-.btn-diff1 { background-color: #e5d77b; }
-.btn-diff2 { background-color: #65cc69; }
-.btn-diff3 { background-color: #8bbae2; }
+.btn-dif1 { background-color: #e5d77b; }
+.btn-dif2 { background-color: #65cc69; }
+.btn-dif3 { background-color: #8bbae2; }
 
 .btn-action:hover { background-color: #cc4e4e; }
-.btn-diff1:hover { background-color: #cfc167; }
-.btn-diff2:hover { background-color: #4eb351; }
-.btn-diff3:hover { background-color: #6fa1cd; }
+.btn-dif1:hover { background-color: #cfc167; }
+.btn-dif2:hover { background-color: #4eb351; }
+.btn-dif3:hover { background-color: #6fa1cd; }
+
+.botoes-inicio {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 15px;
+}
 
 .botoes-dificuldade {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.botoes-fim {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.btn-secundario {
+    background-color: #65cc69; /* Cor verde para destacar o perfil */
+}
+
+.btn-secundario:hover {
+    background-color: #52b356;
 }

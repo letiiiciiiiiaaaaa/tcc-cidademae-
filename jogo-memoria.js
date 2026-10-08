@@ -1,17 +1,25 @@
 const grid = document.querySelector('.grid');
-const timer = document.querySelector('.timer');
-const placarPontos = document.getElementById('btn-pontuacao');
-const btnReiniciar = document.getElementById('btn-reiniciar');
+const timer = document.querySelector('.timer'); // Ajustado para querySelector (classe .timer)
+const placarPontos = document.getElementById('btn-pontuacao'); // Ajustado para id="btn-pontuacao"
 
+// Modais
 const modalInicio = document.getElementById('modal-inicio');
 const modalDificuldade = document.getElementById('modal-dificuldade');
 const modalFim = document.getElementById('modal-fim');
+
+// Botões
+const btnVoltar = document.getElementById('btn-voltar');
 const btnJogar = document.getElementById('btn-jogar');
+const btnsDificuldade = document.querySelectorAll('.btn-dif1, .btn-dif2, .btn-dif3');
+const btnReiniciar = document.getElementById('btn-reiniciar');
 const btnJogarNovamente = document.getElementById('btn-jogar-novamente');
-const btnsDificuldade = document.querySelectorAll('.btn-diff1, .btn-diff2, .btn-diff3');
+const btnPerfil = document.getElementById('btn-perfil');
+
+// Textos do Modal de Fim
 const tituloFim = document.getElementById('titulo-fim');
 const mensagemFim = document.getElementById('mensagem-fim');
 
+// --- VARIÁVEIS DE ESTADO DO JOGO ---
 const characters = [
     'ilha-jogo',
     'mercado-jogo',
@@ -23,44 +31,42 @@ const characters = [
 
 let firstCard = '';
 let secondCard = '';
-let totalTime = 0;
-let currentTime = 0;
-let pointsPerPair = 0;
-let currentScore = 0;
-let timerInterval = null;
 let canPlay = false;
 
+let currentScore = 0;
+let pointsPerPair = 50;
+
+let totalTime = 180;
+let currentTime = 0;
+let timerInterval = null;
+
+// --- CRIAÇÃO E LÓGICA DAS CARTAS ---
+
+// Cria os elementos HTML de cada carta
 const createElement = (tag, className) => {
     const element = document.createElement(tag);
     element.className = className;
     return element;
 };
 
-// Formatação do tempo MM:SS
-const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-};
-
-// Controle de Fim de Jogo
+// Checa se todas as cartas foram encontradas
 const checkEndGame = () => {
     const disabledCards = document.querySelectorAll('.disabled-card');
 
-    // São 6 pares = 12 cartas no total
     if (disabledCards.length === 12) {
         clearInterval(timerInterval);
         canPlay = false;
-        
-        // Dispara o efeito de comemoração com confetes
+
+        salvarMaiorPontuacao(currentScore); // Salva no localStorage para a página de perfil
         dispararConfetes();
 
         tituloFim.innerHTML = "Parabéns!";
-        mensagemFim.innerHTML = `Você completou o jogo!<br><strong>Pontuação Final: ${currentScore} pontos</strong>`;
+        mensagemFim.innerHTML = `Você completou o jogo! <br> <span style="display: block; margin-top: 10px; font-size: 20px;"> Pontuação Final: <strong style="color: #f39c12; font-size: 24px;">${currentScore} pontos</strong></span>`;
         modalFim.classList.remove('fechar');
     }
 };
 
+// Compara se as duas cartas viradas são iguais
 const checkCards = () => {
     const firstCharacter = firstCard.getAttribute('data-character');
     const secondCharacter = secondCard.getAttribute('data-character');
@@ -69,18 +75,19 @@ const checkCards = () => {
         firstCard.firstChild.classList.add('disabled-card');
         secondCard.firstChild.classList.add('disabled-card');
 
-        // Soma os pontos de acordo com a dificuldade
+        // Soma os pontos do par de acordo com a dificuldade
         currentScore += pointsPerPair;
-        placarPontos.innerHTML = currentScore;
+        if (placarPontos) placarPontos.innerHTML = currentScore;
 
         firstCard = '';
         secondCard = '';
 
         checkEndGame();
     } else {
+        // Se errou o par, espera 500ms e desvira ambas as cartas
         setTimeout(() => {
-            firstCard.classList.remove('reveal-card');
-            secondCard.classList.remove('reveal-card');
+            if (firstCard) firstCard.classList.remove('reveal-card');
+            if (secondCard) secondCard.classList.remove('reveal-card');
 
             firstCard = '';
             secondCard = '';
@@ -88,32 +95,35 @@ const checkCards = () => {
     }
 };
 
+// Lógica ao clicar/virar uma carta
 const revealCard = ({ target }) => {
     if (!canPlay) return;
 
-    const card = target.parentNode;
+    const parentCard = target.parentNode;
 
-    if (card.classList.contains('reveal-card') || card.querySelector('.disabled-card')) {
+    // Impede clicar na mesma carta duas vezes ou em cartas já reveladas
+    if (parentCard.classList.contains('reveal-card') || parentCard.classList.contains('grid') || !parentCard.classList.contains('card')) {
         return;
     }
 
     if (firstCard === '') {
-        card.classList.add('reveal-card');
-        firstCard = card;
+        parentCard.classList.add('reveal-card');
+        firstCard = parentCard;
     } else if (secondCard === '') {
-        card.classList.add('reveal-card');
-        secondCard = card;
+        parentCard.classList.add('reveal-card');
+        secondCard = parentCard;
 
         checkCards();
     }
 };
 
+// Instancia uma carta
 const createCard = (character) => {
     const card = createElement('div', 'card');
     const front = createElement('div', 'face front');
     const back = createElement('div', 'face back');
 
-    front.style.backgroundImage = `url('imagens/${character}.png')`;
+    front.style.backgroundImage = `url('./imagens/${character}.png')`;
 
     card.appendChild(front);
     card.appendChild(back);
@@ -124,6 +134,7 @@ const createCard = (character) => {
     return card;
 };
 
+// Carrega e embaralha o jogo no grid
 const loadGame = () => {
     grid.innerHTML = '';
     const duplicateCharacters = [...characters, ...characters];
@@ -135,74 +146,80 @@ const loadGame = () => {
     });
 };
 
+// --- TEMPORIZADOR E CONTROLE DE FLUXO ---
+
+// Formata segundos para o padrão MM:SS
+const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+};
+
+// Inicia a contagem regressiva
 const startTimer = () => {
-    clearInterval(timerInterval);
     currentTime = totalTime;
-    timer.innerHTML = formatTime(currentTime);
+    if (timer) timer.innerHTML = formatTime(currentTime);
 
     timerInterval = setInterval(() => {
         currentTime--;
-        timer.innerHTML = formatTime(currentTime);
+        if (timer) timer.innerHTML = formatTime(currentTime);
 
         if (currentTime <= 0) {
             clearInterval(timerInterval);
             canPlay = false;
 
+            salvarMaiorPontuacao(currentScore); // Salva a pontuação feita até o tempo acabar
+
             tituloFim.innerHTML = "Tempo Esgotado!";
-            mensagemFim.innerHTML = `O tempo acabou!<br><strong>Sua pontuação: ${currentScore} pontos</strong>`;
+            mensagemFim.innerHTML = `O tempo acabou!<br>
+                <span style="display: block; margin-top: 10px; font-size: 20px;">Sua pontuação: <strong style="color: #f39c12; font-size: 24px;">${currentScore} pontos</strong></span>`;
+            
             modalFim.classList.remove('fechar');
         }
     }, 1000);
 };
 
-// Inicia o processo de revelação temporária antes de liberar o jogo
+// Espiadinha inicial de 3 segundos nas cartas
 const startPreviewAndGame = () => {
     loadGame();
     canPlay = false;
-    currentScore = 0;
-    placarPontos.innerHTML = currentScore;
 
-    const cards = document.querySelectorAll('.card');
+    // Revela todas as cartas temporariamente
+    const allCards = document.querySelectorAll('.card');
+    allCards.forEach(card => card.classList.add('reveal-card'));
 
-    // Revela todas as cartas
-    cards.forEach(card => card.classList.add('reveal-card'));
-
-    // Espera 3 segundos, desvira as cartas e começa o jogo/tempo
+    // Após 3 segundos, desvira as cartas e libera a partida
     setTimeout(() => {
-        cards.forEach(card => card.classList.remove('reveal-card'));
+        allCards.forEach(card => card.classList.remove('reveal-card'));
         canPlay = true;
         startTimer();
     }, 3000);
 };
 
-// Eventos
-btnJogar.addEventListener('click', () => {
-    modalInicio.classList.add('fechar');
-    modalDificuldade.classList.remove('fechar');
-});
-
-btnsDificuldade.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        totalTime = parseInt(e.target.getAttribute('data-time'));
-        pointsPerPair = parseInt(e.target.getAttribute('data-points'));
-
-        modalDificuldade.classList.add('fechar');
-        startPreviewAndGame();
-    });
-});
-
+// Reseta o estado geral do jogo e paralisa o relógio imediatamente
 const resetGameState = () => {
-    clearInterval(timerInterval); // Para a contagem regressiva anterior
-    timerInterval = null;         // Zera a referência do temporizador
-    canPlay = false;              // Bloqueia cliques nas cartas enquanto escolhe
-    currentScore = 0;             // Zera os pontos
-    placarPontos.innerHTML = currentScore;
-    timer.innerHTML = "00:00";    // Força o tempo a voltar para 00:00
-    grid.innerHTML = '';          // Limpa o tabuleiro de cartas
+    clearInterval(timerInterval);
+    timerInterval = null;
+    canPlay = false;
+    currentScore = 0;
+    if (placarPontos) placarPontos.innerHTML = currentScore;
+    if (timer) timer.innerHTML = "00:00";
+    grid.innerHTML = '';
+};
+
+// --- RECORDE E EFEITOS ESPECIAIS ---
+
+const salvarMaiorPontuacao = (pontosAtuais) => {
+    const maiorPontuacaoSalva = parseInt(localStorage.getItem('maiorPontuacao')) || 0;
+    if (pontosAtuais > maiorPontuacaoSalva) {
+        localStorage.setItem('maiorPontuacao', pontosAtuais);
+    }
 };
 
 const dispararConfetes = () => {
-    const duracao = 3 * 1000; // 3 segundos disparando
+    if (typeof confetti !== 'function') return;
+
+    const duracao = 3 * 1000;
     const fim = Date.now() + duracao;
 
     const interval = setInterval(() => {
@@ -210,7 +227,6 @@ const dispararConfetes = () => {
             return clearInterval(interval);
         }
 
-        // Confetes saindo do canto esquerdo
         confetti({
             particleCount: 4,
             angle: 60,
@@ -218,7 +234,6 @@ const dispararConfetes = () => {
             origin: { x: 0, y: 0.8 }
         });
 
-        // Confetes saindo do canto direito
         confetti({
             particleCount: 4,
             angle: 120,
@@ -228,13 +243,49 @@ const dispararConfetes = () => {
     }, 50);
 };
 
-// Ao clicar em reiniciar: para o tempo, zera tudo e exibe a mensagem de introdução
+// --- OUVINTES DE EVENTOS (LISTENERS) ---
+
+// Botão 'JOGAR' na tela inicial
+btnJogar.addEventListener('click', () => {
+    modalInicio.classList.add('fechar');
+    modalDificuldade.classList.remove('fechar');
+});
+
+// Seleção de Dificuldades (Fácil, Médio, Difícil)
+btnsDificuldade.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const button = e.target.closest('.btn-dif1, .btn-dif2, .btn-dif3');
+        if (!button) return;
+
+        totalTime = parseInt(button.getAttribute('data-time'));
+        pointsPerPair = parseInt(button.getAttribute('data-points'));
+
+        modalDificuldade.classList.add('fechar');
+        startPreviewAndGame();
+    });
+});
+
+// Botão de Reiniciar durante a partida
 btnReiniciar.addEventListener('click', () => {
     resetGameState();
     modalInicio.classList.remove('fechar');
 });
 
+// Botão 'Jogar Novamente'
 btnJogarNovamente.addEventListener('click', () => {
     modalFim.classList.add('fechar');
     modalDificuldade.classList.remove('fechar');
 });
+
+// Botão 'Ver Perfil'
+if (btnPerfil) {
+    btnPerfil.addEventListener('click', () => {
+        window.location.href = 'perfil.html';
+    });
+}
+
+if (btnVoltar) {
+    btnVoltar.addEventListener('click', () => {
+        window.history.back();
+    });
+}

@@ -46,7 +46,10 @@
         <div class="modal-content">
             <h2> Bem-vindo ao Jogo da Memória! </h2>
             <p> Teste seus conhecimentos com os elementos da cultura caiçara. </p>
-            <button id="btn-jogar" class="btn-action"> JOGAR </button>
+            <div class="botoes-inicio">
+                <button id="btn-voltar" class="btn-action btn-secundario"> VOLTAR </button>
+                <button id="btn-jogar" class="btn-action"> JOGAR </button>
+            </div>
         </div>
     </div>
 
@@ -54,18 +57,21 @@
         <div class="modal-content">
             <h2> Escolha a Dificuldade </h2>
             <div class="botoes-dificuldade">
-                <button class="btn-diff1" data-time="180" data-points="50"> Fácil (3 min) </button>
-                <button class="btn-diff2" data-time="60" data-points="100"> Médio (1 min) </button>
-                <button class="btn-diff3" data-time="30" data-points="150"> Difícil (30s) </button>
+                <button class="btn-dif1" data-time="180" data-points="50"> Fácil (3 min) </button>
+                <button class="btn-dif2" data-time="60" data-points="100"> Médio (1 min) </button>
+                <button class="btn-dif3" data-time="30" data-points="150"> Difícil (30s) </button>
             </div>
         </div>
     </div>
 
     <div id="modal-fim" class="modal fechar">
         <div class="modal-content">
-            <h2 id="titulo-fim"> Fim de Jogo! </h2>
+            <h2 id="titulo-fim">Fim de Jogo!</h2>
             <p id="mensagem-fim"></p>
-            <button id="btn-jogar-novamente" class="btn-action"> Jogar Novamente </button>
+            <div class="botoes-fim">
+                <button id="btn-jogar-novamente" class="btn-action">Jogar Novamente</button>
+                <button id="btn-perfil" class="btn-action btn-secundario">Ver Perfil</button>
+            </div>
         </div>
     </div>
 </body>
