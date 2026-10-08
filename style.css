@@ -277,7 +277,7 @@ input:focus-visible {
     background: var(--azul);
 }
 
-/* Calendário de Eventos */
+/* calendário de eventos */
 
 .secao-eventos {
   padding: 100px 24px;
@@ -404,7 +404,7 @@ input:focus-visible {
   line-height: 1.5;
 }
 
-/* Conteúdo */
+/* conteúdo */
 
 .conteudo-principal,
 .container-principal {
@@ -514,6 +514,14 @@ input:focus-visible {
     margin: 12px 0 0;
 }
 
+.legenda1 {
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+    margin-left: 165px;
+}
+
 .legenda {
     display: block;
     font-size: 14px;
@@ -533,6 +541,7 @@ input:focus-visible {
 
 .linha-amarela {
     border-color: #f1d618;
+    margin-left: 425px;
 }
 
 .linha-vermelha {
