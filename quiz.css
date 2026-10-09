@@ -3,48 +3,92 @@
 * {
     margin: 0;
     padding: 0;
-    outline: none;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-body {
-    font-family: 'Questrial', sans-serif;
-    color: #333;
+.container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.secao-esquerda {
+    width: 45%; 
+    height: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 40px;
     background-color: #ffffff;
 }
 
-html,
-body {
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    max-width: 400px;
     width: 100%;
-    overflow-x: hidden;
 }
 
-.esquerda {
-    padding: 60px 40px;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
 }
 
-.introducao h1 {
+.logo-img {
+    width: 100%;
+    height: auto;
+}
+
+.titulo h1{
+    display: flex;
+    flex-direction: column;
     font-size: 50px;
     font-family: 'Cal Sans', sans-serif;
-    color: #ff3131;
+    line-height: 1;
+    color: #e53935; 
 }
 
-span {
-    color: #8bbae2;
+.titulo span {
+    font-family: 'Cal Sans', sans-serif;
+    color: #79c3e2;
 }
 
-.introducao p {
+.descricao {
     font-size: 24px;
-    color: #626262;
+    color: #666;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    line-height: 1.4;
 }
 
-.btn-jogar-quiz {
+.btn-jogar {
+    background-color: #65cc69;
     color: white;
     border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 20px;
+    padding: 12px 55px;
+    font-size: 24px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: background 0.3s;
-    background-color: #65cc69;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-jogar:hover {
+    transform: scale(1.05);
+    background-color: #52bf52;
+}
+
+.secao-direita {
+    width: 55%; 
+    height: 100%;
+}
+
+.img-quiz {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz a imagem cobrir todo o espaço sem esticar */
 }
