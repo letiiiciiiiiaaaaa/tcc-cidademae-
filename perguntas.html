@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cidade Mãe || Quiz Caiçara </title>
+    <link rel="stylesheet" href="perguntas.css">
+</head>
+<body>
+    <div class="container">
+        <section class="secao-titulo">
+            <img src="imagens/quiz-logo.png" class="logo-img">
+            <div class="titulo-logo">
+                <h1> QUIZ <span> CAIÇARA </span></h1>
+            </div>
+        </section>
+
+        <section class="secao-perguntas">
+            <form id="quiz-form" class="quiz-card">
+                <div class="topo-card">
+                    <span id="contador-pergunta"> Pergunta 1 de 10 </span>
+                    <button type="submit" id="btn-proxima" class="btn-seta" title="Próxima Pergunta">&rarr;</button>
+                </div>
+
+                <div class="corpo-card">
+                    <h2 id="texto-pergunta"> Quando o sol dá as caras no final de semana, qual é o seu rolê perfeito? </h2>
+
+                    <div class="opcoes-container" id="opcoes-container">
+                        <label class="opcao-label">
+                            <input type="radio" name="resposta" value="op1" required>
+                            <span> Pé na areia, banho de mar e pastel com garapa na praia. </span>
+                        </label>
+
+                        <label class="opcao-label">
+                            <input type="radio" name="resposta" value="op2">
+                            <span> Caminhada na orla, tomar uma água de coco e voltar pra casa. </span>
+                        </label>
+
+                        <label class="opcao-label">
+                            <input type="radio" name="resposta" value="op3">
+                            <span> Ir ao shopping ou cinema no ar-condicionado. </span>
+                        </label>
+
+                        <label class="opcao-label">
+                            <input type="radio" name="resposta" value="op4">
+                            <span> Ficar em casa maratonando série </span>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+</html>
