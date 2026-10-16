@@ -337,7 +337,7 @@ input:focus-visible {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--marinho);
+  background: #54b97e;
   color: #ffffff;
   border-radius: 10px;
   min-width: 64px;
@@ -396,7 +396,6 @@ input:focus-visible {
 .evento-info h3 {
   font-family: 'Cal Sans', 'Questrial', sans-serif;
   font-size: 1.15rem;
-  color: var(--marinho);
   margin-bottom: 4px;
   font-weight: 400;
 }

@@ -1,34 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Perfil | Cidade Mãe</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <button id="btn-logout-perfil">Sair da Conta</button>
+    <header class="cabecalho">
+        <div class="abas">
+            <a href="" onclick="history.back(); return false;" class="voltar">🡠</a>
+
+            <div class="bandeiras">
+                <img src="imagens/bandeiras-inicio.png" alt="Bandeiras">
+            </div>
+
+            <img src="imagens/paranagua.png" class="paranagua" alt="Paranaguá">
+            <a href="sobre-nos.html" class="btn-sobre">sobre nós</a>
+        </div>
+    </header>
+
+    <main class="container-principal" style="text-align: center; padding: 60px 24px;">
+        <h1 id="titulo-perfil">Meu Perfil</h1>
+        <p id="nome-perfil-usuario" style="font-size: 22px; margin: 24px 0;"></p>
+
+        <p style="margin: 32px 0; font-size: 18px;">
+            🏆 Maior pontuação no Jogo da Memória:
+            <strong id="pontuacao-perfil" style="color: #f39c12;">0</strong>
+        </p>
+
+        <button id="btn-logout-perfil" class="btn btn-jogar"
+            style="border: none; cursor: pointer; font-family: inherit;">
+            Sair da Conta
+        </button>
+    </main>
+
+    <footer class="rodape">
+        <a href="feedback.html">✉︎ Feedback</a>
+        <h1><img src="imagens/logo.png" id="logo"></h1>
+        <p>&copy; Copyright Cidade Mãe - 2026</p>
+        <img src="imagens/bandeiras-rodapé.png" alt="Bandeiras Rodapé" id="bandeiras-rodape">
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-                const btnLogoutPerfil = document.getElementById('btn-logout-perfil');
+            const nome = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
+            const pontos = localStorage.getItem('maiorPontuacao') || 0;
 
-                if (btnLogoutPerfil) {
-                    btnLogoutPerfil.addEventListener('click', async () => {
-                        // 1. Limpa os dados armazenados localmente
-                        localStorage.removeItem('usuario_nome');
-                        localStorage.removeItem('usuario_id');
-                        localStorage.removeItem('usuarioLogado');
+            const elNome = document.getElementById('nome-perfil-usuario');
+            const elPontos = document.getElementById('pontuacao-perfil');
 
-                        // 2. Faz logout na sessão do Supabase (se estiver configurado)
-                        if (typeof supabaseClient !== 'undefined') {
-                            await supabaseClient.auth.signOut();
-                        }
+            if (elNome) elNome.textContent = nome ? `Olá, ${nome}!` : 'Você não está logado.';
+            if (elPontos) elPontos.textContent = pontos;
 
-                        // 3. Redireciona para a página principal (ou tela de login)
-                        window.location.href = 'index.html';
-                    });
-                }
-            });
+            const btnLogout = document.getElementById('btn-logout-perfil');
+            if (btnLogout) {
+                btnLogout.addEventListener('click', () => {
+                    localStorage.removeItem('usuario_nome');
+                    localStorage.removeItem('usuarioLogado');
+                    localStorage.removeItem('usuario_id');
+
+                    alert('Você saiu da conta.');
+                    window.location.href = 'index.html';
+                });
+            }
+        });
     </script>
 </body>
+
 </html>

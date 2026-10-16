@@ -1,25 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> Login | Cidade Mãe </title>
   <link rel="stylesheet" href="login.css">
+  <script src="script.js" defer></script>
 </head>
+
 <body>
   <a href="" onclick="history.back(); return false;">
     <button class="voltar">🡠</button>
   </a>
-  
+
   <img src="imagens/logo.png" class="logo" alt="Logo Cidade Mãe" width="200">
   <h1>Complete seu login</h1>
-  <div class="tela-login">
-    <input type="name" placeholder="Nome de usuário" required>
+
+  <form id="formLogin" class="tela-login">
+    <input type="text" id="loginNome" placeholder="Nome de usuário" required>
     <br><br>
-    <input type="password" placeholder="Senha" required>
+    <input type="password" id="loginSenha" placeholder="Senha" required>
     <br><br>
     <button type="submit" class="entrar">Entrar</button>
     <h4>Não possui uma conta?<br><a href="cadastro.html" class="cadastro">Cadastre-se</a>.</h4>
-  </div>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
+
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    document.getElementById('formLogin').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nome = document.getElementById('loginNome').value.trim();
+      const senha = document.getElementById('loginSenha').value;
+
+      const { data, error } = await supabaseClient
+        .from('usuarios')
+        .select('*')
+        .eq('nome', nome)
+        .eq('senha', senha)
+        .maybeSingle();
+
+      if (error) {
+        console.error("Erro no Supabase:", error);
+        alert('Erro ao fazer login: ' + error.message);
+        return;
+      }
+
+      if (!data) {
+        alert('Nome de usuário ou senha incorretos.');
+        return;
+      }
+
+      localStorage.setItem('usuario_nome', data.nome);
+      localStorage.setItem('usuarioLogado', data.nome);
+      localStorage.setItem('usuario_id', data.id);
+
+      alert(`Bem-vindo(a), ${data.nome}!`);
+
+      const voltarPara = sessionStorage.getItem('voltarPara') || 'index.html';
+      sessionStorage.removeItem('voltarPara');
+      window.location.href = voltarPara;
+    });
+  </script>
 </body>
+
 </html>

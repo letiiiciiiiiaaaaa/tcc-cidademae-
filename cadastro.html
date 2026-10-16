@@ -64,11 +64,17 @@
             if (error) {
                 console.error("Erro no Supabase:", error);
                 alert('Erro ao cadastrar usuário: ' + error.message);
-            } else {
-                localStorage.setItem('usuarioLogado', nome);
-                alert('Conta criada com sucesso!');
-                window.location.href = 'index.html';
+                return;
             }
+
+            localStorage.setItem('usuario_nome', nome);
+            localStorage.setItem('usuarioLogado', nome);
+
+            alert('Conta criada com sucesso!');
+
+            const voltarPara = sessionStorage.getItem('voltarPara') || 'index.html';
+            sessionStorage.removeItem('voltarPara');
+            window.location.href = voltarPara;
         });
     </script>
 </body>

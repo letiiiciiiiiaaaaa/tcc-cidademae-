@@ -1,5 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  const btnUserVoltar = document.getElementById('btn-user');
+  if (btnUserVoltar) {
+    btnUserVoltar.addEventListener('click', () => {
+      sessionStorage.setItem('voltarPara', window.location.pathname.split('/').pop() || 'index.html');
+    });
+  }
+
   async function verificarUsuarioLogado() {
     const btnUser = document.getElementById('btn-user');
     const perfilLogado = document.getElementById('perfil-logado');
@@ -10,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const FOTO_PADRAO = 'imagens/usuario.png';
 
-    const usuarioLocal = localStorage.getItem('usuario_nome');
+    const usuarioLocal = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
 
     if (usuarioLocal) {
       if (nomeUsuario) nomeUsuario.textContent = usuarioLocal;
@@ -71,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnSair.addEventListener('click', async (e) => {
       e.preventDefault();
       localStorage.removeItem('usuario_nome');
+      localStorage.removeItem('usuarioLogado');
       localStorage.removeItem('usuario_id');
 
       if (typeof supabaseClient !== 'undefined') {
@@ -101,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(carrossel, 4000);
   }
 
+  // animação scroll
   function animar(seletor, classes) {
     document.querySelectorAll(seletor).forEach((el, i) => {
       const jaTem = el.classList.contains('esquerda') ||
@@ -110,11 +119,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // início
   animar('.secao-mapa', ['surgir']);
   animar('.textinho1', ['surgir']);
 
-  // arte
   animar('.intro1', ['esquerda']);
   animar('.intro2', ['direita']);
   animar('.quadro-mangue', ['esquerda']);
@@ -124,16 +131,13 @@ document.addEventListener("DOMContentLoaded", () => {
   animar('.box-fandango', ['esquerda']);
   animar('.texto-fandango', ['direita']);
 
-  // gastronomia
   animar('.lucas img', ['surgir']);
   animar('.ultimo-texto', ['surgir']);
 
-  // mercado
   animar('.intro', ['surgir']);
   animar('.secao-mercado .mercado-info', ['esquerda', 'surgir', 'direita']);
   animar('.linha-do-tempo', ['surgir']);
 
-  // scroll
   const elementosAnimados = document.querySelectorAll(".esquerda, .direita, .surgir");
 
   const observador = new IntersectionObserver((entries) => {
@@ -214,8 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
     selecionarEpoca(1);
   }
 
-  //calculadora
-
+  // calculadora
   const receitas = {
     barreado: {
       porcaoBase: 4,
@@ -286,9 +289,83 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizar(receita.porcaoBase);
   });
 
+  // barra pesquisa
+  const paginas = [
+    {
+      arquivo: 'index.html',
+      titulo: 'Início',
+      palavras: ['inicio', 'home', 'paranagua', 'cidade', 'mapa', 'eventos', 'carrossel', 'cultura', 'historia']
+    },
+    {
+      arquivo: 'arte.html',
+      titulo: 'Arte',
+      palavras: ['arte', 'pintura', 'fandango', 'caiçara', 'caicara', 'rabeca', 'danca', 'dança', 'musica', 'música', 'aquarela', 'palotino', 'quadro', 'casa monsenhor']
+    },
+    {
+      arquivo: 'mercado.html',
+      titulo: 'Mercado',
+      palavras: ['mercado', 'porto', 'cafe', 'café', 'peixe', 'artesanato', 'municipal', 'comercio', 'comércio', 'linha do tempo', 'historia', 'história']
+    },
+    {
+      arquivo: 'gastronomia.html',
+      titulo: 'Gastronomia',
+      palavras: ['gastronomia', 'comida', 'barreado', 'caranguejo', 'tainha', 'peixe', 'arroz', 'lambe', 'receita', 'prato', 'culinaria', 'culinária', 'chef', 'lucas correia']
+    },
+    {
+      arquivo: 'feedback.html',
+      titulo: 'Feedback',
+      palavras: ['feedback', 'opiniao', 'opinião', 'avaliar', 'estrela', 'mensagem', 'contato']
+    },
+    {
+      arquivo: 'jogo-memoria.html',
+      titulo: 'Jogo da Memória',
+      palavras: ['jogo', 'memoria', 'memória', 'cartas', 'dificuldade', 'pontuacao', 'pontuação']
+    },
+    {
+      arquivo: 'jogo.html',
+      titulo: 'Quiz Caiçara',
+      palavras: ['jogo', 'quiz', 'caiçara', 'caicara', 'perguntas', 'teste']
+    },
+    {
+      arquivo: 'sobre-nos.html',
+      titulo: 'Sobre Nós',
+      palavras: ['sobre', 'nos', 'nós', 'equipe', 'tcc', 'projeto', 'quem somos']
+    }
+  ];
+
+  const inputBusca = document.getElementById('searchInput');
+
+  if (inputBusca) {
+    inputBusca.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter') return;
+
+      const termo = inputBusca.value.trim();
+      if (!termo) return;
+
+      const normalizar = (txt) =>
+        txt.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+      const termoLimpo = normalizar(termo);
+
+      const resultado = paginas.find(p =>
+        p.palavras.some(palavra => {
+          const pLimpa = normalizar(palavra);
+          return pLimpa.includes(termoLimpo) || termoLimpo.includes(pLimpa);
+        }) ||
+        normalizar(p.titulo).includes(termoLimpo)
+      );
+
+      if (resultado) {
+        window.location.href = resultado.arquivo;
+      } else {
+        alert(`Nada encontrado para "${inputBusca.value}". Tente: arte, mercado, comida, jogo...`);
+      }
+    });
+  }
+
 });
 
-// Feedback: funcionamento da avaliação por estrelas
+// Feedback: avaliação por estrelas
 const estrelas = document.querySelectorAll('.estrela');
 let selectedRating = 0;
 
