@@ -24,7 +24,14 @@ html {
 html,
 body {
     width: 100%;
+}
+
+html {
     overflow-x: hidden;
+}
+
+body {
+    overflow-x: clip;
 }
 
 body {
@@ -308,7 +315,7 @@ input:focus-visible {
 
 .eventos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
 }
 
@@ -356,6 +363,8 @@ input:focus-visible {
 .evento-info {
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .categoria {
