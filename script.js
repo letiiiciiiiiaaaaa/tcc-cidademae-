@@ -101,23 +101,20 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(carrossel, 4000);
   }
 
-  // ===== Animações de scroll para os elementos que ainda não tinham =====
-  // Usa as mesmas classes de sempre: esquerda, direita e surgir.
-
   function animar(seletor, classes) {
     document.querySelectorAll(seletor).forEach((el, i) => {
       const jaTem = el.classList.contains('esquerda') ||
-                    el.classList.contains('direita') ||
-                    el.classList.contains('surgir');
+        el.classList.contains('direita') ||
+        el.classList.contains('surgir');
       if (!jaTem) el.classList.add(classes[i % classes.length]);
     });
   }
 
-  // Início
+  // início
   animar('.secao-mapa', ['surgir']);
   animar('.textinho1', ['surgir']);
 
-  // Arte
+  // arte
   animar('.intro1', ['esquerda']);
   animar('.intro2', ['direita']);
   animar('.quadro-mangue', ['esquerda']);
@@ -127,16 +124,16 @@ document.addEventListener("DOMContentLoaded", () => {
   animar('.box-fandango', ['esquerda']);
   animar('.texto-fandango', ['direita']);
 
-  // Gastronomia
+  // gastronomia
   animar('.lucas img', ['surgir']);
   animar('.ultimo-texto', ['surgir']);
 
-  // Mercado
+  // mercado
   animar('.intro', ['surgir']);
   animar('.secao-mercado .mercado-info', ['esquerda', 'surgir', 'direita']);
   animar('.linha-do-tempo', ['surgir']);
 
-  // ===== Observador de scroll (já existia) =====
+  // scroll
   const elementosAnimados = document.querySelectorAll(".esquerda, .direita, .surgir");
 
   const observador = new IntersectionObserver((entries) => {
@@ -153,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   elementosAnimados.forEach((el) => observador.observe(el));
 
+  // linha do tempo mercado
   const epocas = {
     1: {
       titulo: "1871-1872 — O Primeiro Mercado (Mercado do Peixe)",
@@ -215,40 +213,109 @@ document.addEventListener("DOMContentLoaded", () => {
 
     selecionarEpoca(1);
   }
+
+  //calculadora
+
+  const receitas = {
+    barreado: {
+      porcaoBase: 4,
+      ingredientes: [
+        { nome: "Carne bovina", qtd: 1, unidade: "kg" },
+        { nome: "Toucinho defumado", qtd: 200, unidade: "g" },
+        { nome: "Cebola", qtd: 2, unidade: "un" },
+        { nome: "Alho", qtd: 4, unidade: "dentes" },
+        { nome: "Farinha de mandioca", qtd: 500, unidade: "g" },
+        { nome: "Banana da terra", qtd: 4, unidade: "un" }
+      ]
+    },
+    caranguejo: {
+      porcaoBase: 2,
+      ingredientes: [
+        { nome: "Caranguejo-uçá", qtd: 12, unidade: "un" },
+        { nome: "Limão", qtd: 2, unidade: "un" },
+        { nome: "Alho", qtd: 3, unidade: "dentes" },
+        { nome: "Coentro", qtd: 1, unidade: "maço" },
+        { nome: "Farinha (pirão)", qtd: 200, unidade: "g" }
+      ]
+    },
+    peixe: {
+      porcaoBase: 4,
+      ingredientes: [
+        { nome: "Tainha inteira", qtd: 1, unidade: "un" },
+        { nome: "Batata", qtd: 4, unidade: "un" },
+        { nome: "Cebola", qtd: 2, unidade: "un" },
+        { nome: "Limão", qtd: 2, unidade: "un" },
+        { nome: "Azeite", qtd: 3, unidade: "colheres" }
+      ]
+    },
+    arroz: {
+      porcaoBase: 4,
+      ingredientes: [
+        { nome: "Arroz branco", qtd: 2, unidade: "xícaras" },
+        { nome: "Mariscos variados", qtd: 500, unidade: "g" },
+        { nome: "Cebola", qtd: 1, unidade: "un" },
+        { nome: "Alho", qtd: 3, unidade: "dentes" },
+        { nome: "Coentro", qtd: 1, unidade: "maço" }
+      ]
+    }
+  };
+
+  document.querySelectorAll('.calculadora').forEach(calc => {
+    const prato = calc.dataset.prato;
+    const receita = receitas[prato];
+    if (!receita) return;
+
+    const input = calc.querySelector('input');
+    const lista = calc.querySelector('.calc-lista');
+
+    function renderizar(porcoes) {
+      const fator = porcoes / receita.porcaoBase;
+      lista.innerHTML = receita.ingredientes.map(ing => {
+        const valor = Math.round(ing.qtd * fator * 10) / 10;
+        return `<li><span>${ing.nome}</span><span>${valor} ${ing.unidade}</span></li>`;
+      }).join('');
+    }
+
+    input.addEventListener('input', () => {
+      let porcoes = parseInt(input.value) || 1;
+      if (porcoes < 1) porcoes = 1;
+      if (porcoes > 20) porcoes = 20;
+      renderizar(porcoes);
+    });
+
+    renderizar(receita.porcaoBase);
+  });
+
 });
 
 // Feedback: funcionamento da avaliação por estrelas
+const estrelas = document.querySelectorAll('.estrela');
+let selectedRating = 0;
 
-  const estrelas = document.querySelectorAll('.estrela');
-      let selectedRating = 0;
+estrelas.forEach(estrela => {
+  estrela.addEventListener('mouseover', () => {
+    resetEstrelas();
+    const value = parseInt(estrela.getAttribute('data-value'));
+    highlightEstrelas(value);
+  });
 
-      estrelas.forEach(estrela => {
-          // Efeito visual ao passar o mouse (Hover)
-          estrela.addEventListener('mouseover', () => {
-              resetEstrelas();
-              const value = parseInt(estrela.getAttribute('data-value'));
-              highlightEstrelas(value);
-          });
+  estrela.addEventListener('mouseleave', () => {
+    resetEstrelas();
+    highlightEstrelas(selectedRating);
+  });
 
-          // Restaura a nota clicada se tirar o mouse
-          estrela.addEventListener('mouseleave', () => {
-              resetEstrelas();
-              highlightEstrelas(selectedRating);
-          });
+  estrela.addEventListener('click', () => {
+    selectedRating = parseInt(estrela.getAttribute('data-value'));
+    highlightEstrelas(selectedRating);
+  });
+});
 
-          // Fixa a nota ao clicar
-          estrela.addEventListener('click', () => {
-              selectedRating = parseInt(estrela.getAttribute('data-value'));
-              highlightEstrelas(selectedRating);
-          });
-        });
+function resetEstrelas() {
+  estrelas.forEach(estrela => estrela.classList.remove('active'));
+}
 
-        function resetEstrelas() {
-            estrelas.forEach(estrela => estrela.classList.remove('active'));
-        }
-
-        function highlightEstrelas(value) {
-            for (let i = 0; i < value; i++) {
-                estrelas[i].classList.add('active');
-            }
-        }
+function highlightEstrelas(value) {
+  for (let i = 0; i < value; i++) {
+    estrelas[i].classList.add('active');
+  }
+}

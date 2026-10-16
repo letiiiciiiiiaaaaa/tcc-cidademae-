@@ -38,10 +38,10 @@
     margin: 0;
 }
 
-.barreado > *,
-.caranguejo > *,
-.peixe > *,
-.arroz > * {
+.barreado> *,
+.caranguejo> *,
+.peixe> *,
+.arroz> * {
     flex: 1;
     min-width: 0;
 }
@@ -54,6 +54,14 @@
     max-height: 380px;
     object-fit: cover;
     border-radius: 12px;
+}
+
+.barreado > .calculadora,
+.caranguejo > .calculadora,
+.peixe > .calculadora,
+.arroz > .calculadora {
+    flex: 0 0 auto;
+    width: 220px;
 }
 
 .lucas {
@@ -103,7 +111,76 @@
     width: 200px;
 }
 
+/* calculadora de ingredientes */
+
+.calculadora {
+    text-align: center;
+    font-size: 14px;
+    align-self: center;
+}
+
+.calculadora h4 {
+    margin: 0 0 10px;
+    font-family: 'Cal Sans', sans-serif;
+    font-weight: 400;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+.calc-controle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    color: #4a5568;
+}
+
+.calc-controle input {
+    width: 55px;
+    padding: 4px 6px;
+    border: none;
+    border-bottom: 2px solid #cbd5e1;
+    background: transparent;
+    font-size: 15px;
+    text-align: center;
+    outline: none;
+    font-family: inherit;
+    font-weight: bold;
+    transition: border-color 0.2s;
+}
+
+.calc-controle input:focus {
+    border-color: #5da9ea;
+}
+
+.calc-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.calc-lista li {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 5px 0;
+    border-bottom: 1px dashed #e2e8f0;
+    color: #4a5568;
+    text-align: left;
+}
+
+.calc-lista li:last-child {
+    border-bottom: none;
+}
+
+.calc-lista span:last-child {
+    font-weight: bold;
+    white-space: nowrap;
+}
+
 @media (max-width: 900px) {
+
     #verduras,
     #frutas,
     #siri {
@@ -112,6 +189,7 @@
 }
 
 @media (max-width: 800px) {
+
     .barreado,
     .caranguejo,
     .peixe,
@@ -123,5 +201,14 @@
     .peixe,
     .barreado {
         flex-direction: column-reverse;
+    }
+
+    .barreado>.calculadora,
+    .caranguejo>.calculadora,
+    .peixe>.calculadora,
+    .arroz>.calculadora {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
     }
 }
