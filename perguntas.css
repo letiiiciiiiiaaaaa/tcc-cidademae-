@@ -7,7 +7,6 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* CONTAINER PRINCIPAL */
 .container {
     width: 100vw;
     height: 100vh;
@@ -16,11 +15,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Alinha do topo para baixo */
-    padding-top: 25px; /* Espaço no topo da página */
+    justify-content: flex-start; 
+    padding-top: 25px; 
 }
 
-/* SEÇÃO DO TÍTULO E LOGO */
 .secao-titulo {
     display: flex;
     align-items: center;
@@ -29,27 +27,26 @@
     margin-bottom: 20px;
 }
 
-.logo-img {
-    width: 80px; 
-    height: auto;
-}
-
-.titulo-logo h1 {
+.titulo h1, .caicara {
     display: flex;
-    flex-direction: row; 
-    gap: 8px;
-    font-size: 32px;
+    flex-direction: column;
+    font-size: 30px;
     font-family: 'Cal Sans', sans-serif;
     line-height: 1;
     color: white;
 }
 
-.titulo-logo .quiz-red {
-    color: #e53935;
+.logo-img {
+    width: 100px; 
+    height: auto;
 }
 
-.titulo-logo .caicara-blue {
-    color: #ffffff;
+.caicar {
+    gap: 8px;
+    font-size: 32px;
+    font-family: 'Cal Sans', sans-serif;
+    line-height: 1;
+    color: white;
 }
 
 .secao-perguntas {
