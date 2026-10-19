@@ -1,12 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const btnUserVoltar = document.getElementById('btn-user');
-  if (btnUserVoltar) {
-    btnUserVoltar.addEventListener('click', () => {
-      sessionStorage.setItem('voltarPara', window.location.pathname.split('/').pop() || 'index.html');
-    });
-  }
-
   async function verificarUsuarioLogado() {
     const btnUser = document.getElementById('btn-user');
     const perfilLogado = document.getElementById('perfil-logado');
@@ -17,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const FOTO_PADRAO = 'imagens/usuario.png';
 
-    const usuarioLocal = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
+    const usuarioLocal = localStorage.getItem('usuario_nome');
 
     if (usuarioLocal) {
       if (nomeUsuario) nomeUsuario.textContent = usuarioLocal;
@@ -78,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
     btnSair.addEventListener('click', async (e) => {
       e.preventDefault();
       localStorage.removeItem('usuario_nome');
-      localStorage.removeItem('usuarioLogado');
       localStorage.removeItem('usuario_id');
 
       if (typeof supabaseClient !== 'undefined') {
@@ -109,35 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(carrossel, 4000);
   }
 
-  // animação scroll
-  function animar(seletor, classes) {
-    document.querySelectorAll(seletor).forEach((el, i) => {
-      const jaTem = el.classList.contains('esquerda') ||
-        el.classList.contains('direita') ||
-        el.classList.contains('surgir');
-      if (!jaTem) el.classList.add(classes[i % classes.length]);
-    });
-  }
-
-  animar('.secao-mapa', ['surgir']);
-  animar('.textinho1', ['surgir']);
-
-  animar('.intro1', ['esquerda']);
-  animar('.intro2', ['direita']);
-  animar('.quadro-mangue', ['esquerda']);
-  animar('.quadro-boi', ['direita']);
-  animar('.info-quadros', ['surgir']);
-  animar('.secao-fandango h2', ['surgir']);
-  animar('.box-fandango', ['esquerda']);
-  animar('.texto-fandango', ['direita']);
-
-  animar('.lucas img', ['surgir']);
-  animar('.ultimo-texto', ['surgir']);
-
-  animar('.intro', ['surgir']);
-  animar('.secao-mercado .mercado-info', ['esquerda', 'surgir', 'direita']);
-  animar('.linha-do-tempo', ['surgir']);
-
   const elementosAnimados = document.querySelectorAll(".esquerda, .direita, .surgir");
 
   const observador = new IntersectionObserver((entries) => {
@@ -154,7 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   elementosAnimados.forEach((el) => observador.observe(el));
 
-  // linha do tempo mercado
   const epocas = {
     1: {
       titulo: "1871-1872 — O Primeiro Mercado (Mercado do Peixe)",
@@ -217,182 +179,225 @@ document.addEventListener("DOMContentLoaded", () => {
 
     selecionarEpoca(1);
   }
+});
 
-  // calculadora
-  const receitas = {
-    barreado: {
-      porcaoBase: 4,
-      ingredientes: [
-        { nome: "Carne bovina", qtd: 1, unidade: "kg" },
-        { nome: "Toucinho defumado", qtd: 200, unidade: "g" },
-        { nome: "Cebola", qtd: 2, unidade: "un" },
-        { nome: "Alho", qtd: 4, unidade: "dentes" },
-        { nome: "Farinha de mandioca", qtd: 500, unidade: "g" },
-        { nome: "Banana da terra", qtd: 4, unidade: "un" }
-      ]
-    },
-    caranguejo: {
-      porcaoBase: 2,
-      ingredientes: [
-        { nome: "Caranguejo-uçá", qtd: 12, unidade: "un" },
-        { nome: "Limão", qtd: 2, unidade: "un" },
-        { nome: "Alho", qtd: 3, unidade: "dentes" },
-        { nome: "Coentro", qtd: 1, unidade: "maço" },
-        { nome: "Farinha (pirão)", qtd: 200, unidade: "g" }
-      ]
-    },
-    peixe: {
-      porcaoBase: 4,
-      ingredientes: [
-        { nome: "Tainha inteira", qtd: 1, unidade: "un" },
-        { nome: "Batata", qtd: 4, unidade: "un" },
-        { nome: "Cebola", qtd: 2, unidade: "un" },
-        { nome: "Limão", qtd: 2, unidade: "un" },
-        { nome: "Azeite", qtd: 3, unidade: "colheres" }
-      ]
-    },
-    arroz: {
-      porcaoBase: 4,
-      ingredientes: [
-        { nome: "Arroz branco", qtd: 2, unidade: "xícaras" },
-        { nome: "Mariscos variados", qtd: 500, unidade: "g" },
-        { nome: "Cebola", qtd: 1, unidade: "un" },
-        { nome: "Alho", qtd: 3, unidade: "dentes" },
-        { nome: "Coentro", qtd: 1, unidade: "maço" }
-      ]
-    }
-  };
+// Feedback: funcionamento da avaliação por estrelas
 
-  document.querySelectorAll('.calculadora').forEach(calc => {
-    const prato = calc.dataset.prato;
-    const receita = receitas[prato];
-    if (!receita) return;
+  const estrelas = document.querySelectorAll('.estrela');
+      let selectedRating = 0;
 
-    const input = calc.querySelector('input');
-    const lista = calc.querySelector('.calc-lista');
+      estrelas.forEach(estrela => {
+          // Efeito visual ao passar o mouse (Hover)
+          estrela.addEventListener('mouseover', () => {
+              resetEstrelas();
+              const value = parseInt(estrela.getAttribute('data-value'));
+              highlightEstrelas(value);
+          });
 
-    function renderizar(porcoes) {
-      const fator = porcoes / receita.porcaoBase;
-      lista.innerHTML = receita.ingredientes.map(ing => {
-        const valor = Math.round(ing.qtd * fator * 10) / 10;
-        return `<li><span>${ing.nome}</span><span>${valor} ${ing.unidade}</span></li>`;
-      }).join('');
-    }
+          // Restaura a nota clicada se tirar o mouse
+          estrela.addEventListener('mouseleave', () => {
+              resetEstrelas();
+              highlightEstrelas(selectedRating);
+          });
 
-    input.addEventListener('input', () => {
-      let porcoes = parseInt(input.value) || 1;
-      if (porcoes < 1) porcoes = 1;
-      if (porcoes > 20) porcoes = 20;
-      renderizar(porcoes);
-    });
+          // Fixa a nota ao clicar
+          estrela.addEventListener('click', () => {
+              selectedRating = parseInt(estrela.getAttribute('data-value'));
+              highlightEstrelas(selectedRating);
+          });
+        });
 
-    renderizar(receita.porcaoBase);
-  });
+        function resetEstrelas() {
+            estrelas.forEach(estrela => estrela.classList.remove('active'));
+        }
 
-  // barra pesquisa
-  const paginas = [
-    {
-      arquivo: 'index.html',
-      titulo: 'Início',
-      palavras: ['inicio', 'home', 'paranagua', 'cidade', 'mapa', 'eventos', 'carrossel', 'cultura', 'historia']
-    },
-    {
-      arquivo: 'arte.html',
-      titulo: 'Arte',
-      palavras: ['arte', 'pintura', 'fandango', 'caiçara', 'caicara', 'rabeca', 'danca', 'dança', 'musica', 'música', 'aquarela', 'palotino', 'quadro', 'casa monsenhor']
-    },
-    {
-      arquivo: 'mercado.html',
-      titulo: 'Mercado',
-      palavras: ['mercado', 'porto', 'cafe', 'café', 'peixe', 'artesanato', 'municipal', 'comercio', 'comércio', 'linha do tempo', 'historia', 'história']
-    },
-    {
-      arquivo: 'gastronomia.html',
-      titulo: 'Gastronomia',
-      palavras: ['gastronomia', 'comida', 'barreado', 'caranguejo', 'tainha', 'peixe', 'arroz', 'lambe', 'receita', 'prato', 'culinaria', 'culinária', 'chef', 'lucas correia']
-    },
-    {
-      arquivo: 'feedback.html',
-      titulo: 'Feedback',
-      palavras: ['feedback', 'opiniao', 'opinião', 'avaliar', 'estrela', 'mensagem', 'contato']
-    },
-    {
-      arquivo: 'jogo-memoria.html',
-      titulo: 'Jogo da Memória',
-      palavras: ['jogo', 'memoria', 'memória', 'cartas', 'dificuldade', 'pontuacao', 'pontuação']
-    },
-    {
-      arquivo: 'jogo.html',
-      titulo: 'Quiz Caiçara',
-      palavras: ['jogo', 'quiz', 'caiçara', 'caicara', 'perguntas', 'teste']
-    },
-    {
-      arquivo: 'sobre-nos.html',
-      titulo: 'Sobre Nós',
-      palavras: ['sobre', 'nos', 'nós', 'equipe', 'tcc', 'projeto', 'quem somos']
-    }
-  ];
+        function highlightEstrelas(value) {
+            for (let i = 0; i < value; i++) {
+                estrelas[i].classList.add('active');
+            }
+        }
 
-  const inputBusca = document.getElementById('searchInput');
-
-  if (inputBusca) {
-    inputBusca.addEventListener('keydown', (e) => {
-      if (e.key !== 'Enter') return;
-
-      const termo = inputBusca.value.trim();
-      if (!termo) return;
-
-      const normalizar = (txt) =>
-        txt.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-
-      const termoLimpo = normalizar(termo);
-
-      const resultado = paginas.find(p =>
-        p.palavras.some(palavra => {
-          const pLimpa = normalizar(palavra);
-          return pLimpa.includes(termoLimpo) || termoLimpo.includes(pLimpa);
-        }) ||
-        normalizar(p.titulo).includes(termoLimpo)
-      );
-
-      if (resultado) {
-        window.location.href = resultado.arquivo;
-      } else {
-        alert(`Nada encontrado para "${inputBusca.value}". Tente: arte, mercado, comida, jogo...`);
+ // Lista de Eventos Anuais de Paranaguá (Dia e Mês fixos)
+// Mês no JS vai de 0 (Janeiro) a 11 (Dezembro)
+    const eventosAnuais = [
+      // JANEIRO / FEVEREIRO
+      {
+        mesInicio: 0, diaInicio: 24, // 24/Jan
+        mesFim: 1, diaFim: 2,       // 02/Fev
+        titulo: 'Festa de Nossa Senhora dos Navegantes',
+        descricao: 'Festa tradicional na Ilha dos Valadares e Ilha do Mel com procissão marítima, novenas, quitutes regionais e Fandango Caiçara.',
+        link: 'navegantes.html'
+      },
+      // FEVEREIRO / MARÇO (CARNAVAL)
+      {
+        mesInicio: 1, diaInicio: 10,
+        mesFim: 1, diaFim: 13,
+        titulo: 'Carnaval de Paranaguá',
+        descricao: 'Desfile das escolas de samba, blocos carnavalescos e bailes populares no Centro Histórico.',
+        link: 'carnaval.html'
+      },
+      // MARÇO / ABRIL
+      {
+        mesInicio: 2, diaInicio: 25, // Março
+        mesFim: 3, diaFim: 2,        // Abril
+        titulo: 'Paixão de Cristo Caiçara (Via Sacra)',
+        descricao: 'Encenação ao ar livre que percorre as ruas do Centro Histórico relembrando a Semana Santa com tradição caiçara.',
+        link: 'paixao-de-cristo.html'
+      },
+      // MAIO
+      {
+        mesInicio: 4, diaInicio: 15,
+        mesFim: 4, diaFim: 18,
+        titulo: 'Festival de Voo Livre (Ilha do Mel) & ExpoSafra',
+        descricao: 'Eventos de maio incluindo o Festival de Voo Livre no Morro do Sabão (Ilha do Mel) e feiras de integração municipal.',
+        link: 'eventos-maio.html'
+      },
+      // JUNHO / JULHO
+      {
+        mesInicio: 5, diaInicio: 26,
+        mesFim: 6, diaFim: 12,
+        titulo: 'Festa Nacional da Tainha',
+        descricao: 'Um dos maiores eventos gastronômicos do Litoral na Praça de Eventos 29 de Julho, com pratos típicos, feiras e shows.',
+        link: 'festa-da-tainha.html'
+      },
+      // JULHO
+      {
+        mesInicio: 6, diaInicio: 24,
+        mesFim: 6, diaFim: 29,
+        titulo: 'Aniversário de Paranaguá (378+ anos)',
+        descricao: 'Celebração do aniversário da cidade mãe do Paraná com desfile cívico, shows nacionais e feira cultural.',
+        link: 'aniversario-paranagua.html'
+      },
+      // AGOSTO
+      {
+        mesInicio: 7, diaInicio: 1,
+        mesFim: 7, diaFim: 15,
+        titulo: 'Mês do Patrimônio & Festa do Fandango Caiçara',
+        descricao: 'Programação voltada para a preservação do patrimônio histórico, rodas de fandango caiçara, oficinas e apresentações na Casa Dacheux.',
+        link: 'patrimonio-fandango.html'
+      },
+      {
+        mesInicio: 7, diaInicio: 28,
+        mesFim: 7, diaFim: 31,
+        titulo: 'Paranaguá Motos',
+        descricao: 'Encontro de motociclistas reunindo apaixonados por duas rodas na Praça de Eventos com shows de rock e exposição.',
+        link: 'paranagua-motos.html'
+      },
+      // SETEMBRO
+      {
+        mesInicio: 8, diaInicio: 25,
+        mesFim: 8, diaFim: 29,
+        titulo: 'Festa de São Francisco das Chagas',
+        descricao: 'Tradição religiosa com novenas e festejos comunitários na Igreja de São Francisco das Chagas.',
+        link: 'sao-francisco.html'
+      },
+      // OUTUBRO
+      {
+        mesInicio: 9, diaInicio: 1,
+        mesFim: 9, diaFim: 7,
+        titulo: 'Festa de Nossa Senhora do Rosário',
+        descricao: 'Celebração da Padroeira do Município de Paranaguá na Catedral Diocesana, com procissão e quermesse.',
+        link: 'nossa-senhora-rosario.html'
+      },
+      // NOVEMBRO
+      {
+        mesInicio: 10, diaInicio: 6,
+        mesFim: 10, diaFim: 16,
+        titulo: 'Festa de Nossa Senhora do Rocio',
+        descricao: 'Uma das maiores festas religiosas do Brasil em honra à Padroeira do Paraná (15/11), realizada na Praça da Fé.',
+        link: 'festa-do-rocio.html'
+      },
+      // DEZEMBRO
+      {
+        mesInicio: 11, diaInicio: 23,
+        mesFim: 11, diaFim: 31,
+        titulo: 'Festa de São Benedito',
+        descricao: 'Tradição natalina com alvoradas festivas, novenas, procissão e apresentações culturais no Centro Histórico.',
+        link: 'sao-benedito.html'
       }
+    ];
+
+// Controle fixo para rodar apenas nos 12 meses
+let mesAtualIndex = 0; // Começa em Janeiro (0)
+
+const nomesMeses = [
+  "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+];
+
+function renderizarCalendario() {
+  // Atualiza apenas o nome do Mês (Sem o ano)
+  document.getElementById('mes-ano-titulo').innerText = nomesMeses[mesAtualIndex];
+
+  // Consideramos um ano genérico não bissexto para montar os dias da semana
+  const anoPadrao = 2026; 
+
+  const primeiroDiaSemana = new Date(anoPadrao, mesAtualIndex, 1).getDay();
+  const totalDiasNoMes = new Date(anoPadrao, mesAtualIndex + 1, 0).getDate();
+
+  const diasGrid = document.getElementById('dias-grid');
+  diasGrid.innerHTML = '';
+
+  // Dias vazios no início do mês
+  for (let i = 0; i < primeiroDiaSemana; i++) {
+    const divVazia = document.createElement('div');
+    divVazia.classList.add('dia-item', 'dia-vazio');
+    diasGrid.appendChild(divVazia);
+  }
+
+  // Preenche os dias do mês
+  for (let dia = 1; dia <= totalDiasNoMes; dia++) {
+    const diaElemento = document.createElement('div');
+    diaElemento.classList.add('dia-item');
+    diaElemento.innerText = dia;
+
+    // Procura se existe algum evento neste dia específico do mês
+    const eventoDoDia = eventosAnuais.find(e => {
+      // Evento dentro do mesmo mês
+      if (e.mesInicio === e.mesFim && e.mesInicio === mesAtualIndex) {
+        return dia >= e.diaInicio && dia <= e.diaFim;
+      }
+      // Evento que começa neste mês e termina no outro
+      if (e.mesInicio === mesAtualIndex && dia >= e.diaInicio) return true;
+      if (e.mesFim === mesAtualIndex && dia <= e.diaFim) return true;
+
+      return false;
     });
-  }
 
-});
+    if (eventoDoDia) {
+      diaElemento.classList.add('tem-evento');
+      diaElemento.addEventListener('click', () => {
+        document.querySelectorAll('.dia-item').forEach(el => el.classList.remove('selecionado'));
+        diaElemento.classList.add('selecionado');
+        
+        mostrarDetalhesEvento(eventoDoDia, dia, nomesMeses[mesAtualIndex]);
+      });
+    }
 
-// Feedback: avaliação por estrelas
-const estrelas = document.querySelectorAll('.estrela');
-let selectedRating = 0;
-
-estrelas.forEach(estrela => {
-  estrela.addEventListener('mouseover', () => {
-    resetEstrelas();
-    const value = parseInt(estrela.getAttribute('data-value'));
-    highlightEstrelas(value);
-  });
-
-  estrela.addEventListener('mouseleave', () => {
-    resetEstrelas();
-    highlightEstrelas(selectedRating);
-  });
-
-  estrela.addEventListener('click', () => {
-    selectedRating = parseInt(estrela.getAttribute('data-value'));
-    highlightEstrelas(selectedRating);
-  });
-});
-
-function resetEstrelas() {
-  estrelas.forEach(estrela => estrela.classList.remove('active'));
-}
-
-function highlightEstrelas(value) {
-  for (let i = 0; i < value; i++) {
-    estrelas[i].classList.add('active');
+    diasGrid.appendChild(diaElemento);
   }
 }
+
+function mostrarDetalhesEvento(evento, dia, nomeMes) {
+  document.getElementById('evento-titulo').innerText = evento.titulo;
+  document.getElementById('evento-data-texto').innerText = `Ocorre em: ${dia} de ${nomeMes}`;
+  document.getElementById('evento-descricao').innerText = evento.descricao;
+  
+  const linkBtn = document.getElementById('evento-link');
+  linkBtn.href = evento.link;
+  linkBtn.style.display = 'inline-block';
+}
+
+// Navegação apenas entre os meses (0 a 11) de forma contínua
+document.getElementById('btn-prev').addEventListener('click', () => {
+  mesAtualIndex = (mesAtualIndex === 0) ? 11 : mesAtualIndex - 1; // Se passar de Jan volta pra Dez
+  renderizarCalendario();
+});
+
+document.getElementById('btn-next').addEventListener('click', () => {
+  mesAtualIndex = (mesAtualIndex === 11) ? 0 : mesAtualIndex + 1; // Se passar de Dez volta pra Jan
+  renderizarCalendario();
+});
+
+// Inicializa o calendário
+renderizarCalendario();
