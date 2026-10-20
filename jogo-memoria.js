@@ -1,3 +1,14 @@
+document.addEventListener('DOMContentLoaded', async () => {
+    // Verifica se há registro do usuário logado no localStorage
+    const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
+
+    // Se não estiver logado, redireciona para a página de cadastro/login
+    if (!usuarioLogado) {
+        alert('Você precisa estar logado para acessar esta página!');
+        window.location.href = 'cadastro.html';
+    }
+});
+
 const grid = document.querySelector('.grid');
 const timer = document.querySelector('.timer'); // Ajustado para querySelector (classe .timer)
 const placarPontos = document.getElementById('btn-pontuacao'); // Ajustado para id="btn-pontuacao"
