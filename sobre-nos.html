@@ -3,14 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade Mãe | Sobre Nós</title>
-    <a href="style.css"></a>
-    <a href="reset.css"></a>
-
+    <title> Cidade Mãe | Sobre Nós </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sobre-nos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <a href="" onclick="history.back(); return false;">
-        <button class="voltar"> 🡠 Voltar </button>
-    </a>
+    <header class="cabecalho">
+        <div class="abas">
+          <a href="" onclick="history.back(); return false;" class="voltar"> 🡠 </a>
+    
+          <div class="bandeiras">
+             <img src="imagens/bandeiras-inicio.png" alt="Bandeiras do Brasil, do Paraná e da cidade de Paranaguá">
+          </div>
+    
+          <img src="imagens/paranagua.png" class="paranagua" alt="Paranaguá">
+    
+            <div class="usuario" id="container-usuario">
+                <a href="cadastro.html" class="btn-usuario" id="btn-user"> cadastre-se </a>
+                <a href="perfil.html" style="text-decoration: none;">
+                    <div id="perfil-logado" class="perfil-logado">
+                        <span id="nome-usuario" class="nome-perfil"></span>
+                        <img id="foto-usuario" src="imagens/usuario.png" alt="Foto de perfil" class="foto-perfil">
+                    </div>
+                </a>
+            </div>
+    
+            <div class="search">
+                <label for="searchInput">
+                    <span class="material-symbols-outlined">search</span>
+                </label>
+                <input type="text" id="searchInput">
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="titulo-sub">
+            <img src="imagens/logo-sobre.png" class="logo">
+            <h2 class="subtitulo"> Sobre <span> nós! </span> </h2>
+        </section>
+
+        <section class="secao-texto">
+            <p> Esse site que você está experenciando foi pensado e desenvolvido por Larissa, Letícia e Luana, três irmãs gêmeas cursadas na mesma turma de Ensino Médio Técnico de Desenvolvimento de Sistemas. O projeto foi criado a partir do comando da instituição para ser apresentado como um Trabalho de Conclusão de Curso (TCC). </p>
+            <p> A motivação dos criadores veio do desejo de propagar e incentivar os habitantes da cidade de Paranaguá a conhecer sua cultura caiçara. </p>
+        </section>
+
+        <section class="secao-objetivo">
+            <h2> Objetivo do Site </h2>
+
+            <div class="objetivo-lista">
+                <div class="objetivo-item">
+                  <div class="objetivo-header">
+                      <div class="icone-circulo icone-arte">
+                            <i class="obj-solid obj-paleta"></i>
+                      </div>
+                     <h3> Arte e Cultura </h3>
+                  </div>
+                  <p> Divulgação das manifestações artísticas, o fandango caiçara, arquitetura colonial e festivais tradicionais. </p>
+                </div>
+                <div class="objetivo-item">
+                    <div class="objetivo-header">
+                        <div class="icone-circulo icone-gastronomia">
+                            <i class="obj-solid obj-utensilios"></i>
+                        </div>
+                        <h3> Gastronomia </h3>
+                  </div>
+                  <p> Valorização do tradicional Barreado, frutos do mar e os sabores marcantes do litoral paranaense. </p>
+                </div>
+                <div class="objetivo-item">
+                    <div class="objetivo-header">
+                        <div class="icone-circulo icone-interatividade">
+                            <i class="obj-solid obj-jogo"></i>
+                        </div>
+                        <h3> Interatividade </h3>
+                  </div>
+                  <p> Jogos educativos, quizes e calendários de eventos para engajar toda a comunidade de forma leve e divertida. </p>
+                </div>
+            </div>
+        </section>
+        <section class="secao-github">
+            <h2> <span class="green"> GITHUB </span> <span class="gray"> DOS </span> <br> <span class="green"> CRIADORES </span> </h2>
+        
+              <div class="criadores-grid">
+                    <a href="https://github.com/Larissadods" target="_blank" class="criador-card">
+                        <div class="avatar-wrapper borda-amarela">
+                            <div class="badge badge-yellow">
+                                <i class="obj-solid obj-oculos"></i>
+                            </div>
+                            <img src="imagens/larissa.jpg" alt="Larissadods" class="avatar-img">
+                        </div>
+                        <span class="criador-username"> @Larissadods </span>
+                    </a>
+        
+                    <a href="https://github.com/letiiiciiiiiaaaaa" target="_blank" class="criador-card">
+                        <div class="avatar-wrapper borda-vermelha">
+                            <div class="badge badge-red">
+                                <i class="fa-solid fa-user-astronaut"></i>
+                            </div>
+                            <img src="imagens/leticiia.jfif" alt="letiiiciiiiiaaaaa" class="avatar-img">
+                        </div>
+                        <span class="criador-username">@letiiiciiiiiaaaaa</span>
+                    </a>
+    
+                    <a href="https://github.com/nanotice" target="_blank" class="criador-card">
+                        <div class="avatar-wrapper border-blue">
+                            <div class="badge badge-blue">
+                                <i class="fa-solid fa-bug"></i>
+                            </div>
+                            <img src="imagens/luana.jfif" alt="nanotice" class="avatar-img">
+                        </div>
+                        <span class="criador-username">@nanotice</span>
+                    </a>
+             </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <a href="feedback.html">✉︎ Feedback</a>
+        <h1><img src="imagens/logo.png" id="logo"></h1>
+        <p>&copy; Copyright Cidade Mãe - 2026</p>
+        <img src="imagens/bandeiras-rodapé.png" alt="Bandeiras Rodapé" id="bandeiras-rodape">
+    </footer>
 </body>
 </html>
