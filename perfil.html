@@ -4,68 +4,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil | Cidade Mãe</title>
+    <title>Meu Perfil | Cidade Mãe</title>
+
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
-    <header class="cabecalho">
-        <div class="abas">
-            <a href="" onclick="history.back(); return false;" class="voltar">🡠</a>
 
-            <div class="bandeiras">
-                <img src="imagens/bandeiras-inicio.png" alt="Bandeiras">
-            </div>
-
-            <img src="imagens/paranagua.png" class="paranagua" alt="Paranaguá">
-            <a href="sobre-nos.html" class="btn-sobre">sobre nós</a>
-        </div>
+    <!-- Cabeçalho Verde -->
+    <header class="cabecalho-verde">
+        <a href="" onclick="history.back(); return false;" class="voltar">
+            <span style="font-size: 24px;">←</span> Voltar
+        </a>
     </header>
 
-    <main class="container-principal" style="text-align: center; padding: 60px 24px;">
-        <h1 id="titulo-perfil">Meu Perfil</h1>
-        <p id="nome-perfil-usuario" style="font-size: 22px; margin: 24px 0;"></p>
+    <main class="secao-perfil">
 
-        <p style="margin: 32px 0; font-size: 18px;">
-            🏆 Maior pontuação no Jogo da Memória:
-            <strong id="pontuacao-perfil" style="color: #f39c12;">0</strong>
-        </p>
+        <!-- Imagens de Fundo (Decoração) -->
+        <img src="imagens/onda-perfil.png" alt="Onda" class="deco onda-deco">
+        <img src="imagens/notas-perfil.png" alt="Notas musicais" class="deco notas-deco">
 
-        <button id="btn-logout-perfil" class="btn btn-jogar"
-            style="border: none; cursor: pointer; font-family: inherit;">
-            Sair da Conta
-        </button>
+        <!-- Conteúdo Principal (Centralizado) -->
+        <section class="perfil-conteudo">
+
+            <div class="foto-perfil-wrapper">
+                <img src="imagens/usuario.png" alt="Foto de perfil" class="foto-perfil-grande">
+                <img src="imagens/carangua-perfil.png" alt="Caranguejo" class="caranguejo-deco">
+            </div>
+
+            <h2 class="perfil-nome" id="nome-perfil">Carregando...</h2>
+            <p class="perfil-email" id="email-perfil">Carregando...</p>
+            <p class="perfil-bio" id="bio-perfil">Não há biografia</p>
+
+            <div class="botoes-perfil">
+                <button class="btn-azul" id="btn-editar-perfil">Editar biografia</button>
+                <button class="btn-cinza" id="btn-logout-perfil">Sair</button>
+            </div>
+
+            <div class="perfil-stats">
+                <div class="stat-item">
+                    <img src="imagens/quiz-balao.png" alt="Ícone Quiz" class="stat-icon-img">
+                    <div class="stat-info">
+                        <span class="stat-label">Quiz</span>
+                        <span class="stat-valor" id="valor-quiz">VOCÊ É 0% CAIÇARA</span>
+                    </div>
+                </div>
+                        
+                <div class="stat-item">
+                    <img src="imagens/jogo-controle.png" alt="Ícone Jogo" class="stat-icon-img">
+                    <div class="stat-info">
+                        <span class="stat-label">Pontuação</span>
+                        <span class="stat-valor" id="valor-pontuacao">0</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
     </main>
 
-    <footer class="rodape">
-        <a href="feedback.html">✉︎ Feedback</a>
-        <h1><img src="imagens/logo.png" id="logo"></h1>
-        <p>&copy; Copyright Cidade Mãe - 2026</p>
-        <img src="imagens/bandeiras-rodapé.png" alt="Bandeiras Rodapé" id="bandeiras-rodape">
-    </footer>
-
+    <!-- Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const nome = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
-            const pontos = localStorage.getItem('maiorPontuacao') || 0;
+        const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-            const elNome = document.getElementById('nome-perfil-usuario');
-            const elPontos = document.getElementById('pontuacao-perfil');
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Pega dados locais
+            const usuarioId = localStorage.getItem('usuario_id');
+            const nomeLocal = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
+            const emailLocal = localStorage.getItem('usuario_email');
+            const bioLocal = localStorage.getItem('usuario_bio');
+            const pontosMemoria = localStorage.getItem('maiorPontuacao') || '0';
+            const pontosQuiz = localStorage.getItem('maiorPorcentagemQuiz') || '0';
 
-            if (elNome) elNome.textContent = nome ? `Olá, ${nome}!` : 'Você não está logado.';
-            if (elPontos) elPontos.textContent = pontos;
+            // Elementos HTML
+            const elNome = document.getElementById('nome-perfil');
+            const elEmail = document.getElementById('email-perfil');
+            const elBio = document.getElementById('bio-perfil');
 
-            const btnLogout = document.getElementById('btn-logout-perfil');
-            if (btnLogout) {
-                btnLogout.addEventListener('click', () => {
+            // Preenche os dados básicos (carrega na hora)
+            elNome.textContent = nomeLocal || 'Usuário';
+            elEmail.textContent = emailLocal || 'nome@gmail.com';
+            document.getElementById('valor-pontuacao').textContent = pontosMemoria;
+            document.getElementById('valor-quiz').textContent = `VOCÊ É ${pontosQuiz}% CAIÇARA`;
+
+            // Função para formatar a Bio
+            function configurarBio(textoBio) {
+                if (textoBio && textoBio.trim() !== '') {
+                    elBio.textContent = textoBio;
+                    elBio.classList.remove('bio-vazia');
+                } else {
+                    elBio.textContent = "Não há biografia";
+                    elBio.classList.add('bio-vazia');
+                }
+            }
+            configurarBio(bioLocal);
+
+            // Busca a Bio atualizada no Supabase (se o usuário tiver ID)
+            if (usuarioId) {
+                const { data } = await supabaseClient.from('usuarios').select('bio').eq('id', usuarioId).maybeSingle();
+                if (data && data.bio) {
+                    configurarBio(data.bio);
+                    localStorage.setItem('usuario_bio', data.bio);
+                }
+            }
+
+            // Botão de Editar Bio
+            document.getElementById('btn-editar-perfil').addEventListener('click', async () => {
+                const bioAtual = elBio.classList.contains('bio-vazia') ? '' : elBio.textContent;
+                const novaBio = prompt("Digite sua nova biografia:", bioAtual);
+
+                if (novaBio === null) return;
+
+                configurarBio(novaBio);
+                localStorage.setItem('usuario_bio', novaBio);
+
+                if (usuarioId) {
+                    await supabaseClient.from('usuarios').update({ bio: novaBio }).eq('id', usuarioId);
+                }
+            });
+
+            // Botão de Sair
+            document.getElementById('btn-logout-perfil').addEventListener('click', () => {
+                if (confirm('Deseja realmente sair da conta?')) {
                     localStorage.removeItem('usuario_nome');
                     localStorage.removeItem('usuarioLogado');
                     localStorage.removeItem('usuario_id');
-
-                    alert('Você saiu da conta.');
+                    localStorage.removeItem('usuario_email');
+                    localStorage.removeItem('usuario_bio');
                     window.location.href = 'index.html';
-                });
-            }
+                }
+            });
         });
     </script>
 </body>
