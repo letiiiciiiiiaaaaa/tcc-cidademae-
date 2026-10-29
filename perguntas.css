@@ -132,3 +132,78 @@
     color: #ffffff;
     font-weight: bold;
 }
+
+.resultado-container {
+    text-align: center;
+    padding: 10px 5px;
+}
+
+.resultado-container h2 {
+    font-size: 24px;
+    color: #222222;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* PORCENTAGEM CENTRALIZADA E EM VERDE DESTAQUE */
+.porcentagem-destaque {
+    font-size: 48px;
+    font-weight: 800;
+    color: #65cc69; /* Verde de destaque */
+    margin: 15px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#descricao-resultado {
+    font-size: 16px;
+    color: #555555;
+    line-height: 1.4;
+    margin-bottom: 25px;
+}
+
+/* CONTAINER DOS BOTÕES LADO A LADO */
+.botoes-resultado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ESTILO BASE DOS BOTÕES ARREDONDADOS */
+.btn-reiniciar, .btn-perfil {
+    border: none;
+    padding: 12px 24px;
+    font-size: 15px;
+    border-radius: 25px; /* Bordas bem arredondadas */
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.25s ease;
+   
+    
+}
+
+/* BOTÃO 1: REFAZER QUIZ (AMARELO) */
+.btn-reiniciar {
+    background-color: #e5d56c;
+    color: white;
+}
+
+.btn-reiniciar:hover {
+    background-color: #c3b660;
+    transform: translateY(-2px);
+}
+
+/* BOTÃO 2: VER NO PERFIL (AZUL) */
+.btn-perfil {
+    background-color: #79c3e2;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-perfil:hover {
+    background-color: #5faecf;
+    transform: translateY(-2px);
+}

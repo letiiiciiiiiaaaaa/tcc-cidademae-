@@ -5,29 +5,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    flex-wrap: wrap;
-    align-content: flex-start;
     min-height: 100vh;
-    padding: 0 0 10px;
-}
-
-.cabecalho .abas {
-    width: 100%;
-    height: 52px;
-    padding-top: 0;
-    padding-bottom: 0;
-    flex-wrap: nowrap;
-    background: #f0f0f0;
-    z-index: 5;
-}
-
-.bandeiras img {
-    width: 110px;
-    display: block;
+    padding: 10px 0;
 }
 
 main {
-    margin-top: 10px;
     width: 100%;
     max-width: 850px;
     display: flex;
@@ -62,11 +44,10 @@ main {
 .jogo { color: #e5d77b; }
 .memoria { color: #ff3131; }
 
-
 .painel-controle {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: flex-start; /* Alinha o topo dos textos na mesma linha exata */
     gap: 40px; 
     width: 100%;
     margin-top: 50px; 
@@ -76,33 +57,49 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    min-width: 120px; /* Garante largura uniforme entre as três colunas */
 }
 
+/* Garante altura e alinhamento idêntico para os três títulos */
 .label-painel, .label-painel2, .label-painel3 {
     color: #8bbae2;
     font-weight: bold;
     font-size: 17px;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     text-transform: lowercase;
+    height: 24px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .label-painel2 { color: #e5d77b; }
 .label-painel3 { color: #65cc69; }
 
-.tempo-box {
+/* Padronização da altura das caixas do Tempo e da Pontuação */
+.tempo-box, .placar-pontos {
     background-color: #ffffff;
     border: 2px solid #929292;
-    padding: 6px 20px;
+    padding: 0 20px;
+    height: 38px; /* Altura fixa igual à do ícone de reiniciar */
+    min-width: 90px;
     border-radius: 20px;
     box-shadow: 0 2px 8px rgba(139, 186, 226, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
-.timer {
+.timer, .placar-pontos {
     color: #ff3131;
     font-weight: bold;
     font-size: 20px;
 }
 
+/* Ajuste no botão de reiniciar */
 #btn-reiniciar {
     background: transparent;
     border: none;
@@ -111,14 +108,14 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-#btn-reiniciar:hover {
-    transform: rotate(90deg);
+    height: 38px; /* Mesma altura das caixas das pontas */
+    padding: 0;
 }
 
 #btn-reiniciar img {
+    width: 38px;
     height: 38px;
+    display: block;
 }
 
 .placar-pontos {

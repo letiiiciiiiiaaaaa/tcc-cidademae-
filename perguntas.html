@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,9 @@
 <body>
     <div class="container">
         <section class="secao-titulo">
-            <img src="imagens/quiz-logo.png" class="logo-img">
+            <img src="imagens/quiz-logo.png" class="logo-img" alt="Logo Quiz">
             <div class="titulo">
-                <h1> QUIZ <span class="caicara"> CAIÇARA </span> </h1>
+                <h1> QUIZ <span class="caicara"> CAIÇARA </span></h1>
             </div>
         </section>
 
@@ -19,36 +19,30 @@
             <form id="quiz-form" class="quiz-card">
                 <div class="topo-card">
                     <span id="contador-pergunta"> Pergunta 1 de 10 </span>
-                    <button type="submit" id="btn-proxima" class="btn-seta" title="Próxima Pergunta">&rarr;</button>
+                    <button type="submit" id="btn-proxima" class="btn-seta" title="Próxima Pergunta">&#10140;</button>
                 </div>
 
                 <div class="corpo-card">
-                    <h2 id="texto-pergunta"> Quando o sol dá as caras no final de semana, qual é o seu rolê perfeito? </h2>
+                    <h2 id="texto-pergunta"> Carregando pergunta... </h2>
+                    <div class="opcoes-container" id="opcoes-container"></div>
 
-                    <div class="opcoes-container" id="opcoes-container">
-                        <label class="opcao-label">
-                            <input type="radio" name="resposta" value="op1" required>
-                            <span> Pé na areia, banho de mar e pastel com garapa na praia. </span>
-                        </label>
-
-                        <label class="opcao-label">
-                            <input type="radio" name="resposta" value="op2">
-                            <span> Caminhada na orla, tomar uma água de coco e voltar pra casa. </span>
-                        </label>
-
-                        <label class="opcao-label">
-                            <input type="radio" name="resposta" value="op3">
-                            <span> Ir ao shopping ou cinema no ar-condicionado. </span>
-                        </label>
-
-                        <label class="opcao-label">
-                            <input type="radio" name="resposta" value="op4">
-                            <span> Ficar em casa maratonando série </span>
-                        </label>
+                    <div class="resultado-container" id="resultado-container" style="display: none;">
+                        <h2 id="titulo-resultado">Seu Resultado</h2>
+                        
+                        <div class="porcentagem-destaque" id="porcentagem-texto">0%</div>
+                        
+                        <p id="descricao-resultado"></p>
+                        
+                        <div class="botoes-resultado">
+                            <button type="button" class="btn-reiniciar" onclick="window.location.reload()">Refazer Quiz</button>
+                            <a href="perfil.html" class="btn-perfil">Ver no Perfil</a>
+                        </div>
                     </div>
                 </div>
             </form>
         </section>
     </div>
+
+    <script src="perguntas.js"></script>
 </body>
 </html>
