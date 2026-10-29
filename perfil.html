@@ -15,7 +15,6 @@
 
 <body>
 
-    <!-- Cabeçalho Verde -->
     <header class="cabecalho-verde">
         <a href="" onclick="history.back(); return false;" class="voltar">
             <span style="font-size: 24px;">←</span> Voltar
@@ -24,11 +23,9 @@
 
     <main class="secao-perfil">
 
-        <!-- Imagens de Fundo (Decoração) -->
         <img src="imagens/onda-perfil.png" alt="Onda" class="deco onda-deco">
         <img src="imagens/notas-perfil.png" alt="Notas musicais" class="deco notas-deco">
 
-        <!-- Conteúdo Principal (Centralizado) -->
         <section class="perfil-conteudo">
 
             <div class="foto-perfil-wrapper">
@@ -41,8 +38,8 @@
             <p class="perfil-bio" id="bio-perfil">Não há biografia</p>
 
             <div class="botoes-perfil">
-                <button class="btn-azul" id="btn-editar-perfil">Editar biografia</button>
-                <button class="btn-cinza" id="btn-logout-perfil">Sair</button>
+                <button class="btn-azul" id="btn-editar-perfil">Editar perfil</button>
+                <button class="btn-cinza" id="btn-logout-perfil">Sair / Gerenciar conta</button>
             </div>
 
             <div class="perfil-stats">
@@ -53,7 +50,7 @@
                         <span class="stat-valor" id="valor-quiz">VOCÊ É 0% CAIÇARA</span>
                     </div>
                 </div>
-                        
+
                 <div class="stat-item">
                     <img src="imagens/jogo-controle.png" alt="Ícone Jogo" class="stat-icon-img">
                     <div class="stat-info">
@@ -67,33 +64,29 @@
 
     </main>
 
-    <!-- Script -->
     <script>
         const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
         const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         document.addEventListener('DOMContentLoaded', async () => {
-            // Pega dados locais
             const usuarioId = localStorage.getItem('usuario_id');
             const nomeLocal = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
             const emailLocal = localStorage.getItem('usuario_email');
             const bioLocal = localStorage.getItem('usuario_bio');
-            const pontosMemoria = localStorage.getItem('maiorPontuacao') || '0';
-            const pontosQuiz = localStorage.getItem('maiorPorcentagemQuiz') || '0';
 
-            // Elementos HTML
             const elNome = document.getElementById('nome-perfil');
             const elEmail = document.getElementById('email-perfil');
             const elBio = document.getElementById('bio-perfil');
+            const elPontuacao = document.getElementById('valor-pontuacao');
+            const elQuiz = document.getElementById('valor-quiz');
 
-            // Preenche os dados básicos (carrega na hora)
+            // Exibe os dados que estão no localStorage enquanto o banco não responde
             elNome.textContent = nomeLocal || 'Usuário';
             elEmail.textContent = emailLocal || 'nome@gmail.com';
-            document.getElementById('valor-pontuacao').textContent = pontosMemoria;
-            document.getElementById('valor-quiz').textContent = `VOCÊ É ${pontosQuiz}% CAIÇARA`;
+            elPontuacao.textContent = localStorage.getItem('maiorPontuacao') || '0';
+            elQuiz.textContent = `VOCÊ É ${localStorage.getItem('maiorPorcentagemQuiz') || '0'}% CAIÇARA`;
 
-            // Função para formatar a Bio
             function configurarBio(textoBio) {
                 if (textoBio && textoBio.trim() !== '') {
                     elBio.textContent = textoBio;
@@ -105,16 +98,33 @@
             }
             configurarBio(bioLocal);
 
-            // Busca a Bio atualizada no Supabase (se o usuário tiver ID)
+            // Busca os dados no banco de dados usando a coluna 'idusuarios'
             if (usuarioId) {
-                const { data } = await supabaseClient.from('usuarios').select('bio').eq('id', usuarioId).maybeSingle();
-                if (data && data.bio) {
+                const { data, error } = await supabaseClient
+                    .from('usuarios')
+                    .select('nome, email, bio, quiz_pontos, jogo_pontos')
+                    .eq('idusuarios', usuarioId)
+                    .maybeSingle();
+
+                if (data && !error) {
+                    elNome.textContent = data.nome;
+                    elEmail.textContent = data.email;
                     configurarBio(data.bio);
-                    localStorage.setItem('usuario_bio', data.bio);
+
+                    // Atualiza os pontos na tela se tiver salvo no banco
+                    if (data.jogo_pontos) elPontuacao.textContent = data.jogo_pontos;
+                    if (data.quiz_pontos) elQuiz.textContent = `VOCÊ É ${data.quiz_pontos}% CAIÇARA`;
+
+                    // Guarda no localStorage para backup
+                    localStorage.setItem('usuario_nome', data.nome);
+                    localStorage.setItem('usuario_email', data.email);
+                    if (data.bio) localStorage.setItem('usuario_bio', data.bio);
+                } else if (error) {
+                    console.error("Erro ao buscar dados:", error);
                 }
             }
 
-            // Botão de Editar Bio
+            // Editar Bio
             document.getElementById('btn-editar-perfil').addEventListener('click', async () => {
                 const bioAtual = elBio.classList.contains('bio-vazia') ? '' : elBio.textContent;
                 const novaBio = prompt("Digite sua nova biografia:", bioAtual);
@@ -125,18 +135,26 @@
                 localStorage.setItem('usuario_bio', novaBio);
 
                 if (usuarioId) {
-                    await supabaseClient.from('usuarios').update({ bio: novaBio }).eq('id', usuarioId);
+                    const { error } = await supabaseClient
+                        .from('usuarios')
+                        .update({ bio: novaBio })
+                        .eq('idusuarios', usuarioId);
+
+                    if (error) {
+                        alert("Erro ao salvar no banco de dados: " + error.message);
+                    } else {
+                        alert("Biografia salva com sucesso!");
+                    }
                 }
             });
 
-            // Botão de Sair
+            // Sair
             document.getElementById('btn-logout-perfil').addEventListener('click', () => {
                 if (confirm('Deseja realmente sair da conta?')) {
                     localStorage.removeItem('usuario_nome');
                     localStorage.removeItem('usuarioLogado');
                     localStorage.removeItem('usuario_id');
                     localStorage.removeItem('usuario_email');
-                    localStorage.removeItem('usuario_bio');
                     window.location.href = 'index.html';
                 }
             });
