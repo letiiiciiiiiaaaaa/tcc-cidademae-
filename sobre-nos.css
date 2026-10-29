@@ -47,129 +47,84 @@ main {
     margin-bottom: 15px;
 }
 
-/* --- SEÇÃO "OBJETIVO DO SITE" (Largura total com fundo claro) --- */
 .secao-objetivo {
-    width: 100%;
-    background-color: #eaf2f8; /* Tom azul bem claro estendido */
-    padding: 60px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.secao-objetivo h2 {
-    font-size: 30px;
-    font-weight: 800;
-    color: #2d3748;
-    margin-bottom: 40px;
+    background-color: #ebf3f7; /* Fundo azul bem claro igual ao Canva */
+    padding: 50px 20px;
     text-align: center;
 }
-
-.objetivo-lista {
+  
+.titulo-obj {
+    font-size: 26px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 35px;
+}
+  
+.objetivo-container {
+    max-width: 650px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 35px;
-    max-width: 600px;
-    width: 100%;
+    gap: 30px;
+    text-align: center;
 }
-
-.objetivo-item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.objetivo-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 8px;
-}
-
-.icone-circulo {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-}
-
-.icone-arte {
-    background-color: #fef0c7;
-    color: #d97706;
-}
-
-.icone-gastronomia {
-    background-color: #dcfce7;
-    color: #16a34a;
-}
-
-.icone-interatividade {
-    background-color: #ffe4e6;
-    color: #e11d48;
-}
-
-.objetivo-header h3 {
-    font-size: 20px;
+  
+  .objetivo-item h3 {
+    font-size: 18px;
     font-weight: 700;
-    color: #2d3748;
-}
-
-.objetivo-item p {
-    font-size: 15px;
-    color: #4a5568;
+    color: #34495e;
+    margin-bottom: 8px;
+  }
+  
+  .objetivo-item p {
+    font-size: 14px;
+    color: #555555;
     line-height: 1.5;
-    font-weight: 400;
-}
+    max-width: 500px;
+    margin: 0 auto;
+  }
 
-/* --- SEÇÃO "GITHUB DOS CRIADORES" --- */
 .secao-github {
-    width: 100%;
+    text-align: center;
+    padding: 60px 20px;
     background-color: #ffffff;
-    padding: 70px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-grow: 1;
 }
 
-.secao-github h2 {
-    font-size: 32px;
+.titulo-criadores {
+    font-size: 28px;
     font-weight: 800;
-    text-align: center;
-    margin-bottom: 50px;
+    color: #5cb85c;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
     line-height: 1.2;
 }
 
-.secao-github h2 .green {
-    color: #4cd964;
-}
-
-.secao-github h2 .gray {
-    color: #8e8e93;
+.titulo-criadores span {
+    display: block;
+    color: #7cd67c;
 }
 
 .criadores-grid {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 40px;
     flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.criador-card {
+.creator-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
     text-decoration: none;
     transition: transform 0.2s ease;
 }
 
-.criador-card:hover {
+.creator-card:hover {
     transform: translateY(-5px);
 }
 
@@ -178,20 +133,21 @@ main {
     width: 160px;
     height: 160px;
     border-radius: 50%;
-    padding: 4px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    padding: 0; /* Colado na foto */
+    margin-bottom: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-.borda-amarela {
-    border: 4px solid #ffcc00;
+.avatar-wrapper.larissa {
+    border: 5px solid #ffd54f; /* Amarelo */
 }
 
-.borda-vermelha {
-    border: 4px solid #ff3b30;
+.avatar-wrapper.leticia {
+    border: 5px solid #ef5350; /* Vermelho */
 }
 
-.borda-azul {
-    border: 4px solid #54a0ff;
+.avatar-wrapper.nano {
+    border: 5px solid #42a5f5; /* Azul */
 }
 
 .avatar-img {
@@ -199,38 +155,93 @@ main {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+    display: block;
 }
 
-.badge {
+.status-emoji {
     position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 34px;
-    height: 34px;
+    top: -2px;
+    left: 6px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 15px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-.badge-yellow {
-    background-color: #ffcc00;
-    color: #000;
-}
-
-.badge-red {
-    background-color: #ff3b30;
-}
-
-.badge-blue {
-    background-color: #54a0ff;
-}
-
-.criador-username {
     font-size: 16px;
-    font-weight: 600;
-    color: #4a5568;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
+
+.larissa .status-emoji {
+    background-color: #ffd54f;
+}
+
+.leticia .status-emoji {
+    background-color: #ef5350;
+}
+
+.nano .status-emoji {
+    background-color: #42a5f5;
+}
+
+.username {
+    font-size: 15px;
+    color: #333;
+    font-weight: 600;
+}
+
+footer {
+    background-color: #5cb85c;
+    color: #ffffff;
+    padding: 24px;
+    text-align: center;
+    position: relative;
+}
+
+.feedback-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.footer-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+  .copyright {
+    font-size: 12px;
+    opacity: 0.9;
+  }
+
+  .footer-flags {
+    position: absolute;
+    right: 24px;
+    bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer-flags img {
+    width: 28px;
+    height: 18px;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 600px) {
+    .creators-grid {
+      gap: 24px;
+    }
+    .footer-flags {
+      position: static;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 12px;
+    }
+  }
