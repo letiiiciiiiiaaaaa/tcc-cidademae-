@@ -69,41 +69,46 @@
     </header>
 
     <section class="calendario-section">
-        <div class="calendario-container">
-          
-          <!-- LADO ESQUERDO: O Calendário -->
-          <div class="calendario-box">
-            <!-- Navegação dos Meses -->
-            <div class="calendario-header">
-              <button id="btn-prev">&lt;</button>
-              <h3 id="mes-ano-titulo">Janeiro </h3>
-              <button id="btn-next">&gt;</button>
-            </div>
-      
-            <!-- Dias da semana -->
-            <div class="dias-semana">
-              <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
-            </div>
-      
-            <!-- Grade dos dias -->
-            <div class="dias-grid" id="dias-grid">
-              <!-- Gerado via JavaScript -->
-            </div>
-          </div>
-      
-          <!-- LADO DIREITO: Detalhes do Evento -->
-          <div class="evento-info-box" id="evento-info">
-            <div class="card-detalhes">
-              <span class="tag-evento">Evento</span>
-              <h4 id="evento-titulo">Selecione um dia destacado</h4>
-              <p id="evento-data-texto" class="evento-data"></p>
-              <p id="evento-descricao">Clique nos dias destacados no calendário para visualizar os detalhes do evento tradicional da nossa cidade.</p>
-              <a id="evento-link" href="#" target="_blank" class="btn-saiba-mais" style="display: none;">Saiba mais sobre o evento</a>
-            </div>
-          </div>
-      
+        <!-- Título e Subtítulo idênticos ao modelo do Canva -->
+        <div class="calendario-cabecalho-texto">
+            <h2>Próximos eventos em Paranaguá</h2>
+            <p>Acompanhe os principais festivais, celebrações culturais e eventos da cidade.</p>
         </div>
-      </section>
+    
+        <div class="calendario-container">
+    
+            <!-- LADO ESQUERDO: O Calendário -->
+            <div class="calendario-box">
+                <!-- Navegação dos Meses -->
+                <div class="calendario-header">
+                    <button id="btn-prev">&lt;</button>
+                    <h3 id="mes-ano-titulo">Janeiro</h3>
+                    <button id="btn-next">&gt;</button>
+                </div>
+    
+                <!-- Dias da semana -->
+                <div class="dias-semana">
+                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+                </div>
+    
+                <!-- Grade dos dias -->
+                <div class="dias-grid" id="dias-grid">
+                    <!-- Gerado via JavaScript -->
+                </div>
+            </div>
+    
+            <!-- LADO DIREITO: Detalhes do Evento -->
+            <div class="evento-info-box" id="evento-info">
+                <div class="card-detalhes">
+                    <span class="tag-evento">Evento</span>
+                    <h4 id="evento-titulo">Selecione um dia destacado</h4>
+                    <p id="evento-data-texto" class="evento-data"></p>
+                    <p id="evento-descricao">Clique nos dias marcados em verde no calendário para visualizar os detalhes do evento tradicional da nossa cidade.</p>
+                    <a id="evento-link" href="#" target="_blank" class="btn-saiba-mais" style="display: none;">Saiba mais sobre o evento</a>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <main class="conteudo-principal">
 
@@ -142,7 +147,7 @@
             </div>
         </section>
 
-        <section class="secao-mapa">
+        <section class="secao-mapa" id="mapa-cultural">
             <h1 id="mapa-intro"> Mapa Cultural de Paranaguá </h1>
             <p id="mapa-descricao"> Navegue pelo mapa real e clique nos marcadores azuis para explorar os pontos históricos. </p>
 
@@ -161,15 +166,15 @@
             <div class="box-jogo">
                 <h2> Quão caiçara você é? </h2>
                 <img src="imagens/quiz.png" class="jogo-quiz">
-                <a href="jogo.html" class="btn btn-jogar"> JOGAR </a>
+                <a href="quiz.html" class="btn btn-jogar"> JOGAR </a>
             </div>
         </section>
     </main>
 
     <footer class="rodape">
-        <a href="feedback.html">✉︎ Feedback</a>
+        <a href="feedback.html"> ✉︎ Feedback </a>
         <h1><img src="imagens/logo.png" id="logo"></h1>
-        <p>&copy; Copyright Cidade Mãe - 2026</p>
+        <p> &copy; Copyright Cidade Mãe - 2026 </p>
         <img src="imagens/bandeiras-rodapé.png" alt="Bandeiras Rodapé" id="bandeiras-rodape">
     </footer>
 

@@ -119,6 +119,9 @@ input:focus-visible {
 
 .usuario {
     margin-left: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .btn-usuario {
@@ -137,6 +140,7 @@ input:focus-visible {
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    height: 100%;
 }
 
 .foto-perfil {
@@ -149,7 +153,11 @@ input:focus-visible {
 .nome-perfil {
     font-weight: bold;
     color: #494949;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
 }
 
 .search {
@@ -284,52 +292,67 @@ input:focus-visible {
     background: var(--azul);
 }
 
-/* calendário de eventos */
+/* Título e Subtítulo do Calendário */
+.calendario-cabecalho-texto {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.calendario-cabecalho-texto h2 {
+    color: #112d4e;
+    font-size: clamp(24px, 3.5vw, 32px);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.calendario-cabecalho-texto p {
+    color: #555;
+    font-size: clamp(14px, 1.8vw, 16px);
+}
 
 /* Container do Calendário */
 .calendario-section {
     width: 100%;
     max-width: 1000px;
-    margin: 30px auto;
+    margin: 40px auto;
     padding: 0 20px;
-    font-family: 'Poppins', sans-serif, Arial;
-  }
-  
-  .calendario-container {
+    font-family: 'Questrial', sans-serif;
+}
+
+.calendario-container {
     display: flex;
     flex-wrap: wrap;
     gap: 25px;
     background-color: #fff;
     border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 25px rgba(5, 147, 63, 0.08);
     padding: 25px;
-    border: 2px solid #3f8fd6;
-  }
-  
-  /* Lado Esquerdo - Calendário Compacto */
-  .calendario-box {
+    border: 2px solid #a3d1e6;
+}
+
+/* Lado Esquerdo - Calendário Compacto */
+.calendario-box {
     flex: 1;
     min-width: 300px;
-  }
-  
-  .calendario-header {
+}
+
+.calendario-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
-  }
-  
-  .calendario-header h3 {
-    font-size: 1.2rem;
-    color: #2c3e50;
-    font-weight: 700;
+}
+
+.calendario-header h3 {
+    font-size: 1.3rem;
+    color: var(--cinza);
     margin: 0;
-  }
-  
-  .calendario-header button {
-    background: #3f8fd6;
+}
+
+.calendario-header button {
+    background: #0776ad;
     border: none;
-    color: #333;
+    color: #fff;
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -337,114 +360,117 @@ input:focus-visible {
     font-weight: bold;
     font-size: 1rem;
     transition: 0.2s;
-  }
-  
-.calendario-header button:hover {
-    background: #2770b0;
-    color: #fff;
 }
-  
+
+.calendario-header button:hover {
+    background: #034e6b;
+}
+
 .dias-semana {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
     font-weight: 600;
-    color: #7f8c8d;
+    color: #666;
     font-size: 0.85rem;
     margin-bottom: 10px;
 }
-  
+
 .dias-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 6px;
 }
-  
+
 .dia-item {
     aspect-ratio: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
+    border: 1px solid #cbcbcb;
     font-size: 0.9rem;
     color: #333;
-    background-color: #f8f9fa;
+    background-color: #f4f8f9;
     user-select: none;
 }
-  
-  /* Dias vazios para alinhar o começo do mês */
+
+/* Dias vazios para alinhar o começo do mês */
 .dia-vazio {
     background: transparent;
+    border: none;
 }
-  
-  /* Estilo para dias com Evento (Amarelo) */
+
+/* Estilo para dias com Evento (Verde em harmonia) */
 .dia-item.tem-evento {
-    background-color: #ebf5ff; /* O mesmo azul bem clarinho do painel */
-    color: #2b5b84;            /* Texto num azul escuro para ter bom contraste */
+    background-color: #f0f8fd;
+    color: #03516b;
     font-weight: bold;
-    border: 1px solid #70b0e0;  /* Uma borda leve para destacar os dias */
+    border: 1px solid #82bce0;
     cursor: pointer;
     transition: all 0.2s ease;
 }
-  
+
 .dia-item.tem-evento:hover {
-    background-color: #d6ebff; /* Fica um pouquinho mais escuro ao passar o mouse */
+    background-color: #056193;
+    color: #fff;
     transform: scale(1.05);
 }
-  
-  .dia-item.selecionado {
-    border: 2px solid #1a365d;
-  }
-  
-  /* Lado Direito - Painel de Informações */
-  .evento-info-box {
+
+.dia-item.selecionado {
+    background-color: #056893;
+    color: #fff;
+}
+
+/* Lado Direito - Painel de Informações */
+.evento-info-box {
     flex: 1;
     min-width: 280px;
     display: flex;
     align-items: center;
-  }
-  
-  .card-detalhes {
+}
+
+.card-detalhes {
     width: 100%;
-    background: #e7f4fe;
-    border-left: 5px solid #3356b3;
+    background: #f0f8fd;
+    border-left: 5px solid #0776ad;
     padding: 20px;
     border-radius: 10px;
-  }
-  
-  .tag-evento {
-    background: #75a1df;
-    color: white;
+}
+
+.tag-evento {
+    background: #0776ad;
+    color: #ffffff;
     padding: 3px 10px;
     font-size: 0.75rem;
     border-radius: 12px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-  }
-  
-  .card-detalhes h4 {
+}
+
+.card-detalhes h4 {
     margin: 12px 0 6px 0;
     font-size: 1.2rem;
-    color: #2c3e50;
-  }
-  
-  .evento-data {
+    color: #112d4e;
+}
+
+.evento-data {
     font-size: 0.85rem;
-    color: #56a3e7;
+    color: #036b2d;
     font-weight: 600;
     margin-bottom: 12px;
-  }
-  
-  .card-detalhes p {
+}
+
+.card-detalhes p {
     font-size: 0.9rem;
-    color: #555;
+    color: #444;
     line-height: 1.5;
     margin-bottom: 15px;
-  }
-  
-  .btn-saiba-mais {
+}
+
+.btn-saiba-mais {
     display: inline-block;
-    background-color: #27ae60;
+    background-color: #05933f;
     color: white;
     padding: 8px 16px;
     border-radius: 6px;
@@ -452,11 +478,11 @@ input:focus-visible {
     font-size: 0.85rem;
     font-weight: 600;
     transition: background 0.2s;
-  }
-  
-  .btn-saiba-mais:hover {
-    background-color: #219150;
-  }
+}
+
+.btn-saiba-mais:hover {
+    background-color: #036b2d;
+}
 
 .categoria {
   display: inline-block;
@@ -882,5 +908,43 @@ input:focus-visible {
         max-width: 130px;
         font-size: 13px;
         letter-spacing: 0;
+    }
+}
+
+:target {
+    animation: destacar-alvo 2.5s ease-in-out;
+    scroll-margin-top: 80px;
+}
+
+@keyframes destacar-alvo {
+
+    0%,
+    100% {
+        background: transparent;
+    }
+
+    15%,
+    85% {
+        background: #fff3b0;
+    }
+}
+
+mark.destaque-busca {
+    background: #ffe066;
+    color: inherit;
+    padding: 0 2px;
+    border-radius: 3px;
+    animation: piscar-destaque 2.5s ease-in-out;
+}
+
+@keyframes piscar-destaque {
+
+    0%,
+    100% {
+        background: #ffe066;
+    }
+
+    50% {
+        background: #ffd700;
     }
 }
