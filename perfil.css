@@ -192,6 +192,26 @@ body {
     text-transform: uppercase;
 }
 
+.stat-item-clicavel {
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+.stat-item-clicavel:hover {
+    transform: translateY(-3px) scale(1.02);
+    background-color: rgba(224, 233, 181, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.stat-item-clicavel:hover .stat-label {
+    font-weight: bold;
+    transition: 0.5s;
+}
+
 .deco {
     position: absolute;
     z-index: 1;
@@ -247,4 +267,139 @@ body {
         width: 100%;
         padding: 0 20px;
     }
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-card-custom {
+    background: #ffffff;
+    padding: 30px 35px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 440px;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    animation: popup 0.3s ease;
+}
+
+.modal-card-custom h2 {
+    margin-top: 0;
+    color: #333333;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.modal-card-custom p {
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.campo-editar {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.campo-editar label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555555;
+    margin-bottom: 5px;
+}
+
+.campo-editar input, 
+.campo-editar textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #cccccc;
+    border-radius: 12px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+}
+
+.campo-editar input:focus, 
+.campo-editar textarea:focus {
+    border-color: #4CAF50;
+}
+
+.campo-editar textarea {
+    resize: vertical;
+    min-height: 70px;
+}
+
+.botoes-modal-custom {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Botão Cinza (Cancelar) */
+.btn-modal-cancelar {
+    background-color: #888888;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-modal-cancelar:hover {
+    background-color: #666666;
+    transform: scale(1.05);
+}
+
+.btn-modal-cancelar:active {
+    background-color: #444444;
+    transform: scale(1.08);
+}
+
+/* Botão Verde (Salvar / OK) */
+.btn-modal-ok {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-modal-ok:hover {
+    background-color: #388E3C;
+    transform: scale(1.05);
+}
+
+.btn-modal-ok:active {
+    background-color: #2E7D32;
+    transform: scale(1.08);
+}
+
+@keyframes popup {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }

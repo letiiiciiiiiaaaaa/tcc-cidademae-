@@ -43,26 +43,69 @@
             </div>
 
             <div class="perfil-stats">
-                <div class="stat-item">
+                <!-- BLOCO DO QUIZ CLICÁVEL -->
+                <a href="quiz.html" class="stat-item stat-item-clicavel" title="Ir para o Quiz Caiçara">
                     <img src="imagens/quiz-balao.png" alt="Ícone Quiz" class="stat-icon-img">
                     <div class="stat-info">
                         <span class="stat-label">Quiz</span>
                         <span class="stat-valor" id="valor-quiz">VOCÊ É 0% CAIÇARA</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="stat-item">
+                <!-- BLOCO DO JOGO DA MEMÓRIA CLICÁVEL -->
+                <a href="jogo-memoria.html" class="stat-item stat-item-clicavel" title="Ir para o Jogo da Memória">
                     <img src="imagens/jogo-controle.png" alt="Ícone Jogo" class="stat-icon-img">
                     <div class="stat-info">
-                        <span class="stat-label">Pontuação</span>
+                        <span class="stat-label">Jogo da Memória</span>
                         <span class="stat-valor" id="valor-pontuacao">0</span>
                     </div>
-                </div>
+                </a>
             </div>
 
         </section>
 
     </main>
+
+    <!-- MODAL DE EDITAR PERFIL -->
+    <div id="modal-editar" class="modal-overlay" style="display: none;">
+        <div class="modal-card-custom">
+            <h2>Editar Perfil</h2>
+            <p>Atualize as informações do seu perfil abaixo:</p>
+            
+            <div class="campo-editar">
+                <label for="edit-nome">Nome de usuário:</label>
+                <input type="text" id="edit-nome" placeholder="Seu nome">
+            </div>
+
+            <div class="campo-editar">
+                <label for="edit-email">E-mail:</label>
+                <input type="email" id="edit-email" placeholder="seuemail@exemplo.com">
+            </div>
+
+            <div class="campo-editar">
+                <label for="edit-bio">Biografia:</label>
+                <textarea id="edit-bio" placeholder="Escreva um pouco sobre você..."></textarea>
+            </div>
+
+            <div class="botoes-modal-custom">
+                <button type="button" id="btn-cancelar-editar" class="btn-modal-cancelar">Cancelar</button>
+                <button type="button" id="btn-salvar-editar" class="btn-modal-ok">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE CONFIRMAR SAÍDA DA CONTA -->
+    <div id="modal-logout" class="modal-overlay" style="display: none;">
+        <div class="modal-card-custom">
+            <h2>Sair da Conta</h2>
+            <p>Deseja realmente encerrar sua sessão?</p>
+            
+            <div class="botoes-modal-custom">
+                <button type="button" id="btn-cancelar-logout" class="btn-modal-cancelar">Cancelar</button>
+                <button type="button" id="btn-confirmar-logout" class="btn-modal-ok" style="background-color: #ff3131;">Sair</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
@@ -70,10 +113,10 @@
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         document.addEventListener('DOMContentLoaded', async () => {
-            const usuarioId = localStorage.getItem('usuario_id');
-            const nomeLocal = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
-            const emailLocal = localStorage.getItem('usuario_email');
-            const bioLocal = localStorage.getItem('usuario_bio');
+            let usuarioId = localStorage.getItem('usuario_id');
+            let nomeLocal = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
+            let emailLocal = localStorage.getItem('usuario_email');
+            let bioLocal = localStorage.getItem('usuario_bio');
 
             const elNome = document.getElementById('nome-perfil');
             const elEmail = document.getElementById('email-perfil');
@@ -81,14 +124,15 @@
             const elPontuacao = document.getElementById('valor-pontuacao');
             const elQuiz = document.getElementById('valor-quiz');
 
-            // Exibe os dados do localStorage primeiro (carregamento instantâneo)
-            elNome.textContent = nomeLocal || 'Usuário';
-            elEmail.textContent = emailLocal || 'nome@gmail.com';
-            elPontuacao.textContent = localStorage.getItem('maiorPontuacao') || '0';
-            elQuiz.textContent = `VOCÊ É ${localStorage.getItem('maiorPorcentagemQuiz') || '0'}% CAIÇARA`;
+            const modalEditar = document.getElementById('modal-editar');
+            const modalLogout = document.getElementById('modal-logout');
+            const editNome = document.getElementById('edit-nome');
+            const editEmail = document.getElementById('edit-email');
+            const editBio = document.getElementById('edit-bio');
+            const btnSalvar = document.getElementById('btn-salvar-editar');
 
             function configurarBio(textoBio) {
-                if (textoBio && textoBio.trim() !== '') {
+                if (textoBio && textoBio.trim() !== '' && textoBio !== 'null' && textoBio !== 'undefined') {
                     elBio.textContent = textoBio;
                     elBio.classList.remove('bio-vazia');
                 } else {
@@ -96,77 +140,152 @@
                     elBio.classList.add('bio-vazia');
                 }
             }
+
+            // Exibição inicial instantânea
+            elNome.textContent = nomeLocal || 'Usuário';
+            elEmail.textContent = emailLocal || 'Insira seu e-mail editando o perfil';
             configurarBio(bioLocal);
+            elPontuacao.textContent = localStorage.getItem('maiorPontuacao') || '0';
+            elQuiz.textContent = `VOCÊ É ${localStorage.getItem('maiorPorcentagemQuiz') || '0'}% CAIÇARA`;
 
-            // Busca no banco de dados
-            if (usuarioId && usuarioId !== "undefined") {
-                const { data, error } = await supabaseClient
-                    .from('usuarios')
-                    .select('nome, email, bio, quiz_pontos, jogo_pontos')
-                    .eq('idusuarios', usuarioId)
-                    .maybeSingle();
+            // Busca os dados no Supabase para sincronizar
+            async function carregarDadosBanco() {
+                if (!nomeLocal && (!usuarioId || usuarioId === "undefined")) return;
 
-                if (data && !error) {
-                    elNome.textContent = data.nome;
-                    elEmail.textContent = data.email;
-                    configurarBio(data.bio);
+                try {
+                    let query = supabaseClient.from('usuarios').select('*');
 
-                    // Puxa a maior pontuação (a que estiver salva no banco)
-                    if (data.jogo_pontos) {
-                        elPontuacao.textContent = data.jogo_pontos;
-                        localStorage.setItem('maiorPontuacao', data.jogo_pontos); // Sincroniza
-                    }
-                    if (data.quiz_pontos) {
-                        elQuiz.textContent = `VOCÊ É ${data.quiz_pontos}% CAIÇARA`;
-                        localStorage.setItem('maiorPorcentagemQuiz', data.quiz_pontos); // Sincroniza
+                    if (usuarioId && usuarioId !== "undefined") {
+                        query = query.eq('idusuarios', usuarioId);
+                    } else if (nomeLocal) {
+                        query = query.eq('nome', nomeLocal);
                     }
 
-                    localStorage.setItem('usuario_nome', data.nome);
-                    localStorage.setItem('usuario_email', data.email);
-                    if (data.bio) localStorage.setItem('usuario_bio', data.bio);
-                } else if (error) {
-                    console.error("Erro ao buscar dados:", error);
+                    const { data, error } = await query.maybeSingle();
+
+                    if (data && !error) {
+                        if (data.idusuarios) {
+                            usuarioId = data.idusuarios;
+                            localStorage.setItem('usuario_id', data.idusuarios);
+                        }
+
+                        if (data.nome) {
+                            elNome.textContent = data.nome;
+                            localStorage.setItem('usuario_nome', data.nome);
+                            localStorage.setItem('usuarioLogado', data.nome);
+                            nomeLocal = data.nome;
+                        }
+                        if (data.email) {
+                            elEmail.textContent = data.email;
+                            localStorage.setItem('usuario_email', data.email);
+                        }
+                        if (data.bio !== undefined && data.bio !== null) {
+                            configurarBio(data.bio);
+                            localStorage.setItem('usuario_bio', data.bio);
+                        }
+                        if (data.jogo_pontos !== undefined && data.jogo_pontos !== null) {
+                            elPontuacao.textContent = data.jogo_pontos;
+                            localStorage.setItem('maiorPontuacao', data.jogo_pontos);
+                        }
+                        if (data.quiz_pontos !== undefined && data.quiz_pontos !== null) {
+                            elQuiz.textContent = `VOCÊ É ${data.quiz_pontos}% CAIÇARA`;
+                            localStorage.setItem('maiorPorcentagemQuiz', data.quiz_pontos);
+                        }
+                    }
+                } catch (err) {
+                    console.error("Erro ao carregar dados do Supabase:", err);
                 }
             }
 
-            // Editar Bio
-            document.getElementById('btn-editar-perfil').addEventListener('click', async () => {
-                const bioAtual = elBio.classList.contains('bio-vazia') ? '' : elBio.textContent;
-                const novaBio = prompt("Digite sua nova biografia:", bioAtual);
+            await carregarDadosBanco();
 
-                if (novaBio === null) return;
+            // Abrir Modal de Edição
+            document.getElementById('btn-editar-perfil').addEventListener('click', () => {
+                editNome.value = elNome.textContent !== 'Usuário' ? elNome.textContent : '';
+                editEmail.value = elEmail.textContent.includes('@') ? elEmail.textContent : '';
+                editBio.value = elBio.classList.contains('bio-vazia') ? '' : elBio.textContent;
 
+                modalEditar.style.display = 'flex';
+            });
+
+            // Cancelar Edição
+            document.getElementById('btn-cancelar-editar').addEventListener('click', () => {
+                modalEditar.style.display = 'none';
+            });
+
+            // Salvar Alterações
+            btnSalvar.addEventListener('click', async () => {
+                const novoNome = editNome.value.trim();
+                const novoEmail = editEmail.value.trim();
+                const novaBio = editBio.value.trim();
+
+                if (!novoNome) {
+                    alert("O nome de usuário não pode ficar vazio!");
+                    return;
+                }
+
+                btnSalvar.textContent = "Salvando...";
+                btnSalvar.disabled = true;
+
+                const nomeAntigo = nomeLocal;
+
+                elNome.textContent = novoNome;
+                if (novoEmail) elEmail.textContent = novoEmail;
                 configurarBio(novaBio);
+
+                localStorage.setItem('usuario_nome', novoNome);
+                localStorage.setItem('usuarioLogado', novoNome);
+                if (novoEmail) localStorage.setItem('usuario_email', novoEmail);
                 localStorage.setItem('usuario_bio', novaBio);
+                nomeLocal = novoNome;
 
-                if (usuarioId && usuarioId !== "undefined") {
-                    const { error } = await supabaseClient
-                        .from('usuarios')
-                        .update({ bio: novaBio })
-                        .eq('idusuarios', usuarioId);
+                try {
+                    const dadosAtualizar = {
+                        nome: novoNome,
+                        bio: novaBio
+                    };
+                    if (novoEmail) dadosAtualizar.email = novoEmail;
 
-                    if (error) {
-                        alert("Erro ao salvar no banco: " + error.message);
-                    } else {
-                        alert("Biografia salva com sucesso!");
+                    let res = null;
+
+                    if (usuarioId && usuarioId !== "undefined") {
+                        res = await supabaseClient
+                            .from('usuarios')
+                            .update(dadosAtualizar)
+                            .eq('idusuarios', usuarioId);
+                    } else if (nomeAntigo) {
+                        res = await supabaseClient
+                            .from('usuarios')
+                            .update(dadosAtualizar)
+                            .eq('nome', nomeAntigo);
                     }
-                } else {
-                    alert("Ops! Você precisa fazer login novamente para salvar no banco.");
+
+                    if (res && res.error) {
+                        console.error("Erro ao atualizar Supabase:", res.error);
+                    }
+                } catch (err) {
+                    console.error("Erro na requisição:", err);
+                } finally {
+                    btnSalvar.textContent = "Salvar";
+                    btnSalvar.disabled = false;
+                    modalEditar.style.display = 'none';
                 }
             });
 
-            // Sair
+            // Modal Logout
             document.getElementById('btn-logout-perfil').addEventListener('click', () => {
-                if (confirm('Deseja realmente sair da conta?')) {
-                    localStorage.removeItem('usuario_nome');
-                    localStorage.removeItem('usuarioLogado');
-                    localStorage.removeItem('usuario_id');
-                    localStorage.removeItem('usuario_email');
-                    window.location.href = 'index.html';
-                }
+                modalLogout.style.display = 'flex';
+            });
+
+            document.getElementById('btn-cancelar-logout').addEventListener('click', () => {
+                modalLogout.style.display = 'none';
+            });
+
+            document.getElementById('btn-confirmar-logout').addEventListener('click', () => {
+                localStorage.clear();
+                window.location.href = 'index.html';
             });
         });
     </script>
 </body>
-
 </html>
