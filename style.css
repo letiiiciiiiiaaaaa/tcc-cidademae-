@@ -745,7 +745,6 @@ input:focus-visible {
 
 .popup a {
     display: inline-block;
-    background: var(--marinho);
     color: #fff;
     padding: 6px 12px;
     text-decoration: none;
