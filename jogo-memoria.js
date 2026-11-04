@@ -220,10 +220,25 @@ const resetGameState = () => {
 
 // --- RECORDE E EFEITOS ESPECIAIS ---
 
-const salvarMaiorPontuacao = (pontosAtuais) => {
+const salvarMaiorPontuacao = async (pontosAtuais) => {
     const maiorPontuacaoSalva = parseInt(localStorage.getItem('maiorPontuacao')) || 0;
+
+    // Só salva se a pontuação atual for maior que a anterior
     if (pontosAtuais > maiorPontuacaoSalva) {
         localStorage.setItem('maiorPontuacao', pontosAtuais);
+
+        // Salva no banco se tiver logado
+        const usuarioId = localStorage.getItem('usuario_id');
+        if (usuarioId && usuarioId !== "undefined" && typeof supabase !== 'undefined') {
+            const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
+            const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
+            const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+            await supabaseClient
+                .from('usuarios')
+                .update({ jogo_pontos: pontosAtuais })
+                .eq('idusuarios', usuarioId);
+        }
     }
 };
 

@@ -103,15 +103,12 @@ const opcoesContainer = document.getElementById('opcoes-container');
 // Renderiza a pergunta atual na tela
 function renderizarPergunta() {
     const dados = listaPerguntas[perguntaAtual];
-    
-    // Atualiza o topo e o título
+
     contadorElemento.innerText = `Pergunta ${perguntaAtual + 1} de ${listaPerguntas.length}`;
     textoPerguntaElemento.innerText = dados.titulo;
-    
-    // Limpa as opções anteriores
+
     opcoesContainer.innerHTML = '';
 
-    // Cria os inputs de rádio dinamicamente
     dados.opcoes.forEach((opcao, index) => {
         const label = document.createElement('label');
         label.classList.add('opcao-label');
@@ -132,9 +129,7 @@ form.addEventListener('submit', (e) => {
     const opcaoSelecionada = form.querySelector('input[name="resposta"]:checked');
     if (!opcaoSelecionada) return;
 
-    // Soma a pontuação
     pontosAcumulados += parseInt(opcaoSelecionada.value);
-
     perguntaAtual++;
 
     if (perguntaAtual < listaPerguntas.length) {
@@ -144,11 +139,11 @@ form.addEventListener('submit', (e) => {
     }
 });
 
-// Exibe o resultado final ao responder as 10 perguntas
-function exibirResultado() {
+// Exibe o resultado final e salva no banco de dados
+async function exibirResultado() {
     const porcentagem = Math.round(((pontosAcumulados - 10) / 30) * 100);
 
-    // Oculta contador e perguntas
+    // Esconde a interface do quiz
     document.querySelector('.topo-card').style.display = 'none';
     textoPerguntaElemento.style.display = 'none';
     opcoesContainer.style.display = 'none';
@@ -175,6 +170,30 @@ function exibirResultado() {
     }
 
     resultadoContainer.style.display = 'block';
+
+    // ==========================================
+    // SALVANDO NO SUPABASE
+    // ==========================================
+    const usuarioId = localStorage.getItem('usuario_id');
+    const maiorPorcentagemSalva = parseInt(localStorage.getItem('maiorPorcentagemQuiz')) || 0;
+
+    // Se a nota atual for maior que a antiga, salva no navegador e no banco
+    if (porcentagem > maiorPorcentagemSalva) {
+        localStorage.setItem('maiorPorcentagemQuiz', porcentagem);
+
+        if (usuarioId && usuarioId !== "undefined" && typeof supabase !== 'undefined') {
+            // Configurando o Supabase aqui
+            const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
+            const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
+            const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+            // Atualiza a coluna quiz_pontos na tabela usuarios
+            await supabaseClient
+                .from('usuarios')
+                .update({ quiz_pontos: porcentagem })
+                .eq('idusuarios', usuarioId);
+        }
+    }
 }
 
 // Inicializa a primeira pergunta ao carregar

@@ -39,7 +39,7 @@
 
             <div class="botoes-perfil">
                 <button class="btn-azul" id="btn-editar-perfil">Editar perfil</button>
-                <button class="btn-cinza" id="btn-logout-perfil">Sair / Gerenciar conta</button>
+                <button class="btn-cinza" id="btn-logout-perfil">Sair da conta</button>
             </div>
 
             <div class="perfil-stats">
@@ -81,7 +81,7 @@
             const elPontuacao = document.getElementById('valor-pontuacao');
             const elQuiz = document.getElementById('valor-quiz');
 
-            // Exibe os dados que estão no localStorage enquanto o banco não responde
+            // Exibe os dados do localStorage primeiro (carregamento instantâneo)
             elNome.textContent = nomeLocal || 'Usuário';
             elEmail.textContent = emailLocal || 'nome@gmail.com';
             elPontuacao.textContent = localStorage.getItem('maiorPontuacao') || '0';
@@ -98,8 +98,8 @@
             }
             configurarBio(bioLocal);
 
-            // Busca os dados no banco de dados usando a coluna 'idusuarios'
-            if (usuarioId) {
+            // Busca no banco de dados
+            if (usuarioId && usuarioId !== "undefined") {
                 const { data, error } = await supabaseClient
                     .from('usuarios')
                     .select('nome, email, bio, quiz_pontos, jogo_pontos')
@@ -111,11 +111,16 @@
                     elEmail.textContent = data.email;
                     configurarBio(data.bio);
 
-                    // Atualiza os pontos na tela se tiver salvo no banco
-                    if (data.jogo_pontos) elPontuacao.textContent = data.jogo_pontos;
-                    if (data.quiz_pontos) elQuiz.textContent = `VOCÊ É ${data.quiz_pontos}% CAIÇARA`;
+                    // Puxa a maior pontuação (a que estiver salva no banco)
+                    if (data.jogo_pontos) {
+                        elPontuacao.textContent = data.jogo_pontos;
+                        localStorage.setItem('maiorPontuacao', data.jogo_pontos); // Sincroniza
+                    }
+                    if (data.quiz_pontos) {
+                        elQuiz.textContent = `VOCÊ É ${data.quiz_pontos}% CAIÇARA`;
+                        localStorage.setItem('maiorPorcentagemQuiz', data.quiz_pontos); // Sincroniza
+                    }
 
-                    // Guarda no localStorage para backup
                     localStorage.setItem('usuario_nome', data.nome);
                     localStorage.setItem('usuario_email', data.email);
                     if (data.bio) localStorage.setItem('usuario_bio', data.bio);
@@ -134,17 +139,19 @@
                 configurarBio(novaBio);
                 localStorage.setItem('usuario_bio', novaBio);
 
-                if (usuarioId) {
+                if (usuarioId && usuarioId !== "undefined") {
                     const { error } = await supabaseClient
                         .from('usuarios')
                         .update({ bio: novaBio })
                         .eq('idusuarios', usuarioId);
 
                     if (error) {
-                        alert("Erro ao salvar no banco de dados: " + error.message);
+                        alert("Erro ao salvar no banco: " + error.message);
                     } else {
                         alert("Biografia salva com sucesso!");
                     }
+                } else {
+                    alert("Ops! Você precisa fazer login novamente para salvar no banco.");
                 }
             });
 

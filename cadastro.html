@@ -57,9 +57,12 @@
                         nome: nome,
                         email: email,
                         senha: senha,
-                        data_nasc: data_nasc
+                        data_nasc: data_nasc,
+                        jogo_pontos: 0,
+                        quiz_pontos: 0
                     }
-                ]);
+                ])
+                .select(); // O .select() avisa o Supabase para devolver o ID recém-criado
 
             if (error) {
                 console.error("Erro no Supabase:", error);
@@ -67,8 +70,13 @@
                 return;
             }
 
-            localStorage.setItem('usuario_nome', nome);
-            localStorage.setItem('usuarioLogado', nome);
+            // O Supabase retorna uma lista (array). Então pegamos o item 0.
+            if (data && data.length > 0) {
+                localStorage.setItem('usuario_id', data[0].idusuarios);
+                localStorage.setItem('usuario_nome', data[0].nome);
+                localStorage.setItem('usuarioLogado', data[0].nome);
+                localStorage.setItem('usuario_email', data[0].email);
+            }
 
             alert('Conta criada com sucesso!');
 
