@@ -1,0 +1,385 @@
+/* =========================================
+   1. TRAVAR A TELA (SEM SCROLL)
+   ========================================= */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    /* Ocupa a tela inteira */
+    overflow: hidden;
+    /* Desativa a barra de rolagem */
+}
+
+/* =========================================
+   2. CABEÇALHO
+   ========================================= */
+.cabecalho-verde {
+    background-color: #72d276;
+    padding: 15px 20px;
+    width: 100%;
+    height: 60px;
+    /* Altura fixa para controle */
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+}
+
+.cabecalho-verde .voltar {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* =========================================
+   3. LAYOUT DA PÁGINA
+   ========================================= */
+.secao-perfil {
+    position: relative;
+    height: calc(100vh - 60px);
+    /* Altura total menos o cabeçalho */
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.perfil-conteudo {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 7vh;
+    /* Usa porcentagem da tela para não estourar em telas menores */
+}
+
+/* =========================================
+   4. FOTO DE PERFIL E CARANGUEJO
+   ========================================= */
+.foto-perfil-wrapper {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.foto-perfil-grande {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.caranguejo-deco {
+    position: absolute;
+    top: -10px;
+    right: -25px;
+    width: 50px;
+    z-index: 3;
+}
+
+/* =========================================
+   5. TEXTOS (Nome, Email, Bio)
+   ========================================= */
+.perfil-nome {
+    font-family: 'Questrial', sans-serif;
+    font-size: 26px;
+    color: #333;
+    margin: 0 0 2px 0;
+}
+
+.perfil-email {
+    font-family: 'Questrial', sans-serif;
+    font-size: 16px;
+    color: #a0a0a0;
+    margin: 0 0 10px 0;
+}
+
+.perfil-bio {
+    font-family: 'Questrial', sans-serif;
+    font-size: 18px;
+    color: #222;
+    margin-bottom: 25px;
+    max-width: 600px;
+}
+
+.perfil-bio.bio-vazia {
+    color: #b0b0b0;
+    font-style: italic;
+}
+
+/* =========================================
+   6. BOTÕES
+   ========================================= */
+.botoes-perfil {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.btn-azul,
+.btn-cinza {
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-family: 'Questrial', sans-serif;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+}
+
+.btn-azul:hover,
+.btn-cinza:hover {
+    transform: translateY(-2px);
+}
+
+.btn-azul {
+    background-color: #5da9ea;
+    color: #ffffff;
+}
+
+.btn-cinza {
+    background-color: #e8e8e8;
+    color: #888;
+}
+
+.perfil-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 300px;
+    margin-left: -80px;
+}
+
+.stat-icon-img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stat-label {
+    font-family: 'Questrial', sans-serif;
+    font-size: 15px;
+    color: #333;
+}
+
+.stat-valor {
+    font-family: 'Questrial', sans-serif;
+    font-size: 16px;
+    color: #d9b400;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.deco {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.notas-deco {
+    top: 5%;
+    right: 5%;
+    width: 500px;
+}
+
+.onda-deco {
+    bottom: -20px;
+    left: 0;
+    width: 600px;
+}
+
+@media (max-width: 800px) {
+
+    html,
+    body {
+        overflow: auto;
+        height: auto;
+    }
+
+    .secao-perfil {
+        height: auto;
+        min-height: calc(100vh - 60px);
+        padding-bottom: 40px;
+    }
+
+    .perfil-conteudo {
+        padding-top: 40px;
+    }
+
+    .notas-deco {
+        width: 300px;
+        left: 100px;
+    }
+
+    .onda-deco {
+        width: 400px;
+    }
+
+    .perfil-stats {
+        margin-left: 0;
+        align-items: center;
+    }
+
+    .botoes-perfil {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 20px;
+    }
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-card-custom {
+    background: #ffffff;
+    padding: 30px 35px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 440px;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    animation: popup 0.3s ease;
+}
+
+.modal-card-custom h2 {
+    margin-top: 0;
+    color: #333333;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.modal-card-custom p {
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.campo-editar {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.campo-editar label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555555;
+    margin-bottom: 5px;
+}
+
+.campo-editar input, 
+.campo-editar textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #cccccc;
+    border-radius: 12px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+}
+
+.campo-editar input:focus, 
+.campo-editar textarea:focus {
+    border-color: #4CAF50;
+}
+
+.campo-editar textarea {
+    resize: vertical;
+    min-height: 70px;
+}
+
+.botoes-modal-custom {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Botão Cinza (Cancelar) */
+.btn-modal-cancelar {
+    background-color: #888888;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-modal-cancelar:hover {
+    background-color: #666666;
+    transform: scale(1.05);
+}
+
+.btn-modal-cancelar:active {
+    background-color: #444444;
+    transform: scale(1.08);
+}
+
+/* Botão Verde (Salvar / OK) */
+.btn-modal-ok {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-modal-ok:hover {
+    background-color: #388E3C;
+    transform: scale(1.05);
+}
+
+.btn-modal-ok:active {
+    background-color: #2E7D32;
+    transform: scale(1.08);
+}
+
+@keyframes popup {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
