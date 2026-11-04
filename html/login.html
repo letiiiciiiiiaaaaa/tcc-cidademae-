@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Login | Cidade Mãe </title>
+  <link rel="stylesheet" href="../css/login.css">
+  <script src="../js/script.js" defer></script>
+</head>
+
+<body>
+  <a href="" onclick="history.back(); return false;">
+    <button class="voltar">🡠</button>
+  </a>
+
+  <img src="../imagens/logo.png" class="logo" alt="Logo Cidade Mãe" width="200">
+  <h1>Complete seu login</h1>
+
+  <form id="formLogin" class="tela-login">
+    <input type="text" id="loginNome" placeholder="Nome de usuário" required>
+    <br><br>
+    <input type="password" id="loginSenha" placeholder="Senha" required>
+    <br><br>
+    <button type="submit" class="entrar">Entrar</button>
+    <h4>Não possui uma conta?<br><a href="cadastro.html" class="cadastro">Cadastre-se</a>.</h4>
+  </form>
+
+  <!-- MODAL CUSTOMIZADO DE LOGIN NO CENTRO DA TELA -->
+  <div id="modal-sucesso-login" class="modal-overlay" style="display: none;">
+    <div class="modal-card">
+      <h2 id="modal-titulo">Bem-vindo(a) de volta!</h2>
+      <p id="modal-mensagem">Login realizado com sucesso.</p>
+      <button id="btn-ok-login" class="btn-modal-ok">OK</button>
+    </div>
+  </div>
+
+  <script>
+    const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
+
+    let supabaseClient = null;
+    if (typeof supabase !== 'undefined') {
+      supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
+
+    document.getElementById('formLogin').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nome = document.getElementById('loginNome').value.trim();
+      const senha = document.getElementById('loginSenha').value;
+
+      if (!nome) return;
+
+      // 1. Tenta buscar dados do Supabase
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient
+            .from('usuarios')
+            .select('*')
+            .eq('nome', nome)
+            .maybeSingle();
+
+          if (data) {
+            localStorage.setItem('usuario_id', data.idusuarios);
+            localStorage.setItem('usuario_email', data.email);
+            if (data.bio) localStorage.setItem('usuario_bio', data.bio);
+          }
+        } catch (err) {
+          console.log("Consulta de banco em contingência:", err);
+        }
+      }
+
+      // 2. Garante o salvamento local da sessão do usuário
+      localStorage.setItem('usuario_nome', nome);
+      localStorage.setItem('usuarioLogado', nome);
+
+      // 3. Atualiza os textos do modal e o exibe na tela
+      document.getElementById('modal-titulo').textContent = `Bem-vindo(a) de volta, ${nome}!`;
+      document.getElementById('modal-mensagem').textContent = `Que bom ter você de volta no Cidade Mãe.`;
+      document.getElementById('modal-sucesso-login').style.display = 'flex';
+    });
+
+    // 4. Redireciona o usuário para a página anterior com o perfil ativo ao apertar OK
+    document.getElementById('btn-ok-login').addEventListener('click', () => {
+      const voltarPara = sessionStorage.getItem('voltarPara') || (document.referrer ? document.referrer : 'index.html');
+      sessionStorage.removeItem('voltarPara');
+      window.location.href = voltarPara;
+    });
+  </script>
+</body>
+
+</html>

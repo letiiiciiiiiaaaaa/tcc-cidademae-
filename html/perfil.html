@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil | Cidade Mãe</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/perfil.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/script.js" defer></script>
+</head>
+
+<body>
+
+    <header class="cabecalho-verde">
+        <a href="" onclick="history.back(); return false;" class="voltar">
+            <span style="font-size: 24px;">←</span> Voltar
+        </a>
+    </header>
+
+    <main class="secao-perfil">
+
+        <img src="../imagens/onda-perfil.png" alt="Onda" class="deco onda-deco">
+        <img src="../imagens/notas-perfil.png" alt="Notas musicais" class="deco notas-deco">
+
+        <section class="perfil-conteudo">
+
+            <div class="foto-perfil-wrapper">
+                <img src="../imagens/usuario.png" alt="Foto de perfil" class="foto-perfil-grande">
+                <img src="../imagens/carangua-perfil.png" alt="Caranguejo" class="caranguejo-deco">
+            </div>
+
+            <h2 class="perfil-nome" id="nome-perfil">Carregando...</h2>
+            <p class="perfil-email" id="email-perfil">Carregando...</p>
+            <p class="perfil-bio" id="bio-perfil">Não há biografia</p>
+
+            <div class="botoes-perfil">
+                <button class="btn-azul" id="btn-editar-perfil">Editar perfil</button>
+                <button class="btn-cinza" id="btn-logout-perfil">Sair da conta</button>
+            </div>
+
+            <div class="perfil-stats">
+                <div class="stat-item">
+                    <img src="../imagens/quiz-balao.png" alt="Ícone Quiz" class="stat-icon-img">
+                    <div class="stat-info">
+                        <span class="stat-label">Quiz</span>
+                        <span class="stat-valor" id="valor-quiz">VOCÊ É 0% CAIÇARA</span>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <img src="../imagens/jogo-controle.png" alt="Ícone Jogo" class="stat-icon-img">
+                    <div class="stat-info">
+                        <span class="stat-label">Pontuação</span>
+                        <span class="stat-valor" id="valor-pontuacao">0</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- 1. MODAL DE EDIÇÃO DE PERFIL -->
+    <div id="modal-editar-perfil" class="modal-overlay" style="display: none;">
+        <div class="modal-card-custom">
+            <h2>Editar Perfil</h2>
+            
+            <div class="campo-editar">
+                <label for="edit-nome">Nome de usuário</label>
+                <input type="text" id="edit-nome" placeholder="Digite seu nome">
+            </div>
+
+            <div class="campo-editar">
+                <label for="edit-email">E-mail</label>
+                <input type="email" id="edit-email" placeholder="Digite seu e-mail">
+            </div>
+
+            <div class="campo-editar">
+                <label for="edit-senha">Nova Senha (opcional)</label>
+                <input type="password" id="edit-senha" placeholder="Digite uma nova senha">
+            </div>
+
+            <div class="campo-editar">
+                <label for="edit-bio">Biografia</label>
+                <textarea id="edit-bio" placeholder="Fale um pouco sobre você..."></textarea>
+            </div>
+
+            <div class="botoes-modal-custom">
+                <button id="btn-cancelar-edicao" class="btn-modal-cancelar">Cancelar</button>
+                <button id="btn-salvar-edicao" class="btn-modal-ok">Salvar alterações</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. MODAL CUSTOMIZADO DE SAIR DA CONTA -->
+    <div id="modal-sair-conta" class="modal-overlay" style="display: none;">
+        <div class="modal-card-custom">
+            <h2>Sair da conta</h2>
+            <p>Deseja realmente sair da sua conta?</p>
+
+            <div class="botoes-modal-custom">
+                <button id="btn-cancelar-sair" class="btn-modal-cancelar">Cancelar</button>
+                <button id="btn-confirmar-sair" class="btn-modal-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const usuarioId = localStorage.getItem('usuario_id');
+            const nomeLocal = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
+            const emailLocal = localStorage.getItem('usuario_email');
+            const bioLocal = localStorage.getItem('usuario_bio');
+
+            const elNome = document.getElementById('nome-perfil');
+            const elEmail = document.getElementById('email-perfil');
+            const elBio = document.getElementById('bio-perfil');
+            const elPontuacao = document.getElementById('valor-pontuacao');
+            const elQuiz = document.getElementById('valor-quiz');
+
+            // Modal Editar
+            const modalEditar = document.getElementById('modal-editar-perfil');
+            const btnAbrirEditar = document.getElementById('btn-editar-perfil');
+            const btnCancelarEditar = document.getElementById('btn-cancelar-edicao');
+            const btnSalvarEditar = document.getElementById('btn-salvar-edicao');
+
+            const inputNome = document.getElementById('edit-nome');
+            const inputEmail = document.getElementById('edit-email');
+            const inputSenha = document.getElementById('edit-senha');
+            const inputBio = document.getElementById('edit-bio');
+
+            // Modal Sair
+            const modalSair = document.getElementById('modal-sair-conta');
+            const btnAbrirSair = document.getElementById('btn-logout-perfil');
+            const btnCancelarSair = document.getElementById('btn-cancelar-sair');
+            const btnConfirmarSair = document.getElementById('btn-confirmar-sair');
+
+            // Exibição inicial
+            elNome.textContent = nomeLocal || 'Usuário';
+            elEmail.textContent = emailLocal || 'nome@gmail.com';
+            elPontuacao.textContent = localStorage.getItem('maiorPontuacao') || '0';
+            elQuiz.textContent = `VOCÊ É ${localStorage.getItem('maiorPorcentagemQuiz') || '0'}% CAIÇARA`;
+
+            function configurarBio(textoBio) {
+                if (textoBio && textoBio.trim() !== '') {
+                    elBio.textContent = textoBio;
+                    elBio.classList.remove('bio-vazia');
+                } else {
+                    elBio.textContent = "Não há biografia";
+                    elBio.classList.add('bio-vazia');
+                }
+            }
+            configurarBio(bioLocal);
+
+            // Carrega dados do Supabase
+            if (usuarioId && usuarioId !== "undefined") {
+                const { data, error } = await supabaseClient
+                    .from('usuarios')
+                    .select('nome, email, bio, quiz_pontos, jogo_pontos')
+                    .eq('idusuarios', usuarioId)
+                    .maybeSingle();
+
+                if (data && !error) {
+                    elNome.textContent = data.nome;
+                    elEmail.textContent = data.email;
+                    configurarBio(data.bio);
+
+                    if (data.jogo_pontos) {
+                        elPontuacao.textContent = data.jogo_pontos;
+                        localStorage.setItem('maiorPontuacao', data.jogo_pontos);
+                    }
+                    if (data.quiz_pontos) {
+                        elQuiz.textContent = `VOCÊ É ${data.quiz_pontos}% CAIÇARA`;
+                        localStorage.setItem('maiorPorcentagemQuiz', data.quiz_pontos);
+                    }
+
+                    localStorage.setItem('usuario_nome', data.nome);
+                    localStorage.setItem('usuario_email', data.email);
+                    if (data.bio) localStorage.setItem('usuario_bio', data.bio);
+                }
+            }
+
+            // LÓGICA DO MODAL EDITAR PERFIL
+            btnAbrirEditar.addEventListener('click', () => {
+                inputNome.value = elNome.textContent !== 'Carregando...' ? elNome.textContent : '';
+                inputEmail.value = elEmail.textContent !== 'Carregando...' ? elEmail.textContent : '';
+                inputSenha.value = '';
+                inputBio.value = elBio.classList.contains('bio-vazia') ? '' : elBio.textContent;
+
+                modalEditar.style.display = 'flex';
+            });
+
+            btnCancelarEditar.addEventListener('click', () => {
+                modalEditar.style.display = 'none';
+            });
+
+            btnSalvarEditar.addEventListener('click', async () => {
+                const novoNome = inputNome.value.trim();
+                const novoEmail = inputEmail.value.trim();
+                const novaSenha = inputSenha.value.trim();
+                const novaBio = inputBio.value.trim();
+
+                if (!novoNome || !novoEmail) {
+                    alert('Nome e E-mail são obrigatórios!');
+                    return;
+                }
+
+                localStorage.setItem('usuario_nome', novoNome);
+                localStorage.setItem('usuarioLogado', novoNome);
+                localStorage.setItem('usuario_email', novoEmail);
+                localStorage.setItem('usuario_bio', novaBio);
+
+                if (usuarioId && usuarioId !== "undefined") {
+                    const dadosAtualizacao = {
+                        nome: novoNome,
+                        email: novoEmail,
+                        bio: novaBio
+                    };
+
+                    if (novaSenha !== '') {
+                        dadosAtualizacao.senha = novaSenha;
+                    }
+
+                    try {
+                        await supabaseClient
+                            .from('usuarios')
+                            .update(dadosAtualizacao)
+                            .eq('idusuarios', usuarioId);
+                    } catch (err) {
+                        console.log("Aviso ao salvar no banco:", err);
+                    }
+                }
+
+                window.location.reload();
+            });
+
+            // LÓGICA DO MODAL DE SAIR DA CONTA
+            btnAbrirSair.addEventListener('click', () => {
+                modalSair.style.display = 'flex';
+            });
+
+            btnCancelarSair.addEventListener('click', () => {
+                modalSair.style.display = 'none'; // Fecha o modal e continua logado na página
+            });
+
+            btnConfirmarSair.addEventListener('click', () => {
+                // Limpa os dados de sessão do usuário
+                localStorage.removeItem('usuario_nome');
+                localStorage.removeItem('usuarioLogado');
+                localStorage.removeItem('usuario_id');
+                localStorage.removeItem('usuario_email');
+                localStorage.removeItem('usuario_bio');
+
+                // Recarrega a página inicial sem a conta logada
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+
+</html>

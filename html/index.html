@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cidade Mãe - Início</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/script.js" defer></script>
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <div class="abas">
+
+            <div class="bandeiras1">
+                <img src="../imagens/bandeiras-inicio.png" alt="Bandeiras do Brasil, do Paraná e da cidade de Paranaguá">
+            </div>
+
+            <img src="../imagens/paranagua.png" class="paranagua">
+            <a href="sobre-nos.html" class="btn-sobre">sobre nós</a>
+
+            <div class="usuario" id="container-usuario">
+                <a href="cadastro.html" class="btn-usuario" id="btn-user">cadastre-se</a>
+            
+                <a href="perfil.html" style="text-decoration: none;">
+                    <div id="perfil-logado" class="perfil-logado">
+                        <span id="nome-usuario" class="nome-perfil"></span>
+                        <img id="foto-usuario" src="../imagens/usuario.png" alt="Foto de perfil" class="foto-perfil">
+                    </div>
+                </a>
+            </div>
+
+            <div class="search">
+                <label for="searchInput">
+                    <span class="material-symbols-outlined">search</span>
+                </label>
+                <input type="text" id="searchInput">
+            </div>
+        </div>
+
+        <div class="container-inicio">
+            <div class="carrossel">
+                <div class="container-carrossel" id="img">
+                    <img src="../imagens/eu-amo-paranagua.png" alt="Eu amo Paranaguá">
+                    <img src="../imagens/ilha-do-mel.png" alt="Ilha do Mel">
+                    <img src="../imagens/rio-itibere.jpg" alt="Rio Itiberê">
+                </div>
+
+                <div class="sub-titulo">
+                    <h1><img src="../imagens/logo.png"></h1>
+                    <p>Conheça um pouco de tudo <br> que marca a história de <br> Paranaguá</p>
+                </div>
+            </div>
+
+            <nav class="container-botoes">
+                <a href="arte.html" class="btn btn-arte">ARTE</a>
+                <a href="mercado.html" class="btn btn-mercado">MERCADO</a>
+                <a href="gastronomia.html" class="btn btn-gas">GASTRONOMIA</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <section class="calendario-section">
+        <div class="calendario-cabecalho-texto">
+            <h2>Próximos eventos em Paranaguá</h2>
+            <p>Acompanhe os principais festivais, celebrações culturais e eventos da cidade.</p>
+        </div>
+    
+        <div class="calendario-container">
+            <div class="calendario-box">
+                <div class="calendario-header">
+                    <button id="btn-prev">&lt;</button>
+                    <h3 id="mes-ano-titulo">Janeiro</h3>
+                    <button id="btn-next">&gt;</button>
+                </div>
+    
+                <div class="dias-semana">
+                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+                </div>
+    
+                <div class="dias-grid" id="dias-grid">
+                </div>
+            </div>
+    
+            <div class="evento-info-box" id="evento-info">
+                <div class="card-detalhes">
+                    <span class="tag-evento">Evento</span>
+                    <h4 id="evento-titulo">Selecione um dia destacado</h4>
+                    <p id="evento-data-texto" class="evento-data"></p>
+                    <p id="evento-descricao">Clique nos dias marcados em verde no calendário para visualizar os detalhes do evento tradicional da nossa cidade.</p>
+                    <a id="evento-link" href="#" target="_blank" class="btn-saiba-mais" style="display: none;">Saiba mais sobre o evento</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="conteudo-principal">
+        <img src="../imagens/peixes.png" alt="pequenos peixes azuis" id="peixinhos" class="direita">
+        <img src="../imagens/carangua.png" alt="caranguejo" id="caranga" class="esquerda">
+        <img src="../imagens/barquin.png" alt="barco verde" id="barquinho" class="direita">
+
+        <section class="info">
+            <div class="bloco-imagem esquerda">
+                <img src="../imagens/mangue.png" class="conteudo-img">
+
+                <div id="amarela">
+                    <span class="legenda1"> Restaurante Danúbio Azul - Rua Benjamin Constant </span>
+                    <hr class="linha-amarela">
+                </div>
+            </div>
+
+            <div class="texto direita">
+                <p> Paranaguá, com aproximadamente 166.428 mil habitantes, é conhecida como a cidade berço do Paraná, onde a história do estado começou de verdade. Mas não é apenas isso; é o lugar onde pulsa tradições de 378 anos.</p>
+            </div>
+        </section>
+
+        <section class="info reverso">
+            <div class="texto esquerda">
+                <p> Aqui, a hospitalidade caiçara transborda gerações, acolhendo o visitante com o calor de uma terra que mantém sempre o orgulho de suas raízes.</p>
+            </div>
+
+            <div class="bloco-imagem direita">
+                <img src="../imagens/pracinha.png" class="conteudo-img">
+
+                <div id="vermelha">
+                    <span class="legenda"> Casario Histórico - Rua da Praia </span>
+                    <hr class="linha-vermelha">
+                </div>
+            </div>
+        </section>
+
+        <section class="secao-mapa" id="mapa-cultural">
+            <h1 id="mapa-intro"> Mapa Cultural de Paranaguá </h1>
+            <p id="mapa-descricao"> Navegue pelo mapa real e clique nos marcadores azuis para explorar os pontos históricos. </p>
+
+            <div id="mapa"></div>
+        </section>
+
+        <p class="textinho1"> No nosso programa, apresentamos um pouco da cultura do município, convidando você a mergulhar no que compõe a identidade única de Paranaguá.</p>
+
+        <section class="secao-jogo">
+            <div class="box box-jogo">
+                <h2> Que tal um Jogo da Memória? </h2>
+                <img src="../imagens/jogo-da-memória.png" class="jogo-memoria">
+                <a href="jogo-memoria.html" class="btn btn-jogar"> JOGAR </a>
+            </div>
+
+            <div class="box-jogo">
+                <h2> Quão caiçara você é? </h2>
+                <img src="../imagens/quiz.png" class="jogo-quiz">
+                <a href="quiz.html" class="btn btn-jogar"> JOGAR </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <a href="feedback.html"> ✉︎ Feedback </a>
+        <h1><img src="../imagens/logo.png" id="logo"></h1>
+        <p> &copy; Copyright Cidade Mãe - 2026 </p>
+        <img src="../imagens/bandeiras-rodapé.png" alt="Bandeiras Rodapé" id="bandeiras-rodape">
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mapaElement = document.getElementById('mapa');
+            if (mapaElement) {
+                const mapa = L.map('mapa').setView([-25.5205, -48.5090], 15);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mapa);
+
+                const locais = [
+                    {
+                        nome: "Mercado do Café",
+                        descricao: "Centro da gastronomia caiçara! Famoso pelo tradicional Barreado.",
+                        coords: [-25.5209, -48.5075],
+                        link: "gastronomia.html"
+                    },
+                    {
+                        nome: "Mercado do Peixe",
+                        descricao: "Ponto tradicional de venda do pescado do dia.",
+                        coords: [-25.5201, -48.5065],
+                        link: "mercado.html"
+                    },
+                    {
+                        nome: "Rua da Praia",
+                        descricao: "Orla histórica com os casarios coloniais mais antigos do Paraná.",
+                        coords: [-25.5218, -48.5060],
+                        link: "mercado.html"
+                    },
+                    {
+                        nome: "Ilha dos Valadares",
+                        descricao: "Berço cultural do Fandango Caiçara e artesanato local.",
+                        coords: [-25.5225, -48.4980],
+                        link: "arte.html"
+                    },
+                    {
+                        nome: "Museu MAE - UFPR",
+                        descricao: "Antigo Colégio dos Jesuítas (1755), acervo histórico da região.",
+                        coords: [-25.5230, -48.5085],
+                        link: "arte.html"
+                    }
+                ];
+
+                locais.forEach(lugar => {
+                    L.marker(lugar.coords)
+                        .addTo(mapa)
+                        .bindPopup(`
+                            <div class="popup">
+                                <h3>${lugar.nome}</h3>
+                                <p>${lugar.descricao}</p>
+                                <a href="${lugar.link}">Saber mais</a>
+                            </div>
+                        `);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

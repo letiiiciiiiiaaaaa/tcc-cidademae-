@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cidade Mãe || Quiz Caiçara </title>
+    <link rel="stylesheet" href="../css/perguntas.css">
+</head>
+<body>
+    <div class="container">
+        <section class="secao-titulo">
+            <img src="../imagens/quiz-logo.png" class="logo-img" alt="Logo Quiz">
+            <div class="titulo">
+                <h1> QUIZ <span class="caicara"> CAIÇARA </span></h1>
+            </div>
+        </section>
+
+        <section class="secao-perguntas">
+            <form id="quiz-form" class="quiz-card">
+                <div class="topo-card">
+                    <span id="contador-pergunta"> Pergunta 1 de 10 </span>
+                    <button type="submit" id="btn-proxima" class="btn-seta" title="Próxima Pergunta">&#10140;</button>
+                </div>
+
+                <div class="corpo-card">
+                    <h2 id="texto-pergunta"> Carregando pergunta... </h2>
+                    <div class="opcoes-container" id="opcoes-container"></div>
+
+                    <div class="resultado-container" id="resultado-container" style="display: none;">
+                        <h2 id="titulo-resultado">Seu Resultado</h2>
+                        
+                        <div class="porcentagem-destaque" id="porcentagem-texto">0%</div>
+                        
+                        <p id="descricao-resultado"></p>
+                        
+                        <div class="botoes-resultado">
+                            <button type="button" class="btn-reiniciar" onclick="window.location.reload()">Refazer Quiz</button>
+                            <a href="perfil.html" class="btn-perfil">Ver no Perfil</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <script src="../js/perguntas.js"></script>
+</body>
+</html>

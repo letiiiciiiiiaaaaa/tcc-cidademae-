@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cidade Mãe | Feedback</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/feedback.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="abas">
+            <a href="" onclick="history.back(); return false;" class="voltar">🡠</a>
+
+            <div class="bandeiras">
+                <img src="../imagens/bandeiras-inicio.png" alt="Bandeiras do Brasil, do Paraná e da cidade de Paranaguá">
+            </div>
+
+            <img src="../imagens/paranagua.png" class="paranagua" alt="Paranaguá">
+
+            <a href="sobre-nos.html" class="btn-sobre">sobre nós</a>
+
+            <div class="usuario" id="container-usuario">
+                <a href="cadastro.html" class="btn-usuario" id="btn-user">cadastre-se</a>
+
+                <a href="perfil.html" style="text-decoration: none;">
+                    <div id="perfil-logado" class="perfil-logado" style="display: none;">
+                        <span id="nome-usuario" class="nome-perfil"></span>
+                        <img id="foto-usuario" src="../imagens/usuario.png" alt="Foto de perfil" class="foto-perfil">
+                    </div>
+                </a>
+            </div>
+
+            <div class="search">
+                <label for="searchInput">
+                    <span class="material-symbols-outlined">search</span>
+                </label>
+                <input type="text" id="searchInput">
+            </div>
+        </div>
+    </header>
+
+    <main class="conteudo-principal">
+        <img src="../imagens/caranguejo-feedback.png" id="carangua2">
+        <img src="../imagens/musica-feedback.png" id="musica2">
+        <img src="../imagens/onda.png" id="onda">
+
+        <section class="secao-introducao">
+            <h2 class="titulo">Seu feedback faz a diferença!</h2>
+            <p class="subtitulo">Compartilhe sua opinião sobre o site e nos ajude a aprimorá-lo!</p>
+        </section>
+
+        <section class="secao-estrelas">
+            <div class="estrelas-container">
+                <span class="estrela" data-value="1">★</span>
+                <span class="estrela" data-value="2">★</span>
+                <span class="estrela" data-value="3">★</span>
+                <span class="estrela" data-value="4">★</span>
+                <span class="estrela" data-value="5">★</span>
+            </div>
+        </section>
+
+        <section class="secao-feedback">
+            <div class="feedback-container">
+                <textarea id="mensagem-feedback" placeholder="Deixe sua mensagem aqui!"></textarea>
+            </div>
+        </section>
+
+        <section class="secao-botao">
+            <button class="btn-enviar" id="btn-enviar-feedback">Enviar Feedback</button>
+        </section>
+    </main>
+
+    <!-- MODAL PERSONALIZADO DE SUCESSO -->
+    <div id="modal-sucesso" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <h2>Feedback enviado!</h2>
+            <p>Obrigado pela colaboração</p>
+            <button id="btn-fechar-modal">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let selectedRating = 0;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Controle do Usuário Logado
+            const btnUser = document.getElementById('btn-user');
+            const perfilLogado = document.getElementById('perfil-logado');
+            const nomeUsuario = document.getElementById('nome-usuario');
+            const usuarioLocal = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
+
+            if (usuarioLocal) {
+                if (nomeUsuario) nomeUsuario.textContent = usuarioLocal;
+                if (btnUser) btnUser.style.display = 'none';
+                if (perfilLogado) perfilLogado.style.display = 'flex';
+            }
+
+            // 2. Controle das Estrelas
+            const estrelas = document.querySelectorAll('.estrela');
+
+            estrelas.forEach(estrela => {
+                estrela.addEventListener('mouseover', () => {
+                    resetEstrelas();
+                    const value = parseInt(estrela.getAttribute('data-value'));
+                    highlightEstrelas(value);
+                });
+
+                estrela.addEventListener('mouseleave', () => {
+                    resetEstrelas();
+                    highlightEstrelas(selectedRating);
+                });
+
+                estrela.addEventListener('click', () => {
+                    selectedRating = parseInt(estrela.getAttribute('data-value'));
+                    highlightEstrelas(selectedRating);
+                });
+            });
+
+            function resetEstrelas() {
+                estrelas.forEach(e => e.classList.remove('active'));
+            }
+
+            function highlightEstrelas(value) {
+                for (let i = 0; i < value; i++) {
+                    if (estrelas[i]) estrelas[i].classList.add('active');
+                }
+            }
+
+            // 3. Clique no Botão Enviar
+            const btnEnviar = document.getElementById('btn-enviar-feedback');
+            const modalSucesso = document.getElementById('modal-sucesso');
+            const btnFecharModal = document.getElementById('btn-fechar-modal');
+
+            btnEnviar.addEventListener('click', async (e) => {
+                e.preventDefault();
+
+                const textarea = document.getElementById('mensagem-feedback');
+                const mensagem = textarea ? textarea.value.trim() : '';
+
+                if (selectedRating === 0) {
+                    alert('Por favor, selecione a quantidade de estrelas!');
+                    return;
+                }
+
+                if (!mensagem) {
+                    alert('Por favor, escreva sua mensagem de feedback!');
+                    return;
+                }
+
+                // Efeito do botão aumentando de tamanho ao clicar
+                btnEnviar.classList.add('btn-aumentar');
+
+                // Tenta salvar no Supabase sem travar o modal em modo offline
+                try {
+                    await supabaseClient.from('feedbacks').insert([
+                        {
+                            usuario_nome: usuarioLocal || 'Anônimo',
+                            estrelas: selectedRating,
+                            mensagem: mensagem
+                        }
+                    ]);
+                } catch (err) {
+                    console.log("Aviso banco:", err);
+                }
+
+                // Exibe o Modal de Sucesso
+                setTimeout(() => {
+                    modalSucesso.style.display = 'flex';
+                }, 200);
+            });
+
+            // 4. Fechar Modal e Redirecionar para o index.html (mesma pasta html)
+            btnFecharModal.addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+
+</html>

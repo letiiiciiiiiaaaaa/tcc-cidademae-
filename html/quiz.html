@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cidade Mãe || Quiz Caiçara </title>
+    <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body>
+    <div class="container">
+        <section class="secao-esquerda">
+            <div class="conteudo">
+                <div class="logo">
+                    <img src="../imagens/quiz.png" class="logo-img">
+                    <div class="titulo">
+                        <h1> QUIZ <span> CAIÇARA </span> </h1>
+                    </div>
+                </div>
+                <p class="descricao"> Faça um teste e descubra <br> o quão caiçara você é! </p>
+                <a href="perguntas.html">
+                    <button class="btn-jogar"> JOGAR </button>
+                </a>
+            </div>
+        </section>
+
+        <section class="secao-direita">
+            <img src="../imagens/quiz-fundo.png" class="img-quiz">
+        </section>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+                // Verifica se há registro do usuário logado no localStorage
+                const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
+
+                // Se não estiver logado, redireciona para a página de cadastro/login
+                if (!usuarioLogado) {
+                    alert('Você precisa estar logado para acessar esta página!');
+                    window.location.href = 'cadastro.html';
+                }
+            });
+    </script>
+</body>
+</html>

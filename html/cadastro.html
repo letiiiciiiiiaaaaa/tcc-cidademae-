@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | Cidade Mãe</title>
+    <link rel="stylesheet" href="../css/cadastro.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/script.js" defer></script>
+</head>
+
+<body>
+    <a href="" onclick="history.back(); return false;">
+        <button class="voltar">🡠</button>
+    </a>
+
+    <img src="../imagens/logo.png" class="logo" alt="Logo Cidade Mãe" width="200">
+    <h2>Cadastre-se para uma melhor experiência</h2>
+
+    <form id="formCadastro" class="tela-cadastro">
+        <input type="text" id="nome" placeholder="Nome de usuário" required>
+        <br><br>
+        <input type="email" id="email" placeholder="E-mail" required>
+        <br><br>
+        <input type="password" id="senha" placeholder="Senha" required>
+        <br><br>
+        <div class="data_nascimento">
+            <label for="data_nascimento"><b>Data de Nascimento:</b></label>
+            <br>
+            <input type="date" name="data_nascimento" id="data_nascimento" required>
+        </div>
+        <br>
+        <button type="submit" class="entrar">Criar conta</button>
+        <h5>Já possui uma conta?<br><a href="login.html" class="login">Logar-se</a>.</h5>
+        <input type="checkbox" id="termos" name="termos" required>
+        <label for="termos">Li e aceito os Termos de Uso e a Política de<br>Privacidade</label>
+    </form>
+
+    <!-- MODAL NO MEIO DA PÁGINA -->
+    <div id="modal-sucesso" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <h2 id="modal-titulo">Oi, Nome!</h2>
+            <p id="modal-mensagem">Seja muito bem-vindo(a) ao Cidade Mãe!</p>
+            <button id="btn-continuar" class="btn-modal-continuar">Continuar</button>
+        </div>
+    </div>
+
+    <script>
+        const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
+
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        document.getElementById('formCadastro').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const senha = document.getElementById('senha').value;
+            const data_nasc = document.getElementById('data_nascimento').value;
+
+            // Tenta cadastrar no Supabase
+            try {
+                const { data, error } = await supabaseClient
+                    .from('usuarios')
+                    .insert([
+                        {
+                            nome: nome,
+                            email: email,
+                            senha: senha,
+                            data_nasc: data_nasc,
+                            jogo_pontos: 0,
+                            quiz_pontos: 0
+                        }
+                    ])
+                    .select();
+
+                if (data && data.length > 0) {
+                    localStorage.setItem('usuario_id', data[0].idusuarios);
+                }
+            } catch (err) {
+                console.log("Aviso de rede/banco:", err);
+            }
+
+            // Salva os dados de login localmente
+            localStorage.setItem('usuario_nome', nome);
+            localStorage.setItem('usuarioLogado', nome);
+            localStorage.setItem('usuario_email', email);
+
+            // Preenche e exibe o modal
+            document.getElementById('modal-titulo').textContent = `Oi, ${nome}!`;
+            document.getElementById('modal-mensagem').textContent = `Seja muito bem-vindo(a) ao Cidade Mãe!`;
+            document.getElementById('modal-sucesso').style.display = 'flex';
+        });
+
+        // Clique no botão "Continuar"
+        document.getElementById('btn-continuar').addEventListener('click', () => {
+            const voltarPara = sessionStorage.getItem('voltarPara') || (document.referrer ? document.referrer : 'index.html');
+            sessionStorage.removeItem('voltarPara');
+            window.location.href = voltarPara;
+        });
+    </script>
+</body>
+
+</html>

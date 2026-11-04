@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cidade Mãe | Sobre Nós </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/sobre-nos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/script.js" defer></script>
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="abas">
+            <a href="" onclick="history.back(); return false;" class="voltar">🡠</a>
+
+            <div class="bandeiras">
+                <img src="../imagens/bandeiras-inicio.png" alt="Bandeiras do Brasil, do Paraná e da cidade de Paranaguá">
+            </div>
+
+            <img src="../imagens/paranagua.png" class="paranagua" alt="Paranaguá">
+
+            <div class="usuario" id="container-usuario">
+                <a href="cadastro.html" class="btn-usuario" id="btn-user">cadastre-se</a>
+
+                <a href="perfil.html" style="text-decoration: none;">
+                    <div id="perfil-logado" class="perfil-logado" style="display: none;">
+                        <span id="nome-usuario" class="nome-perfil"></span>
+                        <img id="foto-usuario" src="../imagens/usuario.png" alt="Foto de perfil" class="foto-perfil">
+                    </div>
+                </a>
+            </div>
+
+            <div class="search">
+                <label for="searchInput">
+                    <span class="material-symbols-outlined">search</span>
+                </label>
+                <input type="text" id="searchInput">
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="titulo-sub">
+            <img src="../imagens/logo-sobre.png" class="logo">
+            <h2 class="subtitulo"> Sobre <span> nós! </span> </h2>
+        </section>
+
+        <section class="secao-texto">
+            <p> Esse site que você está experenciando foi pensado e desenvolvido por Larissa, Letícia e Luana, três irmãs gêmeas cursadas na mesma turma de Ensino Médio Técnico de Desenvolvimento de Sistemas. O projeto foi criado a partir do comando da instituição para ser apresentado como um Trabalho de Conclusão de Curso (TCC). </p>
+            <p> A motivação dos criadores veio do desejo de propagar e incentive os habitantes da cidade de Paranaguá a conhecer sua cultura caiçara. </p>
+        </section>
+
+        <section class="secao-objetivo">
+            <h2 class="titulo-obj"> Objetivo do Site </h2>
+          
+            <div class="objetivo-container">
+              <div class="objetivo-item">
+                    <h3> Arte e Cultura </h3>
+                    <p> Divulgação das manifestações artísticas, o fandango caiçara, arquitetura colonial e festivais tradicionais. </p>
+              </div>
+          
+              <div class="objetivo-item">
+                    <h3> Gastronomia </h3>
+                    <p> Valorização do tradicional Barreado, frutos do mar e os sabores marcantes do litoral paranaense. </p>
+              </div>
+          
+              <div class="objetivo-item">
+                    <h3> Interatividade </h3>
+                    <p> Jogos educativos, quizes e calendários de eventos para engajar toda a comunidade de forma leve e divertida. </p>
+              </div>
+            </div>
+        </section>
+
+        <section class="secao-github">
+            <h2 class="titulo-criadores"> GITHUB DOS <br> <span> CRIADORES </span></h2>
+          
+            <div class="criadores-grid">
+                <a href="https://github.com/Larissadods" target="_blank" class="creator-card">
+                    <div class="avatar-wrapper larissa">
+                        <span class="status-emoji"> 🤓 </span>
+                        <img src="https://github.com/Larissadods.png" alt="Larissa" class="avatar-img" onerror="this.src='https://via.placeholder.com/160'">
+                    </div>
+                    <span class="username"> @Larissadods </span>
+                </a>
+          
+                <a href="https://github.com/letiiiciiiiiaaaaa" target="_blank" class="creator-card">
+                  <div class="avatar-wrapper leticia">
+                      <span class="status-emoji"> 👽 </span>
+                      <img src="https://github.com/letiiiciiiiiaaaaa.png" alt="Letícia" class="avatar-img" onerror="this.src='https://via.placeholder.com/160'">
+                  </div>
+                  <span class="username"> @letiiiciiiiiaaaaa </span>
+                </a>
+          
+                <a href="https://github.com/nanotice" target="_blank" class="creator-card">
+                  <div class="avatar-wrapper nano">
+                      <span class="status-emoji"> 🐞 </span>
+                      <img src="https://github.com/nanotice.png" alt="Nano" class="avatar-img" onerror="this.src='https://via.placeholder.com/160'">
+                  </div>
+                  <span class="username"> @nanotice </span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <a href="feedback.html">✉︎ Feedback</a>
+        <h1><img src="../imagens/logo.png" id="logo"></h1>
+        <p>&copy; Copyright Cidade Mãe - 2026</p>
+        <img src="../imagens/bandeiras-rodapé.png" alt="Bandeiras Rodapé" id="bandeiras-rodape">
+    </footer>
+
+    <!-- Lógica para alternar entre 'cadastre-se' e 'perfil logado' -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnUser = document.getElementById('btn-user');
+            const perfilLogado = document.getElementById('perfil-logado');
+            const nomeUsuario = document.getElementById('nome-usuario');
+            
+            const usuarioLocal = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
+
+            if (usuarioLocal) {
+                if (nomeUsuario) nomeUsuario.textContent = usuarioLocal;
+                if (btnUser) btnUser.style.display = 'none';
+                if (perfilLogado) perfilLogado.style.display = 'flex';
+            } else {
+                if (btnUser) btnUser.style.display = 'inline-block';
+                if (perfilLogado) perfilLogado.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
