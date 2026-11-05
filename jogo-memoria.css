@@ -1,28 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Questrial&display=swap');
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    background-color: #ffffff;
+}
+
 body {
-    background-color: #f4f9fc;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     min-height: 100vh;
-    padding: 10px 0;
+    padding-bottom: 40px;
+}
+
+header.cabecalho {
+    width: 100%;
+    max-width: 100vw;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+}
+
+header.cabecalho .abas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 30px;   
+    box-sizing: border-box;
 }
 
 main {
     width: 100%;
-    max-width: 850px;
+    max-width: 100%;      
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0; 
+    padding: 0 30px;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+#caranguejo,
+#dancando,
+#aquarela,
+#peixes {
+    position: absolute;
+    z-index: 0;
+    height: auto;
+    pointer-events: none;
+}
+
+#caranguejo {
+    top: 10%;
+    right: 2%;
+}
+
+#dancando {
+    top: 50%;
+    left: 2%;
 }
 
 .introducao {
     text-align: center;
     width: 100%;
-    margin-top: 10px;
-    margin-bottom: 40px; 
+    margin-top: 20px;
+    margin-bottom: 30px; 
 }
 
 .titulo {
@@ -47,10 +101,10 @@ main {
 .painel-controle {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Alinha o topo dos textos na mesma linha exata */
+    align-items: flex-start;
     gap: 40px; 
     width: 100%;
-    margin-top: 50px; 
+    margin-bottom: 30px; 
 }
 
 .item-painel {
@@ -58,10 +112,9 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    min-width: 120px; /* Garante largura uniforme entre as três colunas */
+    min-width: 120px;
 }
 
-/* Garante altura e alinhamento idêntico para os três títulos */
 .label-painel, .label-painel2, .label-painel3 {
     color: #8bbae2;
     font-weight: bold;
@@ -78,12 +131,11 @@ main {
 .label-painel2 { color: #e5d77b; }
 .label-painel3 { color: #65cc69; }
 
-/* Padronização da altura das caixas do Tempo e da Pontuação */
 .tempo-box, .placar-pontos {
     background-color: #ffffff;
     border: 2px solid #929292;
     padding: 0 20px;
-    height: 38px; /* Altura fixa igual à do ícone de reiniciar */
+    height: 38px;
     min-width: 90px;
     border-radius: 20px;
     box-shadow: 0 2px 8px rgba(139, 186, 226, 0.2);
@@ -99,7 +151,6 @@ main {
     font-size: 20px;
 }
 
-/* Ajuste no botão de reiniciar */
 #btn-reiniciar {
     background: transparent;
     border: none;
@@ -108,7 +159,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 38px; /* Mesma altura das caixas das pontas */
+    height: 38px;
     padding: 0;
 }
 
@@ -116,17 +167,6 @@ main {
     width: 38px;
     height: 38px;
     display: block;
-}
-
-.placar-pontos {
-    background-color: #ffffff;
-    color: #ff3131;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 6px 22px;
-    border-radius: 20px;
-    border: 2px solid #929292;
-    box-shadow: 0 2px 8px rgba(139, 186, 226, 0.2);
 }
 
 .secao-jogo {
@@ -147,7 +187,7 @@ main {
 
 .card {
     width: 100%;
-    height: 250px; 
+    height: 220px; 
     border-radius: 10px;
     position: relative;
     transition: transform 0.6s;
@@ -183,17 +223,18 @@ main {
     cursor: default;
 }
 
+/* CORREÇÃO DO MODAL PARA ESCURECER A TELA INTEIRA (INCLUINDO HEADER) */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
+    z-index: 9999; /* Garante que fique por cima de tudo */
 }
 
 .modal.fechar {
@@ -239,7 +280,7 @@ main {
 .btn-dif2:hover { background-color: #4eb351; }
 .btn-dif3:hover { background-color: #6fa1cd; }
 
-.botoes-inicio {
+.botoes-inicio, .botoes-fim {
     display: flex;
     gap: 12px;
     justify-content: center;
@@ -252,15 +293,8 @@ main {
     gap: 10px;
 }
 
-.botoes-fim {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 15px;
-}
-
 .btn-secundario {
-    background-color: #65cc69; /* Cor verde para destacar o perfil */
+    background-color: #65cc69;
 }
 
 .btn-secundario:hover {
