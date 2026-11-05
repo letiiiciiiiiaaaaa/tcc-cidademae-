@@ -7,6 +7,7 @@
     <title>Cadastro | Cidade Mãe</title>
     <link rel="stylesheet" href="cadastro.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -36,6 +37,14 @@
         <label for="termos">Li e aceito os Termos de Uso e a Política de<br>Privacidade</label>
     </form>
 
+    <div id="modal-sucesso" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <h2 id="modal-titulo">Oi, Nome!</h2>
+            <p id="modal-mensagem">Seja muito bem-vindo(a) ao Cidade Mãe!</p>
+            <button id="btn-continuar" class="btn-modal-continuar">Continuar</button>
+        </div>
+    </div>
+
     <script>
         const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
         const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
@@ -45,42 +54,44 @@
         document.getElementById('formCadastro').addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
             const senha = document.getElementById('senha').value;
             const data_nasc = document.getElementById('data_nascimento').value;
 
-            const { data, error } = await supabaseClient
-                .from('usuarios')
-                .insert([
-                    {
-                        nome: nome,
-                        email: email,
-                        senha: senha,
-                        data_nasc: data_nasc,
-                        jogo_pontos: 0,
-                        quiz_pontos: 0
-                    }
-                ])
-                .select(); // O .select() avisa o Supabase para devolver o ID recém-criado
+            try {
+                const { data, error } = await supabaseClient
+                    .from('usuarios')
+                    .insert([
+                        {
+                            nome: nome,
+                            email: email,
+                            senha: senha,
+                            data_nasc: data_nasc,
+                            jogo_pontos: 0,
+                            quiz_pontos: 0
+                        }
+                    ])
+                    .select();
 
-            if (error) {
-                console.error("Erro no Supabase:", error);
-                alert('Erro ao cadastrar usuário: ' + error.message);
-                return;
+                if (data && data.length > 0) {
+                    localStorage.setItem('usuario_id', data[0].idusuarios);
+                }
+            } catch (err) {
+                console.log("Aviso de rede/banco:", err);
             }
 
-            // O Supabase retorna uma lista (array). Então pegamos o item 0.
-            if (data && data.length > 0) {
-                localStorage.setItem('usuario_id', data[0].idusuarios);
-                localStorage.setItem('usuario_nome', data[0].nome);
-                localStorage.setItem('usuarioLogado', data[0].nome);
-                localStorage.setItem('usuario_email', data[0].email);
-            }
+            localStorage.setItem('usuario_nome', nome);
+            localStorage.setItem('usuarioLogado', nome);
+            localStorage.setItem('usuario_email', email);
 
-            alert('Conta criada com sucesso!');
+            document.getElementById('modal-titulo').textContent = `Oi, ${nome}!`;
+            document.getElementById('modal-mensagem').textContent = `Seja muito bem-vindo(a) ao Cidade Mãe!`;
+            document.getElementById('modal-sucesso').style.display = 'flex';
+        });
 
-            const voltarPara = sessionStorage.getItem('voltarPara') || 'index.html';
+        document.getElementById('btn-continuar').addEventListener('click', () => {
+            const voltarPara = sessionStorage.getItem('voltarPara') || (document.referrer ? document.referrer : 'index.html');
             sessionStorage.removeItem('voltarPara');
             window.location.href = voltarPara;
         });

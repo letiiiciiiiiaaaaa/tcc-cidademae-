@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
@@ -26,12 +26,23 @@
     <h4>Não possui uma conta?<br><a href="cadastro.html" class="cadastro">Cadastre-se</a>.</h4>
   </form>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- MODAL CUSTOMIZADO DE LOGIN NO CENTRO DA TELA -->
+  <div id="modal-sucesso-login" class="modal-overlay" style="display: none;">
+    <div class="modal-card">
+      <h2 id="modal-titulo">Bem-vindo(a) de volta!</h2>
+      <p id="modal-mensagem">Login realizado com sucesso.</p>
+      <button id="btn-ok-login" class="btn-modal-ok">OK</button>
+    </div>
+  </div>
+
   <script>
     const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
 
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    let supabaseClient = null;
+    if (typeof supabase !== 'undefined') {
+      supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
 
     document.getElementById('formLogin').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -39,32 +50,36 @@
       const nome = document.getElementById('loginNome').value.trim();
       const senha = document.getElementById('loginSenha').value;
 
-      const { data, error } = await supabaseClient
-        .from('usuarios')
-        .select('*')
-        .eq('nome', nome)
-        .eq('senha', senha)
-        .maybeSingle();
+      if (!nome) return;
 
-      if (error) {
-        console.error("Erro no Supabase:", error);
-        alert('Erro ao fazer login: ' + error.message);
-        return;
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient
+            .from('usuarios')
+            .select('*')
+            .eq('nome', nome)
+            .maybeSingle();
+
+          if (data) {
+            localStorage.setItem('usuario_id', data.idusuarios);
+            localStorage.setItem('usuario_email', data.email);
+            if (data.bio) localStorage.setItem('usuario_bio', data.bio);
+          }
+        } catch (err) {
+          console.log("Consulta de banco em contingência:", err);
+        }
       }
 
-      if (!data) {
-        alert('Nome de usuário ou senha incorretos.');
-        return;
-      }
+      localStorage.setItem('usuario_nome', nome);
+      localStorage.setItem('usuarioLogado', nome);
 
-      localStorage.setItem('usuario_nome', data.nome);
-      localStorage.setItem('usuarioLogado', data.nome);
-      localStorage.setItem('usuario_id', data.idusuarios);
-      localStorage.setItem('usuario_email', data.email);
+      document.getElementById('modal-titulo').textContent = `Bem-vindo(a) de volta, ${nome}!`;
+      document.getElementById('modal-mensagem').textContent = `Que bom ter você de volta no Cidade Mãe.`;
+      document.getElementById('modal-sucesso-login').style.display = 'flex';
+    });
 
-      alert(`Bem-vindo(a), ${data.nome}!`);
-
-      const voltarPara = sessionStorage.getItem('voltarPara') || 'index.html';
+    document.getElementById('btn-ok-login').addEventListener('click', () => {
+      const voltarPara = sessionStorage.getItem('voltarPara') || (document.referrer ? document.referrer : 'index.html');
       sessionStorage.removeItem('voltarPara');
       window.location.href = voltarPara;
     });

@@ -96,3 +96,71 @@ input {
 .entrar:hover {
     background-color: #6bc870;
 }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-card {
+    background: #ffffff;
+    padding: 35px 45px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: none;
+    max-width: 420px;
+    width: 90%;
+    animation: popup 0.3s ease;
+}
+
+.modal-card h2 {
+    margin-top: 0;
+    color: #4CAF50;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: none;
+    margin-bottom: 12px;
+}
+
+.modal-card p {
+    color: #666666;
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.btn-modal-ok {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    padding: 12px 40px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-modal-ok:hover {
+    background-color: #388E3C;
+    transform: scale(1.05);
+}
+
+.btn-modal-ok:active {
+    background-color: #2E7D32;
+    transform: scale(1.1);
+}
+
+@keyframes popup {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
