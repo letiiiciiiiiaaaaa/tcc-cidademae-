@@ -4,37 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade Mãe || Quiz Caiçara</title>
-    <link rel="stylesheet" href="style.css">
+    <title> Cidade Mãe || Quiz Caiçara </title>
     <link rel="stylesheet" href="perguntas.css">
+
+    <!-- AQUI ESTÁ A CORREÇÃO: SUPABASE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
-    <!-- HEADER IDÊNTICO AO PADRÃO DA PÁGINA INICIAL (SEM BARRA DE BUSCA) -->
-    <header class="cabecalho">
-        <div class="abas">
-            <a href="" onclick="history.back(); return false;" class="voltar">🡠</a>
-
-            <div class="bandeiras">
-                <img src="imagens/bandeiras-inicio.png" alt="Bandeiras do Brasil, do Paraná e da cidade de Paranaguá">
-            </div>
-
-            <img src="imagens/paranagua.png" class="paranagua" alt="Paranaguá">
-
-            <a href="sobre-nos.html" class="btn-sobre">sobre nós</a>
-
-            <div class="usuario" id="container-usuario">
-                <a href="perfil.html" style="text-decoration: none;">
-                    <div id="perfil-logado" class="perfil-logado" style="display: flex;">
-                        <span id="nome-usuario" class="nome-perfil"></span>
-                        <img id="foto-usuario" src="imagens/usuario.png" alt="Foto de perfil" class="foto-perfil">
-                    </div>
-                </a>
-            </div>
-        </div>
-    </header>
-
     <div class="container">
         <section class="secao-titulo">
             <img src="imagens/quiz-logo.png" class="logo-img" alt="Logo Quiz">
@@ -60,14 +37,27 @@
                         </div>
 
                         <h2 id="titulo-resultado">Seu Resultado</h2>
-                        
+
                         <div class="porcentagem-destaque" id="porcentagem-texto">0%</div>
-                        
+
                         <p id="descricao-resultado"></p>
-                        
+
                         <div class="botoes-resultado">
-                            <button type="button" class="btn-reiniciar" onclick="window.location.reload()">Refazer Quiz</button>
+                            <button type="button" class="btn-reiniciar" onclick="window.location.reload()">Refazer
+                                Quiz</button>
                             <a href="perfil.html" class="btn-perfil">Ver no Perfil</a>
+                        </div>
+                    </div>
+
+                    <div id="modal-confirmar-saida-quiz" class="modal-overlay" style="display: none;">
+                        <div class="modal-card">
+                            <h2>Tem certeza que deseja sair?</h2>
+                            <p>Se você sair agora, seu histórico e pontuação deste jogo não serão salvos!</p>
+                            <div class="modal-confirmacao-botoes">
+                                <button type="button" id="btn-confirmar-sair-quiz" class="btn-alerta-sair">Sair</button>
+                                <button type="button" id="btn-cancelar-sair-quiz"
+                                    class="btn-alerta-cancelar">Cancelar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -75,29 +65,7 @@
         </section>
     </div>
 
-    <!-- MODAL ALERTA DE CONFIRMAÇÃO DE SAÍDA AO CLICAR NO X DA TELA DE RESULTADO -->
-    <div id="modal-confirmar-saida-quiz" class="modal-overlay" style="display: none;">
-        <div class="modal-card">
-            <h2>Tem certeza que deseja sair?</h2>
-            <p>Se você sair agora, seu histórico e pontuação deste jogo não serão salvos!</p>
-            <div class="modal-confirmacao-botoes">
-                <button type="button" id="btn-confirmar-sair-quiz" class="btn-alerta-sair">Sair</button>
-                <button type="button" id="btn-cancelar-sair-quiz" class="btn-alerta-cancelar">Cancelar</button>
-            </div>
-        </div>
-    </div>
-
     <script src="perguntas.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Garante o preenchimento do nome do usuário no cabeçalho
-            const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
-            const elNome = document.getElementById('nome-usuario');
-            if (elNome && usuarioLogado) {
-                elNome.textContent = usuarioLogado;
-            }
-        });
-    </script>
 </body>
 
 </html>
