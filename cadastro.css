@@ -53,11 +53,6 @@ h5 {
     padding-top: 10px;
 }
 
-#termos {
-    font-weight: normal;
-    font-size: 10px;
-}
-
 .data_nascimento,
 #data_nascimento {
     background: none;
@@ -133,7 +128,6 @@ input {
     animation: popup 0.3s ease;
 }
 
-/* Título verde, bold, sem sombra */
 .modal-card h2 {
     margin-top: 0;
     color: #4CAF50;
@@ -143,7 +137,6 @@ input {
     margin-bottom: 12px;
 }
 
-/* Parágrafo em cinza, sem bold */
 .modal-card p {
     color: #666666;
     font-size: 16px;
@@ -152,7 +145,6 @@ input {
     line-height: 1.4;
 }
 
-/* Botão verde que fica mais escuro e maior ao clicar/passar o mouse */
 .btn-modal-continuar {
     background-color: #4CAF50;
     color: #ffffff;
