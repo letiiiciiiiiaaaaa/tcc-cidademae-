@@ -90,5 +90,5 @@
 .img-quiz {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Faz a imagem cobrir todo o espaço sem esticar */
+    object-fit: cover;
 }
