@@ -27,6 +27,11 @@
                     <div class="opcoes-container" id="opcoes-container"></div>
 
                     <div class="resultado-container" id="resultado-container" style="display: none;">
+                        <!-- Topo apenas com o botão X alinhado à direita -->
+                        <div class="topo-resultado-botoes">
+                            <button type="button" class="btn-circulo" id="btn-fechar-quiz" title="Sair">✕</button>
+                        </div>
+                    
                         <h2 id="titulo-resultado">Seu Resultado</h2>
                         
                         <div class="porcentagem-destaque" id="porcentagem-texto">0%</div>
@@ -36,6 +41,18 @@
                         <div class="botoes-resultado">
                             <button type="button" class="btn-reiniciar" onclick="window.location.reload()">Refazer Quiz</button>
                             <a href="perfil.html" class="btn-perfil">Ver no Perfil</a>
+                        </div>
+                    </div>
+                    
+                    <!-- MODAL ALERTA DE CONFIRMAÇÃO DE SAÍDA -->
+                    <div id="modal-confirmar-saida-quiz" class="modal-overlay" style="display: none;">
+                        <div class="modal-card">
+                            <h2>Tem certeza que deseja sair?</h2>
+                            <p>Se você sair agora, seu histórico e pontuação deste jogo não serão salvos!</p>
+                            <div class="modal-confirmacao-botoes">
+                                <button type="button" id="btn-confirmar-sair-quiz" class="btn-alerta-sair">Sair</button>
+                                <button type="button" id="btn-cancelar-sair-quiz" class="btn-alerta-cancelar">Cancelar</button>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -196,5 +196,34 @@ async function exibirResultado() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Ao clicar no 'X' -> Abre o alerta de confirmação de saída
+    const btnFechar = document.getElementById('btn-fechar-quiz');
+    if (btnFechar) {
+        btnFechar.addEventListener('click', () => {
+            const modalAlerta = document.getElementById('modal-confirmar-saida-quiz');
+            if (modalAlerta) modalAlerta.style.display = 'flex';
+        });
+    }
+
+    // 2. Botão 'Sair' no Alerta -> Volta para a página anterior
+    const btnConfirmarSair = document.getElementById('btn-confirmar-sair-quiz');
+    if (btnConfirmarSair) {
+        btnConfirmarSair.addEventListener('click', () => {
+            const voltarPara = document.referrer ? document.referrer : 'index.html';
+            window.location.href = voltarPara;
+        });
+    }
+
+    // 3. Botão 'Cancelar' no Alerta -> Fecha apenas o alerta de confirmação
+    const btnCancelarSair = document.getElementById('btn-cancelar-sair-quiz');
+    if (btnCancelarSair) {
+        btnCancelarSair.addEventListener('click', () => {
+            const modalAlerta = document.getElementById('modal-confirmar-saida-quiz');
+            if (modalAlerta) modalAlerta.style.display = 'none';
+        });
+    }
+});
+
 // Inicializa a primeira pergunta ao carregar
 renderizarPergunta();

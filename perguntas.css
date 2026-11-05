@@ -145,11 +145,10 @@
     font-weight: bold;
 }
 
-/* PORCENTAGEM CENTRALIZADA E EM VERDE DESTAQUE */
 .porcentagem-destaque {
     font-size: 48px;
     font-weight: 800;
-    color: #65cc69; /* Verde de destaque */
+    color: #65cc69;
     margin: 15px 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
@@ -161,7 +160,6 @@
     margin-bottom: 25px;
 }
 
-/* CONTAINER DOS BOTÕES LADO A LADO */
 .botoes-resultado {
     display: flex;
     justify-content: center;
@@ -169,21 +167,17 @@
     gap: 12px;
 }
 
-/* ESTILO BASE DOS BOTÕES ARREDONDADOS */
 .btn-reiniciar, .btn-perfil {
     border: none;
     padding: 12px 24px;
     font-size: 15px;
-    border-radius: 25px; /* Bordas bem arredondadas */
+    border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
     text-decoration: none;
     transition: all 0.25s ease;
-   
-    
 }
 
-/* BOTÃO 1: REFAZER QUIZ (AMARELO) */
 .btn-reiniciar {
     background-color: #e5d56c;
     color: white;
@@ -194,7 +188,6 @@
     transform: translateY(-2px);
 }
 
-/* BOTÃO 2: VER NO PERFIL (AZUL) */
 .btn-perfil {
     background-color: #79c3e2;
     color: #ffffff;
@@ -206,4 +199,84 @@
 .btn-perfil:hover {
     background-color: #5faecf;
     transform: translateY(-2px);
+}
+/* Container do topo empurrando o X para o canto direito */
+.topo-resultado-botoes {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Botão circular X (cinza claro sem borda) */
+.btn-circulo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    border: none;
+    color: #333333;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    line-height: 1;
+}
+
+.btn-circulo:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.08);
+}
+
+/* Modal do alerta de confirmação */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-card {
+    background: #ffffff;
+    padding: 25px 30px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 380px;
+    width: 90%;
+}
+
+.modal-confirmacao-botoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-alerta-sair {
+    background-color: #ff3131;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-alerta-cancelar {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
 }
