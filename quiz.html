@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Cidade Mãe || Quiz Caiçara </title>
+    <title>Cidade Mãe || Quiz Caiçara</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="quiz.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js" defer></script>
 </head>
+
 <body>
+    <!-- HEADER IDÊNTICO AO PADRÃO DA PÁGINA INICIAL (SEM BARRA DE BUSCA) -->
+    <header class="cabecalho">
+        <div class="abas">
+            <a href="" onclick="history.back(); return false;" class="voltar">🡠</a>
+
+            <div class="bandeiras">
+                <img src="imagens/bandeiras-inicio.png" alt="Bandeiras do Brasil, do Paraná e da cidade de Paranaguá">
+            </div>
+
+            <img src="imagens/paranagua.png" class="paranagua" alt="Paranaguá">
+
+            <a href="sobre-nos.html" class="btn-sobre">sobre nós</a>
+
+            <div class="usuario" id="container-usuario">
+                <a href="perfil.html" style="text-decoration: none;">
+                    <div id="perfil-logado" class="perfil-logado" style="display: flex;">
+                        <span id="nome-usuario" class="nome-perfil"></span>
+                        <img id="foto-usuario" src="imagens/usuario.png" alt="Foto de perfil" class="foto-perfil">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </header>
+
     <div class="container">
         <section class="secao-esquerda">
             <div class="conteudo">
@@ -27,17 +56,23 @@
             <img src="imagens/quiz-fundo.png" class="img-quiz">
         </section>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-                // Verifica se há registro do usuário logado no localStorage
-                const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
 
-                // Se não estiver logado, redireciona para a página de cadastro/login
-                if (!usuarioLogado) {
-                    alert('Você precisa estar logado para acessar esta página!');
-                    window.location.href = 'cadastro.html';
-                }
-            });
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
+
+            if (!usuarioLogado) {
+                alert('Você precisa estar logado para acessar esta página!');
+                window.location.href = 'cadastro.html';
+                return;
+            }
+
+            const elNome = document.getElementById('nome-usuario');
+            if (elNome) {
+                elNome.textContent = usuarioLogado;
+            }
+        });
     </script>
 </body>
+
 </html>

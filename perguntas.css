@@ -75,6 +75,13 @@
     font-weight: bold;
 }
 
+#texto-pergunta {
+    font-weight: normal !important; /* Remove o negrito da pergunta */
+    color: #333333;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
 .btn-seta {
     background: none;
     border: none;
