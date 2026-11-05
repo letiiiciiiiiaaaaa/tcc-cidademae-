@@ -111,26 +111,26 @@
         const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
         const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
+    
         document.addEventListener('DOMContentLoaded', async () => {
             let usuarioId = localStorage.getItem('usuario_id');
             let nomeLocal = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
             let emailLocal = localStorage.getItem('usuario_email');
             let bioLocal = localStorage.getItem('usuario_bio');
-
+    
             const elNome = document.getElementById('nome-perfil');
             const elEmail = document.getElementById('email-perfil');
             const elBio = document.getElementById('bio-perfil');
             const elPontuacao = document.getElementById('valor-pontuacao');
             const elQuiz = document.getElementById('valor-quiz');
-
+    
             const modalEditar = document.getElementById('modal-editar');
             const modalLogout = document.getElementById('modal-logout');
             const editNome = document.getElementById('edit-nome');
             const editEmail = document.getElementById('edit-email');
             const editBio = document.getElementById('edit-bio');
             const btnSalvar = document.getElementById('btn-salvar-editar');
-
+    
             function configurarBio(textoBio) {
                 if (textoBio && textoBio.trim() !== '' && textoBio !== 'null' && textoBio !== 'undefined') {
                     elBio.textContent = textoBio;
@@ -140,114 +140,135 @@
                     elBio.classList.add('bio-vazia');
                 }
             }
-
-            // Exibição inicial instantânea
+    
+            // Exibição inicial
             elNome.textContent = nomeLocal || 'Usuário';
             elEmail.textContent = emailLocal || 'Insira seu e-mail editando o perfil';
             configurarBio(bioLocal);
             elPontuacao.textContent = localStorage.getItem('maiorPontuacao') || '0';
             elQuiz.textContent = `VOCÊ É ${localStorage.getItem('maiorPorcentagemQuiz') || '0'}% CAIÇARA`;
-
-            // Busca os dados no Supabase para sincronizar
+    
+            // Busca dados no Supabase para sincronizar
             async function carregarDadosBanco() {
                 if (!nomeLocal && (!usuarioId || usuarioId === "undefined")) return;
-
+    
                 try {
                     let query = supabaseClient.from('usuarios').select('*');
-
+    
                     if (usuarioId && usuarioId !== "undefined") {
                         query = query.eq('idusuarios', usuarioId);
                     } else if (nomeLocal) {
                         query = query.eq('nome', nomeLocal);
                     }
-
+    
                     const { data, error } = await query.maybeSingle();
-
+    
                     if (data && !error) {
                         if (data.idusuarios) {
                             usuarioId = data.idusuarios;
                             localStorage.setItem('usuario_id', data.idusuarios);
                         }
-
+    
                         if (data.nome) {
                             elNome.textContent = data.nome;
                             localStorage.setItem('usuario_nome', data.nome);
                             localStorage.setItem('usuarioLogado', data.nome);
                             nomeLocal = data.nome;
                         }
+    
                         if (data.email) {
                             elEmail.textContent = data.email;
                             localStorage.setItem('usuario_email', data.email);
+                        } else {
+                            localStorage.removeItem('usuario_email');
                         }
-                        if (data.bio !== undefined && data.bio !== null) {
+    
+                        // Sincroniza biografia do banco de dados (se estiver vazia no banco, limpa no localStorage)
+                        if (data.bio !== undefined && data.bio !== null && data.bio.trim() !== '') {
                             configurarBio(data.bio);
                             localStorage.setItem('usuario_bio', data.bio);
+                        } else {
+                            configurarBio('');
+                            localStorage.removeItem('usuario_bio');
                         }
+    
                         if (data.jogo_pontos !== undefined && data.jogo_pontos !== null) {
                             elPontuacao.textContent = data.jogo_pontos;
                             localStorage.setItem('maiorPontuacao', data.jogo_pontos);
+                        } else {
+                            elPontuacao.textContent = '0';
+                            localStorage.setItem('maiorPontuacao', '0');
                         }
+    
                         if (data.quiz_pontos !== undefined && data.quiz_pontos !== null) {
                             elQuiz.textContent = `VOCÊ É ${data.quiz_pontos}% CAIÇARA`;
                             localStorage.setItem('maiorPorcentagemQuiz', data.quiz_pontos);
+                        } else {
+                            elQuiz.textContent = `VOCÊ É 0% CAIÇARA`;
+                            localStorage.setItem('maiorPorcentagemQuiz', '0');
                         }
                     }
                 } catch (err) {
                     console.error("Erro ao carregar dados do Supabase:", err);
                 }
             }
-
+    
             await carregarDadosBanco();
-
+    
             // Abrir Modal de Edição
             document.getElementById('btn-editar-perfil').addEventListener('click', () => {
                 editNome.value = elNome.textContent !== 'Usuário' ? elNome.textContent : '';
                 editEmail.value = elEmail.textContent.includes('@') ? elEmail.textContent : '';
                 editBio.value = elBio.classList.contains('bio-vazia') ? '' : elBio.textContent;
-
+    
                 modalEditar.style.display = 'flex';
             });
-
+    
             // Cancelar Edição
             document.getElementById('btn-cancelar-editar').addEventListener('click', () => {
                 modalEditar.style.display = 'none';
             });
-
+    
             // Salvar Alterações
             btnSalvar.addEventListener('click', async () => {
                 const novoNome = editNome.value.trim();
                 const novoEmail = editEmail.value.trim();
                 const novaBio = editBio.value.trim();
-
+    
                 if (!novoNome) {
                     alert("O nome de usuário não pode ficar vazio!");
                     return;
                 }
-
+    
                 btnSalvar.textContent = "Salvando...";
                 btnSalvar.disabled = true;
-
+    
                 const nomeAntigo = nomeLocal;
-
+    
                 elNome.textContent = novoNome;
                 if (novoEmail) elEmail.textContent = novoEmail;
                 configurarBio(novaBio);
-
+    
                 localStorage.setItem('usuario_nome', novoNome);
                 localStorage.setItem('usuarioLogado', novoNome);
+                
                 if (novoEmail) localStorage.setItem('usuario_email', novoEmail);
-                localStorage.setItem('usuario_bio', novaBio);
+                else localStorage.removeItem('usuario_email');
+    
+                if (novaBio) localStorage.setItem('usuario_bio', novaBio);
+                else localStorage.removeItem('usuario_bio');
+    
                 nomeLocal = novoNome;
-
+    
                 try {
                     const dadosAtualizar = {
                         nome: novoNome,
                         bio: novaBio
                     };
                     if (novoEmail) dadosAtualizar.email = novoEmail;
-
+    
                     let res = null;
-
+    
                     if (usuarioId && usuarioId !== "undefined") {
                         res = await supabaseClient
                             .from('usuarios')
@@ -259,7 +280,7 @@
                             .update(dadosAtualizar)
                             .eq('nome', nomeAntigo);
                     }
-
+    
                     if (res && res.error) {
                         console.error("Erro ao atualizar Supabase:", res.error);
                     }
@@ -271,32 +292,32 @@
                     modalEditar.style.display = 'none';
                 }
             });
-
+    
             // Modal Logout
             document.getElementById('btn-logout-perfil').addEventListener('click', () => {
                 modalLogout.style.display = 'flex';
             });
-
+    
             document.getElementById('btn-cancelar-logout').addEventListener('click', () => {
                 modalLogout.style.display = 'none';
             });
-
+    
+            // CONFIRMAR LOGOUT: Limpa absolutamente todas as informações do usuário atual
             document.getElementById('btn-confirmar-logout').addEventListener('click', () => {
-                // Limpa os dados de login, mas mantém as pontuações e biografias locais
                 localStorage.removeItem('usuario_nome');
                 localStorage.removeItem('usuarioLogado');
                 localStorage.removeItem('usuario_id');
                 localStorage.removeItem('usuario_email');
-
-                // Pega a página que o usuário estava antes de vir para o perfil
-                // Se ele veio do mercado, volta pro mercado. Se veio do index, volta pro index.
+                localStorage.removeItem('usuario_bio');
+                localStorage.removeItem('maiorPontuacao');
+                localStorage.removeItem('maiorPorcentagemQuiz');
+    
                 let voltarPara = sessionStorage.getItem('paginaAnteriorPerfil');
-
-                // Se não achou (ou se a pessoa abriu o perfil direto), vai pro index
+    
                 if (!voltarPara || voltarPara.includes('perfil.html')) {
                     voltarPara = 'index.html';
                 }
-
+    
                 window.location.href = voltarPara;
             });
         });
