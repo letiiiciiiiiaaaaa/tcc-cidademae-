@@ -282,8 +282,22 @@
             });
 
             document.getElementById('btn-confirmar-logout').addEventListener('click', () => {
-                localStorage.clear();
-                window.location.href = 'index.html';
+                // Limpa os dados de login, mas mantém as pontuações e biografias locais
+                localStorage.removeItem('usuario_nome');
+                localStorage.removeItem('usuarioLogado');
+                localStorage.removeItem('usuario_id');
+                localStorage.removeItem('usuario_email');
+
+                // Pega a página que o usuário estava antes de vir para o perfil
+                // Se ele veio do mercado, volta pro mercado. Se veio do index, volta pro index.
+                let voltarPara = sessionStorage.getItem('paginaAnteriorPerfil');
+
+                // Se não achou (ou se a pessoa abriu o perfil direto), vai pro index
+                if (!voltarPara || voltarPara.includes('perfil.html')) {
+                    voltarPara = 'index.html';
+                }
+
+                window.location.href = voltarPara;
             });
         });
     </script>

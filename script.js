@@ -3,8 +3,24 @@ document.addEventListener("DOMContentLoaded", () => {
   // Salva a página atual pra voltar depois do login/cadastro
   const btnUserVoltar = document.getElementById('btn-user');
   if (btnUserVoltar) {
-    btnUserVoltar.addEventListener('click', () => {
-      sessionStorage.setItem('voltarPara', window.location.pathname.split('/').pop() || 'index.html');
+    // Mudamos de 'click' para 'mousedown' para garantir que roda antes do link abrir
+    btnUserVoltar.addEventListener('mousedown', () => {
+      // Pega apenas o nome da página atual (ex: gastronomia.html)
+      const paginaAtual = window.location.pathname.split('/').pop();
+      if (paginaAtual) {
+        sessionStorage.setItem('voltarPara', paginaAtual);
+      }
+    });
+  }
+
+  // Salva a página atual quando o usuário clica para ir no Perfil
+  const linkPerfil = document.querySelector('.usuario a[href="perfil.html"]');
+  if (linkPerfil) {
+    linkPerfil.addEventListener('mousedown', () => {
+      const paginaAtual = window.location.pathname.split('/').pop();
+      if (paginaAtual) {
+        sessionStorage.setItem('paginaAnteriorPerfil', paginaAtual);
+      }
     });
   }
 
