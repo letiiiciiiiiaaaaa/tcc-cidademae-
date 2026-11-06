@@ -6,17 +6,18 @@
     padding: 0;
 }
 
+/* 1. Trava a altura da tela no tamanho exato da janela visível (100vh) */
 html, body {
-    width: 100%;
-    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Corta rolagem lateral indesejada */
-    overflow-y: auto;   /* Permite rolar para baixo em qualquer tamanho de tela */
+    overflow: hidden !important; /* Corta tudo que sair da tela e impede a rolagem */
     display: flex;
     flex-direction: column;
     font-family: 'Questrial', sans-serif;
     background-color: #ffffff;
+    position: relative;
 }
 
 .cabecalho {
@@ -35,18 +36,17 @@ html, body {
     width: 100%;
 }
 
+/* 2. Container principal ocupando o espaço restante sem estourar a tela */
 .conteudo-principal {
     position: relative;
     flex: 1;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 25px 20px 40px 20px;
-    overflow: visible; /* Permite que decorações apareçam sem cortes */
+    padding: 2vh 20px 0 20px; /* Usa padding flexível para caber em qualquer monitor */
+    overflow: hidden; /* Garante o corte das decorações que passam da base */
 }
 
 .secao-introducao,
@@ -66,14 +66,14 @@ html, body {
 .titulo {
     font-size: 32px;
     margin-top: 0;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     color: #333333;
 }
 
 .subtitulo {
-    font-size: 19px;
+    font-size: 18px;
     margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     color: #666666;
 }
 
@@ -81,11 +81,11 @@ html, body {
     display: flex;
     justify-content: center;
     gap: 12px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .estrela {
-    font-size: 70px;
+    font-size: 65px;
     color: #dcdcdc;
     cursor: pointer;
     transition: color 0.2s ease;
@@ -99,19 +99,21 @@ html, body {
 .feedback-container {
     background-color: #f0f0f0;
     border-radius: 18px;
-    padding: 22px;
-    margin: 5px auto 15px auto;
+    padding: 20px;
+    margin: 5px auto 12px auto;
     width: 860px;
     max-width: 75vw;
+    position: relative;
+    z-index: 10;
 }
 
 textarea {
     width: 100%;
-    height: 240px;
+    height: 230px;
     background: transparent;
     border: none;
     resize: none;
-    font-size: 19px;
+    font-size: 18px;
     color: #333333;
     text-align: left;
     outline: none;
@@ -130,7 +132,7 @@ textarea::placeholder {
     color: white;
     border: none;
     padding: 12px 45px;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     border-radius: 30px;
     cursor: pointer;
@@ -154,28 +156,28 @@ textarea::placeholder {
     display: block !important;
 }
 
-/* CARANGUEJO NA FRENTE DA CAIXA (z-index: 30) */
+/* Caranguejo (no canto superior direito da caixa) */
 #carangua2 {
-    top: 140px;
-    right: 12%;
-    width: 170px;
-    z-index: 30; /* Fica acima da caixa branca e das estrelas */
+    top: 175px;
+    right: 15%;
+    width: 150px;
+    z-index: 25;
 }
 
-/* NOTAS DE MÚSICA */
+/* Notas de Música (fixas no canto inferior direito) */
 #musica2 {
-    bottom: -10px;
+    bottom: -15px;
     right: -10px;
-    width: 340px;
-    z-index: 5;
+    width: 350px;
+    z-index: 15;
 }
 
-/* ONDA NO CANTO INFERIOR ESQUERDO */
+/* Onda (fixa no canto inferior esquerdo) */
 #onda {
-    bottom: -20px;
+    bottom: -40px;
     left: -10px;
-    width: 500px;
-    z-index: 5;
+    width: 530px;
+    z-index: 12;
 }
 
 /* MODAL DE SUCESSO */
