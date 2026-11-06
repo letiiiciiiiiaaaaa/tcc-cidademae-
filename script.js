@@ -479,7 +479,7 @@ const eventosAnuais = [
     mesFim: 1, diaFim: 2,       // 02/Fev
     titulo: 'Festa de Nossa Senhora dos Navegantes',
     descricao: 'Festa tradicional na Ilha dos Valadares e Ilha do Mel com procissão marítima, novenas, quitutes regionais e Fandango Caiçara.',
-    link: 'navegantes.html'
+    link: 'https://www.paranagua.pr.gov.br/noticias/noticia3660.html'
   },
   // FEVEREIRO
   {
@@ -487,7 +487,7 @@ const eventosAnuais = [
     mesFim: 1, diaFim: 13,
     titulo: 'Carnaval de Paranaguá',
     descricao: 'Desfile das escolas de samba, blocos carnavalescos e bailes populares no Centro Histórico.',
-    link: 'carnaval.html'
+    link: 'https://www.paranagua.pr.gov.br/noticias/noticia5353.html'
   },
   // MARÇO / ABRIL
   {
@@ -495,15 +495,7 @@ const eventosAnuais = [
     mesFim: 3, diaFim: 2,
     titulo: 'Paixão de Cristo Caiçara (Via Sacra)',
     descricao: 'Encenação ao ar livre que percorre as ruas do Centro Histórico relembrando a Semana Santa com tradição caiçara.',
-    link: 'paixao-de-cristo.html'
-  },
-  // MAIO
-  {
-    mesInicio: 4, diaInicio: 15,
-    mesFim: 4, diaFim: 18,
-    titulo: 'Festival de Voo Livre (Ilha do Mel) & ExpoSafra',
-    descricao: 'Eventos de maio incluindo o Festival de Voo Livre no Morro do Sabão e feiras de integração municipal.',
-    link: 'eventos-maio.html'
+    link: 'https://www.paranagua.pr.gov.br/noticias/noticia5507.html'
   },
   // JUNHO / JULHO
   {
@@ -511,7 +503,7 @@ const eventosAnuais = [
     mesFim: 6, diaFim: 12,
     titulo: 'Festa Nacional da Tainha',
     descricao: 'Um dos maiores eventos gastronômicos do Litoral na Praça de Eventos 29 de Julho, com pratos típicos, feiras e shows.',
-    link: 'festa-da-tainha.html'
+    link: 'https://www.paranagua.pr.gov.br/noticias/noticia5841.html'
   },
   // JULHO
   {
@@ -519,7 +511,7 @@ const eventosAnuais = [
     mesFim: 6, diaFim: 29,
     titulo: 'Aniversário de Paranaguá (378+ anos)',
     descricao: 'Celebração do aniversário da cidade mãe do Paraná com desfile cívico, shows nacionais e feira cultural.',
-    link: 'aniversario-paranagua.html'
+    link: 'https://www.paranagua.pr.gov.br/noticias/noticia5949.html'
   },
   // AGOSTO
   {
@@ -527,14 +519,14 @@ const eventosAnuais = [
     mesFim: 7, diaFim: 15,
     titulo: 'Mês do Patrimônio & Festa do Fandango Caiçara',
     descricao: 'Programação voltada para a preservação do patrimônio histórico, rodas de fandango caiçara, oficinas e apresentações na Casa Dacheux.',
-    link: 'patrimonio-fandango.html'
+    link: 'https://www.paranagua.pr.gov.br/noticias/noticia6325.html'
   },
   {
     mesInicio: 7, diaInicio: 28,
     mesFim: 7, diaFim: 31,
     titulo: 'Paranaguá Motos',
     descricao: 'Encontro de motociclistas reunindo apaixonados por duas rodas na Praça de Eventos com shows de rock e exposição.',
-    link: 'paranagua-motos.html'
+    link: 'https://www.paranagua.pr.gov.br/noticias/noticia5981.html'
   },
   // SETEMBRO
   {
@@ -542,15 +534,15 @@ const eventosAnuais = [
     mesFim: 8, diaFim: 29,
     titulo: 'Festa de São Francisco das Chagas',
     descricao: 'Tradição religiosa com novenas e festejos comunitários na Igreja de São Francisco das Chagas.',
-    link: 'sao-francisco.html'
+    link: 'https://folhadolitoral.com.br/editorias/religiosidade/festa-em-honra-a-sao-francisco-das-chagas-e-iniciada-em-paranagua/'
   },
   // OUTUBRO
   {
-    mesInicio: 9, diaInicio: 1,
+    mesInicio: 9, diaInicio: 7,
     mesFim: 9, diaFim: 7,
     titulo: 'Festa de Nossa Senhora do Rosário',
     descricao: 'Celebração da Padroeira do Município de Paranaguá na Catedral Diocesana, com procissão e quermesse.',
-    link: 'nossa-senhora-rosario.html'
+    link: 'https://www.paranagua.com.br/eventos-em-paranagua/'
   },
   // NOVEMBRO
   {
@@ -558,7 +550,7 @@ const eventosAnuais = [
     mesFim: 10, diaFim: 16,
     titulo: 'Festa de Nossa Senhora do Rocio',
     descricao: 'Uma das maiores festas religiosas do Brasil em honra à Padroeira do Paraná (15/11), realizada na Praça da Fé.',
-    link: 'festa-do-rocio.html'
+    link: 'https://www.paranagua.pr.gov.br/noticias/noticia6123.html'
   },
   // DEZEMBRO
   {
@@ -566,11 +558,10 @@ const eventosAnuais = [
     mesFim: 11, diaFim: 31,
     titulo: 'Festa de São Benedito',
     descricao: 'Tradição natalina com alvoradas festivas, novenas, procissão e apresentações culturais no Centro Histórico.',
-    link: 'sao-benedito.html'
+    link: 'https://folhadolitoral.com.br/editorias/religiosidade/festa-de-sao-benedito-chega-a-241a-edicao-em-paranagua-com-novenario-procissao-e-leilao-tradicional/'
   }
 ];
 
-// Controle de meses do ano (0 = Janeiro, 11 = Dezembro)
 let mesAtualIndex = 0;
 
 const nomesMeses = [
