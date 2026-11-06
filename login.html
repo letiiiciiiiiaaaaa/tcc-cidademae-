@@ -35,55 +35,61 @@
     </div>
   </div>
 
-  <script>
-    const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
-    const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
+    <script>
+      const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
+      const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
 
-    let supabaseClient = null;
-    if (typeof supabase !== 'undefined') {
-      supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    }
-
-    document.getElementById('formLogin').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const nome = document.getElementById('loginNome').value.trim();
-      const senha = document.getElementById('loginSenha').value;
-
-      if (!nome) return;
-
-      if (supabaseClient) {
-        try {
-          const { data, error } = await supabaseClient
-            .from('usuarios')
-            .select('*')
-            .eq('nome', nome)
-            .maybeSingle();
-
-          if (data) {
-            localStorage.setItem('usuario_id', data.idusuarios);
-            localStorage.setItem('usuario_email', data.email);
-            if (data.bio) localStorage.setItem('usuario_bio', data.bio);
-          }
-        } catch (err) {
-          console.log("Consulta de banco em contingência:", err);
-        }
+      let supabaseClient = null;
+      if (typeof supabase !== 'undefined') {
+        supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       }
 
-      localStorage.setItem('usuario_nome', nome);
-      localStorage.setItem('usuarioLogado', nome);
+      document.getElementById('formLogin').addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-      document.getElementById('modal-titulo').textContent = `Bem-vindo(a) de volta, ${nome}!`;
-      document.getElementById('modal-mensagem').textContent = `Que bom ter você de volta no Cidade Mãe.`;
-      document.getElementById('modal-sucesso-login').style.display = 'flex';
-    });
+        const nome = document.getElementById('loginNome').value.trim();
+        const senha = document.getElementById('loginSenha').value;
 
-    document.getElementById('btn-ok-login').addEventListener('click', () => {
-      const voltarPara = sessionStorage.getItem('voltarPara') || (document.referrer ? document.referrer : 'index.html');
-      sessionStorage.removeItem('voltarPara');
-      window.location.href = voltarPara;
-    });
-  </script>
+        if (!nome) return;
+
+        if (supabaseClient) {
+          try {
+            const { data, error } = await supabaseClient
+              .from('usuarios')
+              .select('*')
+              .eq('nome', nome)
+              .maybeSingle();
+
+            if (data) {
+              localStorage.setItem('usuario_id', data.idusuarios);
+              localStorage.setItem('usuario_email', data.email);
+              if (data.bio) localStorage.setItem('usuario_bio', data.bio);
+            }
+          } catch (err) {
+            console.log("Consulta de banco em contingência:", err);
+          }
+        }
+
+        localStorage.setItem('usuario_nome', nome);
+        localStorage.setItem('usuarioLogado', nome);
+
+        document.getElementById('modal-titulo').textContent = `Bem-vindo(a) de volta, ${nome}!`;
+        document.getElementById('modal-mensagem').textContent = `Que bom ter você de volta no Cidade Mãe.`;
+        document.getElementById('modal-sucesso-login').style.display = 'flex';
+      });
+
+      document.getElementById('btn-ok-login').addEventListener('click', () => {
+        let voltarPara = sessionStorage.getItem('voltarPara');
+
+        if (!voltarPara || voltarPara.includes('login.html') || voltarPara.includes('cadastro.html')) {
+          voltarPara = document.referrer ? document.referrer : 'index.html';
+        }
+
+        sessionStorage.removeItem('voltarPara');
+
+        window.location.href = voltarPara;
+      });
+    </script>
 </body>
 
 </html>

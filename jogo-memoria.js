@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
     if (!usuarioLogado) {
         alert('Você precisa estar logado para acessar esta página!');
+        sessionStorage.setItem('voltarPara', 'jogo-memoria.html');
+
         window.location.href = 'cadastro.html';
     }
 });

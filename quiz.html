@@ -63,6 +63,9 @@
 
             if (!usuarioLogado) {
                 alert('Você precisa estar logado para acessar esta página!');
+
+                sessionStorage.setItem('voltarPara', 'quiz.html');
+
                 window.location.href = 'cadastro.html';
                 return;
             }

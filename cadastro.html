@@ -32,7 +32,7 @@
         </div>
         <br>
         <button type="submit" class="entrar">Criar conta</button>
-        <h5>Já possui uma conta?<br><a href="login.html" class="login">Logar-se</a>.</h5>
+        <h5>Já possui uma conta?<br><a href="login.html" class="login" onclick="sessionStorage.setItem('voltarPara', sessionStorage.getItem('voltarPara') || 'index.html')">Logar-se</a>.</h5>
     </form>
 
     <div id="modal-sucesso" class="modal-overlay" style="display: none;">
