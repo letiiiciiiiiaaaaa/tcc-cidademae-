@@ -911,8 +911,31 @@ input:focus-visible {
 }
 
 :target {
-    animation: destacar-alvo 2.5s ease-in-out;
+    animation: rolar-suave 1s ease-in-out;
     scroll-margin-top: 80px;
+}
+
+@keyframes rolar-suave {
+}
+
+mark.destaque-busca {
+    background: #ffe066;
+    color: inherit;
+    padding: 0 2px;
+    border-radius: 3px;
+    animation: piscar-destaque 2.5s ease-in-out;
+}
+
+@keyframes piscar-destaque {
+
+    0%,
+    100% {
+        background: #ffe066;
+    }
+
+    50% {
+        background: #ffd700;
+    }
 }
 
 @keyframes destacar-alvo {

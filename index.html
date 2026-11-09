@@ -169,62 +169,64 @@
         <img src="imagens/bandeiras-rodapé.png" alt="Bandeiras Rodapé" id="bandeiras-rodape">
     </footer>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mapaElement = document.getElementById('mapa');
-            if (mapaElement) {
-                const mapa = L.map('mapa').setView([-25.5205, -48.5090], 15);
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const mapaElement = document.getElementById('mapa');
+                if (mapaElement) {
+                    const mapa = L.map('mapa').setView([-25.5215, -48.5065], 15);
 
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mapa);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '© OpenStreetMap'
+                    }).addTo(mapa);
 
-                const locais = [
-                    {
-                        nome: "Mercado do Café",
-                        descricao: "Centro da gastronomia caiçara! Famoso pelo tradicional Barreado.",
-                        coords: [-25.5209, -48.5075],
-                        link: "gastronomia.html"
-                    },
-                    {
-                        nome: "Mercado do Peixe",
-                        descricao: "Ponto tradicional de venda do pescado do dia.",
-                        coords: [-25.5201, -48.5065],
-                        link: "mercado.html"
-                    },
-                    {
-                        nome: "Rua da Praia",
-                        descricao: "Orla histórica com os casarios coloniais mais antigos do Paraná.",
-                        coords: [-25.5218, -48.5060],
-                        link: "mercado.html"
-                    },
-                    {
-                        nome: "Ilha dos Valadares",
-                        descricao: "Berço cultural do Fandango Caiçara e artesanato local.",
-                        coords: [-25.5225, -48.4980],
-                        link: "arte.html"
-                    },
-                    {
-                        nome: "Museu MAE - UFPR",
-                        descricao: "Antigo Colégio dos Jesuítas (1755), acervo histórico da região.",
-                        coords: [-25.5230, -48.5085],
-                        link: "arte.html"
-                    }
-                ];
+                    const locais = [
+                        {
+                            nome: "Mercado do Café",
+                            descricao: "Ponto gastronômico tradicional com arquitetura de inspiração neoclássica e forte história ligada à expansão do café na região.",
+                            coords: [-25.5209, -48.5075],
+                            link: "mercado.html#linha-do-tempo"
+                        },
+                        {
+                            nome: "Mercado Municipal de Artesanato",
+                            descricao: "Construção em estilo neo-renascentista, é o principal ponto de venda do artesanato típico da região.",
+                            coords: [-25.5200, -48.5045],
+                            link: "mercado.html#artesanato"
+                        },
+                        {
+                            nome: "Casa Monsenhor Celso",
+                            descricao: "Casarão colonial do século XVIII no Centro Histórico, funciona hoje como um dinâmico centro cultural.",
+                            coords: [-25.5235, -48.5070],
+                            link: "arte.html#casa-monsenhor"
+                        },
+                        {
+                            nome: "Ilha dos Valadares",
+                            descricao: "Berço cultural do Fandango Caiçara, da rabeca e do artesanato local.",
+                            coords: [-25.5260, -48.5020],
+                            link: "arte.html#fandango"
+                        },
+                        {
+                            nome: "Museu MAE - UFPR",
+                            descricao: "Inaugurado em 1963, foi a primeira instituição museológica universitária do estado.",
+                            coords: [-25.5245, -48.5110],
+                            link: "arte.html#museu-mae"
+                        }
+                    ];
 
-                locais.forEach(lugar => {
-                    L.marker(lugar.coords)
-                        .addTo(mapa)
-                        .bindPopup(`
-                            <div class="popup">
-                                <h3>${lugar.nome}</h3>
-                                <p>${lugar.descricao}</p>
-                                <a href="${lugar.link}">Saber mais</a>
-                            </div>
-                        `);
-                });
-            }
-        });
-    </script>
+                    locais.forEach(lugar => {
+                        L.marker(lugar.coords)
+                            .addTo(mapa)
+                            .bindPopup(`
+                                    <div class="popup" style="text-align: center; font-family: 'Questrial', sans-serif;">
+                                        <h3 style="color: #1a365d; margin-bottom: 6px; font-size: 1.05rem;">${lugar.nome}</h3>
+                                        <p style="font-size: 0.9rem; margin-bottom: 8px;">${lugar.descricao}</p>
+                                        <a href="${lugar.link}" style="display: inline-block; background: #1a365d; color: #fff; padding: 6px 12px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 0.8rem;">Saber mais</a>
+                                    </div>
+                                `);
+                    });
+                }
+            });
+        </script>
 </body>
 
 </html>
