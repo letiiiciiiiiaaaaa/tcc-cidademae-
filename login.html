@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
   <link rel="stylesheet" href="login.css">
   <script src="script.js" defer></script>
 </head>
-
 <body>
   <a href="" onclick="history.back(); return false;">
     <button class="voltar">🡠</button>
@@ -26,7 +24,6 @@
     <h4>Não possui uma conta?<br><a href="cadastro.html" class="cadastro">Cadastre-se</a>.</h4>
   </form>
 
-  <!-- MODAL CUSTOMIZADO DE LOGIN NO CENTRO DA TELA -->
   <div id="modal-sucesso-login" class="modal-overlay" style="display: none;">
     <div class="modal-card">
       <h2 id="modal-titulo">Bem-vindo(a) de volta!</h2>
@@ -34,7 +31,6 @@
       <button id="btn-ok-login" class="btn-modal-ok">OK</button>
     </div>
   </div>
-
     <script>
       const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
       const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
@@ -91,5 +87,4 @@
       });
     </script>
 </body>
-
 </html>

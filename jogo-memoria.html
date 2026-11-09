@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cidade Mãe || Jogo da Memória</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="jogo-memoria.css">
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
     <script src="script.js" defer></script>
     <script defer src="jogo-memoria.js"></script>
 </head>
-
 <body>
-    <!-- CABEÇALHO COM ESPAÇAMENTO PADRÃO DA HOME -->
     <header class="cabecalho">
         <div class="abas">
             <a href="" onclick="history.back(); return false;" class="voltar">🡠</a>
@@ -27,7 +22,7 @@
 
             <img src="imagens/paranagua.png" class="paranagua" alt="Paranaguá">
 
-            <a href="sobre-nos.html" class="btn-sobre">sobre nós</a>
+            <a href="sobre-nos.html" class="btn-sobre"> Sobre nós</a>
 
             <div class="usuario" id="container-usuario">
                 <a href="perfil.html" style="text-decoration: none;">
@@ -72,7 +67,6 @@
         </section>
     </main>
 
-    <!-- MODAL INÍCIO -->
     <div id="modal-inicio" class="modal">
         <div class="modal-content">
             <h2>Bem-vindo ao Jogo da Memória!</h2>
@@ -84,7 +78,6 @@
         </div>
     </div>
 
-    <!-- MODAL DIFICULDADE -->
     <div id="modal-dificuldade" class="modal fechar">
         <div class="modal-content">
             <h2>Escolha a Dificuldade</h2>
@@ -96,7 +89,6 @@
         </div>
     </div>
 
-    <!-- MODAL FIM -->
     <div id="modal-fim" class="modal fechar">
         <div class="modal-content">
             <h2 id="titulo-fim">Fim de Jogo!</h2>
@@ -107,7 +99,6 @@
             </div>
         </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
@@ -118,5 +109,4 @@
         });
     </script>
 </body>
-
 </html>

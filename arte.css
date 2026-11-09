@@ -87,12 +87,47 @@ p.info-quadros {
 }
 
 .secao-local {
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
     padding: 0;
     margin-bottom: 72px;
+    width: 100%;
 }
 
-.linha-rosa {
-    border-color: rgb(248, 159, 172);
+.texto p{
+    margin-top: 0;
+    font-size: 17px;
+}
+
+.bloco-local {
+    display: flex;
+    gap: 40px;
+    align-items: center; 
+    width: 100%;
+}
+
+.bloco-local .bloco-imagem,
+.bloco-local .texto {
+    flex: 1;
+}
+
+.bloco-invertido #rosa {
+    text-align: right;
+}
+
+#rosa {
+    color: pink;
+} 
+
+.bloco-invertido .linha-rosa {
+    margin-left: auto;
+}
+
+@media (max-width: 800px) {
+    .bloco-local {
+        flex-direction: column;
+    }
 }
 
 .secao-fandango {

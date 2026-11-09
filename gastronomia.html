@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Gastronomia - Cidade Mãe</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="gastronomia.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js" defer></script>
 </head>
-
 <body>
-
     <header class="cabecalho">
         <div class="abas">
             <a href="" onclick="history.back(); return false;" class="voltar">🡠</a>
@@ -24,11 +20,10 @@
             </div>
 
             <img src="imagens/paranagua.png" class="paranagua" alt="Paranaguá">
-
-            <a href="sobre-nos.html" class="btn-sobre">sobre nós</a>
+            <a href="sobre-nos.html" class="btn-sobre"> Sobre nós</a>
 
             <div class="usuario" id="container-usuario">
-                <a href="cadastro.html" class="btn-usuario" id="btn-user">cadastre-se</a>
+                <a href="cadastro.html" class="btn-usuario" id="btn-user"> Cadastre-se</a>
 
                 <a href="perfil.html" style="text-decoration: none;">
                     <div id="perfil-logado" class="perfil-logado">
@@ -52,26 +47,16 @@
         </div>
     </header>
 
-    <p class="introducao surgir"> A gastronomia no litoral paranaense, principalmente em Paranaguá, é uma <br> herança
-        cultural que une influências indígenas e portuguesas, baseando-se no <br> que o mar e a terra oferecem. Essa
-        fusão resultou em ícones como o Barreado, <br> técnica centenária de cozimento em panelas de barro seladas, e a
-        Tainha <br> Assada, que utiliza o peixe inteiro. Nos mercados locais, a tradição se mantém <br> viva através do
-        consumo do berbigão e da cataia, uma infusão típica da região.</p>
+    <p class="introducao surgir"> A gastronomia no litoral paranaense, principalmente em Paranaguá, é uma <br> herança cultural que une influências indígenas e portuguesas, baseando-se no <br> que o mar e a terra oferecem. Essa fusão resultou em ícones como o Barreado, <br> técnica centenária de cozimento em panelas de barro seladas, e a Tainha <br> Assada, que utiliza o peixe inteiro. Nos mercados locais, a tradição se mantém <br> viva através do consumo do berbigão e da cataia, uma infusão típica da região.</p>
 
     <main class="container-principal">
-
         <img src="imagens/verduras.png" id="verduras" class="direita">
         <img src="imagens/frutas.png" id="frutas" class="esquerda">
         <img src="imagens/siri.png" id="siri" class="direita">
 
         <section class="conteudo">
             <div class="barreado" id="barreado">
-                <p class="intro-barreado esquerda"> Nascido há mais de 300 anos no litoral paranaense, o <br> <strong>
-                        Barreado </strong> é um patrimônio cultural criado por caboclos <br> para as festas de Carnaval.
-                    O prato leva esse nome <br> porque a panela de barro é "barreada" (selada) com <br> uma pasta de
-                    farinha e água, retendo o vapor por mais <br> de 12 horas de cozimento lento. O resultado é uma <br>
-                    carne bovina que desmancha, servida com farinha de <br> mandioca e finalizada com o toque adocicado
-                    da <br> banana da terra; uma combinação histórica e <br> irresistível. </p>
+                <p class="intro-barreado esquerda"> Nascido há mais de 300 anos no litoral paranaense, o <br> <strong> Barreado </strong> é um patrimônio cultural criado por caboclos <br> para as festas de Carnaval. O prato leva esse nome <br> porque a panela de barro é "barreada" (selada) com <br> uma pasta de farinha e água, retendo o vapor por mais <br> de 12 horas de cozimento lento. O resultado é uma <br> carne bovina que desmancha, servida com farinha de <br> mandioca e finalizada com o toque adocicado da <br> banana da terra; uma combinação histórica e <br> irresistível. </p>
 
                 <div class="calculadora" data-prato="barreado">
                     <h4>Ingredientes</h4>
@@ -97,19 +82,11 @@
                     <ul class="calc-lista"></ul>
                 </div>
 
-                <p class="intro-caranguejo direita"> A <strong> Caranguejada </strong> é um símbolo da identidade <br>
-                    caiçara e da gastronomia do litoral paranaense. <br> Servido quente com vinagrete e pirão, o <br>
-                    caranguejo-uçá une famílias em um rústico ritual <br> social nas praias da região. Além da tradição,
-                    o <br> prato atrai milhares de turistas para festivais em <br> Pontal do Paraná e Paranaguá,
-                    movimentando a <br> economia dos pescadores locais durante a <br> temporada de captura. </p>
+                <p class="intro-caranguejo direita"> A <strong> Caranguejada </strong> é um símbolo da identidade <br> caiçara e da gastronomia do litoral paranaense. <br> Servido quente com vinagrete e pirão, o <br> caranguejo-uçá une famílias em um rústico ritual <br> social nas praias da região. Além da tradição, o <br> prato atrai milhares de turistas para festivais em <br> Pontal do Paraná e Paranaguá, movimentando a <br> economia dos pescadores locais durante a <br> temporada de captura. </p>
             </div> <br> <br> <br> <br>
 
             <div class="peixe" id="peixe">
-                <p class="intro-peixe esquerda"> Considerada uma das maiores riquezas <br> gastronômicas do nosso
-                    litoral, a <strong> Tainha </strong> é <br> tradicionalmente assada inteira, no forno ou na brasa,
-                    <br> deitada sobre uma cama de cebolas e batatas. A <br> tradição é marcada pela temporada de pesca
-                    tão <br> aguardada durante as estações mais frias do ano, que <br> impulsiona o turismo e valoriza o
-                    trabalho dos nossos <br> pescadores locais há mais de três décadas.
+                <p class="intro-peixe esquerda"> Considerada uma das maiores riquezas <br> gastronômicas do nosso litoral, a <strong> Tainha </strong> é <br> tradicionalmente assada inteira, no forno ou na brasa, <br> deitada sobre uma cama de cebolas e batatas. A <br> tradição é marcada pela temporada de pesca tão <br> aguardada durante as estações mais frias do ano, que <br> impulsiona o turismo e valoriza o trabalho dos nossos <br> pescadores locais há mais de três décadas.
                 </p>
 
                 <div class="calculadora" data-prato="peixe">
@@ -136,26 +113,17 @@
                     <ul class="calc-lista"></ul>
                 </div>
 
-                <p class="intro-arroz direita"> O <strong> Arroz Lambe-lambe </strong> é um prato tradicional do <br>
-                    litoral Sul que se origina de uma maneira mais prática <br> que os antigos pescadores criaram para
-                    se alimentar <br> durante o trabalho: eles levavam apenas uma panela <br> de arroz para o mar e
-                    preparavam sua comida <br> improvisadamente com os mariscos recém-pescados, <br> usando a própria
-                    concha para comer como uma colher <br> e lambendo os dedos. </p>
+                <p class="intro-arroz direita"> O <strong> Arroz Lambe-lambe </strong> é um prato tradicional do <br> litoral Sul que se origina de uma maneira mais prática <br> que os antigos pescadores criaram para se alimentar <br> durante o trabalho: eles levavam apenas uma panela <br> de arroz para o mar e preparavam sua comida <br> improvisadamente com os mariscos recém-pescados, <br> usando a própria concha para comer como uma colher <br> e lambendo os dedos. </p>
             </div> <br> <br> <br> <br>
         </section> <br> <br>
 
         <div class="lucas" id="lucas">
+            <h2> Chefe Destaque do Litoral </h2>
             <img src="imagens/lucas-correia.png">
-            <p class="intro-lucas surgir"> O nosso litoral orgulha-se por acolher um cozinheiro tão dedicado e <br>
-                apaixonado por 17 anos em seu berço: O cozinheiro Lucas Correia, <br> participante que representou o
-                Paraná na temporada de 2025 do programa <br> “Chef de Alto Nível”, da rede Globo. Em 2026, o chef
-                celebra 20 anos na <br> gastronomia profissional. </p>
+            <p class="intro-lucas surgir"> O nosso litoral orgulha-se por acolher um cozinheiro tão dedicado e <br> apaixonado por 17 anos em seu berço: O cozinheiro Lucas Correia, <br> participante que representou o Paraná na temporada de 2025 do programa <br> “Chef de Alto Nível”, da rede Globo. Em 2026, o chef celebra 20 anos na <br> gastronomia profissional. </p>
         </div>
 
-        <p class="ultimo-texto"> Esses pratos são responsáveis por unir cidadãos antigos e <br> apaixonados pela nossa
-            tradição em festivais de celebração <br> todos os anos. Mais do que sustento, essa culinária reflete o <br>
-            modo de vida caiçara, onde a farinha de mandioca, a <br> banana e o frescor dos frutos do mar contam a
-            história da <br> cidade mais antiga do estado. </p>
+        <p class="ultimo-texto"> Esses pratos são responsáveis por unir cidadãos antigos e <br> apaixonados pela nossa tradição em festivais de celebração <br> todos os anos. Mais do que sustento, essa culinária reflete o <br> modo de vida caiçara, onde a farinha de mandioca, a <br> banana e o frescor dos frutos do mar contam a história da <br> cidade mais antiga do estado. </p>
 
         <section class="secao-jogo">
             <div class="box box-jogo">
@@ -178,7 +146,6 @@
         <p>&copy; Copyright Cidade Mãe - 2026</p>
         <img src="imagens/bandeiras-rodapé.png" alt="Bandeiras Rodapé" id="bandeiras-rodape">
     </footer>
-
     <script>
         const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
         const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
@@ -226,5 +193,4 @@
         });
     </script>
 </body>
-
 </html>
