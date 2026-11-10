@@ -3,9 +3,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!usuarioLogado) {
         alert('Você precisa estar logado para acessar esta página!');
         sessionStorage.setItem('voltarPara', 'jogo-memoria.html');
-
         window.location.href = 'cadastro.html';
+        return;
     }
+
+    // Carrega a estrutura inicial dos cards virados para baixo para o fundo não ficar vazio atrás do modal
+    loadGame();
 });
 
 const grid = document.querySelector('.grid');
@@ -46,30 +49,24 @@ const createElement = (tag, className) => {
     return element;
 };
 
-// --- FUNÇÃO QUE SALVA A PONTUAÇÃO NO BANCO ---
 const salvarMaiorPontuacao = async (pontosAtuais) => {
     const maiorPontuacaoSalva = parseInt(localStorage.getItem('maiorPontuacao')) || 0;
 
-    // Se a pontuação atual for maior que a antiga
     if (pontosAtuais > maiorPontuacaoSalva) {
         localStorage.setItem('maiorPontuacao', pontosAtuais);
 
         const usuarioId = localStorage.getItem('usuario_id');
 
-        // Se tiver logado e a biblioteca do Supabase estiver na página
         if (usuarioId && usuarioId !== "undefined" && typeof supabase !== 'undefined') {
             const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
             const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
             const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
             try {
-                const { error } = await supabaseClient
+                await supabaseClient
                     .from('usuarios')
                     .update({ jogo_pontos: pontosAtuais })
                     .eq('idusuarios', usuarioId);
-
-                if (error) console.error("Erro ao salvar jogo no banco:", error);
-                else console.log("Pontuação do jogo salva no banco com sucesso!");
             } catch (err) {
                 console.error("Erro de conexão com o banco:", err);
             }
@@ -192,7 +189,7 @@ const resetGameState = () => {
     currentScore = 0;
     if (placarPontos) placarPontos.innerHTML = currentScore;
     if (timer) timer.innerHTML = "00:00";
-    grid.innerHTML = '';
+    loadGame(); // Recarrega os cards virados no fundo ao reiniciar
 };
 
 const dispararConfetes = () => {
@@ -234,3 +231,37 @@ btnJogarNovamente.addEventListener('click', () => {
 
 if (btnPerfil) btnPerfil.addEventListener('click', () => window.location.href = 'perfil.html');
 if (btnVoltar) btnVoltar.addEventListener('click', () => window.history.back());
+
+document.addEventListener('DOMContentLoaded', () => {
+    const btnFecharMemoria = document.getElementById('btn-fechar-memoria');
+    const modalAlerta = document.getElementById('modal-confirmar-saida-memoria');
+    const btnConfirmarSair = document.getElementById('btn-confirmar-sair-memoria');
+    const btnCancelarSair = document.getElementById('btn-cancelar-sair-memoria');
+
+    if (btnFecharMemoria) {
+        btnFecharMemoria.addEventListener('click', () => {
+            if (modalAlerta) modalAlerta.style.display = 'flex';
+        });
+    }
+
+    if (btnConfirmarSair) {
+        btnConfirmarSair.addEventListener('click', () => {
+            const origemSalva = sessionStorage.getItem('origemJogoMemoria');
+
+            if (origemSalva) {
+                sessionStorage.removeItem('origemJogoMemoria');
+                window.location.href = origemSalva;
+            } else if (document.referrer && !document.referrer.includes('jogo-memoria.html')) {
+                window.location.href = document.referrer;
+            } else {
+                window.history.back();
+            }
+        });
+    }
+
+    if (btnCancelarSair) {
+        btnCancelarSair.addEventListener('click', () => {
+            if (modalAlerta) modalAlerta.style.display = 'none';
+        });
+    }
+});

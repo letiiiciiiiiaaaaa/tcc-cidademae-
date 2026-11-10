@@ -7,10 +7,9 @@
 }
 
 html, body {
-    width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
-    background-color: #ffffff;
+    width: 100vw;
+    max-width: 100%;
+    overflow-x: hidden; 
 }
 
 body {
@@ -19,57 +18,79 @@ body {
     align-items: center;
     min-height: 100vh;
     padding-bottom: 40px;
+    position: relative;
 }
 
 header.cabecalho {
+    background-color: #f7f7f9;
     width: 100%;
-    max-width: 100vw;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     position: relative;
-    z-index: 1;
+    z-index: 10;
     margin: 0;
     padding: 0;
 }
 
 header.cabecalho .abas {
+    background-color: inherit;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 100%;
     padding: 12px 30px;   
     box-sizing: border-box;
 }
 
 main {
     width: 100%;
-    max-width: 100%;      
+    max-width: 100vw;      
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 30px;
+    position: relative;
     z-index: 1;
-    box-sizing: border-box;
+    overflow-x: hidden; /* Garante que os elementos posicionados na main sejam cortados */
 }
 
+/* POSICIONAMENTO ESTÁVEL E CORRETO DAS DECORAÇÕES */
 #caranguejo,
 #dancando,
 #aquarela,
 #peixes {
     position: absolute;
     z-index: 0;
-    height: auto;
     pointer-events: none;
+    display: block;
 }
 
 #caranguejo {
-    top: 10%;
-    right: 2%;
+    top: 120px;
+    right: 3%;
+    width: 220px;
+    height: auto;
+    transform: rotate(10deg);
 }
 
 #dancando {
-    top: 50%;
-    left: 2%;
+    top: 28%;
+    left: 10%; 
+    width: 230px;
+    height: auto;
+}
+
+#aquarela {
+    top: 60%;
+    right: 13%;
+    width: 190px;
+    height: auto;
+}
+
+#peixes {
+    bottom: -10px;
+    left: 1%;
+    width: 580px;
+    height: auto;
 }
 
 .introducao {
@@ -77,6 +98,8 @@ main {
     width: 100%;
     margin-top: 20px;
     margin-bottom: 30px; 
+    position: relative;
+    z-index: 2;
 }
 
 .titulo {
@@ -105,6 +128,8 @@ main {
     gap: 40px; 
     width: 100%;
     margin-bottom: 30px; 
+    position: relative;
+    z-index: 2;
 }
 
 .item-painel {
@@ -174,6 +199,8 @@ main {
     justify-content: center;
     align-items: center;
     width: 100%;
+    position: relative;
+    z-index: 2;
 }
 
 .grid {
@@ -223,7 +250,7 @@ main {
     cursor: default;
 }
 
-/* CORREÇÃO DO MODAL PARA ESCURECER A TELA INTEIRA (INCLUINDO HEADER) */
+/* MODAIS */
 .modal {
     position: fixed;
     top: 0;
@@ -234,7 +261,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Garante que fique por cima de tudo */
+    z-index: 9999;
 }
 
 .modal.fechar {
@@ -299,4 +326,115 @@ main {
 
 .btn-secundario:hover {
     background-color: #52b356;
+}
+
+.topo-resultado-botoes {
+    position: absolute;
+    top: 12px;  
+    right: 12px;
+    margin: 0;
+    padding: 0;
+    z-index: 10;
+}
+
+.btn-circulo {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    border: none;
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    line-height: 1;
+}
+
+.btn-circulo:hover {
+    background-color: #e0e0e0;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-card {
+    background: #ffffff;
+    padding: 25px 30px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 380px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.modal-card h2 {
+    font-size: 20px;
+    color: #111111;
+    margin-bottom: 12px;
+}
+
+.modal-card p {
+    font-size: 15px;
+    color: #666666;
+    line-height: 1.4;
+}
+
+.modal-confirmacao-botoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-alerta-sair {
+    background-color: #ff3131;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-alerta-sair:hover {
+    background-color: #d92626;
+}
+
+.btn-alerta-cancelar {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-alerta-cancelar:hover {
+    background-color: #cccccc;
+}
+
+@media (max-width: 900px) {
+    #caranguejo,
+    #dancando,
+    #aquarela,
+    #peixes {
+        display: none;
+    }
 }
