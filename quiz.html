@@ -80,11 +80,28 @@
 
 `;
                 document.body.appendChild(modalAviso);
+
+                const btnFecharBloqueio = 
+                modalAviso.querySelector('.btn-fechar-bloqueio');
+
+                btnFecharBloqueio.addEventListener('click', () => {
+                   const origem = 
+                sessionStorage.getItem('origemJogo');
+
+                  if (origem && origem !== 'quiz.html') {
+                     sessionStorage.removeItem('origemJogo');
+                     window.location.href = origem;
+                 } else if (document.referrer && !
+                document.referrer.includes('quiz.html')) {
+                   window.location.href = document.referrer;
+                  } else {
+                      window.location.href = 'index.html';
+                  }
+               });
                 
-                return; // Se não tiver logado, para aqui
+                return; 
             }
 
-            // --- SE CHEGOU AQUI, ESTÁ LOGADO! ---
             const elNome = document.getElementById('nome-usuario');
             const perfilLogado = document.getElementById('perfil-logado');
             const btnUser = document.getElementById('btn-user');
