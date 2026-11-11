@@ -81,17 +81,41 @@
         let selectedRating = 0;
 
         document.addEventListener('DOMContentLoaded', () => {
+            // --- 1. VERIFICAÇÃO DE LOGIN E PERFIL ---
+            const usuarioLocal = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
             const btnUser = document.getElementById('btn-user');
             const perfilLogado = document.getElementById('perfil-logado');
             const nomeUsuario = document.getElementById('nome-usuario');
-            const usuarioLocal = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
 
-            if (usuarioLocal) {
-                if (nomeUsuario) nomeUsuario.textContent = usuarioLocal;
-                if (btnUser) btnUser.style.display = 'none';
-                if (perfilLogado) perfilLogado.style.display = 'flex';
+            if (!usuarioLocal) {
+                // --- BLOQUEIO DE ACESSO (Se não estiver logado) ---
+                sessionStorage.setItem('voltarPara', window.location.href);
+
+                // ESCONDE O BOTÃO CADASTRE-SE DO FUNDO
+                if (btnUser) btnUser.style.display = 'none'; 
+
+                const modalAviso = document.createElement('div');
+                modalAviso.className = 'modal-bloqueio';
+                modalAviso.innerHTML = `
+                    <div class="modal-bloqueio-card">
+                        <h2>Acesso Restrito</h2>
+                        <p>Você precisa estar logado para acessar a página de Feedback!</p>
+                        <button onclick="window.location.href='cadastro.html'">Fazer Login / Cadastro</button>
+                    </div>
+                `;
+                document.body.appendChild(modalAviso);
+                
+                return; 
             }
 
+            // --- SE CHEGOU AQUI, ESTÁ LOGADO! ---
+            // Mostra o perfil e esconde o botão de cadastro
+            if (nomeUsuario) nomeUsuario.textContent = usuarioLocal;
+            if (btnUser) btnUser.style.display = 'none';
+            if (perfilLogado) perfilLogado.style.display = 'flex';
+
+
+            // --- 2. LÓGICA DAS ESTRELAS ---
             const estrelas = document.querySelectorAll('.estrela');
 
             estrelas.forEach(estrela => {
@@ -122,6 +146,7 @@
                 }
             }
 
+            // --- 3. ENVIO DO FEEDBACK ---
             const btnEnviar = document.getElementById('btn-enviar-feedback');
             const modalSucesso = document.getElementById('modal-sucesso');
             const btnFecharModal = document.getElementById('btn-fechar-modal');
@@ -172,16 +197,6 @@
                 }
             });
         });
-
-        document.addEventListener('DOMContentLoaded', () => {
-                const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
-
-                if (!usuarioLogado) {
-                    sessionStorage.setItem('voltarPara', window.location.href);
-                    alert('Você precisa estar logado para acessar a página de feedback!');
-                    window.location.href = 'cadastro.html';
-                }
-            });
     </script>
 </body>
 </html>

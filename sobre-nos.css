@@ -118,7 +118,7 @@ main {
 }
 
 .secao-objetivo {
-    background-color: #ebf3f7; /* Fundo azul bem claro igual ao Canva */
+    background-color: #ebf3f7;
     padding: 50px 20px;
     text-align: center;
 }
@@ -284,27 +284,27 @@ footer {
     margin-bottom: 6px;
 }
 
-  .copyright {
+.copyright {
     font-size: 12px;
     opacity: 0.9;
-  }
+}
 
-  .footer-flags {
+.footer-flags {
     position: absolute;
     right: 24px;
     bottom: 16px;
     display: flex;
     flex-direction: column;
     gap: 6px;
-  }
+}
 
-  .footer-flags img {
+.footer-flags img {
     width: 28px;
     height: 18px;
     border-radius: 2px;
-  }
+}
 
-  @media (max-width: 600px) {
+@media (max-width: 600px) {
     .creators-grid {
       gap: 24px;
     }

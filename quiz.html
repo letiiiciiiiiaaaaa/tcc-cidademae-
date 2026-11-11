@@ -23,7 +23,7 @@
 
             <div class="usuario" id="container-usuario">
                 <a href="perfil.html" style="text-decoration: none;">
-                    <div id="perfil-logado" class="perfil-logado" style="display: flex;">
+                    <div id="perfil-logado" class="perfil-logado" style="display: none;">
                         <span id="nome-usuario" class="nome-perfil"></span>
                         <img id="foto-usuario" src="imagens/usuario.png" alt="Foto de perfil" class="foto-perfil">
                     </div>
@@ -59,27 +59,29 @@
 
             if (!usuarioLogado) {
                 sessionStorage.setItem('voltarPara', 'quiz.html');
-
-                // Cria o modal dinamicamente para não travar a página com alert()
+                
                 const modalAviso = document.createElement('div');
-                modalAviso.className = 'modal-overlay';
-                modalAviso.style.zIndex = '99999'; // Garante que fica por cima de tudo
-
+                modalAviso.className = 'modal-bloqueio';
                 modalAviso.innerHTML = `
-                        <div class="modal-card" style="text-align: center; padding: 30px;">
-                            <h2 style="color: #333; margin-bottom: 15px;">Acesso Restrito</h2>
-                            <p style="color: #666; margin-bottom: 25px; font-size: 18px;">Você precisa estar logado para jogar o Quiz Caiçara!</p>
-                            <button onclick="window.location.href='cadastro.html'" style="background-color: #65cc69; color: white; padding: 12px 30px; border: none; border-radius: 25px; font-size: 18px; cursor: pointer; font-weight: bold;">Fazer Login / Cadastro</button>
-                        </div>
-                    `;
+                    <div class="modal-bloqueio-card">
+                        <h2>Acesso Restrito</h2>
+                        <p>Você precisa estar logado para jogar o Quiz Caiçara!</p>
+                        <button onclick="window.location.href='cadastro.html'">Fazer Login / Cadastro</button>
+                    </div>
+                `;
                 document.body.appendChild(modalAviso);
-                return;
+                
+                return; // Se não tiver logado, para aqui
             }
 
+            // --- SE CHEGOU AQUI, ESTÁ LOGADO! ---
             const elNome = document.getElementById('nome-usuario');
-            if (elNome) {
-                elNome.textContent = usuarioLogado;
-            }
+            const perfilLogado = document.getElementById('perfil-logado');
+            const btnUser = document.getElementById('btn-user');
+
+            if (elNome) elNome.textContent = usuarioLogado;
+            if (perfilLogado) perfilLogado.style.display = 'flex'; // Mostra o perfil
+            if (btnUser) btnUser.style.display = 'none'; // Esconde o "Cadastre-se" (se existir)
         });
     </script>
 </body>

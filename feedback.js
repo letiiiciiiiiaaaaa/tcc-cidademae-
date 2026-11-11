@@ -1,8 +1,7 @@
-// Variável global para armazenar a nota de 1 a 5 estrelas
+// estrelas
 let selectedRating = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
-  // --- 1. Lógica das Estrelas ---
   const estrelas = document.querySelectorAll('.estrela');
 
   estrelas.forEach(estrela => {
@@ -35,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // --- 2. Lógica de Envio do Botão de Feedback ---
+// botao de feedback
   const btnEnviar = document.querySelector('.btn-enviar');
 
   if (btnEnviar) {
@@ -46,19 +45,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const mensagem = textarea ? textarea.value.trim() : '';
       const usuarioNome = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado') || 'Anônimo';
 
-      // Validação das Estrelas
       if (selectedRating === 0) {
         alert('Por favor, selecione quantas estrelas deseja avaliar!');
         return;
       }
 
-      // Validação da Mensagem
       if (!mensagem) {
         alert('Por favor, escreva uma mensagem de feedback antes de enviar!');
         return;
       }
 
-      // Envio para a tabela "feedbacks" no Supabase
       if (typeof supabaseClient !== 'undefined') {
         const { data, error } = await supabaseClient
           .from('feedbacks')
@@ -78,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         alert('Muito obrigado! Seu feedback foi enviado com sucesso.');
         
-        // Limpa os campos após o envio
         textarea.value = '';
         selectedRating = 0;
         resetEstrelas();

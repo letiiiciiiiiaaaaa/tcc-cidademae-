@@ -9,6 +9,29 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="script.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
+
+            if (!usuarioLogado) {
+                sessionStorage.setItem('voltarPara', 'jogo-memoria.html');
+
+                const modalAviso = document.createElement('div');
+                modalAviso.className = 'modal-bloqueio';
+                modalAviso.innerHTML = `
+                    <div class="modal-bloqueio-card">
+                        <h2>Acesso Restrito</h2>
+                        <p>Você precisa estar logado para jogar o Jogo da Memória!</p>
+                        <button onclick="window.location.href='cadastro.html'">Fazer Login / Cadastro</button>
+                    </div>
+                `;
+                document.body.appendChild(modalAviso);
+
+                const modalInicio = document.getElementById('modal-inicio');
+                if (modalInicio) modalInicio.style.display = 'none';
+            }
+        });
+    </script>
     <script defer src="jogo-memoria.js"></script>
 </head>
 <body>
@@ -26,7 +49,7 @@
 
             <div class="usuario" id="container-usuario">
                 <a href="perfil.html" style="text-decoration: none;">
-                    <div id="perfil-logado" class="perfil-logado" style="display: flex;">
+                    <div id="perfil-logado" class="perfil-logado" style="display: none;">
                         <span id="nome-usuario" class="nome-perfil"></span>
                         <img id="foto-usuario" src="imagens/usuario.png" alt="Foto de perfil" class="foto-perfil">
                     </div>
@@ -124,9 +147,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
-            const elNome = document.getElementById('nome-usuario');
-            if (elNome && usuarioLogado) {
-                elNome.textContent = usuarioLogado;
+            
+            if (usuarioLogado) {
+                const elNome = document.getElementById('nome-usuario');
+                const perfilLogado = document.getElementById('perfil-logado');
+                
+                if (elNome) elNome.textContent = usuarioLogado;
+                if (perfilLogado) perfilLogado.style.display = 'flex';
             }
         });
     </script>
