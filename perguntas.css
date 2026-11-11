@@ -10,13 +10,13 @@
 .container {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
-                url('imagens/quiz-fundo.png') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        url('imagens/quiz-fundo.png') no-repeat center center/cover;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; 
-    padding-top: 25px; 
+    justify-content: flex-start;
+    padding-top: 25px;
 }
 
 .secao-titulo {
@@ -27,7 +27,8 @@
     margin-bottom: 20px;
 }
 
-.titulo h1, .caicara {
+.titulo h1,
+.caicara {
     display: flex;
     flex-direction: column;
     font-size: 30px;
@@ -37,7 +38,7 @@
 }
 
 .logo-img {
-    width: 100px; 
+    width: 100px;
     height: auto;
 }
 
@@ -58,7 +59,7 @@
 .quiz-card {
     background-color: #ffffff;
     width: 90%;
-    max-width: 520px; 
+    max-width: 520px;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
@@ -174,7 +175,8 @@
     gap: 12px;
 }
 
-.btn-reiniciar, .btn-perfil {
+.btn-reiniciar,
+.btn-perfil {
     border: none;
     padding: 12px 24px;
     font-size: 15px;
@@ -218,7 +220,7 @@
 
 .topo-resultado-botoes {
     position: absolute;
-    top: 8px;  
+    top: 8px;
     right: 8px;
     margin: 0;
     padding: 0;

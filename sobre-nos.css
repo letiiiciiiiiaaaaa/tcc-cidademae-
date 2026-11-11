@@ -82,7 +82,7 @@ main {
     text-align: center;
     width: 100%;
     margin-top: 50px;
-    margin-bottom: 40px; 
+    margin-bottom: 40px;
 }
 
 .logo {
@@ -122,14 +122,14 @@ main {
     padding: 50px 20px;
     text-align: center;
 }
-  
+
 .titulo-obj {
     font-size: 26px;
     font-weight: 600;
     color: #2c3e50;
     margin-bottom: 35px;
 }
-  
+
 .objetivo-container {
     max-width: 650px;
     margin: 0 auto;
@@ -138,21 +138,21 @@ main {
     gap: 30px;
     text-align: center;
 }
-  
-  .objetivo-item h3 {
+
+.objetivo-item h3 {
     font-size: 18px;
     font-weight: 700;
     color: #34495e;
     margin-bottom: 8px;
-  }
-  
-  .objetivo-item p {
+}
+
+.objetivo-item p {
     font-size: 14px;
     color: #555555;
     line-height: 1.5;
     max-width: 500px;
     margin: 0 auto;
-  }
+}
 
 .secao-github {
     text-align: center;
@@ -203,21 +203,21 @@ main {
     width: 160px;
     height: 160px;
     border-radius: 50%;
-    padding: 0; /* Colado na foto */
+    padding: 0;
     margin-bottom: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .avatar-wrapper.larissa {
-    border: 5px solid #ffd54f; /* Amarelo */
+    border: 5px solid #ffd54f;
 }
 
 .avatar-wrapper.leticia {
-    border: 5px solid #ef5350; /* Vermelho */
+    border: 5px solid #ef5350;
 }
 
 .avatar-wrapper.nano {
-    border: 5px solid #42a5f5; /* Azul */
+    border: 5px solid #42a5f5;
 }
 
 .avatar-img {
@@ -239,7 +239,7 @@ main {
     align-items: center;
     justify-content: center;
     font-size: 16px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .larissa .status-emoji {
@@ -306,12 +306,13 @@ footer {
 
 @media (max-width: 600px) {
     .creators-grid {
-      gap: 24px;
+        gap: 24px;
     }
+
     .footer-flags {
-      position: static;
-      flex-direction: row;
-      justify-content: center;
-      margin-top: 12px;
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 12px;
     }
-  }
+}

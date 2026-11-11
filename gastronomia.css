@@ -38,10 +38,10 @@
     margin: 0;
 }
 
-.barreado> *,
-.caranguejo> *,
-.peixe> *,
-.arroz> * {
+.barreado>*,
+.caranguejo>*,
+.peixe>*,
+.arroz>* {
     flex: 1;
     min-width: 0;
 }
@@ -56,10 +56,10 @@
     border-radius: 12px;
 }
 
-.barreado > .calculadora,
-.caranguejo > .calculadora,
-.peixe > .calculadora,
-.arroz > .calculadora {
+.barreado>.calculadora,
+.caranguejo>.calculadora,
+.peixe>.calculadora,
+.arroz>.calculadora {
     flex: 0 0 auto;
     width: 220px;
 }
@@ -110,8 +110,6 @@
     right: 0;
     width: 200px;
 }
-
-/* calculadora de ingredientes */
 
 .calculadora {
     text-align: center;

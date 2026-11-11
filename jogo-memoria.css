@@ -11,7 +11,6 @@ body {
     width: 100vw;
     max-width: 100%;
     overflow-x: hidden !important;
-    /* Trava o vazamento lateral e corta imagens extras */
     background-color: #ffffff;
 }
 
@@ -54,10 +53,8 @@ main {
     position: relative;
     z-index: 1;
     overflow-x: hidden;
-    /* Garante que os elementos posicionados na main sejam cortados */
 }
 
-/* POSICIONAMENTO E CORTE DAS ILUSTRAÇÕES DECORATIVAS */
 #caranguejo,
 #dancando,
 #aquarela,
@@ -268,7 +265,6 @@ main {
     cursor: default;
 }
 
-/* MODAIS */
 .modal {
     position: fixed;
     top: 0;
@@ -368,6 +364,7 @@ main {
 .btn-secundario:hover {
     background-color: #52b356;
 }
+
 .topo-resultado-botoes {
     position: absolute;
     top: 12px;
@@ -478,4 +475,4 @@ main {
     #peixes {
         display: none;
     }
-}
+}   

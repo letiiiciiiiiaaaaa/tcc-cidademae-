@@ -15,11 +15,11 @@
 }
 
 .secao-esquerda {
-    width: 45%; 
+    width: 45%;
     height: 100%;
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     padding: 40px;
     background-color: #ffffff;
 }
@@ -27,7 +27,7 @@
 .conteudo {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
     max-width: 400px;
     width: 100%;
 }
@@ -44,13 +44,13 @@
     height: auto;
 }
 
-.titulo h1{
+.titulo h1 {
     display: flex;
     flex-direction: column;
     font-size: 50px;
     font-family: 'Cal Sans', sans-serif;
     line-height: 1;
-    color: #e53935; 
+    color: #e53935;
 }
 
 .titulo span {
@@ -83,7 +83,7 @@
 }
 
 .secao-direita {
-    width: 55%; 
+    width: 55%;
     height: 100%;
 }
 

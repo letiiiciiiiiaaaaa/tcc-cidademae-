@@ -181,7 +181,7 @@ const resetGameState = () => {
     currentScore = 0;
     if (placarPontos) placarPontos.innerHTML = currentScore;
     if (timer) timer.innerHTML = "00:00";
-    loadGame(); 
+    loadGame();
 };
 
 const dispararConfetes = () => {

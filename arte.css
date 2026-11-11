@@ -95,7 +95,7 @@ p.info-quadros {
     width: 100%;
 }
 
-.texto p{
+.texto p {
     margin-top: 0;
     font-size: 17px;
 }
@@ -103,7 +103,7 @@ p.info-quadros {
 .bloco-local {
     display: flex;
     gap: 40px;
-    align-items: center; 
+    align-items: center;
     width: 100%;
 }
 
@@ -118,7 +118,7 @@ p.info-quadros {
 
 #rosa {
     color: pink;
-} 
+}
 
 .bloco-invertido .linha-rosa {
     margin-left: auto;
@@ -172,6 +172,7 @@ p.info-quadros {
 }
 
 @media (max-width: 900px) {
+
     #musica,
     #aquarela,
     #danca {
@@ -180,6 +181,7 @@ p.info-quadros {
 }
 
 @media (max-width: 800px) {
+
     .introducao,
     .secao-quadros {
         flex-direction: column;

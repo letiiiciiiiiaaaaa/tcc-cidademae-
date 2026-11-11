@@ -6,13 +6,13 @@
     padding: 0;
 }
 
-/* 1. Trava a altura da tela no tamanho exato da janela visível (100vh) */
-html, body {
+html,
+body {
     width: 100vw;
     height: 100vh;
     margin: 0;
     padding: 0;
-    overflow: hidden !important; /* Corta tudo que sair da tela e impede a rolagem */
+    overflow: hidden !important;
     display: flex;
     flex-direction: column;
     font-family: 'Questrial', sans-serif;
@@ -36,7 +36,6 @@ html, body {
     width: 100%;
 }
 
-/* 2. Container principal ocupando o espaço restante sem estourar a tela */
 .conteudo-principal {
     position: relative;
     flex: 1;
@@ -45,7 +44,7 @@ html, body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 2vh 20px 0 20px; 
+    padding: 2vh 20px 0 20px;
     overflow: hidden;
 }
 
@@ -123,7 +122,6 @@ textarea::placeholder {
     color: #999999;
 }
 
-/* BOTÃO ENVIAR FEEDBACK */
 .btn-enviar {
     margin: 0 auto;
     display: block;
@@ -143,7 +141,6 @@ textarea::placeholder {
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
 }
 
-/* POSICIONAMENTO DAS ILUSTRAÇÕES DECORATIVAS */
 #carangua2,
 #musica2,
 #onda {
@@ -152,7 +149,6 @@ textarea::placeholder {
     display: block !important;
 }
 
-/* Caranguejo (no canto superior direito da caixa) */
 #carangua2 {
     top: 175px;
     right: 18%;
@@ -160,7 +156,6 @@ textarea::placeholder {
     z-index: 25;
 }
 
-/* Notas de Música (fixas no canto inferior direito) */
 #musica2 {
     bottom: 20px;
     right: 10px;
@@ -168,7 +163,6 @@ textarea::placeholder {
     z-index: 15;
 }
 
-/* Onda (fixa no canto inferior esquerdo) */
 #onda {
     bottom: -40px;
     left: -10px;
@@ -176,7 +170,6 @@ textarea::placeholder {
     z-index: 12;
 }
 
-/* MODAL DE SUCESSO */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -195,7 +188,7 @@ textarea::placeholder {
     padding: 30px 40px;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     animation: popup 0.3s ease;
     max-width: 400px;
     width: 90%;
@@ -234,6 +227,7 @@ textarea::placeholder {
         transform: scale(0.8);
         opacity: 0;
     }
+
     to {
         transform: scale(1);
         opacity: 1;

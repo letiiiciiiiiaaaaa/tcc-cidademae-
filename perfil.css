@@ -1,26 +1,17 @@
-/* =========================================
-   1. TRAVAR A TELA (SEM SCROLL)
-   ========================================= */
 html,
 body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100vh;
-    /* Ocupa a tela inteira */
     overflow: hidden;
-    /* Desativa a barra de rolagem */
 }
 
-/* =========================================
-   2. CABEÇALHO
-   ========================================= */
 .cabecalho-verde {
     background-color: #72d276;
     padding: 15px 20px;
     width: 100%;
     height: 60px;
-    /* Altura fixa para controle */
     box-sizing: border-box;
     position: relative;
     z-index: 10;
@@ -38,13 +29,9 @@ body {
     gap: 8px;
 }
 
-/* =========================================
-   3. LAYOUT DA PÁGINA
-   ========================================= */
 .secao-perfil {
     position: relative;
     height: calc(100vh - 60px);
-    /* Altura total menos o cabeçalho */
     width: 100%;
     background-color: #ffffff;
 }
@@ -57,12 +44,8 @@ body {
     align-items: center;
     text-align: center;
     padding-top: 7vh;
-    /* Usa porcentagem da tela para não estourar em telas menores */
 }
 
-/* =========================================
-   4. FOTO DE PERFIL E CARANGUEJO
-   ========================================= */
 .foto-perfil-wrapper {
     width: 110px;
     height: 110px;
@@ -85,9 +68,6 @@ body {
     z-index: 3;
 }
 
-/* =========================================
-   5. TEXTOS (Nome, Email, Bio)
-   ========================================= */
 .perfil-nome {
     font-family: 'Questrial', sans-serif;
     font-size: 26px;
@@ -115,9 +95,6 @@ body {
     font-style: italic;
 }
 
-/* =========================================
-   6. BOTÕES
-   ========================================= */
 .botoes-perfil {
     display: flex;
     gap: 20px;
@@ -321,7 +298,7 @@ body {
     margin-bottom: 5px;
 }
 
-.campo-editar input, 
+.campo-editar input,
 .campo-editar textarea {
     width: 100%;
     padding: 10px 14px;
@@ -334,7 +311,7 @@ body {
     transition: border-color 0.2s ease;
 }
 
-.campo-editar input:focus, 
+.campo-editar input:focus,
 .campo-editar textarea:focus {
     border-color: #4CAF50;
 }
@@ -351,7 +328,6 @@ body {
     margin-top: 20px;
 }
 
-/* Botão Cinza (Cancelar) */
 .btn-modal-cancelar {
     background-color: #888888;
     color: #ffffff;
@@ -360,46 +336,4 @@ body {
     font-size: 15px;
     font-weight: bold;
     border-radius: 25px;
-    cursor: pointer;
-    flex: 1;
-    transition: all 0.2s ease-in-out;
-}
-
-.btn-modal-cancelar:hover {
-    background-color: #666666;
-    transform: scale(1.05);
-}
-
-.btn-modal-cancelar:active {
-    background-color: #444444;
-    transform: scale(1.08);
-}
-
-/* Botão Verde (Salvar / OK) */
-.btn-modal-ok {
-    background-color: #4CAF50;
-    color: #ffffff;
-    border: none;
-    padding: 12px 20px;
-    font-size: 15px;
-    font-weight: bold;
-    border-radius: 25px;
-    cursor: pointer;
-    flex: 1;
-    transition: all 0.2s ease-in-out;
-}
-
-.btn-modal-ok:hover {
-    background-color: #388E3C;
-    transform: scale(1.05);
-}
-
-.btn-modal-ok:active {
-    background-color: #2E7D32;
-    transform: scale(1.08);
-}
-
-@keyframes popup {
-    from { transform: scale(0.85); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
 }

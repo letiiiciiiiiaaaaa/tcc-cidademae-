@@ -60,8 +60,6 @@ input:focus-visible {
     outline-offset: 2px;
 }
 
-/* ---------- cabeçalho ---------- */
-
 .cabecalho {
     display: contents;
 }
@@ -185,8 +183,6 @@ input:focus-visible {
     font-size: 14px;
 }
 
-/* hero (início) */
-
 .container-inicio {
     position: relative;
     width: 100%;
@@ -292,7 +288,6 @@ input:focus-visible {
     background: var(--azul);
 }
 
-/* Título e Subtítulo do Calendário */
 .calendario-cabecalho-texto {
     text-align: center;
     margin-bottom: 24px;
@@ -310,7 +305,6 @@ input:focus-visible {
     font-size: clamp(14px, 1.8vw, 16px);
 }
 
-/* Container do Calendário */
 .calendario-section {
     width: 100%;
     max-width: 1000px;
@@ -330,7 +324,6 @@ input:focus-visible {
     border: 2px solid #a3d1e6;
 }
 
-/* Lado Esquerdo - Calendário Compacto */
 .calendario-box {
     flex: 1;
     min-width: 300px;
@@ -395,13 +388,11 @@ input:focus-visible {
     user-select: none;
 }
 
-/* Dias vazios para alinhar o começo do mês */
 .dia-vazio {
     background: transparent;
     border: none;
 }
 
-/* Estilo para dias com Evento (Verde em harmonia) */
 .dia-item.tem-evento {
     background-color: #f0f8fd;
     color: #03516b;
@@ -422,7 +413,6 @@ input:focus-visible {
     color: #fff;
 }
 
-/* Lado Direito - Painel de Informações */
 .evento-info-box {
     flex: 1;
     min-width: 280px;
@@ -485,52 +475,50 @@ input:focus-visible {
 }
 
 .categoria {
-  display: inline-block;
-  align-self: flex-start;
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 12px;
-  margin-bottom: 8px;
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-bottom: 8px;
 }
 
 .categoria.arte {
-  background: #ffe2e2;
-  color: var(--vermelho);
+    background: #ffe2e2;
+    color: var(--vermelho);
 }
 
 .categoria.historia {
-  background: #e2f2ff;
-  color: var(--azul);
+    background: #e2f2ff;
+    color: var(--azul);
 }
 
 .categoria.gastronomia {
-  background: #fef3c7;
-  color: #854d0e;
+    background: #fef3c7;
+    color: #854d0e;
 }
 
 .evento-info h3 {
-  font-family: 'Cal Sans', 'Questrial', sans-serif;
-  font-size: 1.15rem;
-  color: var(--marinho);
-  margin-bottom: 4px;
-  font-weight: 400;
+    font-family: 'Cal Sans', 'Questrial', sans-serif;
+    font-size: 1.15rem;
+    color: var(--marinho);
+    margin-bottom: 4px;
+    font-weight: 400;
 }
 
 .evento-info .local {
-  font-size: 14px;
-  color: #667;
-  margin-bottom: 8px;
+    font-size: 14px;
+    color: #667;
+    margin-bottom: 8px;
 }
 
 .evento-info .descricao {
-  font-size: 15px;
-  color: var(--texto);
-  line-height: 1.5;
+    font-size: 15px;
+    color: var(--texto);
+    line-height: 1.5;
 }
-
-/* conteúdo */
 
 .conteudo-principal,
 .container-principal {
@@ -539,11 +527,11 @@ input:focus-visible {
     padding-top: 72px;
 }
 
-.conteudo-principal > section,
-.conteudo-principal > p,
-.container-principal > section,
-.container-principal > div,
-.container-principal > p {
+.conteudo-principal>section,
+.conteudo-principal>p,
+.container-principal>section,
+.container-principal>div,
+.container-principal>p {
     position: relative;
     z-index: 1;
 }
@@ -584,6 +572,7 @@ input:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     .esquerda,
     .direita,
     .surgir {
@@ -674,8 +663,6 @@ input:focus-visible {
     border-color: var(--vermelho);
 }
 
-/* decorações flutuantes */
-
 #peixinhos,
 #caranga,
 #barquinho {
@@ -699,8 +686,6 @@ input:focus-visible {
     top: 68%;
     right: 0;
 }
-
-/* mapa */
 
 .secao-mapa {
     text-align: center;
@@ -762,8 +747,6 @@ input:focus-visible {
     line-height: 1.5;
 }
 
-/* jogos */
-
 .secao-jogo {
     position: relative;
     z-index: 2;
@@ -796,8 +779,6 @@ input:focus-visible {
 .jogo-quiz {
     margin: 24px 0;
 }
-
-/* rodapé */
 
 .rodape {
     position: relative;
@@ -833,8 +814,6 @@ input:focus-visible {
     width: 60px;
 }
 
-/* página interna: faixa de abertura */
-
 .header img {
     width: 100%;
     height: clamp(200px, 32vw, 360px);
@@ -852,6 +831,7 @@ input:focus-visible {
 }
 
 @media (max-width: 900px) {
+
     #peixinhos,
     #caranga,
     #barquinho {
@@ -860,6 +840,7 @@ input:focus-visible {
 }
 
 @media (max-width: 800px) {
+
     .info,
     .secao-local {
         flex-direction: column;
@@ -915,41 +896,7 @@ input:focus-visible {
     scroll-margin-top: 80px;
 }
 
-@keyframes rolar-suave {
-}
-
-mark.destaque-busca {
-    background: #ffe066;
-    color: inherit;
-    padding: 0 2px;
-    border-radius: 3px;
-    animation: piscar-destaque 2.5s ease-in-out;
-}
-
-@keyframes piscar-destaque {
-
-    0%,
-    100% {
-        background: #ffe066;
-    }
-
-    50% {
-        background: #ffd700;
-    }
-}
-
-@keyframes destacar-alvo {
-
-    0%,
-    100% {
-        background: transparent;
-    }
-
-    15%,
-    85% {
-        background: #fff3b0;
-    }
-}
+@keyframes rolar-suave {}
 
 mark.destaque-busca {
     background: #ffe066;
@@ -978,9 +925,7 @@ mark.destaque-busca {
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.85);
-    /* Fundo bem escuro para cobrir tudo */
     z-index: 999999;
-    /* Fica acima de QUALQUER outro modal */
     display: flex;
     justify-content: center;
     align-items: center;

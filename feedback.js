@@ -1,4 +1,3 @@
-// estrelas
 let selectedRating = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -34,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-// botao de feedback
   const btnEnviar = document.querySelector('.btn-enviar');
 
   if (btnEnviar) {
@@ -73,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         alert('Muito obrigado! Seu feedback foi enviado com sucesso.');
-        
+
         textarea.value = '';
         selectedRating = 0;
         resetEstrelas();
