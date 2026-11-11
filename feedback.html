@@ -84,6 +84,9 @@
             if (!usuarioNome || !usuarioId || usuarioId === 'undefined') {
                 sessionStorage.setItem('voltarPara', 'feedback.html');
 
+                const btnUserEsconder = document.getElementById('btn-user');
+                if (btnUserEsconder) btnUserEsconder.style.display = 'none';
+
                 const modalAviso = document.createElement('div');
                 modalAviso.className = 'modal-bloqueio';
                 modalAviso.innerHTML = `

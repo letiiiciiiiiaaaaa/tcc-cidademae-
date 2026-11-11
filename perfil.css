@@ -327,7 +327,6 @@ body {
     gap: 15px;
     margin-top: 20px;
 }
-
 .btn-modal-cancelar {
     background-color: #888888;
     color: #ffffff;
@@ -336,4 +335,53 @@ body {
     font-size: 15px;
     font-weight: bold;
     border-radius: 25px;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-modal-cancelar:hover {
+    background-color: #666666;
+    transform: scale(1.05);
+}
+
+.btn-modal-cancelar:active {
+    background-color: #444444;
+    transform: scale(1.08);
+}
+
+/* Botão Verde/Vermelho (Salvar / Sair) */
+.btn-modal-ok {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-modal-ok:hover {
+    background-color: #388E3C;
+    transform: scale(1.05);
+}
+
+.btn-modal-ok:active {
+    background-color: #2E7D32;
+    transform: scale(1.08);
+}
+
+@keyframes popup {
+    from {
+        transform: scale(0.85);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
