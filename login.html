@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> Login || Cidade Mãe </title>
   <link rel="stylesheet" href="login.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js" defer></script>
 </head>
+
 <body>
   <a href="" onclick="history.back(); return false;">
     <button class="voltar">🡠</button>
@@ -31,60 +34,60 @@
       <button id="btn-ok-login" class="btn-modal-ok">OK</button>
     </div>
   </div>
-    <script>
-      const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
-      const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
 
-      let supabaseClient = null;
-      if (typeof supabase !== 'undefined') {
-        supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  <script>
+    const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    document.getElementById('formLogin').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nome = document.getElementById('loginNome').value.trim();
+      const senha = document.getElementById('loginSenha').value;
+      const btn = document.querySelector('.entrar');
+
+      btn.disabled = true;
+      btn.textContent = 'Entrando...';
+
+      const { data, error } = await supabaseClient
+        .from('usuarios')
+        .select('*')
+        .eq('nome', nome)
+        .maybeSingle();
+
+      btn.disabled = false;
+      btn.textContent = 'Entrar';
+
+      if (error) {
+        alert('Erro ao logar: ' + error.message);
+        return;
       }
 
-      document.getElementById('formLogin').addEventListener('submit', async (e) => {
-        e.preventDefault();
+      if (!data) {
+        alert('Usuário não encontrado. Verifique o nome ou cadastre-se.');
+        return;
+      }
 
-        const nome = document.getElementById('loginNome').value.trim();
-        const senha = document.getElementById('loginSenha').value;
+      localStorage.setItem('usuario_id', data.idusuarios);
+      localStorage.setItem('usuario_nome', data.nome);
+      localStorage.setItem('usuarioLogado', data.nome);
+      if (data.email) localStorage.setItem('usuario_email', data.email);
 
-        if (!nome) return;
+      document.getElementById('modal-titulo').textContent = `Bem-vindo(a) de volta, ${data.nome}!`;
+      document.getElementById('modal-mensagem').textContent = `Que bom ter você de volta no Cidade Mãe.`;
+      document.getElementById('modal-sucesso-login').style.display = 'flex';
+    });
 
-        if (supabaseClient) {
-          try {
-            const { data, error } = await supabaseClient
-              .from('usuarios')
-              .select('*')
-              .eq('nome', nome)
-              .maybeSingle();
-
-            if (data) {
-              localStorage.setItem('usuario_id', data.idusuarios);
-              localStorage.setItem('usuario_email', data.email);
-              if (data.bio) localStorage.setItem('usuario_bio', data.bio);
-            }
-          } catch (err) {
-            console.log("Consulta de banco em contingência:", err);
-          }
-        }
-
-        localStorage.setItem('usuario_nome', nome);
-        localStorage.setItem('usuarioLogado', nome);
-
-        document.getElementById('modal-titulo').textContent = `Bem-vindo(a) de volta, ${nome}!`;
-        document.getElementById('modal-mensagem').textContent = `Que bom ter você de volta no Cidade Mãe.`;
-        document.getElementById('modal-sucesso-login').style.display = 'flex';
-      });
-
-      document.getElementById('btn-ok-login').addEventListener('click', () => {
-        let voltarPara = sessionStorage.getItem('voltarPara');
-
-        if (!voltarPara || voltarPara.includes('login.html') || voltarPara.includes('cadastro.html')) {
-          voltarPara = document.referrer ? document.referrer : 'index.html';
-        }
-
-        sessionStorage.removeItem('voltarPara');
-
-        window.location.href = voltarPara;
-      });
-    </script>
+    document.getElementById('btn-ok-login').addEventListener('click', () => {
+      let voltarPara = sessionStorage.getItem('voltarPara');
+      if (!voltarPara || voltarPara.includes('login.html') || voltarPara.includes('cadastro.html')) {
+        voltarPara = document.referrer ? document.referrer : 'index.html';
+      }
+      sessionStorage.removeItem('voltarPara');
+      window.location.href = voltarPara;
+    });
+  </script>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <a href="" onclick="history.back(); return false;">
         <button class="voltar">🡠</button>
@@ -30,7 +32,9 @@
         </div>
         <br>
         <button type="submit" class="entrar">Criar conta</button>
-        <h5>Já possui uma conta?<br><a href="login.html" class="login" onclick="sessionStorage.setItem('voltarPara', sessionStorage.getItem('voltarPara') || 'index.html')">Logar-se</a>.</h5>
+        <h5>Já possui uma conta?<br><a href="login.html" class="login"
+                onclick="sessionStorage.setItem('voltarPara', sessionStorage.getItem('voltarPara') || 'index.html')">Logar-se</a>.
+        </h5>
     </form>
 
     <div id="modal-sucesso" class="modal-overlay" style="display: none;">
@@ -44,7 +48,6 @@
     <script>
         const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
         const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
-
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         document.getElementById('formCadastro').addEventListener('submit', async (e) => {
@@ -54,36 +57,34 @@
             const email = document.getElementById('email').value.trim();
             const senha = document.getElementById('senha').value;
             const data_nasc = document.getElementById('data_nascimento').value;
+            const btn = document.querySelector('.entrar');
 
-            try {
-                const { data, error } = await supabaseClient
-                    .from('usuarios')
-                    .insert([
-                        {
-                            nome: nome,
-                            email: email,
-                            senha: senha,
-                            data_nasc: data_nasc,
-                            jogo_pontos: 0,
-                            quiz_pontos: 0
-                        }
-                    ])
-                    .select();
+            btn.disabled = true;
+            btn.textContent = 'Criando conta...';
 
-                if (data && data.length > 0) {
-                    localStorage.setItem('usuario_id', data[0].idusuarios);
-                }
-            } catch (err) {
-                console.log("Aviso de rede/banco:", err);
+            const { data, error } = await supabaseClient
+                .from('usuarios')
+                .insert([{ nome, email, senha, data_nasc, jogo_pontos: 0, quiz_pontos: 0 }])
+                .select();
+
+            btn.disabled = false;
+            btn.textContent = 'Criar conta';
+
+            if (error) {
+                alert('Erro ao cadastrar: ' + error.message);
+                return;
             }
 
-            localStorage.setItem('usuario_nome', nome);
-            localStorage.setItem('usuarioLogado', nome);
-            localStorage.setItem('usuario_email', email);
+            if (data && data.length > 0) {
+                localStorage.setItem('usuario_id', data[0].idusuarios);
+                localStorage.setItem('usuario_nome', nome);
+                localStorage.setItem('usuarioLogado', nome);
+                localStorage.setItem('usuario_email', email);
 
-            document.getElementById('modal-titulo').textContent = `Oi, ${nome}!`;
-            document.getElementById('modal-mensagem').textContent = `Seja muito bem-vindo(a) ao Cidade Mãe!`;
-            document.getElementById('modal-sucesso').style.display = 'flex';
+                document.getElementById('modal-titulo').textContent = `Oi, ${nome}!`;
+                document.getElementById('modal-mensagem').textContent = `Seja muito bem-vindo(a) ao Cidade Mãe!`;
+                document.getElementById('modal-sucesso').style.display = 'flex';
+            }
         });
 
         document.getElementById('btn-continuar').addEventListener('click', () => {
@@ -93,4 +94,5 @@
         });
     </script>
 </body>
+
 </html>

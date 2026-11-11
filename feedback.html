@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -8,22 +9,18 @@
     <link rel="stylesheet" href="feedback.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body>
     <header class="cabecalho">
         <div class="abas">
             <a href="" onclick="history.back(); return false;" class="voltar">🡠</a>
-
             <div class="bandeiras">
                 <img src="imagens/bandeiras-inicio.png" alt="Bandeiras do Brasil, do Paraná e da cidade de Paranaguá">
             </div>
-
             <img src="imagens/paranagua.png" class="paranagua" alt="Paranaguá">
-
             <a href="sobre-nos.html" class="btn-sobre"> Sobre Nós </a>
-
             <div class="usuario" id="container-usuario">
                 <a href="cadastro.html" class="btn-usuario" id="btn-user"> Cadastre-se </a>
-
                 <a href="perfil.html" style="text-decoration: none;">
                     <div id="perfil-logado" class="perfil-logado" style="display: none;">
                         <span id="nome-usuario" class="nome-perfil"></span>
@@ -81,122 +78,95 @@
         let selectedRating = 0;
 
         document.addEventListener('DOMContentLoaded', () => {
-            // --- 1. VERIFICAÇÃO DE LOGIN E PERFIL ---
-            const usuarioLocal = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
-            const btnUser = document.getElementById('btn-user');
-            const perfilLogado = document.getElementById('perfil-logado');
-            const nomeUsuario = document.getElementById('nome-usuario');
+            const usuarioNome = localStorage.getItem('usuario_nome') || localStorage.getItem('usuarioLogado');
+            const usuarioId = localStorage.getItem('usuario_id');
 
-            if (!usuarioLocal) {
-                // --- BLOQUEIO DE ACESSO (Se não estiver logado) ---
-                sessionStorage.setItem('voltarPara', window.location.href);
-
-                // ESCONDE O BOTÃO CADASTRE-SE DO FUNDO
-                if (btnUser) btnUser.style.display = 'none'; 
+            if (!usuarioNome || !usuarioId || usuarioId === 'undefined') {
+                sessionStorage.setItem('voltarPara', 'feedback.html');
 
                 const modalAviso = document.createElement('div');
                 modalAviso.className = 'modal-bloqueio';
                 modalAviso.innerHTML = `
                     <div class="modal-bloqueio-card">
                         <h2>Acesso Restrito</h2>
-                        <p>Você precisa estar logado para acessar a página de Feedback!</p>
+                        <p>Você precisa estar logado para acessar o Feedback!</p>
                         <button onclick="window.location.href='cadastro.html'">Fazer Login / Cadastro</button>
                     </div>
                 `;
                 document.body.appendChild(modalAviso);
-                
-                return; 
+                return;
             }
 
-            // --- SE CHEGOU AQUI, ESTÁ LOGADO! ---
-            // Mostra o perfil e esconde o botão de cadastro
-            if (nomeUsuario) nomeUsuario.textContent = usuarioLocal;
+            const btnUser = document.getElementById('btn-user');
+            const perfilLogado = document.getElementById('perfil-logado');
+            const nomeUsuarioEl = document.getElementById('nome-usuario');
+            if (nomeUsuarioEl) nomeUsuarioEl.textContent = usuarioNome;
             if (btnUser) btnUser.style.display = 'none';
             if (perfilLogado) perfilLogado.style.display = 'flex';
 
-
-            // --- 2. LÓGICA DAS ESTRELAS ---
             const estrelas = document.querySelectorAll('.estrela');
-
             estrelas.forEach(estrela => {
                 estrela.addEventListener('mouseover', () => {
                     resetEstrelas();
-                    const value = parseInt(estrela.getAttribute('data-value'));
-                    highlightEstrelas(value);
+                    highlightEstrelas(parseInt(estrela.getAttribute('data-value')));
                 });
-
                 estrela.addEventListener('mouseleave', () => {
                     resetEstrelas();
                     highlightEstrelas(selectedRating);
                 });
-
                 estrela.addEventListener('click', () => {
                     selectedRating = parseInt(estrela.getAttribute('data-value'));
                     highlightEstrelas(selectedRating);
                 });
             });
 
-            function resetEstrelas() {
-                estrelas.forEach(e => e.classList.remove('active'));
-            }
+            function resetEstrelas() { estrelas.forEach(e => e.classList.remove('active')); }
+            function highlightEstrelas(v) { for (let i = 0; i < v; i++) if (estrelas[i]) estrelas[i].classList.add('active'); }
 
-            function highlightEstrelas(value) {
-                for (let i = 0; i < value; i++) {
-                    if (estrelas[i]) estrelas[i].classList.add('active');
-                }
-            }
-
-            // --- 3. ENVIO DO FEEDBACK ---
             const btnEnviar = document.getElementById('btn-enviar-feedback');
             const modalSucesso = document.getElementById('modal-sucesso');
             const btnFecharModal = document.getElementById('btn-fechar-modal');
+            const textarea = document.getElementById('mensagem-feedback');
 
             btnEnviar.addEventListener('click', async (e) => {
                 e.preventDefault();
-
-                const textarea = document.getElementById('mensagem-feedback');
                 const mensagem = textarea ? textarea.value.trim() : '';
 
-                if (selectedRating === 0) {
-                    alert('Por favor, selecione a quantidade de estrelas!');
+                if (selectedRating === 0) { alert('Por favor, selecione a quantidade de estrelas!'); return; }
+                if (!mensagem) { alert('Por favor, escreva sua mensagem de feedback!'); return; }
+
+                btnEnviar.disabled = true;
+
+                const { data, error } = await supabaseClient
+                    .from('usuarios')
+                    .update({
+                        feedback_estrelas: selectedRating,
+                        feedback_mensagem: mensagem,
+                        feedback_enviado_em: new Date().toISOString()
+                    })
+                    .eq('idusuarios', usuarioId)
+                    .select();
+
+                btnEnviar.disabled = false;
+
+                if (error) {
+                    alert('Erro ao enviar feedback: ' + error.message);
                     return;
                 }
 
-                if (!mensagem) {
-                    alert('Por favor, escreva sua mensagem de feedback!');
-                    return;
-                }
-
-                btnEnviar.classList.add('btn-aumentar');
-
-                try {
-                    await supabaseClient.from('feedbacks').insert([
-                        {
-                            usuario_nome: usuarioLocal || 'Anônimo',
-                            estrelas: selectedRating,
-                            mensagem: mensagem
-                        }
-                    ]);
-                } catch (err) {
-                    console.log("Aviso banco:", err);
-                }
-
-                setTimeout(() => {
-                    modalSucesso.style.display = 'flex';
-                }, 200);
+                if (textarea) textarea.value = '';
+                selectedRating = 0;
+                resetEstrelas();
+                setTimeout(() => { modalSucesso.style.display = 'flex'; }, 200);
             });
 
             btnFecharModal.addEventListener('click', () => {
-                const origem = sessionStorage.getItem('origemJogo');
-                sessionStorage.removeItem('origemJogo');
-
-                if (origem && !origem.includes('feedback.html')) {
-                    window.location.href = origem;
-                } else {
-                    window.location.href = 'index.html';
-                }
+                const voltarPara = sessionStorage.getItem('voltarPara');
+                sessionStorage.removeItem('voltarPara');
+                window.location.href = (voltarPara && !voltarPara.includes('feedback.html')) ? voltarPara : 'index.html';
             });
         });
     </script>
 </body>
+
 </html>
