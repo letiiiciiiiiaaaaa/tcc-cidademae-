@@ -970,3 +970,56 @@ mark.destaque-busca {
         background: #ffd700;
     }
 }
+
+.modal-bloqueio {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    /* Fundo bem escuro para cobrir tudo */
+    z-index: 999999;
+    /* Fica acima de QUALQUER outro modal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-bloqueio-card {
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-bloqueio-card h2 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.modal-bloqueio-card p {
+    color: #666;
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+.modal-bloqueio-card button {
+    background-color: #65cc69;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.modal-bloqueio-card button:hover {
+    background-color: #52bf52;
+}

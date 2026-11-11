@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Cidade Mãe | Feedback</title>
+    <title> Feedback || Cidade Mãe </title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="feedback.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -19,7 +19,7 @@
 
             <img src="imagens/paranagua.png" class="paranagua" alt="Paranaguá">
 
-            <a href="sobre-nos.html" class="btn-sobre"> Sobre nós </a>
+            <a href="sobre-nos.html" class="btn-sobre"> Sobre Nós </a>
 
             <div class="usuario" id="container-usuario">
                 <a href="cadastro.html" class="btn-usuario" id="btn-user"> Cadastre-se </a>
@@ -162,7 +162,14 @@
             });
 
             btnFecharModal.addEventListener('click', () => {
-                window.location.href = 'index.html';
+                const origem = sessionStorage.getItem('origemJogo');
+                sessionStorage.removeItem('origemJogo');
+
+                if (origem && !origem.includes('feedback.html')) {
+                    window.location.href = origem;
+                } else {
+                    window.location.href = 'index.html';
+                }
             });
         });
 

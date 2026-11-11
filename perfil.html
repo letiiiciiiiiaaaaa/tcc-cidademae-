@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Perfil | Cidade Mãe</title>
+    <title> Perfil || Cidade Mãe</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="perfil.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
@@ -37,7 +37,6 @@
             </div>
 
             <div class="perfil-stats">
-                <!-- BLOCO DO QUIZ CLICÁVEL -->
                 <a href="quiz.html" class="stat-item stat-item-clicavel" title="Ir para o Quiz Caiçara">
                     <img src="imagens/quiz-balao.png" alt="Ícone Quiz" class="stat-icon-img">
                     <div class="stat-info">
@@ -46,7 +45,6 @@
                     </div>
                 </a>
 
-                <!-- BLOCO DO JOGO DA MEMÓRIA CLICÁVEL -->
                 <a href="jogo-memoria.html" class="stat-item stat-item-clicavel" title="Ir para o Jogo da Memória">
                     <img src="imagens/jogo-controle.png" alt="Ícone Jogo" class="stat-icon-img">
                     <div class="stat-info">
@@ -221,66 +219,83 @@
                 const novoNome = editNome.value.trim();
                 const novoEmail = editEmail.value.trim();
                 const novaBio = editBio.value.trim();
-    
+
                 if (!novoNome) {
                     alert("O nome de usuário não pode ficar vazio!");
                     return;
                 }
-    
+
                 btnSalvar.textContent = "Salvando...";
                 btnSalvar.disabled = true;
-    
+
                 const nomeAntigo = nomeLocal;
-    
+
+                // Atualiza a tela imediatamente (feedback rápido)
                 elNome.textContent = novoNome;
                 if (novoEmail) elEmail.textContent = novoEmail;
                 configurarBio(novaBio);
-    
-                localStorage.setItem('usuario_nome', novoNome);
-                localStorage.setItem('usuarioLogado', novoNome);
-                
-                if (novoEmail) localStorage.setItem('usuario_email', novoEmail);
-                else localStorage.removeItem('usuario_email');
-    
-                if (novaBio) localStorage.setItem('usuario_bio', novaBio);
-                else localStorage.removeItem('usuario_bio');
-    
-                nomeLocal = novoNome;
-    
+
+                const dadosAtualizar = {
+                    nome: novoNome,
+                    bio: novaBio
+                };
+                if (novoEmail) dadosAtualizar.email = novoEmail;
+
+                let salvouNoBanco = false;
+                let erroBanco = null;
+
                 try {
-                    const dadosAtualizar = {
-                        nome: novoNome,
-                        bio: novaBio
-                    };
-                    if (novoEmail) dadosAtualizar.email = novoEmail;
-    
                     let res = null;
-    
+
                     if (usuarioId && usuarioId !== "undefined") {
                         res = await supabaseClient
                             .from('usuarios')
                             .update(dadosAtualizar)
-                            .eq('idusuarios', usuarioId);
+                            .eq('idusuarios', usuarioId)
+                            .select();
                     } else if (nomeAntigo) {
                         res = await supabaseClient
                             .from('usuarios')
                             .update(dadosAtualizar)
-                            .eq('nome', nomeAntigo);
+                            .eq('nome', nomeAntigo)
+                            .select();
                     }
-    
+
                     if (res && res.error) {
+                        erroBanco = res.error;
                         console.error("Erro ao atualizar Supabase:", res.error);
+                    } else if (res && res.data && res.data.length > 0) {
+                        salvouNoBanco = true;
+                    } else {
+                        erroBanco = { message: "Nenhuma linha retornada — talvez nenhuma corresponda ao filtro." };
                     }
                 } catch (err) {
+                    erroBanco = err;
                     console.error("Erro na requisição:", err);
-                } finally {
-                    btnSalvar.textContent = "Salvar";
-                    btnSalvar.disabled = false;
-                    modalEditar.style.display = 'none';
                 }
+
+                if (salvouNoBanco) {
+                    localStorage.setItem('usuario_nome', novoNome);
+                    localStorage.setItem('usuarioLogado', novoNome);
+                    if (novoEmail) localStorage.setItem('usuario_email', novoEmail);
+                    if (novaBio) localStorage.setItem('usuario_bio', novaBio);
+                    else localStorage.removeItem('usuario_bio');
+
+                    nomeLocal = novoNome;
+                    modalEditar.style.display = 'none';
+                } else {
+                    alert('Não foi possível salvar suas alterações no servidor.\n\nDetalhe: ' + (erroBanco?.message || 'erro desconhecido'));
+
+                    elNome.textContent = nomeLocal || 'Usuário';
+                    configurarBio(localStorage.getItem('usuario_bio') || '');
+                    if (emailLocal) elEmail.textContent = emailLocal;
+
+                }
+
+                btnSalvar.textContent = "Salvar";
+                btnSalvar.disabled = false;
             });
     
-            // Modal Logout
             document.getElementById('btn-logout-perfil').addEventListener('click', () => {
                 modalLogout.style.display = 'flex';
             });
@@ -288,8 +303,7 @@
             document.getElementById('btn-cancelar-logout').addEventListener('click', () => {
                 modalLogout.style.display = 'none';
             });
-    
-            // CONFIRMAR LOGOUT: Limpa absolutamente todas as informações do usuário atual
+
             document.getElementById('btn-confirmar-logout').addEventListener('click', () => {
                 localStorage.removeItem('usuario_nome');
                 localStorage.removeItem('usuarioLogado');

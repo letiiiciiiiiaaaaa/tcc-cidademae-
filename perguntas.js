@@ -1,4 +1,3 @@
-// Banco com as 10 Perguntas e Valores (1 a 4 pontos)
 const listaPerguntas = [
     {
         titulo: "1. Quando o sol dá as caras no final de semana, qual é o seu rolê perfeito?",
@@ -100,7 +99,6 @@ const contadorElemento = document.getElementById('contador-pergunta');
 const textoPerguntaElemento = document.getElementById('texto-pergunta');
 const opcoesContainer = document.getElementById('opcoes-container');
 
-// Renderiza a pergunta atual na tela
 function renderizarPergunta() {
     const dados = listaPerguntas[perguntaAtual];
 
@@ -122,7 +120,6 @@ function renderizarPergunta() {
     });
 }
 
-// Evento ao clicar na seta/enviar formulário
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -139,11 +136,9 @@ form.addEventListener('submit', (e) => {
     }
 });
 
-// Exibe o resultado final e salva no banco de dados
 async function exibirResultado() {
     const porcentagem = Math.round(((pontosAcumulados - 10) / 30) * 100);
 
-    // Esconde a interface do quiz
     document.querySelector('.topo-card').style.display = 'none';
     textoPerguntaElemento.style.display = 'none';
     opcoesContainer.style.display = 'none';
@@ -171,23 +166,17 @@ async function exibirResultado() {
 
     resultadoContainer.style.display = 'block';
 
-    // ==========================================
-    // SALVANDO NO SUPABASE
-    // ==========================================
     const usuarioId = localStorage.getItem('usuario_id');
     const maiorPorcentagemSalva = parseInt(localStorage.getItem('maiorPorcentagemQuiz')) || 0;
 
-    // Se a nota atual for maior que a antiga, salva no navegador e no banco
     if (porcentagem > maiorPorcentagemSalva) {
         localStorage.setItem('maiorPorcentagemQuiz', porcentagem);
 
         if (usuarioId && usuarioId !== "undefined" && typeof supabase !== 'undefined') {
-            // Configurando o Supabase aqui
             const SUPABASE_URL = "https://yehhopwozpguzhgioztv.supabase.co";
             const SUPABASE_ANON_KEY = "sb_publishable_65-1hzodlk2BYCAzg5SgHg_xuILMBb2";
             const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-            // Atualiza a coluna quiz_pontos na tabela usuarios
             await supabaseClient
                 .from('usuarios')
                 .update({ quiz_pontos: porcentagem })
@@ -197,33 +186,37 @@ async function exibirResultado() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Ao clicar no 'X' -> Abre o alerta de confirmação de saída
+    renderizarPergunta();
+
     const btnFechar = document.getElementById('btn-fechar-quiz');
+    const modalAlerta = document.getElementById('modal-confirmar-saida-quiz');
+    const btnConfirmarSair = document.getElementById('btn-confirmar-sair-quiz');
+    const btnCancelarSair = document.getElementById('btn-cancelar-sair-quiz');
+
+    function voltarParaOrigem() {
+        const origem = sessionStorage.getItem('origemJogo');
+        sessionStorage.removeItem('origemJogo');
+
+        if (origem && !origem.includes('perguntas.html') && !origem.includes('quiz.html') && !origem.includes('jogo-memoria.html')) {
+            window.location.href = origem;
+        } else {
+            window.location.href = 'index.html';
+        }
+    }
+
     if (btnFechar) {
         btnFechar.addEventListener('click', () => {
-            const modalAlerta = document.getElementById('modal-confirmar-saida-quiz');
             if (modalAlerta) modalAlerta.style.display = 'flex';
         });
     }
 
-    // 2. Botão 'Sair' no Alerta -> Volta para a página anterior
-    const btnConfirmarSair = document.getElementById('btn-confirmar-sair-quiz');
     if (btnConfirmarSair) {
-        btnConfirmarSair.addEventListener('click', () => {
-            const voltarPara = document.referrer ? document.referrer : 'index.html';
-            window.location.href = voltarPara;
-        });
+        btnConfirmarSair.addEventListener('click', voltarParaOrigem);
     }
 
-    // 3. Botão 'Cancelar' no Alerta -> Fecha apenas o alerta de confirmação
-    const btnCancelarSair = document.getElementById('btn-cancelar-sair-quiz');
     if (btnCancelarSair) {
         btnCancelarSair.addEventListener('click', () => {
-            const modalAlerta = document.getElementById('modal-confirmar-saida-quiz');
             if (modalAlerta) modalAlerta.style.display = 'none';
         });
     }
 });
-
-// Inicializa a primeira pergunta ao carregar
-renderizarPergunta();

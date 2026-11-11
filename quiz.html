@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade Mãe || Quiz Caiçara</title>
+    <title> Quiz Caiçara || Cidade Mãe </title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="quiz.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -19,7 +19,7 @@
             </div>
 
             <img src="imagens/paranagua.png" class="paranagua" alt="Paranaguá">
-            <a href="sobre-nos.html" class="btn-sobre"> Sobre nós</a>
+            <a href="sobre-nos.html" class="btn-sobre"> Sobre Nós </a>
 
             <div class="usuario" id="container-usuario">
                 <a href="perfil.html" style="text-decoration: none;">
@@ -58,11 +58,21 @@
             const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
 
             if (!usuarioLogado) {
-                alert('Você precisa estar logado para acessar esta página!');
-
                 sessionStorage.setItem('voltarPara', 'quiz.html');
 
-                window.location.href = 'cadastro.html';
+                // Cria o modal dinamicamente para não travar a página com alert()
+                const modalAviso = document.createElement('div');
+                modalAviso.className = 'modal-overlay';
+                modalAviso.style.zIndex = '99999'; // Garante que fica por cima de tudo
+
+                modalAviso.innerHTML = `
+                        <div class="modal-card" style="text-align: center; padding: 30px;">
+                            <h2 style="color: #333; margin-bottom: 15px;">Acesso Restrito</h2>
+                            <p style="color: #666; margin-bottom: 25px; font-size: 18px;">Você precisa estar logado para jogar o Quiz Caiçara!</p>
+                            <button onclick="window.location.href='cadastro.html'" style="background-color: #65cc69; color: white; padding: 12px 30px; border: none; border-radius: 25px; font-size: 18px; cursor: pointer; font-weight: bold;">Fazer Login / Cadastro</button>
+                        </div>
+                    `;
+                document.body.appendChild(modalAviso);
                 return;
             }
 

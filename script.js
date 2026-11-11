@@ -1,17 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const linksJogos = document.querySelectorAll(
+    'a[href="quiz.html"], a[href="jogo-memoria.html"], a[href="perguntas.html"]'
+  );
 
-  // Salva a página atual pra voltar depois do login/cadastro
-  const btnUserVoltar = document.getElementById('btn-user');
-  if (btnUserVoltar) {
-    // Mudamos de 'click' para 'mousedown' para garantir que roda antes do link abrir
-    btnUserVoltar.addEventListener('mousedown', () => {
-      // Pega apenas o nome da página atual (ex: gastronomia.html)
-      const paginaAtual = window.location.pathname.split('/').pop();
-      if (paginaAtual) {
-        sessionStorage.setItem('voltarPara', paginaAtual);
+  const linksNavegacao = document.querySelectorAll(
+    'a[href="quiz.html"], a[href="jogo-memoria.html"], a[href="perguntas.html"], a[href="feedback.html"]'
+  );
+
+  linksNavegacao.forEach((link) => {
+    link.addEventListener('click', () => {
+      const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
+
+      // Não sobrescreve origem se estamos dentro de uma página que já é "de fluxo"
+      const paginasFluxo = ['quiz.html', 'perguntas.html', 'jogo-memoria.html', 'feedback.html'];
+      if (paginasFluxo.includes(paginaAtual)) return;
+
+      // Só define se ainda não houver origem
+      if (!sessionStorage.getItem('origemJogo')) {
+        sessionStorage.setItem('origemJogo', paginaAtual);
       }
     });
-  }
+  });
 
   // Salva a página atual quando o usuário clica para ir no Perfil
   const linkPerfil = document.querySelector('.usuario a[href="perfil.html"]');

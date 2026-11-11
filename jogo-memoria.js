@@ -1,11 +1,28 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
+
     if (!usuarioLogado) {
-        alert('Você precisa estar logado para acessar esta página!');
         sessionStorage.setItem('voltarPara', 'jogo-memoria.html');
-        window.location.href = 'cadastro.html';
+
+        // Cria o modal de aviso sem travar a página
+        const modalAviso = document.createElement('div');
+        modalAviso.className = 'modal-overlay';
+        modalAviso.style.zIndex = '99999';
+
+        modalAviso.innerHTML = `
+            <div class="modal-content" style="text-align: center; padding: 30px;">
+                <h2 style="color: #333; margin-bottom: 15px;">Acesso Restrito</h2>
+                <p style="color: #666; margin-bottom: 25px; font-size: 18px;">Você precisa estar logado para jogar o Jogo da Memória!</p>
+                <button onclick="window.location.href='cadastro.html'" style="background-color: #65cc69; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold;">Fazer Login / Cadastro</button>
+            </div>
+        `;
+        document.body.appendChild(modalAviso);
+
+        // Retorna sem carregar o jogo, mas deixa o HTML e CSS renderizarem normal
         return;
     }
+
+    // Se estiver logado, carrega o jogo normal
     loadGame();
 });
 
