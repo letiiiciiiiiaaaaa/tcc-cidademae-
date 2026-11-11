@@ -233,3 +233,37 @@ textarea::placeholder {
         opacity: 1;
     }
 }
+
+.modal-bloqueio-card {
+    position: relative;
+}
+
+.modal-bloqueio-card .topo-resultado-botoes {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    margin: 0;
+    padding: 0;
+    z-index: 10;
+}
+
+.modal-bloqueio-card .btn-circulo {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    border: none;
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    line-height: 1;
+}
+
+.modal-bloqueio-card .btn-circulo:hover {
+    background-color: #e0e0e0;
+}
