@@ -476,3 +476,31 @@ main {
         display: none;
     }
 }   
+
+/* Padronização do X dos modais de acesso restrito */
+.modal-bloqueio-card .btn-fechar-bloqueio {
+    width: 26px;
+    min-width: 26px;
+    max-width: 26px;
+    height: 26px;
+    min-height: 26px;
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    border: none;
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    line-height: 1;
+    box-shadow: none;
+    flex-shrink: 0;
+}
+
+.modal-bloqueio-card .btn-fechar-bloqueio:hover {
+    background-color: #e0e0e0;
+}
