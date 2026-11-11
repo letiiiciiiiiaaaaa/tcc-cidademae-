@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade Mãe || Jogo da Memória</title>
+    <title> Jogo da Memória || Cidade Mãe </title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="jogo-memoria.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -21,7 +21,8 @@
             </div>
 
             <img src="imagens/paranagua.png" class="paranagua" alt="Paranaguá">
-            <a href="sobre-nos.html" class="btn-sobre"> Sobre nós</a>
+
+            <a href="sobre-nos.html" class="btn-sobre"> Sobre Nós </a>
 
             <div class="usuario" id="container-usuario">
                 <a href="perfil.html" style="text-decoration: none;">
@@ -47,21 +48,21 @@
 
         <section class="painel-controle">
             <div class="item-painel">
-                <span class="label-painel">tempo</span>
+                <span class="label-painel"> Tempo</span>
                 <div class="tempo-box">
                     <span class="timer">00:00</span>
                 </div>
             </div>
 
             <div class="item-painel">
-                <span class="label-painel2">reiniciar jogo</span>
+                <span class="label-painel2"> Reiniciar jogo</span>
                 <button id="btn-reiniciar" title="Reiniciar Jogo">
                     <img src="imagens/reiniciar.png" alt="Reiniciar">
                 </button>
             </div>
 
             <div class="item-painel">
-                <span class="label-painel3">pontuação</span>
+                <span class="label-painel3"> Pontuação</span>
                 <div id="btn-pontuacao" class="placar-pontos">0</div>
             </div>
         </section>
@@ -81,7 +82,7 @@
             </div>
         </div>
     </div>
-
+    
     <div id="modal-dificuldade" class="modal fechar">
         <div class="modal-content">
             <h2>Escolha a Dificuldade</h2>
@@ -92,23 +93,23 @@
             </div>
         </div>
     </div>
-
+    
     <div id="modal-fim" class="modal fechar">
         <div class="modal-content" style="position: relative;">
             <div class="topo-resultado-botoes">
                 <button type="button" class="btn-circulo" id="btn-fechar-memoria" title="Sair">✕</button>
             </div>
-
+    
             <h2 id="titulo-fim">Fim de Jogo!</h2>
             <p id="mensagem-fim"></p>
-
+    
             <div class="botoes-fim">
                 <button id="btn-jogar-novamente" class="btn-action">Jogar Novamente</button>
                 <button id="btn-perfil" class="btn-action btn-secundario">Ver Perfil</button>
             </div>
         </div>
     </div>
-
+    
     <div id="modal-confirmar-saida-memoria" class="modal-overlay" style="display: none;">
         <div class="modal-card">
             <h2>Tem certeza que deseja sair?</h2>
@@ -119,18 +120,13 @@
             </div>
         </div>
     </div>
-
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
             const elNome = document.getElementById('nome-usuario');
             if (elNome && usuarioLogado) {
                 elNome.textContent = usuarioLogado;
-            }
-
-            // Salva a página de onde o usuário veio
-            if (document.referrer && !document.referrer.includes('jogo-memoria.html')) {
-                sessionStorage.setItem('origemJogoMemoria', document.referrer);
             }
         });
     </script>

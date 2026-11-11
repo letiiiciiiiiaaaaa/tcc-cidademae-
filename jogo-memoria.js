@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.location.href = 'cadastro.html';
         return;
     }
-
-    // Carrega a estrutura inicial dos cards virados para baixo para o fundo não ficar vazio atrás do modal
     loadGame();
 });
 
@@ -189,7 +187,7 @@ const resetGameState = () => {
     currentScore = 0;
     if (placarPontos) placarPontos.innerHTML = currentScore;
     if (timer) timer.innerHTML = "00:00";
-    loadGame(); // Recarrega os cards virados no fundo ao reiniciar
+    loadGame(); 
 };
 
 const dispararConfetes = () => {
@@ -238,6 +236,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnConfirmarSair = document.getElementById('btn-confirmar-sair-memoria');
     const btnCancelarSair = document.getElementById('btn-cancelar-sair-memoria');
 
+    function voltarParaOrigem() {
+        const origem = sessionStorage.getItem('origemJogo');
+        sessionStorage.removeItem('origemJogo');
+
+        if (origem && !origem.includes('jogo-memoria.html')) {
+            window.location.href = origem;
+        } else if (document.referrer && !document.referrer.includes('jogo-memoria.html')) {
+            window.location.href = document.referrer;
+        } else {
+            window.location.href = 'index.html';
+        }
+    }
+
     if (btnFecharMemoria) {
         btnFecharMemoria.addEventListener('click', () => {
             if (modalAlerta) modalAlerta.style.display = 'flex';
@@ -245,18 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (btnConfirmarSair) {
-        btnConfirmarSair.addEventListener('click', () => {
-            const origemSalva = sessionStorage.getItem('origemJogoMemoria');
-
-            if (origemSalva) {
-                sessionStorage.removeItem('origemJogoMemoria');
-                window.location.href = origemSalva;
-            } else if (document.referrer && !document.referrer.includes('jogo-memoria.html')) {
-                window.location.href = document.referrer;
-            } else {
-                window.history.back();
-            }
-        });
+        btnConfirmarSair.addEventListener('click', voltarParaOrigem);
     }
 
     if (btnCancelarSair) {
