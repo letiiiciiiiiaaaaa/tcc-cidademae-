@@ -63,12 +63,22 @@
                 const modalAviso = document.createElement('div');
                 modalAviso.className = 'modal-bloqueio';
                 modalAviso.innerHTML = `
-                    <div class="modal-bloqueio-card">
-                        <h2>Acesso Restrito</h2>
-                        <p>Você precisa estar logado para jogar o Quiz Caiçara!</p>
-                        <button onclick="window.location.href='cadastro.html'">Fazer Login / Cadastro</button>
-                    </div>
-                `;
+
+<div class="modal-bloqueio-card" style="position: relative;">
+
+    <div class="topo-resultado-botoes">
+        <button type="button" class="btn-circulo btn-fechar-bloqueio" title="Voltar">✕</button>
+    </div>
+
+    <h2>Acesso Restrito</h2>
+
+    <p>Você precisa estar logado para jogar o Quiz Caiçara!</p>
+
+    <button onclick="window.location.href='cadastro.html'">Fazer Login / Cadastro</button>
+
+</div>
+
+`;
                 document.body.appendChild(modalAviso);
                 
                 return; // Se não tiver logado, para aqui
