@@ -9,29 +9,52 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="script.js" defer></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
+    
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const usuarioLogado = localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario_nome');
 
-            if (!usuarioLogado) {
-                sessionStorage.setItem('voltarPara', 'jogo-memoria.html');
+        if (!usuarioLogado) {
+            sessionStorage.setItem('voltarPara', 'jogo-memoria.html');
 
-                const modalAviso = document.createElement('div');
-                modalAviso.className = 'modal-bloqueio';
-                modalAviso.innerHTML = `
-                    <div class="modal-bloqueio-card">
-                        <h2>Acesso Restrito</h2>
-                        <p>Você precisa estar logado para jogar o Jogo da Memória!</p>
-                        <button onclick="window.location.href='cadastro.html'">Fazer Login / Cadastro</button>
+            const modalAviso = document.createElement('div');
+            modalAviso.className = 'modal-bloqueio';
+            modalAviso.innerHTML = `
+                <div class="modal-bloqueio-card" style="position: relative;">
+
+                    <div class="topo-resultado-botoes">
+                        <button type="button" class="btn-circulo btn-fechar-bloqueio" title="Voltar">✕</button>
                     </div>
-                `;
-                document.body.appendChild(modalAviso);
 
-                const modalInicio = document.getElementById('modal-inicio');
-                if (modalInicio) modalInicio.style.display = 'none';
-            }
-        });
-    </script>
+                    <h2>Acesso Restrito</h2>
+                    <p>Você precisa estar logado para jogar o Jogo da Memória!</p>
+                    <button onclick="window.location.href='cadastro.html'">Fazer Login / Cadastro</button>
+                </div>
+            `;
+
+            document.body.appendChild(modalAviso);
+
+            const btnFechar = modalAviso.querySelector('.btn-fechar-bloqueio');
+
+            btnFechar.addEventListener('click', () => {
+                const origem = sessionStorage.getItem('origemJogo');
+
+                if (origem && !origem.includes('jogo-memoria.html')) {
+                    sessionStorage.removeItem('origemJogo');
+                    window.location.href = origem;
+                } else if (document.referrer && !document.referrer.includes('jogo-memoria.html')) {
+                    window.location.href = document.referrer;
+                } else {
+                    window.location.href = 'index.html';
+                }
+            });
+
+            const modalInicio = document.getElementById('modal-inicio');
+            if (modalInicio) modalInicio.style.display = 'none';
+        }
+    });
+</script>
+
     <script defer src="jogo-memoria.js"></script>
 </head>
 <body>
